@@ -19,3 +19,16 @@ index truncation and archive links. Ordinary ChatGPT gate: the supported UI
 inventory call timed out; no ordinary-chat session could be established here.
 Daily schedule ID 4486529 is configured but inactive; no recurring monitoring
 or automatic mirroring is active. Public release/CI evidence is in the release receipt. No prompt-quality or downstream execution improvement is claimed.
+
+## Publication readback boundary
+
+New GitLab repository is publicly readable (unauthenticated HTTP 200). GitHub
+repository metadata says public through the authenticated owner API, but its
+unauthenticated web page, repository API and raw LICENSE returned HTTP 404.
+Public accessibility of the GitHub mirror is **BLOCKED / UNVERIFIED** despite
+its public configuration. The account/platform visibility condition cannot be
+resolved from repository metadata alone; no account changes or new organization
+are authorized here. Authenticated branch/tag parity can still be verified.
+
+The daily schedule remains inactive pending verified recurring quota policy.
+No public-directory plugin, marketplace approval or production deployment is claimed.

@@ -10,7 +10,9 @@ It helps produce a usable handoff; it cannot supply missing access, authority,
 repository evidence or guarantees of downstream correctness.
 
 **Canonical:** [GitLab](https://gitlab.com/revanalex/promptcraft-skill).
-**Mirror:** [GitHub](https://github.com/revanbcn/promptcraft-skill).
+**Mirror:** [GitHub](https://github.com/revanbcn/promptcraft-skill) (configured public;
+unauthenticated readback returned 404 at release preparation, so public access is
+not verified).
 Contribute through GitLab issues and merge requests. GitLab CI is authoritative;
 GitHub Actions are not enabled. Mirroring is an explicit verified dual push of
 `main` and release tags; ongoing automatic mirroring is not configured.

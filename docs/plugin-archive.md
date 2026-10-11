@@ -5,7 +5,7 @@ Codex: preserve the contract → consult applicable guidance → draft → criti
 finalize → check requirements and authority boundaries. This package composes
 prompts; it does not execute the underlying development task.
 
-One [portable skill](skills/promptcraft/SKILL.md) and its bundled references,
+One portable skill at `skills/promptcraft/SKILL.md` and its bundled references,
 MIT license, root Agent Plugins 1.0.0 manifest and Claude Code adapter are included.
 There are no MCP servers, credentials or hooks. A public Git release is not a
 published ChatGPT directory plugin.

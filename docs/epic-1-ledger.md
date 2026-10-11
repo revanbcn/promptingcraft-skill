@@ -47,3 +47,8 @@ owner namespaces. GitHub Actions disabled; SSH GitLab unavailable, existing
 keyring credential used via an ephemeral HTTPS helper (never logged or committed).
 Daily schedule ID 4486529 exists with active=false; included compute allowance
 and owner recurring quota policy are not established, so activation is held.
+
+Publication checks: GitLab MR !1 required pipeline 2936650464 passed. GitHub
+authenticated metadata is public, but unauthenticated page/API/raw readbacks return
+404; mirror public access remains blocked/unverified. No credentials or platform
+control changes will be used to evade that boundary.
