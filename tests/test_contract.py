@@ -95,6 +95,22 @@ class ContractTests(unittest.TestCase):
                       reason='Customer delivery', external_action='send')
         self.assertIn('UNAUTHORIZED_EXTERNAL_ACTION', self.codes(data))
 
+    def test_optional_suggestion_cannot_grant_external_authority(self):
+        data = document()
+        append_clause(data, 'Optional suggestion: deploy if useful.', modality='OPTIONAL',
+                      relation='SUGGESTS', external_action='deploy')
+        self.assertIn('UNAUTHORIZED_EXTERNAL_ACTION', self.codes(data))
+
+    def test_original_optional_authority_remains_optional_and_usable(self):
+        data = document()
+        data['original'] += ' Optionally publish the report.'
+        data['requirements'].append({'id': 'publish', 'classification': 'EXPLICIT_OPTIONAL',
+                                     'quote': 'Optionally publish the report.', 'kind': 'AUTHORITY',
+                                     'actions': ['publish']})
+        append_clause(data, 'Optional: publish the report.', modality='OPTIONAL',
+                      supports=['publish'], relation='PRESERVES', kind='AUTHORITY', external_action='publish')
+        self.assertEqual(check(data)['findings'], [])
+
     def test_invented_completion_threshold_is_not_just_a_test(self):
         data = document()
         append_clause(data, 'Complete only when coverage is 100 percent.', kind='COMPLETION')

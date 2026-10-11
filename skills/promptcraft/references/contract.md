@@ -77,8 +77,9 @@ DECOMPOSES, CLARIFIES, SUGGESTS, CONTRADICTS, NOVEL, FORMAT. DECOMPOSES/CLARIFIE
 need a short `reason`; an INFERRED item without a quote also needs one. FORMAT
 is only for nonoperative headings/layout. Annotate consequential action clauses
 with `external_action` (for example `merge`, `deploy`, `send`, `publish`); the same
-action must be sourced to an EXPLICIT_REQUIRED AUTHORITY item in `supports` and
-its `actions` list. No permission is manufactured by an annotation.
+action must be sourced to an EXPLICIT_REQUIRED or EXPLICIT_OPTIONAL AUTHORITY
+item in `supports` and its `actions` list. An original optional grant stays optional;
+labeling a newly authorized action optional cannot manufacture permission.
 
 Exit 0 means structurally clean but **REVIEW_REQUIRED**; 1 means **DRIFT**; 2 means
 **INVALID** input. False annotations can fool structural checks. A clean result

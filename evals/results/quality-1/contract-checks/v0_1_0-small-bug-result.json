@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "DRIFT",
+  "semantic_validation": "NOT_ESTABLISHED",
+  "findings": [
+    {
+      "code": "NEW_REQUIREMENT",
+      "clause": 3
+    },
+    {
+      "code": "NEW_REQUIREMENT",
+      "clause": 17
+    },
+    {
+      "code": "INVENTED_COMPLETION_CRITERION",
+      "clause": 17
+    }
+  ],
+  "covered_requirements": [
+    "api",
+    "authority",
+    "deploy",
+    "deps",
+    "goal"
+  ],
+  "prompt_chars": 2215,
+  "prompt_words": 385,
+  "limitation": "Review extraction completeness, clause modality, claimed entailment, action annotations and contradictions against the actual texts."
+}

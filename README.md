@@ -6,6 +6,13 @@ drafts, critiques once, revises, and checks that requirements and permissions
 survived. The assistant writing the prompt and the agent executing it may differ.
 First targets: **Claude Code and OpenAI Codex**. Version: **0.1.0**.
 
+The immutable v0.1.0 tag is the canonical release. `main` also contains unreleased
+official-knowledge and contract-quality work: 17 curated recommendations, five
+requirement classes and an optional offline contract checker. The
+[all-case comparison](evals/results/quality-1/README.md) still finds candidate
+drift in three cases; **IMPROVE FURTHER**, with no new release. Development CI
+archives are not replacements for published v0.1.0 release assets.
+
 It helps produce a usable handoff; it cannot supply missing access, authority,
 repository evidence or guarantees of downstream correctness.
 
@@ -29,12 +36,11 @@ Critique: the draft lost the symptom, API constraint and deployment boundary.
 Final:
 
 ```text
-Fix the settings Save button so an unsuccessful API response shows an error
-instead of success. Preserve the existing API shape and follow nearby UI patterns.
-Locate the save handler and its callers, reproduce the failure and make the
-smallest root-cause fix. Verify successful saving and API-error behavior,
-including that the error path never shows success; run the affected checks.
-Do not deploy. Report changed files, commands/results and remaining gaps.
+Fix Save so an unsuccessful API response is not reported as success. Preserve
+the API shape. Locate the existing save path and verify the requested failure
+behavior. Do not deploy.
+
+Optional suggestion: use the existing error-display pattern if one is available.
 ```
 
 This is an original illustration, not proof of improved execution. See the

@@ -23,6 +23,15 @@ class EvaluationTests(unittest.TestCase):
         self.assertIsNone(extract_handoff('No handoff'))
         self.assertIsNone(extract_handoff('```text\nDraft\n```\n```text\nFinal\n```'))
 
+    def test_mixed_language_blocks_do_not_mispair_their_fences(self):
+        self.assertIsNone(extract_handoff('```python\nprint(1)\n```\n```text\nFix Save.\n```'))
+
+    def test_malformed_fences_are_not_a_complete_handoff(self):
+        for text in ['```text\nFix Save.', '```text\nFix Save.\n```\n```python\nprint(1)',
+                     '```text\n```']:
+            with self.subTest(text=text):
+                self.assertIsNone(extract_handoff(text))
+
     def test_nontrigger_output_has_no_handoff(self):
         self.assertIsNone(extract_handoff('A binary search tree stores sorted keys. Search follows branches.'))
 
@@ -42,6 +51,16 @@ class EvaluationTests(unittest.TestCase):
     def test_error_or_missing_result_is_not_success(self):
         self.assertEqual(parse_events('')['status'], 'ERROR')
         self.assertEqual(parse_events(json.dumps({'type': 'result', 'result': 'partial', 'is_error': True}))['status'], 'ERROR')
+
+    def test_system_message_string_does_not_abort_completed_trace_collection(self):
+        events = [
+            {'type': 'system', 'subtype': 'permission_denied', 'message': 'Command not allowed'},
+            {'type': 'assistant', 'message': {'model': 'observed-model', 'content': []}},
+            {'type': 'result', 'is_error': False, 'result': 'Completed visible result'},
+        ]
+        result = parse_events('\n'.join(json.dumps(event) for event in events))
+        self.assertEqual(result['status'], 'RUN')
+        self.assertEqual(result['models_observed'], ['observed-model'])
 
 
 if __name__ == '__main__':

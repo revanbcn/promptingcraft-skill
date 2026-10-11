@@ -1,0 +1,16 @@
+test_500_cannot_show_success_and_request_shape_survives (acceptance.SaveAcceptance.test_500_cannot_show_success_and_request_shape_survives) ... FAIL
+test_success_path_is_preserved (acceptance.SaveAcceptance.test_success_path_is_preserved) ... ok
+
+======================================================================
+FAIL: test_500_cannot_show_success_and_request_shape_survives (acceptance.SaveAcceptance.test_500_cannot_show_success_and_request_shape_survives)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<project>/evals/downstream/acceptance.py", line 14, in test_500_cannot_show_success_and_request_shape_survives
+    self.assertNotEqual(form['banner'], 'success')
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'success' == 'success'
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.004s
+
+FAILED (failures=1)

@@ -128,9 +128,9 @@ def check(document):
         action = clause.get('external_action')
         if action is not None:
             _string(action, 'external_action')
-            allowed = any(row['classification'] == 'EXPLICIT_REQUIRED' and row['kind'] == 'AUTHORITY'
+            allowed = any(row['classification'] in {'EXPLICIT_REQUIRED', 'EXPLICIT_OPTIONAL'} and row['kind'] == 'AUTHORITY'
                           and action in row.get('actions', []) for row in source_rows)
-            if modality == 'REQUIRED' and not allowed:
+            if modality in {'REQUIRED', 'OPTIONAL'} and not allowed:
                 flag('UNAUTHORIZED_EXTERNAL_ACTION', index)
 
     if final[cursor:].strip():

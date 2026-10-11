@@ -1,5 +1,11 @@
 # Official source and packaging decisions
 
+For the new curated selection, see [knowledge acquisition](knowledge-acquisition.md)
+and the [portable recommendation ledger](../skills/promptcraft/references/knowledge.json).
+The quality-1 live check retrieved all 27 registry sources successfully; its
+accepted metadata baseline is separate from semantic recommendation review.
+The original v0.1.0 source decisions below remain historical.
+
 Retrieved on **2026-10-12 Europe/Madrid** (live maintenance snapshot began
 **2026-10-11T22:41:08Z**). These are retrieval observations, not publication dates.
 Source publication/update times were not established. Original project summaries

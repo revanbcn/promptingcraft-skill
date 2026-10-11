@@ -1,0 +1,16 @@
+diff --git a/settings.py b/settings.py
+index d7f3eb2..8e85cf4 100644
+--- a/settings.py
++++ b/settings.py
+@@ -3,6 +3,9 @@
+ 
+ def save_settings(form, send):
+     response = send({'settings': dict(form['values'])})
+-    form['banner'] = 'success'
+-    form['dirty'] = False
++    if 200 <= response['status'] < 300:
++        form['banner'] = 'success'
++        form['dirty'] = False
++    else:
++        form['banner'] = 'error'
+     return response['status']

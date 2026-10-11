@@ -1,0 +1,93 @@
+[
+  {
+    "case": "small-bug",
+    "arm": "original",
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "exit_code": null,
+    "baseline_acceptance_exit": null,
+    "acceptance_exit": 0,
+    "acceptance_pass": true,
+    "collector_recovered_from_saved_terminal_trace": true,
+    "baseline_acceptance_observed": "FAILED in saved unittest output",
+    "permission_denial_events": 1
+  },
+  {
+    "case": "small-bug",
+    "arm": "v0_1_0",
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "exit_code": 0,
+    "baseline_acceptance_exit": 1,
+    "acceptance_exit": 0,
+    "acceptance_pass": true,
+    "collector_recovered_from_saved_terminal_trace": null,
+    "permission_denial_events": 2
+  },
+  {
+    "case": "small-bug",
+    "arm": "candidate",
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "exit_code": 0,
+    "baseline_acceptance_exit": 1,
+    "acceptance_exit": 0,
+    "acceptance_pass": true,
+    "collector_recovered_from_saved_terminal_trace": null,
+    "permission_denial_events": 1
+  },
+  {
+    "case": "retry-contract",
+    "arm": "original",
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "exit_code": 0,
+    "baseline_acceptance_exit": 1,
+    "acceptance_exit": 1,
+    "acceptance_pass": false,
+    "collector_recovered_from_saved_terminal_trace": null,
+    "permission_denial_events": 1
+  },
+  {
+    "case": "retry-contract",
+    "arm": "v0_1_0",
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "exit_code": 0,
+    "baseline_acceptance_exit": 1,
+    "acceptance_exit": 0,
+    "acceptance_pass": true,
+    "collector_recovered_from_saved_terminal_trace": null,
+    "permission_denial_events": 1
+  },
+  {
+    "case": "retry-contract",
+    "arm": "candidate",
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "exit_code": 0,
+    "baseline_acceptance_exit": 1,
+    "acceptance_exit": 0,
+    "acceptance_pass": true,
+    "collector_recovered_from_saved_terminal_trace": null,
+    "permission_denial_events": 2
+  }
+]

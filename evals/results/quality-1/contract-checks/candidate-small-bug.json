@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "original": "Write a Codex execution prompt. In our existing settings UI, Save shows success after a 500 API response. Preserve the API shape. No new dependencies. Edits and tests are authorized; deployment is not. Exact repository paths and the executor model are unknown.",
+  "requirements": [
+    {
+      "id": "goal",
+      "classification": "EXPLICIT_REQUIRED",
+      "quote": "In our existing settings UI, Save shows success after a 500 API response.",
+      "kind": "GOAL"
+    },
+    {
+      "id": "api",
+      "classification": "EXPLICIT_REQUIRED",
+      "quote": "Preserve the API shape.",
+      "kind": "CONSTRAINT"
+    },
+    {
+      "id": "deps",
+      "classification": "FORBIDDEN",
+      "quote": "No new dependencies.",
+      "kind": "CONSTRAINT"
+    },
+    {
+      "id": "authority",
+      "classification": "EXPLICIT_REQUIRED",
+      "quote": "Edits and tests are authorized",
+      "kind": "AUTHORITY",
+      "actions": [
+        "edit",
+        "test"
+      ]
+    },
+    {
+      "id": "deploy",
+      "classification": "FORBIDDEN",
+      "quote": "deployment is not.",
+      "kind": "AUTHORITY",
+      "actions": [
+        "deploy"
+      ]
+    },
+    {
+      "id": "unknowns",
+      "classification": "UNRESOLVED",
+      "quote": "Exact repository paths and the executor model are unknown.",
+      "kind": "CONTEXT"
+    },
+    {
+      "id": "error-display",
+      "classification": "INFERRED",
+      "quote": null,
+      "kind": "GOAL",
+      "reason": "Failure must not appear successful; error UI and edit retention are not specified."
+    }
+  ],
+  "final_prompt": "Fix a bug in our existing settings UI: after the Save request gets a 500 response from the API, the UI still shows a success state. A failed save must not be presented as a success.\n\nContext\n- The repository paths for the settings UI and its save call are not known to me. Find them in the repository you're working in.\n- Reproduce the bug first: make Save receive a 500 response and confirm the UI shows success.\n- What the UI should show instead of success is not specified. Use the app's existing conventions for showing errors if it has them. Otherwise pick the smallest reasonable behavior and say what you chose.\n\nConstraints\n- Preserve the API shape. Don't change request or response formats, endpoints or status codes.\n- Don't add new dependencies.\n\nAuthority\n- You may edit code and add or run tests in the repository.\n- You may not deploy. Don't run any deployment, release or publish step. If a merge or push would trigger a deployment, don't do it.\n\nVerify\n- Show evidence, such as a test or a reproduction run, that a 500 response from Save no longer produces a success state.\n- Run the relevant existing tests and report the results. Report any failures with their output.\n\nFinal report: list the files changed, summarize the fix, give the test results, and note anything you could not verify.",
+  "clauses": [
+    {
+      "text": "Fix a bug in our existing settings UI: after the Save request gets a 500 response from the API, the UI still shows a success state. A failed save must not be presented as a success.",
+      "modality": "REQUIRED",
+      "supports": [
+        "goal"
+      ],
+      "relation": "CLARIFIES",
+      "kind": "GOAL",
+      "reason": "Discovery or direct evidence of the requested Save/500 correction; manually reviewed."
+    },
+    {
+      "text": "Context",
+      "modality": "CONTEXT",
+      "supports": [],
+      "relation": "FORMAT",
+      "kind": "FORMAT"
+    },
+    {
+      "text": "- The repository paths for the settings UI and its save call are not known to me. Find them in the repository you're working in.",
+      "modality": "CONTEXT",
+      "supports": [
+        "unknowns"
+      ],
+      "relation": "CLARIFIES",
+      "kind": "CONTEXT",
+      "reason": "Discovery or direct evidence of the requested Save/500 correction; manually reviewed."
+    },
+    {
+      "text": "- Reproduce the bug first: make Save receive a 500 response and confirm the UI shows success.",
+      "modality": "REQUIRED",
+      "supports": [
+        "goal"
+      ],
+      "relation": "CLARIFIES",
+      "kind": "GOAL",
+      "reason": "Discovery or direct evidence of the requested Save/500 correction; manually reviewed."
+    },
+    {
+      "text": "- What the UI should show instead of success is not specified. Use the app's existing conventions for showing errors if it has them. Otherwise pick the smallest reasonable behavior and say what you chose.",
+      "modality": "REQUIRED",
+      "supports": [
+        "goal"
+      ],
+      "relation": "CLARIFIES",
+      "kind": "GOAL",
+      "reason": "Discovery or direct evidence of the requested Save/500 correction; manually reviewed."
+    },
+    {
+      "text": "Constraints",
+      "modality": "CONTEXT",
+      "supports": [],
+      "relation": "FORMAT",
+      "kind": "FORMAT"
+    },
+    {
+      "text": "- Preserve the API shape. Don't change request or response formats, endpoints or status codes.",
+      "modality": "REQUIRED",
+      "supports": [
+        "api"
+      ],
+      "relation": "PRESERVES",
+      "kind": "CONSTRAINT",
+      "reason": "Discovery or direct evidence of the requested Save/500 correction; manually reviewed."
+    },
+    {
+      "text": "- Don't add new dependencies.",
+      "modality": "FORBIDDEN",
+      "supports": [
+        "deps"
+      ],
+      "relation": "PRESERVES",
+      "kind": "CONSTRAINT",
+      "reason": "Discovery or direct evidence of the requested Save/500 correction; manually reviewed."
+    },
+    {
+      "text": "Authority",
+      "modality": "CONTEXT",
+      "supports": [],
+      "relation": "FORMAT",
+      "kind": "FORMAT"
+    },
+    {
+      "text": "- You may edit code and add or run tests in the repository.",
+      "modality": "REQUIRED",
+      "supports": [
+        "authority"
+      ],
+      "relation": "PRESERVES",
+      "kind": "AUTHORITY",
+      "reason": "Discovery or direct evidence of the requested Save/500 correction; manually reviewed."
+    },
+    {
+      "text": "- You may not deploy. Don't run any deployment, release or publish step. If a merge or push would trigger a deployment, don't do it.",
+      "modality": "FORBIDDEN",
+      "supports": [
+        "deploy"
+      ],
+      "relation": "PRESERVES",
+      "kind": "AUTHORITY",
+      "reason": "Discovery or direct evidence of the requested Save/500 correction; manually reviewed."
+    },
+    {
+      "text": "Verify",
+      "modality": "CONTEXT",
+      "supports": [],
+      "relation": "FORMAT",
+      "kind": "FORMAT"
+    },
+    {
+      "text": "- Show evidence, such as a test or a reproduction run, that a 500 response from Save no longer produces a success state.",
+      "modality": "REQUIRED",
+      "supports": [
+        "goal"
+      ],
+      "relation": "CLARIFIES",
+      "kind": "GOAL",
+      "reason": "Discovery or direct evidence of the requested Save/500 correction; manually reviewed."
+    },
+    {
+      "text": "- Run the relevant existing tests and report the results. Report any failures with their output.",
+      "modality": "REQUIRED",
+      "supports": [
+        "goal"
+      ],
+      "relation": "CLARIFIES",
+      "kind": "GOAL",
+      "reason": "Discovery or direct evidence of the requested Save/500 correction; manually reviewed."
+    },
+    {
+      "text": "Final report: list the files changed, summarize the fix, give the test results, and note anything you could not verify.",
+      "modality": "REQUIRED",
+      "supports": [
+        "goal"
+      ],
+      "relation": "CLARIFIES",
+      "kind": "GOAL",
+      "reason": "Discovery or direct evidence of the requested Save/500 correction; manually reviewed."
+    }
+  ],
+  "annotation_limit": "Manual clause annotations, not a semantic proof. Full semantic review is in semantic-audit.json."
+}

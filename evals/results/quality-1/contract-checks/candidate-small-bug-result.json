@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "status": "REVIEW_REQUIRED",
+  "semantic_validation": "NOT_ESTABLISHED",
+  "findings": [],
+  "covered_requirements": [
+    "api",
+    "authority",
+    "deploy",
+    "deps",
+    "goal"
+  ],
+  "prompt_chars": 1307,
+  "prompt_words": 234,
+  "limitation": "Review extraction completeness, clause modality, claimed entailment, action annotations and contradictions against the actual texts."
+}

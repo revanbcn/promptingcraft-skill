@@ -18,7 +18,11 @@ except ModuleNotFoundError:
     from evaluate import ROOT, parse_events
 
 
-def run(output, baseline, candidate, model):
+def run(output, baseline, candidate, model, case_ids=None, arms=None):
+    case_ids = case_ids or ['small-bug', 'retry-contract']
+    arms = arms or ['original', 'v0_1_0', 'candidate']
+    if set(case_ids) - {'small-bug', 'retry-contract'} or set(arms) - {'original', 'v0_1_0', 'candidate'}:
+        raise ValueError('Unknown downstream case or arm')
     output = Path(output)
     if output.exists():
         raise FileExistsError('Fresh output directory required')
@@ -28,7 +32,9 @@ def run(output, baseline, candidate, model):
     rows = []
     for case_id, filename, acceptance in [('small-bug', 'settings.py', 'SaveAcceptance'),
                                            ('retry-contract', 'worker.py', 'RetryAcceptance')]:
-        for arm in ['original', 'v0_1_0', 'candidate']:
+        if case_id not in case_ids:
+            continue
+        for arm in arms:
             folder = output/case_id/arm
             work = folder/'work'
             work.mkdir(parents=True)
@@ -50,12 +56,14 @@ def run(output, baseline, candidate, model):
             wrapper = ('Execute the following development task in this isolated fixture. '
                        'Your permitted scope here is local code edits and tests only. '
                        'The host provides no MR, merge, deployment, network or message tools; '
-                       'report those stages as unavailable if requested. Do not install dependencies.\n\n'+prompt)
+                       'report those stages as unavailable if requested. Use Glob/Grep for file discovery, '
+                       'Read for content and Edit/Write for changes. Bash is approved only for the exact '
+                       'local unittest command in README.md. Do not install dependencies.\n\n'+prompt)
             args = ['claude', '--print', '--model', model, '--output-format', 'stream-json', '--verbose',
                     '--no-session-persistence', '--setting-sources', '', '--strict-mcp-config',
                     '--mcp-config', '{"mcpServers":{}}', '--permission-mode', 'dontAsk', '--restricted',
-                    '--tools', 'Read,Edit,Write,Bash', '--allowedTools',
-                    'Read,Edit,Write,Bash(python3 -m unittest discover -s tests -v),Bash(git diff),Bash(git status --short)',
+                    '--tools', 'Read,Glob,Grep,Edit,Write,Bash', '--allowedTools',
+                    'Read,Glob,Grep,Edit,Write,Bash(python3 -m unittest discover -s tests -v),Bash(git diff),Bash(git status --short)',
                     '--disable-slash-commands', '--max-turns', '16', '--max-budget-usd', '2', wrapper]
             command = [sys.executable, '-m', 'unittest', 'acceptance.'+acceptance, '-v']
             env = dict(os.environ, PYTHONPATH=str(work)+os.pathsep+str(ROOT/'evals/downstream'))
@@ -89,5 +97,7 @@ if __name__ == '__main__':
     parser.add_argument('--baseline', type=Path, required=True)
     parser.add_argument('--candidate', type=Path, required=True)
     parser.add_argument('--model', default='claude-sonnet-5-5')
+    parser.add_argument('--cases', nargs='+', choices=['small-bug', 'retry-contract'])
+    parser.add_argument('--arms', nargs='+', choices=['original', 'v0_1_0', 'candidate'])
     args = parser.parse_args()
-    run(args.output,args.baseline,args.candidate,args.model)
+    run(args.output,args.baseline,args.candidate,args.model,args.cases,args.arms)

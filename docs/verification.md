@@ -1,5 +1,31 @@
 # Verification status
 
+## Unreleased quality-1 candidate
+
+- 54 current offline tests pass for contracts, evaluation collection, knowledge
+  provenance, freshness, packaging and isolated installs. Project validator and
+  reproducible standalone/plugin builds pass. The separate generic skill-creator
+  validator was unavailable because local PyYAML is absent; no dependency was
+  added merely for that optional check.
+- All ten planned and four realistic public cases ran in the final identical
+  composition harness on observed author `claude-sonnet-5-5`, 28 final runs plus
+  28 disclosed diagnostic runs. Separate fresh-context semantic review finds
+  material drift in B 13/14 and C 3/14; no semantic or behavioral guarantee.
+- Six matched downstream fixture runs pass common post-run acceptance. The earlier
+  discovery-limited pilot is separately recorded; no general downstream advantage
+  is established. These fixtures do not exercise real MR/merge/deploy or production.
+- Current Codex/manual ChatGPT runtime comparison remains unestablished. Their
+  portable resources/install paths and ordinary manual-use form are preserved.
+- Live maintenance retrieved all 27 registry documents successfully; original
+  content hashes/metadata are the baseline, not provider-document dumps.
+- Independent code review found two Important defects (optional external authority
+  and mixed-fence extraction). RED→GREEN fixes and a focused follow-up review passed.
+  An actually observed system-message type error also has a regression fix.
+- Recommendation: **IMPROVE FURTHER**. No release/tag/version change or deployment.
+  Remote MR/main CI and merge receipt follow in the mission ledger.
+
+## Canonical v0.1.0 historical receipt
+
 Delivery checks are recorded here before release. Format, packaging, isolated
 installation and observed model runtime are separate claims.
 

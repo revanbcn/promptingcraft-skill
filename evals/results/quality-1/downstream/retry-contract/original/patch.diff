@@ -1,0 +1,17 @@
+diff --git a/worker.py b/worker.py
+index 93c25fa..1927c47 100644
+--- a/worker.py
++++ b/worker.py
+@@ -1,5 +1,11 @@
+ """Original isolated retry fixture; there is no scheduler or database."""
+ 
++TERMINAL_STATUS = 'failed_final'
++
+ 
+ def retry_jobs(jobs):
+-    return [{'job_id': job['job_id'], 'delay': job['retry_delay']} for job in jobs]
++    return [
++        {'job_id': job['job_id'], 'delay': job['retry_delay']}
++        for job in jobs
++        if job.get('status') != TERMINAL_STATUS
++    ]

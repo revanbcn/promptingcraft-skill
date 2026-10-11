@@ -1,0 +1,86 @@
+[
+  {
+    "case": "small-bug",
+    "arm": "original",
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "exit_code": 0,
+    "baseline_acceptance_exit": 1,
+    "acceptance_exit": 0,
+    "acceptance_pass": true,
+    "permission_denial_events": 0
+  },
+  {
+    "case": "small-bug",
+    "arm": "v0_1_0",
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "exit_code": 0,
+    "baseline_acceptance_exit": 1,
+    "acceptance_exit": 0,
+    "acceptance_pass": true,
+    "permission_denial_events": 0
+  },
+  {
+    "case": "small-bug",
+    "arm": "candidate",
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "exit_code": 0,
+    "baseline_acceptance_exit": 1,
+    "acceptance_exit": 0,
+    "acceptance_pass": true,
+    "permission_denial_events": 0
+  },
+  {
+    "case": "retry-contract",
+    "arm": "original",
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "exit_code": 0,
+    "baseline_acceptance_exit": 1,
+    "acceptance_exit": 0,
+    "acceptance_pass": true,
+    "permission_denial_events": 0
+  },
+  {
+    "case": "retry-contract",
+    "arm": "v0_1_0",
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "exit_code": 0,
+    "baseline_acceptance_exit": 1,
+    "acceptance_exit": 0,
+    "acceptance_pass": true,
+    "permission_denial_events": 0
+  },
+  {
+    "case": "retry-contract",
+    "arm": "candidate",
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "exit_code": 0,
+    "baseline_acceptance_exit": 1,
+    "acceptance_exit": 0,
+    "acceptance_pass": true,
+    "permission_denial_events": 0
+  }
+]

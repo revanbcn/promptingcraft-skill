@@ -1,5 +1,9 @@
 # Observed synthetic behavior — 2026-10-12
 
+The [quality-1 comparison](quality-1/README.md) now covers all ten planned cases,
+four realistic public examples and a small matched downstream sample. The initial
+v0.1.0 observations below remain historical evidence; they are not rewritten.
+
 **No statistically established improvement or better downstream execution is
 claimed.** These runs composed prompts; they did not implement them. Published
 files are reviewed visible model outputs, not hidden reasoning or raw traces.

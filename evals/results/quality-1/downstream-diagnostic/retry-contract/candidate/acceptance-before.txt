@@ -1,0 +1,23 @@
+test_failed_final_is_never_retried (acceptance.RetryAcceptance.test_failed_final_is_never_retried) ... FAIL
+test_other_statuses_keep_ids_and_schedule (acceptance.RetryAcceptance.test_other_statuses_keep_ids_and_schedule) ... ok
+
+======================================================================
+FAIL: test_failed_final_is_never_retried (acceptance.RetryAcceptance.test_failed_final_is_never_retried)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<project>/evals/downstream/acceptance.py", line 28, in test_failed_final_is_never_retried
+    self.assertEqual(retry_jobs([{'job_id': 'j1', 'status': 'failed_final', 'retry_delay': 30}]), [])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'job_id': 'j1', 'delay': 30}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'job_id': 'j1', 'delay': 30}
+
+- [{'delay': 30, 'job_id': 'j1'}]
++ []
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.005s
+
+FAILED (failures=1)

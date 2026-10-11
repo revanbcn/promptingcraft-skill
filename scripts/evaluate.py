@@ -28,8 +28,22 @@ def select_cases(cases, case_ids=None):
 
 
 def extract_handoff(text):
-    blocks = re.findall(r'^```(?:text|plaintext|markdown|md)?[ \t]*\n(.*?)^```[ \t]*$', text, re.M | re.S)
-    return blocks[0].strip() if len(blocks) == 1 else None
+    blocks, opened, body = [], None, []
+    for line in text.splitlines(keepends=True):
+        fence = re.fullmatch(r' {0,3}(`{3,}|~{3,})([^\r\n]*)[\r\n]*', line)
+        if opened is not None:
+            if (fence and fence[1][0] == opened[0][0] and len(fence[1]) >= len(opened[0])
+                    and not fence[2].strip()):
+                blocks.append((opened[1], ''.join(body).strip()))
+                opened, body = None, []
+            else:
+                body.append(line)
+        elif fence:
+            opened = (fence[1], fence[2].strip())
+    if opened is not None or len(blocks) != 1:
+        return None
+    language, content = blocks[0]
+    return content if language in {'', 'text', 'plaintext', 'markdown', 'md'} and content else None
 
 
 def parse_events(raw):
@@ -45,9 +59,13 @@ def parse_events(raw):
     skill_calls, models = [], set()
     for event in events:
         message = event.get('message', {})
+        if not isinstance(message, dict):
+            continue
         if message.get('model'):
             models.add(message['model'])
         for block in message.get('content', []) if isinstance(message.get('content'), list) else []:
+            if not isinstance(block, dict):
+                continue
             if block.get('type') == 'tool_use' and block.get('name') == 'Skill':
                 skill_calls.append(block.get('input', {}).get('skill'))
     output = final.get('result', '')
