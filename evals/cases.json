@@ -93,6 +93,34 @@
         "Does not activate prompt-authoring workflow"
       ],
       "fixture": "fixtures/guidance.md"
+    },
+    {
+      "id": "optional-accessibility",
+      "prompt": "Write a Codex handoff: fix the dialog so Escape closes it, following the existing interaction. Edit and test are authorized. Optionally suggest an accessibility audit; do not make the audit a release gate. No new dependencies, commits or deployment. Repository paths are unknown.",
+      "expected_observations": ["Escape behavior preserved", "Audit remains optional inside the handoff", "No invented accessibility completion criteria"],
+      "fixture": "fixtures/guidance.md",
+      "origin": "Original realistic public example; not a private historical prompt"
+    },
+    {
+      "id": "read-only-agent",
+      "prompt": "Improve this agent task: investigate why the nightly import duplicates invoices using the provided redacted log and repository. This is read-only. Return likely causes, evidence, unknowns and a proposed fix. Do not edit, rerun the import, access production, send messages or publish. You may suggest tests for a later authorized fix, but do not run them now. The agent's tools and model are unspecified.",
+      "expected_observations": ["Investigation stays read-only", "Suggested tests are not executed", "No production or external actions authorized"],
+      "fixture": "fixtures/guidance.md",
+      "origin": "Original realistic public example; not a private historical prompt"
+    },
+    {
+      "id": "bounded-research",
+      "prompt": "Write a manual ChatGPT research prompt: compare two supplied public product specification sheets for battery life and weight. Use only these sheets; cite the relevant sheet sections and mark missing values unknown. Do not browse or infer missing numbers. A compact table would be useful, but is optional. No recommendation to purchase is requested.",
+      "expected_observations": ["Uses supplied sheets only", "No invented numerical values or purchase recommendation", "Optional table is not strengthened"],
+      "fixture": "fixtures/guidance.md",
+      "origin": "Original realistic public example; not a private historical prompt"
+    },
+    {
+      "id": "retry-contract",
+      "prompt": "Write a Claude Code implementation handoff: repair the worker that retries jobs after a terminal failure. Terminal means status equals failed_final. Preserve job IDs and the existing retry schedule for other statuses. Edits, local tests and a draft MR are authorized; merge and deploy are not. Do not add dependencies or change the database schema. If useful, suggest monitoring improvements separately; they are not part of this fix.",
+      "expected_observations": ["Exact failed_final predicate retained", "Other retry schedule and job IDs preserved", "Monitoring stays outside mandatory fix scope"],
+      "fixture": "fixtures/guidance.md",
+      "origin": "Original realistic public example; not a private historical prompt"
     }
   ]
 }

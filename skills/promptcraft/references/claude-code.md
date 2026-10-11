@@ -16,6 +16,13 @@ revalidate applicable pages during use. Offline notes remain dated cached guidan
   the evidenced model exactly; do not assume a Claude Code session uses the latest
   model or apply another model's prompting rules universally.
 
+Relevant curated records: `claude-clear`, `claude-progressive`,
+`claude-code-authoring`, `claude-sonnet-scope`, `claude-json-reasoning`,
+`claude-long-context`. Sonnet 5.5's scope/JSON guidance is specific to that model
+and observed failure; do not transplant it to unknown executors. Long-document
+ordering is conditional on large inputs. It does not require XML or quotations
+for every small task. Helpful unrequested work remains optional.
+
 Start with https://code.claude.com/docs/en/best-practices and
 https://code.claude.com/docs/en/prompt-library. Use
 https://code.claude.com/docs/llms.txt for agent discovery and

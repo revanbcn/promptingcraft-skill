@@ -4,11 +4,13 @@
     "anthropic": {
       "hosts": [
         "code.claude.com",
-        "platform.claude.com"
+        "platform.claude.com",
+        "www.anthropic.com"
       ],
       "path_prefixes": [
         "/docs/",
-        "/llms.txt"
+        "/llms.txt",
+        "/engineering/"
       ]
     },
     "openai": {
@@ -200,6 +202,162 @@
         "max_age_days": 7,
         "during_use": "revalidate task-relevant sources with existing host retrieval",
         "maintenance": "daily read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "oai-clear-context",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/api/docs/guides/prompt-engineering",
+      "role": "guidance",
+      "applicability": "OpenAI text and reasoning models; Any prompt; adapt structure to complexity.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "oai-reasoning",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/api/docs/guides/reasoning-best-practices",
+      "role": "guidance",
+      "applicability": "Documented OpenAI reasoning models; historical o-series particulars stay model-specific; Known reasoning target and relevant interface.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "oai-evaluation",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+      "role": "evaluation",
+      "applicability": "OpenAI models and LLM applications; Changing prompt/skill behavior; existing offline harness is sufficient infrastructure.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "oai-structured",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+      "role": "guidance",
+      "applicability": "OpenAI models/interfaces supporting Structured Outputs; Machine-consumed output is requested or needed; ordinary prompts need no JSON.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "oai-tools",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/api/docs/guides/function-calling",
+      "role": "guidance",
+      "applicability": "OpenAI API tool-capable models; The user is building/configuring tools or agent capabilities.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "oai-untrusted-data",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/api/docs/guides/agent-builder-safety",
+      "role": "guidance",
+      "applicability": "OpenAI agent workflows; page is legacy Agent Builder guidance; Retrieved/tool content is included in a prompt.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "oai-cache",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+      "role": "guidance",
+      "applicability": "OpenAI cache-eligible models; rules vary by model and settings; Repeated API calls with measured eligible reuse, not ordinary manual chat.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "claude-sonnet-scope",
+      "provider": "anthropic",
+      "canonical_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5",
+      "role": "guidance",
+      "applicability": "Claude Sonnet 5.5 only; Executor model established as Sonnet 5.5 and the observed behavior matches.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "claude-progressive",
+      "provider": "anthropic",
+      "canonical_url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices",
+      "role": "guidance",
+      "applicability": "Claude Agent Skills; Authoring/maintaining the skill.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "claude-tool-descriptions",
+      "provider": "anthropic",
+      "canonical_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+      "role": "guidance",
+      "applicability": "Claude API tool-capable models; Tool-building tasks or confirmed executor capabilities.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "claude-evaluations",
+      "provider": "anthropic",
+      "canonical_url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+      "role": "evaluation",
+      "applicability": "Claude applications and prompt iterations; Evaluating a prompt change; use existing infrastructure.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "claude-code-authoring",
+      "provider": "anthropic",
+      "canonical_url": "https://code.claude.com/docs/en/skills",
+      "role": "guidance",
+      "applicability": "Claude Code skills, independent of executor model; Packaging/testing Claude Code support.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "claude-workflow-complexity",
+      "provider": "anthropic",
+      "canonical_url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "role": "guidance",
+      "applicability": "General agent/workflow design; historical 2024 engineering article; Designing a workflow; not a directive to change user architecture.",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
       }
     }
   ]

@@ -16,13 +16,11 @@ No check demonstrates that an error stops the false success state.
 Final:
 
 ```text
-Fix the settings Save button so an unsuccessful API response shows an error
-instead of success. Preserve the existing API shape and follow nearby UI patterns.
-Start from the save handler and its callers; their exact paths have not been
-provided. Reproduce the failure, make the smallest root-cause fix and run the
-affected checks. Verify both a successful save and an API error, including that
-the error path never shows success. Do not deploy. Report the changed files,
-commands/results and any remaining verification gap.
+Fix Save so an unsuccessful API response is not reported as success. Preserve
+the API shape. Locate the existing save path and verify the requested failure
+behavior. Do not deploy.
+
+Optional suggestion: use the existing error-display pattern if one is available.
 ```
 
 ## Authorized implementation
@@ -38,13 +36,12 @@ Critique: "Ship" invents merge/deploy authority. Missing column and backend cons
 Final:
 
 ```text
-Add CSV export to the existing report view using its current column selection
-and ordering. Preserve the backend API and existing report behavior. Inspect
-nearby export patterns before choosing the implementation. Verify CSV escaping
-for commas, quotes and newlines, empty results and selected-column order; run
-the relevant existing checks. Edits, testing and a merge request are authorized.
-Prepare the MR with the behavior change and validation evidence; do not merge
-or deploy. Report the MR URL and any remaining acceptance limitations.
+Add CSV export to the existing report view using its current columns. Make no
+backend changes. Edits, tests and an MR are authorized; merge and deployment are
+not. Verify the export represents the chosen columns as valid CSV.
+
+Optional suggestion: consult nearby export patterns; retain existing empty-result
+conventions if applicable rather than choosing a new one in this handoff.
 ```
 
 ## Performance with measured acceptance
@@ -62,9 +59,7 @@ Final:
 ```text
 Reduce p95 latency in the existing 10,000-row filter benchmark to below 300 ms
 on the same runner and benchmark protocol used for the 900 ms baseline.
-Preserve exact filtering results and add no dependencies. Confirm the baseline
-before changing code; locate the bottleneck and choose the smallest appropriate
-fix. Compare results for representative edge cases and rerun the benchmark under
-the same conditions. Do not deploy. Report baseline/final measurements, protocol,
-correctness evidence and any uncertainty that prevents a valid comparison.
+Preserve exact filtering results and add no dependencies. Measure the stated
+benchmark under its existing protocol to verify the target and unchanged results.
+Do not deploy. The optimization mechanism is not prescribed.
 ```

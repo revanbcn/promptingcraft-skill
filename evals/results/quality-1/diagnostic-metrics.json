@@ -1,0 +1,340 @@
+{
+  "baseline": [
+    {
+      "case": "small-bug",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 335
+    },
+    {
+      "case": "authorized-implementation",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 403
+    },
+    {
+      "case": "deployment-boundary",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 379
+    },
+    {
+      "case": "conflicting-requirements",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 388
+    },
+    {
+      "case": "performance",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 421
+    },
+    {
+      "case": "unknown-tools",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 284
+    },
+    {
+      "case": "stale-docs",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 332
+    },
+    {
+      "case": "new-model-guidance",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 140
+    },
+    {
+      "case": "source-injection",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 352
+    },
+    {
+      "case": "non-trigger",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": null
+    },
+    {
+      "case": "optional-accessibility",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 378
+    },
+    {
+      "case": "read-only-agent",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 336
+    },
+    {
+      "case": "bounded-research",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 369
+    },
+    {
+      "case": "retry-contract",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "d7a7745f138c16c6fdb44c83d25c3ae9667a6b260061ad85231e27a8dac3b36d",
+      "handoff_words": 333
+    }
+  ],
+  "candidate": [
+    {
+      "case": "small-bug",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 261
+    },
+    {
+      "case": "authorized-implementation",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 364
+    },
+    {
+      "case": "deployment-boundary",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 353
+    },
+    {
+      "case": "conflicting-requirements",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 323
+    },
+    {
+      "case": "performance",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 307
+    },
+    {
+      "case": "unknown-tools",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 287
+    },
+    {
+      "case": "stale-docs",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 225
+    },
+    {
+      "case": "new-model-guidance",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 131
+    },
+    {
+      "case": "source-injection",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 295
+    },
+    {
+      "case": "non-trigger",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 10
+    },
+    {
+      "case": "optional-accessibility",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 269
+    },
+    {
+      "case": "read-only-agent",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 266
+    },
+    {
+      "case": "bounded-research",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 283
+    },
+    {
+      "case": "retry-contract",
+      "status": "RUN",
+      "models_observed": [
+        "claude-sonnet-5-5"
+      ],
+      "skill_calls": [
+        "promptcraft:promptcraft"
+      ],
+      "skill_tree_sha256": "7a03978d2aebbf590e30da73067aa2edb663ebc9a873c4d36a8a25544094ac8d",
+      "handoff_words": 301
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+A binary search tree is a binary tree in which each node holds a key, and every key in a node's left subtree is smaller than the node's key, while every key in its right subtree is larger. This ordering lets you search, insert, and delete in O(log n) time on average, though the tree can degrade to O(n) if it becomes unbalanced.

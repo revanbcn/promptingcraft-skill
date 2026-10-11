@@ -2,6 +2,7 @@
 """Validate this project's constrained metadata and self-contained resources offline."""
 import json
 import re
+from datetime import date
 from pathlib import Path
 try:
     from scripts.freshness import validate_registry
@@ -47,8 +48,36 @@ def validate_skill(skill):
         resolved=(skill/target).resolve()
         if not resolved.is_relative_to(skill.resolve()) or not resolved.is_file():
             raise ValueError('Skill resource escapes package or is absent')
-    validate_registry(json.loads((skill/'references/sources.json').read_text()))
+    registry=json.loads((skill/'references/sources.json').read_text())
+    validate_registry(registry)
+    validate_knowledge(json.loads((skill/'references/knowledge.json').read_text()),registry)
     return meta
+
+
+def validate_knowledge(knowledge,registry):
+    if knowledge.get('schema_version')!=1 or not knowledge.get('recommendations'):
+        raise ValueError('Invalid curated knowledge')
+    sources={row['canonical_url']:row['provider'] for row in registry['sources']}
+    identifiers=set()
+    labels={'OFFICIAL','GENERAL','MODEL_SPECIFIC','INFERRED','EXPERIMENTAL'}
+    fields=('id','provider','source_title','url','retrieval_date','applicable_model_family',
+            'recommendation','evidence_or_limitation','promptcraft_applicability',
+            'conflicts_with_existing_guidance','apply_when')
+    for row in knowledge['recommendations']:
+        if any(not isinstance(row.get(field),str) or not row[field].strip() for field in fields):
+            raise ValueError('Recommendation lacks provenance, scope or limits')
+        if row['id'] in identifiers: raise ValueError('Duplicate recommendation')
+        identifiers.add(row['id'])
+        if sources.get(row['url'].split('#')[0])!=row['provider']:
+            raise ValueError('Recommendation source absent or misattributed')
+        date.fromisoformat(row['retrieval_date'])
+        tags=row.get('labels')
+        if not isinstance(tags,list) or not tags or any(tag not in labels for tag in tags):
+            raise ValueError('Invalid evidence label')
+        if 'OFFICIAL' not in tags or len({'GENERAL','MODEL_SPECIFIC'} & set(tags))!=1:
+            raise ValueError('Official recommendation requires one scope label')
+        if row.get('mandatory_for_all_prompts') is not False:
+            raise ValueError('Provider recommendations cannot be universal requirements')
 
 
 def validate_project(root):

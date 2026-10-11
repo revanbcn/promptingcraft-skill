@@ -4,15 +4,19 @@
 performance, conflict, unauthorized deployment, unknown tools/model, stale docs,
 new model guidance, source injection and a non-trigger. No historical user prompts
 or conversations are included. `fixtures/guidance.md` is authored test data, never
-claimed as live official guidance.
+claimed as live official guidance. Four additional original realistic public
+examples cover optional accessibility work, a read-only agent investigation,
+bounded manual research and a worker retry fix. They are representative scenarios,
+not private production prompts or a sample of actual user traffic.
 
 Optional paired run using an existing authenticated Claude Code subscription:
 
 ```sh
-python3 scripts/evaluate.py --output /tmp/promptcraft-evals --model sonnet
+python3 scripts/evaluate.py --output /tmp/promptcraft-evals --model claude-sonnet-5-5
 ```
 
-Start with the first three representative cases. Each arm starts a fresh temp
+The default now runs ALL cases; `--cases` selects an explicit subset and rejects
+unknown IDs. Each arm starts a fresh temp
 workspace with identical task/source fixture and Read/Skill tool allowance.
 With-skill loads the session plugin; without-skill disables skills. Global setting
 sources and MCP servers are excluded; no Bash, edit, deploy or external-send tools
@@ -31,3 +35,50 @@ semantic observations; observed host behavior. Self-review is not independent
 verification. Three cases don't establish general improvement or better downstream
 execution. These tests compose handoffs, not implement fixes in a target repository.
 See [recorded results](results/README.md) and [surface status](../docs/verification.md).
+
+## Three-way quality comparison
+
+A is the original case text, scored directly rather than rewritten by another
+engine. B is the exact v0.1.0 skill tree at `adaa5feed71294f65f61a31942430a87d6a9861f`.
+C is the candidate. Use one shared case file/harness, pin the author model, use
+fresh output folders, and freeze both skill trees during the run:
+
+```sh
+python3 scripts/evaluate.py --output /tmp/quality-baseline --arms with_skill --model claude-sonnet-5-5 --skill-root /path/to/v0.1.0
+python3 scripts/evaluate.py --output /tmp/quality-candidate --arms with_skill --model claude-sonnet-5-5
+```
+
+The harness instructions are conditional: non-authoring requests get a normal
+answer. An unconditional "composition only" wrapper confounds the negative trigger
+case. Results from that initial wrapper are diagnostic, not the final comparison.
+Record actual Skill invocation, observed model, source-tree digest, elapsed time,
+token metadata and visible output. Measure the copyable handoff separately from
+the entire response. Multiple/missing blocks are unresolved, not silently chosen.
+
+For each case compare the original contract with every final operative clause.
+Count material unapproved additions (including optional strengthening), omissions
+and introduced contradictions, with short quoted evidence. Do not count formatting,
+faithful decomposition, ordinary result evidence or clearly optional ideas as drift.
+Separately assess clarity, readiness given missing inputs, provider/interface fit,
+source freshness and trigger behavior. Preserve unknowns, and publish the rubric
+and per-case judgments instead of claiming independent human validation.
+
+The optional offline contract checker validates annotated source provenance and
+coverage. Its clean result is REVIEW_REQUIRED; semantic review remains required.
+Do not require the composing model to execute Python when its tools exclude Bash.
+
+## Small downstream sample
+
+```sh
+python3 scripts/evaluate_downstream.py --output /tmp/quality-execution --baseline /tmp/quality-baseline --candidate /tmp/quality-candidate
+```
+
+This runs the original task, B and C on two original isolated stdlib fixtures
+(Save/500 and terminal retry), with identical post-run acceptance tests outside
+the executor's workspace. Only the original task's composition prefix is removed;
+all arms get the same local-only host boundary. Restricted Claude file tools stay
+within its working directory; approved Bash commands run local checks/diff only.
+No real MR, network, merge, deploy or database operation is measured. Record the
+initial failing acceptance, actual changed code and final acceptance separately
+from the agent's claims. Six successful fixture runs would still not demonstrate
+general downstream superiority or a real production outcome.

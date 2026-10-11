@@ -14,7 +14,8 @@ def build(root,output):
     root=Path(root); output=Path(output); manifest=validate_project(root)
     output.mkdir(parents=True,exist_ok=True)
     version=manifest['version']; skill=root/'skills/promptcraft'
-    skill_files=[p for p in sorted(skill.rglob('*')) if p.is_file()]
+    skill_files=[p for p in sorted(skill.rglob('*')) if p.is_file()
+                 and '__pycache__' not in p.parts and p.suffix != '.pyc']
     plugin_files=skill_files+[root/p for p in ('plugin.json','.claude-plugin/plugin.json','LICENSE','README.md')]
     files=[]
     for kind,items in [('skill',skill_files),('plugin',plugin_files)]:

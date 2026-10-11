@@ -40,6 +40,7 @@ class PackagingTests(unittest.TestCase):
                 dest=install(ROOT/'skills/promptcraft',Path(d),host)
                 self.assertEqual(dest,Path(d)/folder/'skills/promptcraft')
                 self.assertTrue((dest/'references/sources.json').exists())
+                self.assertFalse(any('__pycache__' in p.parts or p.suffix == '.pyc' for p in dest.rglob('*')))
                 with self.assertRaises(FileExistsError): install(ROOT/'skills/promptcraft',Path(d),host)
     def test_install_refuses_symlink_destination(self):
         with tempfile.TemporaryDirectory() as d,tempfile.TemporaryDirectory() as out:

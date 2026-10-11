@@ -20,7 +20,7 @@ def install(source,project,host):
         if path==project.parent: break
     if dest.exists() or dest.is_symlink(): raise FileExistsError('Skill already exists; inspect and update manually')
     dest.parent.mkdir(parents=True,exist_ok=True)
-    shutil.copytree(source,dest)
+    shutil.copytree(source,dest,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
     return dest
 
 if __name__=='__main__':
