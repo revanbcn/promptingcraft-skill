@@ -1,0 +1,18 @@
+{
+  "name": "promptcraft",
+  "version": "0.1.0",
+  "description": "Turn development discussions into execution-ready Claude Code or Codex prompts. Developed by the dondego.com team.",
+  "author": {
+    "name": "DondeGo team",
+    "url": "https://dondego.com"
+  },
+  "homepage": "https://gitlab.com/revanalex/promptcraft-skill",
+  "repository": "https://gitlab.com/revanalex/promptcraft-skill",
+  "license": "MIT",
+  "keywords": [
+    "prompt-authoring",
+    "agent-skills",
+    "codex",
+    "claude-code"
+  ]
+}

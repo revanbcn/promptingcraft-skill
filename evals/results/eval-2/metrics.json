@@ -1,0 +1,128 @@
+[
+  {
+    "case": "small-bug",
+    "arm": "without_skill",
+    "exit_code": 0,
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "duration_seconds": 18.21,
+    "skill_calls": [],
+    "reported_cost_usd": 0.0272338,
+    "output_chars": 4235,
+    "tokens_observed": {
+      "input_tokens": 4,
+      "output_tokens": 1524,
+      "cache_creation_input_tokens": 2858,
+      "cache_read_input_tokens": 5538
+    }
+  },
+  {
+    "case": "small-bug",
+    "arm": "with_skill",
+    "exit_code": 0,
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "duration_seconds": 13.67,
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "reported_cost_usd": 0.0515347,
+    "output_chars": 2618,
+    "tokens_observed": {
+      "input_tokens": 6,
+      "output_tokens": 1408,
+      "cache_creation_input_tokens": 8886,
+      "cache_read_input_tokens": 18987
+    }
+  },
+  {
+    "case": "authorized-implementation",
+    "arm": "without_skill",
+    "exit_code": 0,
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "duration_seconds": 17.2,
+    "skill_calls": [],
+    "reported_cost_usd": 0.0308207,
+    "output_chars": 4735,
+    "tokens_observed": {
+      "input_tokens": 4,
+      "output_tokens": 1851,
+      "cache_creation_input_tokens": 2936,
+      "cache_read_input_tokens": 5587
+    }
+  },
+  {
+    "case": "authorized-implementation",
+    "arm": "with_skill",
+    "exit_code": 0,
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "duration_seconds": 17.11,
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "reported_cost_usd": 0.057782700000000006,
+    "output_chars": 3639,
+    "tokens_observed": {
+      "input_tokens": 6,
+      "output_tokens": 1831,
+      "cache_creation_input_tokens": 9399,
+      "cache_read_input_tokens": 18647
+    }
+  },
+  {
+    "case": "deployment-boundary",
+    "arm": "without_skill",
+    "exit_code": 0,
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "duration_seconds": 16.24,
+    "skill_calls": [],
+    "reported_cost_usd": 0.0277086,
+    "output_chars": 4383,
+    "tokens_observed": {
+      "input_tokens": 4,
+      "output_tokens": 1579,
+      "cache_creation_input_tokens": 2839,
+      "cache_read_input_tokens": 5546
+    }
+  },
+  {
+    "case": "deployment-boundary",
+    "arm": "with_skill",
+    "exit_code": 0,
+    "status": "RUN",
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "duration_seconds": 18.12,
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "reported_cost_usd": 0.0579688,
+    "output_chars": 3837,
+    "tokens_observed": {
+      "input_tokens": 6,
+      "output_tokens": 1814,
+      "cache_creation_input_tokens": 9480,
+      "cache_read_input_tokens": 18968
+    }
+  }
+]

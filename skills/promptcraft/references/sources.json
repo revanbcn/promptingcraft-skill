@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "policies": {
+    "anthropic": {
+      "hosts": [
+        "code.claude.com",
+        "platform.claude.com"
+      ],
+      "path_prefixes": [
+        "/docs/",
+        "/llms.txt"
+      ]
+    },
+    "openai": {
+      "hosts": [
+        "developers.openai.com",
+        "learn.chatgpt.com"
+      ],
+      "path_prefixes": [
+        "/docs/",
+        "/api/",
+        "/codex/",
+        "/plugins/",
+        "/blog/",
+        "/learn/",
+        "/llms.txt"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "claude-code-practices",
+      "provider": "anthropic",
+      "canonical_url": "https://code.claude.com/docs/en/best-practices",
+      "role": "guidance",
+      "applicability": "Claude Code user tasks; executor model is not implied",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "claude-code-library",
+      "provider": "anthropic",
+      "canonical_url": "https://code.claude.com/docs/en/prompt-library",
+      "role": "guidance",
+      "applicability": "Claude Code examples, adapted to user contract",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "claude-code-index",
+      "provider": "anthropic",
+      "canonical_url": "https://code.claude.com/docs/llms.txt",
+      "role": "index",
+      "applicability": "Discovery for coding CLI instructions",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      },
+      "candidate_pattern": "prompt|best-practices|skills|plugins"
+    },
+    {
+      "id": "claude-platform-index",
+      "provider": "anthropic",
+      "canonical_url": "https://platform.claude.com/llms.txt",
+      "role": "index",
+      "applicability": "Discover exact Claude model guides; API scope differs from CLI tasks",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      },
+      "candidate_pattern": "prompt-engineering|prompting-|agent-skills"
+    },
+    {
+      "id": "claude-prompting",
+      "provider": "anthropic",
+      "canonical_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "role": "guidance",
+      "applicability": "Current Claude API prompting reference; apply only documented model/environment",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "codex-prompting",
+      "provider": "openai",
+      "canonical_url": "https://learn.chatgpt.com/docs/prompting",
+      "role": "guidance",
+      "applicability": "Codex user task section; Chat and Work sections have separate scope",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "openai-skill-authoring",
+      "provider": "openai",
+      "canonical_url": "https://learn.chatgpt.com/docs/build-skills",
+      "role": "packaging",
+      "applicability": "ChatGPT/Codex Agent Skills authoring, local discovery and progressive disclosure",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "openai-plugin-package",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/plugins/build/plugins",
+      "role": "packaging",
+      "applicability": "Portable Agent Plugins; local install is separate from public directory submission",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "openai-plugin-skills",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/plugins/build/skills",
+      "role": "packaging",
+      "applicability": "Skill trigger/workflow guidance; compatibility example differs from portable manifest",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "openai-index",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/llms.txt",
+      "role": "index",
+      "applicability": "Root discovery of newly organized product indexes",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      },
+      "candidate_pattern": "llms.txt|prompt|skills|plugins|codex"
+    },
+    {
+      "id": "openai-api-index",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/api/llms.txt",
+      "role": "index",
+      "applicability": "Discover exact OpenAI model prompting guides; no automatic latest-model assumption",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      },
+      "candidate_pattern": "prompt|latest-model|skills"
+    },
+    {
+      "id": "codex-index",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/codex/llms.txt",
+      "role": "index",
+      "applicability": "Codex surface guidance and customization discovery",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      },
+      "candidate_pattern": "prompt|skills|plugins|best-practices"
+    },
+    {
+      "id": "openai-plugin-index",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/plugins/llms.txt",
+      "role": "index",
+      "applicability": "Discover packaging and supported distribution changes",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      },
+      "candidate_pattern": "skills|plugins|package|submission"
+    },
+    {
+      "id": "openai-eval-skills",
+      "provider": "openai",
+      "canonical_url": "https://developers.openai.com/blog/eval-skills",
+      "role": "evaluation",
+      "applicability": "Behavioral evaluations; schema validation is not prompt-quality evidence",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      }
+    }
+  ]
+}

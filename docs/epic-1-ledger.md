@@ -24,3 +24,26 @@ Preflight completed 2026-10-12: empty non-Git directory; authenticated personal
 GitLab/GitHub namespaces; preferred slug absent on both; docs MCP search/read
 worked. Isolated publication checkout avoids protected owner `.git` location.
 KFA helper unavailable; fail open, no retry or publication.
+
+Implementation/verification completed locally: standalone references; portable
+and Claude manifests; source registry; freshness/hash/index utility; reproducible
+archives; isolated no-overwrite installer. Twenty-one offline tests pass; strict
+Claude validation and the live-fetched Agent Plugins JSON schema pass.
+Live check fetched usable content from 14/14 configured pages; a second check
+reported all unchanged. Private source bodies/model traces were not committed.
+
+Behavior: two three-case paired Claude iterations, two targeted reruns (14 calls),
+plus one Codex read/use smoke. Model/authority facts are recorded in eval results;
+small-fix assumption drift remains an observed limitation. ChatGPT UI inventory
+attempt timed out; native ordinary-chat installation/runtime remains NOT RUN.
+
+Independent review: separate agent, same operator; fixed HTTPException isolation,
+index truncation and plugin archive broken links; affected review passed all 21
+checks. Follow-up semantic review found assumption drift; recorded without rewriting
+historical outputs or claiming clean behavior. No downstream execution benchmark.
+
+Publication: original bootstrap committed; new public repos created in verified
+owner namespaces. GitHub Actions disabled; SSH GitLab unavailable, existing
+keyring credential used via an ephemeral HTTPS helper (never logged or committed).
+Daily schedule ID 4486529 exists with active=false; included compute allowance
+and owner recurring quota policy are not established, so activation is held.
