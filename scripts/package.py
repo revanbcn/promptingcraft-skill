@@ -5,9 +5,9 @@ import hashlib
 import zipfile
 from pathlib import Path
 try:
-    from scripts.validate import validate_project
+    from scripts.validate import validate_project, validate_submission_archive
 except ModuleNotFoundError:
-    from validate import validate_project
+    from validate import validate_project, validate_submission_archive
 
 
 def build(root,output):
@@ -31,6 +31,7 @@ def build(root,output):
                 info.create_system=3; info.external_attr=0o100644<<16; info.compress_type=zipfile.ZIP_DEFLATED
                 payload=(root/'docs/plugin-archive.md').read_bytes() if kind=='plugin' and p==root/'README.md' else p.read_bytes()
                 archive.writestr(info,payload,compress_type=zipfile.ZIP_DEFLATED,compresslevel=9)
+        if kind=='plugin': validate_submission_archive(dest)
         files.append(dest)
     sums=''.join(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n' for p in files)
     (output/'SHA256SUMS').write_text(sums)

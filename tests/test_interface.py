@@ -178,3 +178,29 @@ class InterfaceTests(unittest.TestCase):
                 shutil.copy2(ROOT / relative, root / relative)
             with self.assertRaises(ValueError):
                 validate_project(root)
+
+    def test_directory_listing_values(self):
+        self.assertEqual(self.interface['category'], 'Developer Tools')
+        self.assertEqual(self.interface['shortDescription'], 'Source-backed agent prompts')
+        self.assertEqual(len(self.interface['defaultPrompt']), 3)
+        text = self.interface['longDescription']
+        self.assertIn('not affiliated with or endorsed by OpenAI or Anthropic', text)
+        self.assertIn('does not guarantee better downstream results', text)
+        self.assertNotRegex(text, r'(?i)\bofficial (openai|anthropic) (plugin|partner)|(?<!not )guarantees? (better|improved)')
+
+    def test_directory_rules_reject_invalid_listing(self):
+        cases = {
+            'too many prompts': {'defaultPrompt': ['a', 'b', 'c', 'd']},
+            'duplicate prompts': {'defaultPrompt': ['Prepare a prompt.', 'prepare  a prompt.']},
+            'long prompt': {'defaultPrompt': ['x' * 129]},
+            'mention': {'defaultPrompt': ['Ask @promptcraft for a prompt.']},
+            'multi-line prompt': {'defaultPrompt': ['one\ntwo']},
+            'unknown category': {'category': 'Coding'},
+            'screenshots': {'screenshots': ['./assets/shot.png']},
+        }
+        for label, change in cases.items():
+            with self.subTest(label):
+                interface = copy.deepcopy(self.interface)
+                interface.update(change)
+                with self.assertRaises(ValueError):
+                    validate_interface(ROOT, interface)

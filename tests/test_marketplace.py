@@ -25,7 +25,7 @@ class MarketplaceTests(unittest.TestCase):
             "plugins": [{"name": "promptcraft",
                          "source": {"source": "local", "path": "./dist/promptcraft-plugin"},
                          "policy": {"installation": "AVAILABLE", "authentication": "ON_USE"},
-                         "category": "Productivity"}]
+                         "category": "Developer Tools"}]
         }))
         return root, catalog
 

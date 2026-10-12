@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Validate this project's constrained metadata and self-contained resources offline."""
 import json
+import zipfile
 import re
 import struct
 import xml.etree.ElementTree as ElementTree
@@ -87,6 +88,14 @@ ATTRIBUTION='Developed by the dondego.com team.'
 INTERFACE_TEXT_LIMITS={'displayName':30,'shortDescription':30,'longDescription':4000}
 INTERFACE_URLS=('websiteURL','supportURL','privacyPolicyURL','termsOfServiceURL')
 INTERFACE_ASSETS=('composerIcon','composerIconDark','logo','logoDark')
+# OpenAI Plugins Directory rules (developers.openai.com/plugins/deploy/submission-errors).
+DIRECTORY_CATEGORIES=('Productivity','Creativity','Developer Tools','Business & Operations','Data & Analytics',
+                      'Communication','Education & Research','Security','Finance','Healthcare','Travel',
+                      'Entertainment','Other')
+MAX_DEFAULT_PROMPTS=3
+MAX_DEFAULT_PROMPT_LENGTH=128
+# Skills-only uploads reject MCP, app, hook and screenshot configuration.
+SKILLS_ONLY_EXCLUDED_FILES=('mcp.json','.mcp.json','.app.json','hooks.json')
 MIN_ASSET_SIZE=48
 
 
@@ -147,9 +156,17 @@ def validate_interface(root,interface):
         if not https_url(interface.get(field)): raise ValueError(f'Interface {field} must be an https URL')
     if contrast(interface.get('brandColor'),'#FFFFFF')<2: raise ValueError('brandColor lacks contrast on light UI')
     if contrast(interface.get('brandColorDark'),'#212121')<2: raise ValueError('brandColorDark lacks contrast on dark UI')
+    if interface['category'] not in DIRECTORY_CATEGORIES: raise ValueError('Unknown directory category')
+    if 'screenshots' in interface: raise ValueError('Skills-only packages cannot declare screenshots')
     prompts=interface.get('defaultPrompt')
     if not isinstance(prompts,list) or not prompts or any(not isinstance(p,str) or not p.strip() for p in prompts):
         raise ValueError('Invalid interface defaultPrompt')
+    normalized=[' '.join(p.split()).casefold() for p in prompts]
+    if len(prompts)>MAX_DEFAULT_PROMPTS or len(set(normalized))!=len(prompts):
+        raise ValueError('Directory allows at most three unique starter prompts')
+    for prompt in prompts:
+        if len(prompt)>MAX_DEFAULT_PROMPT_LENGTH or '\n' in prompt or '@' in prompt:
+            raise ValueError('Starter prompts must be one line, at most 128 characters, without @mentions')
     for field in INTERFACE_ASSETS:
         value=interface.get(field)
         if not isinstance(value,str) or not value.startswith('./'): raise ValueError(f'Interface {field} must start with ./')
@@ -185,7 +202,9 @@ def validate_project(root):
     if compatibility!={k:v for k,v in manifest.items() if k!='$schema'}: raise ValueError('Divergent adapter metadata')
     if not https_url(manifest['homepage']) or not https_url(manifest['repository']): raise ValueError('Manifest URLs must be https')
     if not manifest['description'].endswith(ATTRIBUTION) or not meta['description'].endswith(ATTRIBUTION): raise ValueError('Missing attribution')
-    interface=manifest.get('extensions',{}).get('com.openai',{}).get('interface')
+    openai=manifest.get('extensions',{}).get('com.openai',{})
+    if set(openai)-{'interface'}: raise ValueError('Skills-only package declares apps, hooks or MCP settings')
+    interface=openai.get('interface')
     validate_interface(root,interface)
     if skill_interface(skill)!={'display_name':interface['displayName'],'short_description':interface['shortDescription']}:
         raise ValueError('Skill interface metadata diverges from plugin manifest')
@@ -194,6 +213,38 @@ def validate_project(root):
     for path in skill.rglob('*'):
         if path.is_symlink(): raise ValueError('Symlink in standalone skill')
     return manifest
+
+def validate_submission_archive(path):
+    """Check a plugin ZIP against the OpenAI skills-only upload rules we can verify offline."""
+    with zipfile.ZipFile(path) as archive:
+        infos=archive.infolist()
+        if not infos or len(infos)>5000: raise ValueError('Archive is empty or has too many entries')
+        if sum(i.file_size for i in infos)>512*1024*1024: raise ValueError('Archive is too large when extracted')
+        names=[i.filename for i in infos]
+        if len(set(names))!=len(names): raise ValueError('Duplicate archive path')
+        for info in infos:
+            name=info.filename
+            mode=(info.external_attr>>16)&0o170000
+            if mode not in (0,0o100000,0o040000) or info.flag_bits&0x1: raise ValueError(f'Unsupported archive member {name}')
+            parts=name.rstrip('/').split('/')
+            if (not name or name!=name.strip() or '\\' in name or name.startswith('/') or ''.join(parts[:1]).endswith(':')
+                    or any(part in ('','.','..') for part in parts) or len(parts)>20):
+                raise ValueError(f'Unsafe archive path {name!r}')
+            if parts[-1] in SKILLS_ONLY_EXCLUDED_FILES or 'hooks' in parts[1:2]:
+                raise ValueError(f'Skills-only archive contains excluded configuration {name}')
+        roots={n.split('/',1)[0] for n in names}
+        if len(roots)!=1 or any('/' not in n for n in names): raise ValueError('Archive needs exactly one top-level plugin directory')
+        root=roots.pop()+'/'
+        manifest=json.loads(archive.read(root+'plugin.json'))
+        openai=manifest.get('extensions',{}).get('com.openai',{})
+        if set(openai)-{'interface'} or 'screenshots' in openai.get('interface',{}): raise ValueError('Archive manifest declares excluded settings')
+        for field in INTERFACE_ASSETS:
+            if root+openai['interface'][field][2:] not in names: raise ValueError(f'Archive is missing {field}')
+        skills={n[len(root):].split('/')[1] for n in names if n.startswith(root+'skills/') and n.count('/')>=3}
+        if not skills or any(s.startswith('.') or root+f'skills/{s}/SKILL.md' not in names for s in skills):
+            raise ValueError('Every packaged skill needs skills/<name>/SKILL.md')
+    return manifest
+
 
 def validate_marketplace(root, require_source=True):
     """Validate our documented single-plugin local catalog and root-relative source."""
@@ -215,7 +266,7 @@ def validate_marketplace(root, require_source=True):
         raise ValueError('Invalid marketplace plugin entry')
     if plugin['policy'] != {'installation': 'AVAILABLE', 'authentication': 'ON_USE'}:
         raise ValueError('Invalid marketplace policy')
-    if plugin['category'] != 'Productivity':
+    if plugin['category'] != 'Developer Tools':
         raise ValueError('Invalid marketplace category')
     source = plugin['source']
     # A constrained generated destination prevents the materializer replacing source files.

@@ -55,3 +55,42 @@ class PackagingTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d,tempfile.TemporaryDirectory() as out:
             (Path(d)/'.agents').symlink_to(out,target_is_directory=True)
             with self.assertRaises(ValueError): install(ROOT/'skills/promptcraft',Path(d),'codex')
+
+
+class SubmissionArchiveTests(unittest.TestCase):
+    def built(self, directory):
+        return build(ROOT, Path(directory))[1]
+
+    def rewrite(self, source, target, extra=None, drop=None, rename=None):
+        with zipfile.ZipFile(source) as old, zipfile.ZipFile(target, 'w') as new:
+            for info in old.infolist():
+                if drop and info.filename == drop: continue
+                name = rename(info.filename) if rename else info.filename
+                new.writestr(name, old.read(info.filename))
+            for name, data in (extra or {}).items(): new.writestr(name, data)
+        return target
+
+    def test_built_plugin_archive_passes_offline_submission_rules(self):
+        from scripts.validate import validate_submission_archive
+        with tempfile.TemporaryDirectory() as d:
+            manifest = validate_submission_archive(self.built(d))
+            self.assertEqual(manifest['extensions']['com.openai']['interface']['category'], 'Developer Tools')
+
+    def test_submission_archive_rejects_excluded_or_unsafe_content(self):
+        from scripts.validate import validate_submission_archive
+        with tempfile.TemporaryDirectory() as d:
+            source = self.built(d)
+            variants = {
+                'mcp': dict(extra={'promptcraft-plugin/.mcp.json': '{}'}),
+                'app': dict(extra={'promptcraft-plugin/.app.json': '{}'}),
+                'hooks': dict(extra={'promptcraft-plugin/hooks/hooks.json': '{}'}),
+                'sibling': dict(extra={'README.md': 'x'}),
+                'parent': dict(extra={'promptcraft-plugin/../x': 'x'}),
+                'missing skill': dict(drop='promptcraft-plugin/skills/promptcraft/SKILL.md'),
+                'missing logo': dict(drop='promptcraft-plugin/assets/logo.svg'),
+            }
+            for label, change in variants.items():
+                with self.subTest(label):
+                    target = self.rewrite(source, Path(d) / f'{label}.zip', **change)
+                    with self.assertRaises((ValueError, KeyError)):
+                        validate_submission_archive(target)

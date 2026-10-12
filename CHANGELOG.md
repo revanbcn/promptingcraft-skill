@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased — 0.2.0 candidate: OpenAI Plugins Directory readiness
+
+- Listing metadata for a Skills-only submission: category Developer Tools, short
+  description "Source-backed agent prompts", a clearer long description with explicit
+  limits and independence, and three starter prompts (no @mentions).
+- The validator enforces directory rules offline: category list, at most three unique
+  one-line starter prompts of 128 characters, no screenshots, and no apps, hooks or MCP
+  settings; `package.py` checks the plugin ZIP against the skills-only archive rules.
+- Reviewer-reproducible cases in `evals/review/cases.json` (6 positive, 4 negative) and the
+  field-by-field submission guide `docs/openai-submission.md`.
+- No skill instruction change, no onboarding skill, no MCP server, no release or submission.
+
 ## Unreleased — 0.2.0 candidate: PromptingCraft.com brand and plugin readiness
 
 - Public brand is PromptingCraft.com (https://promptingcraft.com). The skill and
