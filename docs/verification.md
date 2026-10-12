@@ -1,5 +1,22 @@
 # Verification status
 
+## Unreleased native plugin integration
+
+- 90 offline tests (85 existing + five marketplace behavior tests), project/catalog
+  validators, live portable manifest JSON Schema and reproducible packages pass.
+- Local catalog `.agents/plugins/marketplace.json` is `dondego-local`; its generated
+  `./dist/promptcraft-plugin` source resolves relative to the repository root.
+- Codex installed/enabled readback and five genuine installed-plugin activations
+  are observed across six scenarios/seven native turns, including actual resume,
+  natural-language invocation, negative activation and exact no-change.
+- Entire canonical skill and existing 14-case contracts are unchanged from MR !3.
+  These new runs test authoring/install usability, not downstream superiority.
+- ChatGPT Desktop exists but supported UI access is policy-denied; Desktop install,
+  ordinary Chat activation and ChatGPT end-to-end use remain unverified. Current
+  official docs support Chat plugins, with local-source/account availability gates.
+- [Evidence, costs and limits](../evals/results/native-integration/README.md);
+  [exact one-time owner installation](chatgpt-installation.md). No new release.
+
 ## Unreleased contract fidelity and native validation
 
 - 85 offline tests, validator and reproducible packages pass. Exact-span/local

@@ -100,5 +100,51 @@ def validate_project(root):
         if path.is_symlink(): raise ValueError('Symlink in standalone skill')
     return manifest
 
+def validate_marketplace(root, require_source=True):
+    """Validate our documented single-plugin local catalog and root-relative source."""
+    root = Path(root).resolve()
+    catalog = root / '.agents/plugins/marketplace.json'
+    for ancestor in (root / '.agents', catalog.parent, catalog):
+        if ancestor.is_symlink():
+            raise ValueError('Symlink in marketplace catalog path')
+    data = json.loads(catalog.read_text())
+    if set(data) != {'name', 'interface', 'plugins'} or data['name'] != 'dondego-local':
+        raise ValueError('Invalid local marketplace metadata')
+    if data['interface'] != {'displayName': 'DondeGo Local'}:
+        raise ValueError('Invalid marketplace display metadata')
+    plugins = data['plugins']
+    if not isinstance(plugins, list) or len(plugins) != 1:
+        raise ValueError('Expected one canonical PromptCraft plugin')
+    plugin = plugins[0]
+    if set(plugin) != {'name', 'source', 'policy', 'category'} or plugin['name'] != 'promptcraft':
+        raise ValueError('Invalid marketplace plugin entry')
+    if plugin['policy'] != {'installation': 'AVAILABLE', 'authentication': 'ON_USE'}:
+        raise ValueError('Invalid marketplace policy')
+    if plugin['category'] != 'Productivity':
+        raise ValueError('Invalid marketplace category')
+    source = plugin['source']
+    # A constrained generated destination prevents the materializer replacing source files.
+    if source != {'source': 'local', 'path': './dist/promptcraft-plugin'}:
+        raise ValueError('Expected generated plugin path relative to marketplace root')
+    dest = root / source['path']
+    for ancestor in (dest.parent, dest):
+        if ancestor.is_symlink():
+            raise ValueError('Symlink in marketplace plugin path')
+    if not dest.resolve().is_relative_to(root):
+        raise ValueError('Plugin source escapes marketplace root')
+    if require_source:
+        manifest = validate_project(dest)
+        if manifest['name'] != plugin['name']:
+            raise ValueError('Marketplace name does not match plugin manifest')
+    return dest
+
+
 if __name__=='__main__':
-    validate_project(Path(__file__).resolve().parents[1]); print('Project metadata, resources and source policies: PASS')
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--marketplace', action='store_true', help='Also require the generated marketplace plugin')
+    args = parser.parse_args()
+    root = Path(__file__).resolve().parents[1]
+    validate_project(root)
+    validate_marketplace(root, require_source=args.marketplace)
+    print('Project metadata, resources, source policies and marketplace: PASS')

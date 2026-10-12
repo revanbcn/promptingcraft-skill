@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "retrieved_date": "2026-10-12",
+  "native_surface": "Codex CLI 0.162.1",
+  "skill_digest": "351b078a9c49e7a650a184a4504ccd2765a901217584d191e1787ebb2f812e40",
+  "canonical_skill_unchanged_from": "dbdf3cd9097e4d61445e3e3d4ef1d01fc9418c77",
+  "native_chatgpt_status": "NOT_RUN_UI_POLICY_DENIED",
+  "default_model_observed": "gpt-6.1-sol",
+  "source_condition_note": "Offline review uses a task-specified unavailable-retrieval condition; no network outage was injected.",
+  "billing_cost": "NOT_OBSERVED",
+  "runs": [
+    {
+      "case": "multi-turn-implicit",
+      "turn": 1,
+      "exit_code": 0,
+      "elapsed_seconds": 16.6,
+      "usage": [
+        {
+          "input_tokens": 32023,
+          "cached_input_tokens": 7168,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 121,
+          "reasoning_output_tokens": 61
+        }
+      ],
+      "output_present": true,
+      "thread_digest": "8eeebf8298a5f09717a2bcaa2dc68a46086090822b6198405370c50aa5e72d40",
+      "model": "gpt-6.1-sol",
+      "model_evidence": "persisted native turn_context",
+      "installed_skill_read": false,
+      "resource_reads": [],
+      "tool_calls_completed": 0,
+      "retrieval_calls": [],
+      "single_handoff_block": false,
+      "write_command_candidates": [],
+      "response_sha256": "555bdeec2eadcc1e9966054a2f86e6b339f5dc17ab8fe3b35425d5896e6a65f8"
+    },
+    {
+      "case": "multi-turn-implicit",
+      "turn": 2,
+      "exit_code": 0,
+      "elapsed_seconds": 88.69,
+      "usage": [
+        {
+          "input_tokens": 261743,
+          "cached_input_tokens": 211456,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2103,
+          "reasoning_output_tokens": 869
+        }
+      ],
+      "output_present": true,
+      "thread_digest": "8eeebf8298a5f09717a2bcaa2dc68a46086090822b6198405370c50aa5e72d40",
+      "model": "gpt-6.1-sol",
+      "model_evidence": "persisted native turn_context",
+      "installed_skill_read": true,
+      "resource_reads": [
+        "SKILL.md",
+        "references/codex.md",
+        "references/contract.md",
+        "references/knowledge.json",
+        "references/rubric.md",
+        "references/sources.json"
+      ],
+      "tool_calls_completed": 11,
+      "retrieval_calls": [
+        {
+          "server": "openaiDeveloperDocs",
+          "tool": "fetch_openai_doc",
+          "arguments": {
+            "url": "https://learn.chatgpt.com/docs/prompting"
+          }
+        }
+      ],
+      "single_handoff_block": true,
+      "write_command_candidates": [],
+      "response_sha256": "16bf70714b056f8c787d4788e10b22415f7a176ca6cc361c5a9d6d747dd75909"
+    },
+    {
+      "case": "explicit-live",
+      "turn": 1,
+      "exit_code": 0,
+      "elapsed_seconds": 132.67,
+      "usage": [
+        {
+          "input_tokens": 321688,
+          "cached_input_tokens": 255488,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3119,
+          "reasoning_output_tokens": 1512
+        }
+      ],
+      "output_present": true,
+      "thread_digest": "04ce3d871c04b116b744fa8dca0bca20fe7c7a1899c9b25de580b6e1f0818936",
+      "model": "gpt-6.1-sol",
+      "model_evidence": "persisted native turn_context",
+      "installed_skill_read": true,
+      "resource_reads": [
+        "SKILL.md",
+        "references/codex.md",
+        "references/contract.md",
+        "references/knowledge.json",
+        "references/rubric.md",
+        "references/sources.json"
+      ],
+      "tool_calls_completed": 15,
+      "retrieval_calls": [
+        {
+          "server": "openaiDeveloperDocs",
+          "tool": "search_openai_docs",
+          "arguments": {
+            "query": "Codex task prompts verification constraints",
+            "limit": 3
+          }
+        },
+        {
+          "server": "context7",
+          "tool": "resolve-library-id",
+          "arguments": {
+            "libraryName": "OpenAI Codex",
+            "query": "Official guidance for writing concise coding task prompts with desired behavior, constraints and verification."
+          }
+        },
+        {
+          "server": "openaiDeveloperDocs",
+          "tool": "fetch_openai_doc",
+          "arguments": {
+            "url": "https://learn.chatgpt.com/docs/prompting"
+          }
+        },
+        {
+          "server": "context7",
+          "tool": "query-docs",
+          "arguments": {
+            "libraryId": "/llmstxt/learn_chatgpt_llms-full_txt",
+            "query": "Official Codex guidance for writing a coding task prompt that states expected behavior, constraints and verification, proportional to a small bug fix."
+          }
+        }
+      ],
+      "single_handoff_block": true,
+      "write_command_candidates": [],
+      "response_sha256": "713f0e5f2aaec9206aadd0af9bdcc4a37066e8e59943de32c1d4eb1a75015ac0"
+    },
+    {
+      "case": "no-change-offline",
+      "turn": 1,
+      "exit_code": 0,
+      "elapsed_seconds": 106.81,
+      "usage": [
+        {
+          "input_tokens": 217799,
+          "cached_input_tokens": 167424,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1516,
+          "reasoning_output_tokens": 554
+        }
+      ],
+      "output_present": true,
+      "thread_digest": "5894331d4719df3786361aaddfd04d762672e36a43b1dc804b8251e028b055fd",
+      "model": "gpt-6.1-sol",
+      "model_evidence": "persisted native turn_context",
+      "installed_skill_read": true,
+      "resource_reads": [
+        "SKILL.md",
+        "references/codex.md",
+        "references/contract.md",
+        "references/freshness.md",
+        "references/knowledge.json",
+        "references/rubric.md",
+        "references/sources.json"
+      ],
+      "tool_calls_completed": 12,
+      "retrieval_calls": [],
+      "single_handoff_block": true,
+      "write_command_candidates": [],
+      "response_sha256": "ba8f374493bfb402b8bcd0db9275cd655b3111c3ed14af4d9f20dce407693232"
+    },
+    {
+      "case": "unresolved-capabilities",
+      "turn": 1,
+      "exit_code": 0,
+      "elapsed_seconds": 134.32,
+      "usage": [
+        {
+          "input_tokens": 304310,
+          "cached_input_tokens": 245760,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2864,
+          "reasoning_output_tokens": 1424
+        }
+      ],
+      "output_present": true,
+      "thread_digest": "8f425d5479e84470be055a891db8fade2d14ff19bef1ea6cc1f38423e4c0399e",
+      "model": "gpt-6.1-sol",
+      "model_evidence": "persisted native turn_context",
+      "installed_skill_read": true,
+      "resource_reads": [
+        "SKILL.md",
+        "references/claude-code.md",
+        "references/contract.md",
+        "references/freshness.md",
+        "references/knowledge.json",
+        "references/rubric.md",
+        "references/sources.json"
+      ],
+      "tool_calls_completed": 11,
+      "retrieval_calls": [
+        {
+          "server": "claude_docs",
+          "tool": "search_claude_code_docs",
+          "arguments": {
+            "query": "best practices specific prompts read-only investigation repository context",
+            "language": "en"
+          }
+        },
+        {
+          "server": "claude_docs",
+          "tool": "query_docs_filesystem_claude_code_docs",
+          "arguments": {
+            "command": "head -160 /en/best-practices.mdx"
+          }
+        }
+      ],
+      "single_handoff_block": true,
+      "write_command_candidates": [],
+      "response_sha256": "196d27e0b1c8c0bf91c4a0a556795e11495ed203ca6f21d6c2d7d80f5e31b201"
+    },
+    {
+      "case": "exploratory-manifest",
+      "turn": 1,
+      "exit_code": 0,
+      "elapsed_seconds": 116.54,
+      "usage": [
+        {
+          "input_tokens": 303613,
+          "cached_input_tokens": 249472,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2107,
+          "reasoning_output_tokens": 924
+        }
+      ],
+      "output_present": true,
+      "thread_digest": "74bab32ab3e3cdb025673eb12135aa1b9b57a5da9c9f056f6ec4ef1d9535ec7f",
+      "model": "gpt-6.1-sol",
+      "model_evidence": "persisted native turn_context",
+      "installed_skill_read": true,
+      "resource_reads": [
+        "SKILL.md",
+        "references/codex.md",
+        "references/contract.md",
+        "references/freshness.md",
+        "references/knowledge.json",
+        "references/rubric.md",
+        "references/sources.json"
+      ],
+      "tool_calls_completed": 11,
+      "retrieval_calls": [
+        {
+          "server": "openaiDeveloperDocs",
+          "tool": "fetch_openai_doc",
+          "arguments": {
+            "url": "https://learn.chatgpt.com/docs/prompting"
+          }
+        },
+        {
+          "server": "context7",
+          "tool": "resolve-library-id",
+          "arguments": {
+            "libraryName": "OpenAI Codex",
+            "query": "Codex user prompting guidance for expressing task boundaries and discussion or planning before implementation."
+          }
+        },
+        {
+          "server": "context7",
+          "tool": "query-docs",
+          "arguments": {
+            "libraryId": "/llmstxt/learn_chatgpt_llms-full_txt",
+            "query": "How should a Codex user prompt express important constraints and request discussion or planning before any editing or implementation?"
+          }
+        }
+      ],
+      "single_handoff_block": true,
+      "write_command_candidates": [],
+      "response_sha256": "5175c3ba3de08ec7461edcaf36e1aa6e53559871b2a6e3a691863d25906b14f7"
+    },
+    {
+      "case": "negative-activation",
+      "turn": 1,
+      "exit_code": 0,
+      "elapsed_seconds": 22.22,
+      "usage": [
+        {
+          "input_tokens": 31068,
+          "cached_input_tokens": 14336,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 220,
+          "reasoning_output_tokens": 164
+        }
+      ],
+      "output_present": true,
+      "thread_digest": "2351e0e1d464b5e8c00c30aebf2b81859434f3b6a2d941a091265f705e0a9d45",
+      "model": "gpt-6.1-sol",
+      "model_evidence": "persisted native turn_context",
+      "installed_skill_read": false,
+      "resource_reads": [],
+      "tool_calls_completed": 0,
+      "retrieval_calls": [],
+      "single_handoff_block": false,
+      "write_command_candidates": [],
+      "response_sha256": "af9d64d308c5e1f14ac85cdc0e7f5c107c8e1250a9351a6d46b2596a7d7344ea"
+    }
+  ]
+}

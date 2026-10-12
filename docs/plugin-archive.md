@@ -22,10 +22,15 @@ directory into the chosen project's `.agents/skills/`; restart if needed and
 invoke `$promptcraft`. For Claude Code standalone use `.claude/skills/` and
 `/promptcraft`. Refuse accidental replacement of an existing skill.
 
-Ordinary ChatGPT chat can receive SKILL.md as pasted instruction context plus
-relevant supporting files; no local runtime or new MCP is needed for composition.
-Without browsing, guidance is dated/unavailable, never current. Native desktop
-plugin installation requires the supported UI and is a separate unverified gate.
+For native local Codex/ChatGPT Desktop installation, use the repository's
+[one-time marketplace setup](https://gitlab.com/revanalex/promptcraft-skill/-/blob/main/docs/chatgpt-installation.md).
+It includes a real catalog and reproducibly generated plugin source; no repeated
+pasting of SKILL.md is required. After installation, start a new chat and select
+PromptCraft with `@` in ChatGPT or `$promptcraft` in Codex, or ask to prepare a
+Codex prompt. Local source/account availability varies. Codex installation does
+not establish ChatGPT installation or ordinary Chat activation. Without usable
+retrieval, guidance remains dated/unavailable, never current. Actual ChatGPT UI
+validation is a separate operator gate.
 
 Maintenance scripts, tests, evaluations and full installation/distribution docs
 are in the [canonical GitLab repository](https://gitlab.com/revanalex/promptcraft-skill),

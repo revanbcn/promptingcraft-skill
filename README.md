@@ -6,12 +6,12 @@ drafts, critiques once, revises when necessary, and checks that requirements and
 survived. The assistant writing the prompt and the agent executing it may differ.
 First targets: **Claude Code and OpenAI Codex**. Version: **0.1.0**.
 
-The immutable v0.1.0 tag is the canonical release. `main` also contains unreleased
-official-knowledge and contract-quality work: 17 curated recommendations, five
-requirement classes and an optional offline contract checker. The
-[all-case comparison](evals/results/quality-1/README.md) still finds candidate
-drift in three cases; **IMPROVE FURTHER**, with no new release. Development CI
-archives are not replacements for published v0.1.0 release assets.
+The immutable v0.1.0 tag is the canonical release. `main` contains unreleased
+knowledge, contract-fidelity and local plugin integration work. The latest
+[contract-fidelity sample](evals/results/fidelity/README.md) found 0/14 material
+drift after earlier diagnostic variance; it is not a guarantee. Native Codex
+invocations are verified. ChatGPT-native activation and downstream superiority
+remain unverified. Development CI archives do not replace v0.1.0 release assets.
 
 When the original task is already suitable, PromptCraft can return:
 "The original prompt is already suitable. No material revision is necessary."
@@ -51,21 +51,22 @@ This is an original illustration, not proof of improved execution. See the
 [worked examples](skills/promptcraft/references/examples.md) and
 [evaluation protocol](evals/README.md).
 
-## Use in ordinary ChatGPT chat
+## Use in ChatGPT
 
-No terminal, Python, Git credentials, paid API key or new MCP is needed to compose.
-Open [SKILL.md](skills/promptcraft/SKILL.md), paste its contents into the chat and
-ask it to apply PromptCraft to your discussion. Provide the relevant supporting
-files as text or attachments when requested; all are in the standalone package.
-If browsing is available, use it to retrieve the applicable official pages.
-Without browsing, the assistant should explicitly label its source guidance dated
-or unavailable and avoid claiming current model-specific tuning.
+PromptCraft is a skills-only plugin with no MCP server or credentials. Build its
+local source once, register the real repository root, and install through supported
+Codex or ChatGPT Desktop plugin controls. See the exact
+[local installation and ChatGPT procedure](docs/chatgpt-installation.md).
+After installation, start a new chat; explicitly select PromptCraft with `@` or
+ask **“Prepare a Codex prompt for this task.”** It uses the established discussion
+and returns the final execution prompt in one copyable code block.
 
-This manual use is prompt context, **not native skill installation**. A public Git
-repository is not a listed ChatGPT directory plugin. Native plugin packaging is
-prepared; directory submission and account-specific installation are separate,
-excluded gates. Ordinary-ChatGPT runtime verification has not been established
-by a terminal test. See [surface status](docs/verification.md).
+Current OpenAI documentation supports plugins in Chat, but local-source and
+account availability vary. Codex CLI installation is verified separately from
+ChatGPT Desktop and ordinary Chat activation. Computer Use cannot access ChatGPT
+in this environment; those native checks remain a documented owner-side gate.
+No repeated SKILL.md paste or upload is part of the supported installation route.
+With unavailable retrieval, source guidance remains dated/unavailable.
 
 ## Install the standalone skill
 
@@ -101,13 +102,18 @@ claude --plugin-dir /path/to/extracted/promptcraft-plugin
 # In that session: /promptcraft:promptcraft
 ```
 
-For ChatGPT/Codex desktop local plugin setup, follow the currently documented
-[repo marketplace procedure](https://developers.openai.com/plugins/build/plugins#install-a-local-plugin-manually):
-copy the extracted plugin into `plugins/promptcraft` in a chosen project and create
-that project's `.agents/plugins/marketplace.json` entry pointing to
-`./plugins/promptcraft`. Installation requires the supported desktop plugin UI;
-this repository does not configure a user's global plugin source automatically.
-The standalone Codex installation above is the simpler v0.1 route.
+The repository already includes `.agents/plugins/marketplace.json` for
+`dondego-local`. Prepare its actual plugin directory before registration:
+
+```sh
+python3 scripts/prepare_marketplace.py
+python3 scripts/validate.py --marketplace
+```
+
+The generated `dist/promptcraft-plugin/` comes from the canonical skill using the
+existing reproducible archive builder. It is a snapshot, not a second maintained
+skill. The catalog resolves its path relative to the repository root. See
+[installation, refresh and removal](docs/chatgpt-installation.md).
 
 ## Verification and freshness
 
@@ -115,6 +121,8 @@ The standalone Codex installation above is the simpler v0.1 route.
 python3 -m unittest discover -s tests -v
 python3 scripts/validate.py
 python3 scripts/package.py --output dist
+python3 scripts/prepare_marketplace.py
+python3 scripts/validate.py --marketplace
 # Optional live maintenance, kept separate from merge checks:
 python3 scripts/freshness.py --output /tmp/promptcraft-freshness --write-baseline
 ```

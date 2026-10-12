@@ -1,0 +1,1 @@
+An authorization boundary is the limit of what a developer or agent has permission to do within an agreed task. For example, approval to implement and test a feature does not automatically include permission to deploy it to production, delete data, or expand its scope.

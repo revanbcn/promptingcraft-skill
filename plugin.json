@@ -15,5 +15,20 @@
     "agent-skills",
     "codex",
     "claude-code"
-  ]
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "PromptCraft by DondeGo",
+        "shortDescription": "Coding handoffs. Developed by the dondego.com team.",
+        "longDescription": "Prepare a Claude Code or Codex prompt from the established discussion, preserving requirements and authorization. Developed by the dondego.com team.",
+        "developerName": "DondeGo team",
+        "category": "Productivity",
+        "websiteURL": "https://dondego.com",
+        "defaultPrompt": [
+          "Prepare a Codex prompt for this task."
+        ]
+      }
+    }
+  }
 }

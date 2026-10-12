@@ -1,0 +1,1 @@
+Understood: preserve names containing commas and keep columns ordered `id,name,status`, using the existing export action with no new dependencies or auth changes. The fix and relevant regression verification are authorized; deployment is not. I won’t prepare an execution prompt or modify files yet.
