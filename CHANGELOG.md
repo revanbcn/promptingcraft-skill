@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased — EPIC 8: public launch and marketplace readiness
+
+- Cursor as a target agent: `references/cursor.md` (Auto treated as an unknown model),
+  cursor.com docs classified `agent-product` (cannot back model prompting advice),
+  `install_skill.py --host cursor`, and native Cursor CLI activation results
+  (`evals/results/cursor-trigger-1/`: automatic 0/30 with Auto, named 2/2).
+- Listing metadata: `capabilities` (6), `keywords` (11), new starter prompts, long
+  description naming Cursor, the published evaluation and the absence of a prompt backend.
+- `.cursor-plugin/marketplace.json` for the single root plugin; `docs/cursor-submission.md`.
+- Published A/B evidence: grader verdicts and prompt, run log and runner
+  (`scripts/evaluate_ab.py`); trigger eval host failures corrected to 5 of 65 attempts.
+- Package stays 0.2.0 (unreleased); no tag or release created.
+
 ## Unreleased — Agent Skills standard audit
 
 - `skills-ref validate` passes for the source skill and both ZIPs; specification,

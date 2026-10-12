@@ -14,7 +14,7 @@ here has been submitted, and no attestation has been accepted on the owner's beh
 | Required skill security scans | **Not run**: they run only in the portal after upload (up to 2 hours) |
 | Policy attestations, Submit for review, Publish | **Owner only**; not done |
 | ChatGPT installation and activation | **Not verified**; Codex-native runs only (see **Surfaces**) |
-| Website legal operator data (name, NIF, address, email) | **Missing**: needs owner-approved values (see **Legal publisher**) |
+| Website legal operator data | Address and support email authorized for publication (website MR); name and NIF **missing** (see **Legal publisher**) |
 
 ## Compliance matrix (Skills only)
 
@@ -27,7 +27,8 @@ M = missing, N/A = not applicable to Skills only.
 | Individual or business verification before publishing (submission, guidelines) | O | Organization settings → Verification |
 | One plugin root in the ZIP, no sibling files (submission-errors) | S | Single top-level `promptcraft-plugin/`; `validate_submission_archive` |
 | Supported manifest, UTF-8 JSON (submission-errors) | S | Root `plugin.json` with Agent Plugins 1.0.0 `$schema`; identical `.claude-plugin/plugin.json` kept for Claude Code |
-| `name` ≤64, lowercase/hyphen; semantic `version`; `description` ≤1024 | S | `promptcraft`, `0.2.0`, 114 characters |
+| `name` ≤64, lowercase/hyphen; semantic `version`; `description` ≤1024 | S | `promptcraft`, `0.2.0`, 149 characters |
+| Manifest against the official Agent Plugins 1.0.0 JSON Schema | S | No errors (`jsonschema`, Draft 2020-12). OpenAI documents no offline validator; the portal validates on upload |
 | `author.name` and `interface.developerName` present | S/O | Present; the directory replaces the developer name with the verified identity (`developer_name_defaulted`) |
 | Every skill at `skills/<name>/SKILL.md` with `name` and `description` ≤1024 | S | `skills/promptcraft/SKILL.md` |
 | `plugin-name:skill-name` ≤64 | S | `promptcraft:promptcraft` (23) |
@@ -36,9 +37,11 @@ M = missing, N/A = not applicable to Skills only.
 | No `interface.screenshots` for Skills only | S | Validator and archive check |
 | `./`-relative asset paths inside the package | S | Validator |
 | `logo` and `composerIcon` square SVG/PNG ≥48, ≤5 MiB | S | Square SVG viewBoxes, no script/foreignObject |
-| `displayName` ≤30, `shortDescription` ≤30, `longDescription` ≤4000 | S | 18 / 27 / 1347 characters |
+| `displayName` ≤30, `shortDescription` ≤30, `longDescription` ≤4000 | S | 18 / 27 / 1688 characters |
+| `capabilities` ≤20, each ≤120, one line (optional, free text) | S | 6 entries, 43–79 characters; describe implemented behavior only |
+| `keywords` (top-level discovery terms; no tag field exists) | S | 11 terms in `plugin.json` |
 | `category` from the dashboard list | S | `Developer Tools` |
-| `defaultPrompt` ≤3, ≤128 each, unique, one line, no @mentions | S | 3 prompts, 64/73/72 characters |
+| `defaultPrompt` ≤3, ≤128 each, unique, one line, no @mentions | S | 3 prompts, 57/56/62 characters |
 | `brandColor` ≥2:1 vs white; `brandColorDark` ≥2:1 vs #212121 | S | Validator |
 | Listing URLs | S (optional) | Not required for Skills only; supplied anyway (HTTPS; all four returned 200 on 2026-10-12) |
 | No secrets or credentials in the ZIP | S | Pattern scan and author review of every packaged file (see **Security review**) |
@@ -73,22 +76,35 @@ M = missing, N/A = not applicable to Skills only.
 
 Starter prompts:
 
-1. `Turn the discussion above into one execution-ready Codex prompt.`
-2. `Review this Claude Code prompt and improve it without changing its scope.`
-3. `Apply current official guidance to this agent prompt and keep my intent.`
+1. `Turn our discussion into an execution-ready Codex prompt.`
+2. `Review this Claude Code task without changing its scope.`
+3. `Apply relevant official guidance and preserve my requirements.`
 
-Long description: the `longDescription` value in `plugin.json` (1347 characters, ends with
-"Developed by the dondego.com team."). It states the workflow, the review and no-change
-behavior, the official-source provenance and separately labeled methodology, that live
-guidance depends on available tools, the limits (no execution, no guarantee), and the
-independence from OpenAI and Anthropic.
+Capabilities (`capabilities`, shown as listed):
+
+1. `Turns a development discussion into one execution-ready coding-agent prompt`
+2. `Reviews an existing prompt and flags scope changes and unnecessary instructions`
+3. `Leaves an already suitable prompt unchanged`
+4. `Preserves requirements, decisions, permissions and unresolved choices`
+5. `Checks applicable official AI-developer guidance and labels its freshness`
+6. `Separates official guidance, project methodology and optional suggestions`
+
+Keywords (`keywords`): agent-skills, prompt-engineering, coding-agents, codex, claude-code,
+cursor, agent-prompts, prompt-review, task-contracts, official-guidance, open-source.
+
+Long description: the `longDescription` value in `plugin.json` (1688 characters, ends with
+"Developed by the dondego.com team."). It states the contract-preserving draft → critique →
+final workflow, the review and no-change behavior, the official-source provenance and the
+public registry, separately labeled methodology, that live guidance depends on available
+tools, the limits (no execution, no guarantee, no prompt-processing backend), where the
+evaluation is published, and the independence from OpenAI, Anthropic and Cursor.
 
 Release notes (0.2.0):
 
 > First directory release. PromptingCraft.com turns a development discussion into one
-> reviewed, execution-ready prompt for Codex or Claude Code, or reviews an existing prompt
-> and keeps it unchanged when it is already suitable. Skills only: no account, MCP server
-> or setup.
+> reviewed, execution-ready prompt for Codex, Claude Code or Cursor, or reviews an existing
+> prompt and keeps it unchanged when it is already suitable. Skills only: no account, MCP
+> server, backend or setup. Developed by the dondego.com team.
 
 ## Package
 
@@ -150,8 +166,7 @@ second scan surface and an activation candidate without demonstrated value.
 
 ## Legal publisher
 
-The legal operator is the owner as a Spanish trabajador autónomo, not a company. The website
-publishes only that status. Before submission the following must match across the OpenAI
+The legal operator is the owner as a Spanish trabajador autónomo, not a company. Before submission the following must match across the OpenAI
 verified identity, `/legal`, `/privacy`, `/terms` and `/contact`:
 
 | Fact | State |
@@ -159,8 +174,8 @@ verified identity, `/legal`, `/privacy`, `/terms` and `/contact`:
 | Status: autónomo established in Spain | Published |
 | Full legal name (LSSI art. 10.1 a) | Missing: owner approval needed to publish |
 | NIF (LSSI art. 10.1 e) | Missing: owner approval needed to publish |
-| Address or establishment (LSSI art. 10.1 a) | Missing: owner approval needed; a business address can be used |
-| Contact email (LSSI art. 10.1 b) | Missing: a dedicated support address is recommended |
+| Address or establishment (LSSI art. 10.1 a) | Authorized by the owner on 2026-10-12; shown on https://promptingcraft.com/legal once the website release is deployed |
+| Contact email (LSSI art. 10.1 b) | `support@promptingcraft.com` authorized; Cloudflare Email Routing forwards it to a verified mailbox; published once a delivery test succeeds |
 
 These values go only into the website's `src/data/operator.mjs` after explicit approval and
 never into this repository. Note that individual verification shows the verified person's

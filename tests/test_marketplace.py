@@ -107,3 +107,26 @@ class MarketplaceTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 prepare(root)
             self.assertEqual(list(Path(outside).iterdir()), [])
+
+
+class CursorMarketplaceTests(unittest.TestCase):
+    def test_cursor_marketplace_entry_points_at_the_one_canonical_plugin(self):
+        root = Path(__file__).resolve().parents[1]
+        catalog = json.loads((root / '.cursor-plugin/marketplace.json').read_text())
+        manifest = json.loads((root / 'plugin.json').read_text())
+        self.assertRegex(catalog['name'], r'^[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$')
+        self.assertTrue(catalog['owner']['name'])
+        [entry] = catalog['plugins']
+        # The repository root is the plugin: no second skill copy, no Cursor-only manifest.
+        self.assertEqual(entry['source'], './')
+        self.assertFalse((root / '.cursor-plugin/plugin.json').exists())
+        for field in ('name', 'version', 'homepage', 'repository', 'license', 'keywords'):
+            self.assertEqual(entry[field], manifest[field], field)
+        self.assertEqual(entry['author']['name'], manifest['author']['name'])
+        self.assertTrue(entry['logo'].startswith('https://gitlab.com/revanalex/promptingcraft-skill/-/raw/'))
+        self.assertTrue((root / entry['logo'].split('/-/raw/main/')[1]).is_file())
+        self.assertTrue(entry['description'].endswith('Developed by the dondego.com team.'))
+        for forbidden in ('mcpServers', 'hooks', 'rules', 'agents', 'commands', 'variables'):
+            self.assertNotIn(forbidden, entry)
+        for path in ('mcp.json', '.mcp.json', 'hooks', 'rules', 'agents', 'commands'):
+            self.assertFalse((root / path).exists(), path)

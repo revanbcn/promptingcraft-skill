@@ -184,7 +184,10 @@ class InterfaceTests(unittest.TestCase):
         self.assertEqual(self.interface['shortDescription'], 'Source-backed agent prompts')
         self.assertEqual(len(self.interface['defaultPrompt']), 3)
         text = self.interface['longDescription']
-        self.assertIn('not affiliated with or endorsed by OpenAI or Anthropic', text)
+        self.assertIn('not affiliated with or endorsed by OpenAI, Anthropic or Cursor', text)
+        self.assertIn('no backend that processes prompts', text)
+        self.assertTrue(1 <= len(self.interface['capabilities']) <= 20)
+        self.assertEqual(self.manifest['keywords'][0], 'agent-skills')
         self.assertIn('does not guarantee better downstream results', text)
         self.assertNotRegex(text, r'(?i)\bofficial (openai|anthropic) (plugin|partner)|(?<!not )guarantees? (better|improved)')
 
@@ -197,6 +200,10 @@ class InterfaceTests(unittest.TestCase):
             'multi-line prompt': {'defaultPrompt': ['one\ntwo']},
             'unknown category': {'category': 'Coding'},
             'screenshots': {'screenshots': ['./assets/shot.png']},
+            'too many capabilities': {'capabilities': [f'Capability {n}' for n in range(21)]},
+            'long capability': {'capabilities': ['x' * 121]},
+            'duplicate capabilities': {'capabilities': ['Review prompts', 'review  prompts']},
+            'multi-line capability': {'capabilities': ['one\ntwo']},
         }
         for label, change in cases.items():
             with self.subTest(label):

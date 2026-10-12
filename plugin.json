@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "promptcraft",
   "version": "0.2.0",
-  "description": "Turn development discussions into execution-ready Claude Code or Codex prompts. Developed by the dondego.com team.",
+  "description": "Turn development discussions into execution-ready prompts for coding agents such as Codex, Claude Code and Cursor. Developed by the dondego.com team.",
   "author": {
     "name": "DondeGo team",
     "url": "https://dondego.com"
@@ -11,27 +11,42 @@
   "repository": "https://gitlab.com/revanalex/promptingcraft-skill",
   "license": "MIT",
   "keywords": [
-    "prompt-authoring",
     "agent-skills",
+    "prompt-engineering",
+    "coding-agents",
     "codex",
-    "claude-code"
+    "claude-code",
+    "cursor",
+    "agent-prompts",
+    "prompt-review",
+    "task-contracts",
+    "official-guidance",
+    "open-source"
   ],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "PromptingCraft.com",
         "shortDescription": "Source-backed agent prompts",
-        "longDescription": "PromptingCraft.com helps AI assistants turn a development discussion into a clear, execution-ready prompt for a coding agent such as Codex or Claude Code.\n\nIt identifies the task requirements, preserves decisions already made, checks applicable official guidance from AI model developers, writes a draft, critiques it, and returns one final copyable prompt.\n\nIt can also review an existing prompt: it points out unnecessary instructions and changes in scope, and when a prompt is already suitable it recommends leaving it unchanged.\n\nModel-specific recommendations come from official OpenAI and Anthropic documentation. A public source registry records where each recommendation comes from, and the project's own methodology is labeled separately from official guidance.\n\nChecking current guidance depends on the tools and access available in the conversation. When live retrieval is unavailable, PromptingCraft.com says whether it used dated cached guidance or none.\n\nPromptingCraft.com writes and reviews prompts only. It does not run the development task, edit code or grant permissions, and it does not guarantee better downstream results. No account, credentials, MCP server or setup is required.\n\nPromptingCraft.com is developed independently and is not affiliated with or endorsed by OpenAI or Anthropic.\n\nDeveloped by the dondego.com team.",
+        "longDescription": "PromptingCraft.com helps AI assistants turn a development discussion into one clear, execution-ready prompt for a coding agent such as Codex, Claude Code or Cursor.\n\nIt identifies the task contract (requirements, decisions already made, permissions and open questions), checks applicable official guidance from AI developers, writes a draft, critiques it against the contract, and returns one final copyable prompt. Optional ideas stay optional, unresolved choices stay open, and no new permissions are added.\n\nIt can also review an existing prompt: it points out unnecessary instructions and changes in scope, and when a prompt is already suitable it says so and leaves it unchanged.\n\nModel-specific recommendations come only from official OpenAI and Anthropic documentation, and Cursor behavior from Cursor's documentation. A public source registry records where each recommendation comes from, and the project's own methodology is labeled separately from official guidance.\n\nChecking current guidance depends on the tools and access available in the conversation. When live retrieval is unavailable, PromptingCraft.com says whether it used dated cached guidance or none.\n\nPromptingCraft.com writes and reviews prompts only. It does not run the development task, edit code or grant permissions, and it does not guarantee better downstream results. It has no backend that processes prompts, and needs no account, credentials, MCP server or setup. Evaluation methods, results and limits are published at promptingcraft.com/benchmarks.\n\nPromptingCraft.com is developed independently and is not affiliated with or endorsed by OpenAI, Anthropic or Cursor.\n\nDeveloped by the dondego.com team.",
         "developerName": "DondeGo team",
         "category": "Developer Tools",
+        "capabilities": [
+          "Turns a development discussion into one execution-ready coding-agent prompt",
+          "Reviews an existing prompt and flags scope changes and unnecessary instructions",
+          "Leaves an already suitable prompt unchanged",
+          "Preserves requirements, decisions, permissions and unresolved choices",
+          "Checks applicable official AI-developer guidance and labels its freshness",
+          "Separates official guidance, project methodology and optional suggestions"
+        ],
         "websiteURL": "https://promptingcraft.com",
         "supportURL": "https://promptingcraft.com/contact",
         "privacyPolicyURL": "https://promptingcraft.com/privacy",
         "termsOfServiceURL": "https://promptingcraft.com/terms",
         "defaultPrompt": [
-          "Turn the discussion above into one execution-ready Codex prompt.",
-          "Review this Claude Code prompt and improve it without changing its scope.",
-          "Apply current official guidance to this agent prompt and keep my intent."
+          "Turn our discussion into an execution-ready Codex prompt.",
+          "Review this Claude Code task without changing its scope.",
+          "Apply relevant official guidance and preserve my requirements."
         ],
         "brandColor": "#17181C",
         "brandColorDark": "#F4F1EA",

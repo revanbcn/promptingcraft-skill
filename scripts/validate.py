@@ -97,6 +97,8 @@ DIRECTORY_CATEGORIES=('Productivity','Creativity','Developer Tools','Business & 
 PORTABLE_MANIFEST_FIELDS={'$schema','name','version','description','author','homepage','repository','license','keywords','extensions'}
 MAX_DEFAULT_PROMPTS=3
 MAX_DEFAULT_PROMPT_LENGTH=128
+MAX_CAPABILITIES=20
+MAX_CAPABILITY_LENGTH=120
 # Skills-only uploads reject MCP, app, hook and screenshot configuration.
 SKILLS_ONLY_EXCLUDED_FILES=('mcp.json','.mcp.json','.app.json','hooks.json')
 MIN_ASSET_SIZE=48
@@ -170,6 +172,14 @@ def validate_interface(root,interface):
     for prompt in prompts:
         if len(prompt)>MAX_DEFAULT_PROMPT_LENGTH or '\n' in prompt or '@' in prompt:
             raise ValueError('Starter prompts must be one line, at most 128 characters, without @mentions')
+    capabilities=interface.get('capabilities',[])
+    if not isinstance(capabilities,list) or len(capabilities)>MAX_CAPABILITIES:
+        raise ValueError('Directory allows at most 20 capabilities')
+    if len({' '.join(str(c).split()).casefold() for c in capabilities})!=len(capabilities):
+        raise ValueError('Capabilities must be unique')
+    for capability in capabilities:
+        if not isinstance(capability,str) or not capability.strip() or len(capability)>MAX_CAPABILITY_LENGTH or '\n' in capability:
+            raise ValueError('Capabilities must be non-empty, one line and at most 120 characters')
     for field in INTERFACE_ASSETS:
         value=interface.get(field)
         if not isinstance(value,str) or not value.startswith('./'): raise ValueError(f'Interface {field} must start with ./')

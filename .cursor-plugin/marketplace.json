@@ -1,0 +1,47 @@
+{
+  "name": "promptingcraft",
+  "owner": {
+    "name": "dondego.com team"
+  },
+  "metadata": {
+    "description": "PromptingCraft.com: reviewed, execution-ready coding-agent prompts from official AI-developer guidance. Developed by the dondego.com team."
+  },
+  "plugins": [
+    {
+      "name": "promptcraft",
+      "source": "./",
+      "description": "An open-source skill that turns development discussions into reviewed, execution-ready coding-agent prompts using official AI-developer guidance. Developed by the dondego.com team.",
+      "version": "0.2.0",
+      "author": {
+        "name": "DondeGo team"
+      },
+      "homepage": "https://promptingcraft.com",
+      "repository": "https://gitlab.com/revanalex/promptingcraft-skill",
+      "license": "MIT",
+      "keywords": [
+        "agent-skills",
+        "prompt-engineering",
+        "coding-agents",
+        "codex",
+        "claude-code",
+        "cursor",
+        "agent-prompts",
+        "prompt-review",
+        "task-contracts",
+        "official-guidance",
+        "open-source"
+      ],
+      "category": "Developer Tools",
+      "tags": [
+        "Agent Skills",
+        "Prompt Engineering",
+        "Coding Agents",
+        "Codex",
+        "Claude Code",
+        "Cursor",
+        "Developer Tools"
+      ],
+      "logo": "https://gitlab.com/revanalex/promptingcraft-skill/-/raw/main/assets/logo.svg"
+    }
+  ]
+}
