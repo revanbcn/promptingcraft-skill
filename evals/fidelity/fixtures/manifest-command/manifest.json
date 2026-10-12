@@ -1,0 +1,5 @@
+{
+  "dependencies": {},
+  "commands": {"verify": "python3 -m unittset discover -s tests -v", "build": "python3 build.py"},
+  "policy": {"schema":1,"fields":["job_id","status"],"terminal":"failed_final"}
+}

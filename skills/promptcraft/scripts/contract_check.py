@@ -36,6 +36,9 @@ def check(document):
         raise ValueError('Expected schema_version 1 comparison object')
     original = _string(document.get('original'), 'original')
     final = _string(document.get('final_prompt'), 'final_prompt')
+    outcome = document.get('outcome', 'REVISED')
+    if outcome not in {'REVISED', 'UNCHANGED'}:
+        raise ValueError('Invalid outcome; expected REVISED or UNCHANGED')
     requirements = document.get('requirements')
     clauses = document.get('clauses')
     if not isinstance(requirements, list) or not requirements or not isinstance(clauses, list):
@@ -55,6 +58,9 @@ def check(document):
         _strings(row.get('actions', []), 'actions')
         if row.get('actions') and row['kind'] != 'AUTHORITY':
             raise ValueError('Only AUTHORITY requirements may declare actions')
+        exact = row.get('preserve_exact', False)
+        if not isinstance(exact, bool) or (exact and row['classification'] not in {'EXPLICIT_REQUIRED', 'FORBIDDEN'}):
+            raise ValueError('preserve_exact must be boolean and anchored to an explicit invariant')
         by_id[identifier] = row
 
     findings = []
@@ -68,6 +74,12 @@ def check(document):
         if requirement is not None:
             finding['requirement'] = requirement
         findings.append(finding)
+
+    if outcome == 'UNCHANGED' and final != original:
+        flag('FALSE_NO_CHANGE')
+    for row in requirements:
+        if row.get('preserve_exact') and row['quote'] not in final:
+            flag('CHANGED_IMMUTABLE_TEXT', requirement=row['id'])
 
     for index, clause in enumerate(clauses):
         if not isinstance(clause, dict):
@@ -89,7 +101,7 @@ def check(document):
         cursor = start + len(text)
         source_rows = [by_id[identifier] for identifier in supports]
         if relation == 'FORMAT':
-            if kind != 'FORMAT' or modality != 'CONTEXT' or supports or clause.get('external_action'):
+            if kind != 'FORMAT' or modality != 'CONTEXT' or supports or clause.get('external_action') or clause.get('action'):
                 raise ValueError('FORMAT is reserved for nonoperative headings/layout')
             continue
 
@@ -125,13 +137,15 @@ def check(document):
                 if classification == 'FORBIDDEN' and modality == 'FORBIDDEN':
                     covered.add(row['id'])
 
-        action = clause.get('external_action')
-        if action is not None:
-            _string(action, 'external_action')
+        for action_field in ('action', 'external_action'):
+            action = clause.get(action_field)
+            if action is None:
+                continue
+            _string(action, action_field)
             allowed = any(row['classification'] in {'EXPLICIT_REQUIRED', 'EXPLICIT_OPTIONAL'} and row['kind'] == 'AUTHORITY'
                           and action in row.get('actions', []) for row in source_rows)
             if modality in {'REQUIRED', 'OPTIONAL'} and not allowed:
-                flag('UNAUTHORIZED_EXTERNAL_ACTION', index)
+                flag('UNAUTHORIZED_EXTERNAL_ACTION' if action_field == 'external_action' else 'UNAUTHORIZED_ACTION', index)
 
     if final[cursor:].strip():
         flag('UNANNOTATED_TEXT')
@@ -142,6 +156,7 @@ def check(document):
     return {
         'schema_version': 1,
         'status': 'DRIFT' if findings else 'REVIEW_REQUIRED',
+        'outcome': outcome,
         'semantic_validation': 'NOT_ESTABLISHED',
         'findings': findings,
         'covered_requirements': sorted(covered),

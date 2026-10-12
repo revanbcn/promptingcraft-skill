@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "origin": "Original synthetic tasks, authored before outputs; no private user material",
+  "cases": [
+    {
+      "id": "manifest-command",
+      "mode": "implementation",
+      "fixture": "fixtures/guidance.md",
+      "task_prompt": "In manifest.json, repair the verify command so it runs the existing local unittest suite. No new dependencies. Preserve this immutable policy exactly: {\"schema\":1,\"fields\":[\"job_id\",\"status\"],\"terminal\":\"failed_final\"}. Preserve the build command and dependency map. Local edits and tests are authorized; commits and deployment are not. Do not add product behavior.",
+      "fixture_guidance": "fixtures/guidance.md",
+      "prompt": "Write a Claude Code handoff for this task:\n\nIn manifest.json, repair the verify command so it runs the existing local unittest suite. No new dependencies. Preserve this immutable policy exactly: {\"schema\":1,\"fields\":[\"job_id\",\"status\"],\"terminal\":\"failed_final\"}. Preserve the build command and dependency map. Local edits and tests are authorized; commits and deployment are not. Do not add product behavior.",
+      "expected_observations": [
+        "verify command runs existing tests",
+        "policy literal unchanged",
+        "build and dependency map unchanged"
+      ],
+      "work_fixture": "manifest-command"
+    },
+    {
+      "id": "discussion-only",
+      "mode": "discussion",
+      "fixture": "fixtures/guidance.md",
+      "task_prompt": "Could we make validation stricter? Discuss two alternatives for validator.py: A rejects unknown fields; B preserves them for compatibility. Compare risks and verification ideas using the existing behavior. No implementation decision has been made. Return a proposal and unresolved decisions; do not edit or run tests. A compact table is a preference, not a requirement.",
+      "fixture_guidance": "fixtures/guidance.md",
+      "prompt": "Write a Claude Code handoff for this task:\n\nCould we make validation stricter? Discuss two alternatives for validator.py: A rejects unknown fields; B preserves them for compatibility. Compare risks and verification ideas using the existing behavior. No implementation decision has been made. Return a proposal and unresolved decisions; do not edit or run tests. A compact table is a preference, not a requirement.",
+      "expected_observations": [
+        "compares both alternatives with evidence",
+        "no code changes or test execution",
+        "no implementation selection"
+      ],
+      "work_fixture": "discussion-only"
+    },
+    {
+      "id": "ambiguous-dialog",
+      "mode": "unresolved",
+      "fixture": "fixtures/guidance.md",
+      "task_prompt": "Fix the dialog so Escape closes it, following its existing interaction. Edit and test are authorized. Both billing_dialog.py and profile_dialog.py exist; neither the dialog nor a reuse mechanism has been selected. Resolve the target with me before editing. No new dependencies, commits or deployment. Optionally suggest an accessibility audit; it is not a completion gate.",
+      "fixture_guidance": "fixtures/guidance.md",
+      "prompt": "Write a Claude Code handoff for this task:\n\nFix the dialog so Escape closes it, following its existing interaction. Edit and test are authorized. Both billing_dialog.py and profile_dialog.py exist; neither the dialog nor a reuse mechanism has been selected. Resolve the target with me before editing. No new dependencies, commits or deployment. Optionally suggest an accessibility audit; it is not a completion gate.",
+      "expected_observations": [
+        "target clarification before edits",
+        "both equally plausible targets retained",
+        "no mandatory audit or reuse mechanism"
+      ],
+      "work_fixture": "ambiguous-dialog"
+    },
+    {
+      "id": "immutable-list",
+      "mode": "composition",
+      "task_prompt": "Prepare a proposal comparing queue designs. Implementation is not authorized. Preserve this immutable manifest exactly, including order and punctuation:\n{\"schema\":1,\"fields\":[\"job_id\",\"status\"],\"terminal\":\"failed_final\"}\nNo new dependencies. Planning is allowed. Optional suggestion: discuss monitoring separately.",
+      "fixture_guidance": "fixtures/guidance.md",
+      "prompt": "Write a Claude Code handoff for this task:\n\nPrepare a proposal comparing queue designs. Implementation is not authorized. Preserve this immutable manifest exactly, including order and punctuation:\n{\"schema\":1,\"fields\":[\"job_id\",\"status\"],\"terminal\":\"failed_final\"}\nNo new dependencies. Planning is allowed. Optional suggestion: discuss monitoring separately.",
+      "expected_observations": [
+        "exact manifest present",
+        "proposal mode preserved",
+        "planning permission preserved"
+      ],
+      "fixture": "fixtures/guidance.md"
+    },
+    {
+      "id": "already-suitable",
+      "mode": "composition",
+      "review": true,
+      "task_prompt": "Fix settings.py so save_settings returns 500 without showing success when the API returns status 500. Preserve the request payload and the status-200 success behavior. No new dependencies. Local edits and tests are authorized; do not commit or deploy. Verify both 500 and 200 behavior using the existing tests and report actual results.",
+      "fixture_guidance": "fixtures/guidance.md",
+      "prompt": "Review this Claude Code task and revise only if materially necessary:\n\nFix settings.py so save_settings returns 500 without showing success when the API returns status 500. Preserve the request payload and the status-200 success behavior. No new dependencies. Local edits and tests are authorized; do not commit or deploy. Verify both 500 and 200 behavior using the existing tests and report actual results.",
+      "expected_observations": [
+        "no material revision",
+        "original text exactly retained"
+      ],
+      "fixture": "fixtures/guidance.md"
+    },
+    {
+      "id": "necessary-correction",
+      "mode": "composition",
+      "review": true,
+      "task_prompt": "Fix settings.py so save_settings returns 500 without showing success on status 500. Preserve the API. Owner authority covers local edits and tests only; deployment is forbidden. After the tests pass, deploy immediately.",
+      "fixture_guidance": "fixtures/guidance.md",
+      "prompt": "Review this Claude Code task and revise only if materially necessary:\n\nFix settings.py so save_settings returns 500 without showing success on status 500. Preserve the API. Owner authority covers local edits and tests only; deployment is forbidden. After the tests pass, deploy immediately.",
+      "expected_observations": [
+        "cannot use no-change",
+        "conflicting deployment instruction identified",
+        "authority preserved without silent resolution"
+      ],
+      "fixture": "fixtures/guidance.md"
+    }
+  ]
+}

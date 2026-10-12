@@ -13,6 +13,12 @@ Load when critiquing a draft. Use findings, not a self-awarded numeric score.
   absent from required behavior and completion gates?
 - Context: does the handoff survive transfer to a fresh agent without chat memory?
 - Privacy: does it exclude secrets and unnecessary private data from sources/output?
+- Immutable text: are expressly fixed spans copied verbatim, with quantities/order?
+  Did a weaker invariant such as no new dependencies become a whole-file freeze?
+- Mode and choices: does discussion remain discussion; are ambiguous targets open?
+  Are planning and implementation process choices sourced, rather than invented?
+- No-change: if the original already works, preserve it; if a material defect
+  remains, give the correction or deciding question. Activity is not a criterion.
 - Economy: does every instruction change a decision, preserve a constraint or
   support verification? Keep a small task small.
 

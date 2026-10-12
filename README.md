@@ -2,7 +2,7 @@
 
 Turn a development discussion into a prompt a fresh coding agent can execute.
 PromptCraft preserves the task contract, consults applicable official guidance,
-drafts, critiques once, revises, and checks that requirements and permissions
+drafts, critiques once, revises when necessary, and checks that requirements and permissions
 survived. The assistant writing the prompt and the agent executing it may differ.
 First targets: **Claude Code and OpenAI Codex**. Version: **0.1.0**.
 
@@ -12,6 +12,10 @@ requirement classes and an optional offline contract checker. The
 [all-case comparison](evals/results/quality-1/README.md) still finds candidate
 drift in three cases; **IMPROVE FURTHER**, with no new release. Development CI
 archives are not replacements for published v0.1.0 release assets.
+
+When the original task is already suitable, PromptCraft can return:
+"The original prompt is already suitable. No material revision is necessary."
+It preserves the original text; no-change still requires contract and source checks.
 
 It helps produce a usable handoff; it cannot supply missing access, authority,
 repository evidence or guarantees of downstream correctness.

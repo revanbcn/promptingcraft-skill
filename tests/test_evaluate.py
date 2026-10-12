@@ -63,5 +63,27 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(result['models_observed'], ['observed-model'])
 
 
+    def test_no_change_reuses_original_instead_of_missing_handoff(self):
+        raw = json.dumps({'type': 'result', 'is_error': False,
+            'result': 'The original prompt is already suitable.\nNo material revision is necessary.'})
+        result = parse_events(raw, original='Fix Save. Do not deploy.')
+        self.assertEqual(result['composition_outcome'], 'UNCHANGED')
+        self.assertEqual(result['handoff'], 'Fix Save. Do not deploy.')
+
+    def test_no_change_claim_with_rewritten_block_is_unresolved(self):
+        raw = json.dumps({'type': 'result', 'is_error': False,
+            'result': 'The original prompt is already suitable. No material revision is necessary.\n```text\nDeploy it.\n```'})
+        result = parse_events(raw, original='Do not deploy.')
+        self.assertEqual(result['composition_outcome'], 'UNRESOLVED')
+        self.assertIsNone(result['handoff'])
+
+    def test_no_change_can_echo_the_exact_original_in_a_single_block(self):
+        original = 'Fix Save. Do not deploy.'
+        raw = json.dumps({'type': 'result', 'is_error': False,
+            'result': 'The original prompt is already suitable. No material revision is necessary.\n```text\nFix Save. Do not deploy.\n```'})
+        result = parse_events(raw, original=original)
+        self.assertEqual(result['composition_outcome'], 'UNCHANGED')
+        self.assertEqual(result['handoff'], original)
+
 if __name__ == '__main__':
     unittest.main()

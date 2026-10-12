@@ -46,7 +46,7 @@ def extract_handoff(text):
     return content if language in {'', 'text', 'plaintext', 'markdown', 'md'} and content else None
 
 
-def parse_events(raw):
+def parse_events(raw, original=None):
     events = []
     for line in raw.splitlines():
         try:
@@ -70,7 +70,16 @@ def parse_events(raw):
                 skill_calls.append(block.get('input', {}).get('skill'))
     output = final.get('result', '')
     handoff = extract_handoff(output)
+    unchanged = 'The original prompt is already suitable. No material revision is necessary.' in ' '.join(output.split())
+    outcome = 'REVISED' if handoff is not None else 'UNRESOLVED'
+    if unchanged:
+        # A reported outcome, never an automatic semantic preservation verdict.
+        outcome = ('UNCHANGED' if original is not None and
+                   (handoff == original or (handoff is None and not re.search(r'`{3,}|~{3,}', output)))
+                   else 'UNRESOLVED')
+        handoff = original if outcome == 'UNCHANGED' else None
     return {'status': 'RUN' if output and not final.get('is_error') else 'ERROR',
+            'composition_outcome': outcome,
             'models_observed': sorted(models), 'skill_calls': skill_calls,
             'reported_cost_usd': final.get('total_cost_usd'), 'usage': final.get('usage'),
             'output_chars': len(output), 'handoff_chars': len(handoff) if handoff is not None else None,
@@ -125,7 +134,7 @@ def run(output,model='claude-sonnet-5-5',timeout=240,case_ids=None,arms=None,ski
                     result=subprocess.run(args,cwd=work,text=True,capture_output=True,timeout=timeout)
                     (folder/'events.jsonl').write_text(result.stdout)
                     (folder/'stderr.log').write_text(result.stderr)
-                    parsed = parse_events(result.stdout)
+                    parsed = parse_events(result.stdout, original=case.get('task_prompt', case['prompt']))
                     visible = parsed.pop('output'); handoff = parsed.pop('handoff')
                     row={'case':case['id'],'arm':arm,'exit_code':result.returncode,
                          'model_requested':model,'skill_tree_sha256':snapshot,

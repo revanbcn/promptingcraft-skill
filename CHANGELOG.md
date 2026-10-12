@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased — contract fidelity and native validation
+
+- Preserve expressly immutable text verbatim; do not infer whole-file freezes.
+- Preserve discussion/implementation mode, unresolved choices and planning freedom.
+- Reject invented API exceptions and blanket overrides of host/project authority.
+- Allow no-change when the original task is suitable; keep necessary corrections.
+- Optional checker adds exact-literal, local action and no-change identity checks.
+- Frozen A/B/C source experiment, stricter artifact acceptance, observed tool/source
+  metrics and honest timeout collection; no effectiveness claim from source quality.
+- Native packaged Codex evidence and evaluation results are recorded separately.
+- Canonical v0.1.0 release, tag and public assets remain unchanged.
+
 ## Unreleased — official knowledge and contract quality
 
 - Curated, attributed official recommendations with applicability and limits.

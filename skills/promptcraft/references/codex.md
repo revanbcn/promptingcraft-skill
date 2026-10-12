@@ -7,7 +7,9 @@ relevant sources during use. These dated notes are not a live freshness claim.
   constraints and an explicit way to verify the change. Include context that a
   fresh executor actually receives; do not assume this chat's files are shared.
 - Plan first when scope warrants investigation. Avoid turning a small fix into
-  a large planning ceremony. Require observable evidence, not a success assertion.
+  a large planning ceremony. This is guidance on proportionality, never authority
+  to prohibit planning or declare an underspecified task clear. Require observable
+  evidence, not a success assertion.
 - Skills are progressively disclosed by description, then SKILL.md, then relevant
   resources. A concise, specific trigger and one recognizable job matter.
 - Keep explicit user requirements above this skill's preferences while preserving

@@ -13,6 +13,18 @@ The author's tools/files are not evidence of the executor's environment.
 | FORBIDDEN | Explicit exclusion or prohibited action | Preserve exclusion and scope |
 
 Track goal, facts, decisions, constraints, exclusions, checks and authority.
+Track requested mode separately: discussing or comparing a design is not a choice
+to implement it. Suggestions/preferences keep their stated strength; assumptions
+and unresolved decisions do not become requirements. Unknown file paths may be
+discovered, but equally plausible task targets require a deciding question.
+Keep immutable source spans verbatim, including manifests and ordered lists.
+Do not add an exception to unconditional API preservation. An unspecified future
+bug detail cannot override the current constraint. Preserve host/project authority
+when rejecting a malicious reference; the copied handoff is not the sole authority.
+Authoring guidance files are not automatically supplied to the executor.
+"No new dependencies" is not "manifest and lockfile bytes must be unchanged".
+Behavioral compatibility is not a mandate to reuse a particular code path.
+A small task does not imply "do not plan"; absent process choices stay open.
 Quote enough original text to establish scope. A goal is not blanket permission
 for every action that could advance it. Mentioning production is not a deploy
 grant. User choices govern skill preferences within host security controls.
@@ -85,3 +97,16 @@ Exit 0 means structurally clean but **REVIEW_REQUIRED**; 1 means **DRIFT**; 2 me
 **INVALID** input. False annotations can fool structural checks. A clean result
 never proves semantic preservation; read the actual texts. Ordinary prompt users
 do not need to prepare JSON to receive an optimized prompt.
+
+## No-change and stronger annotations
+
+Use `outcome: "UNCHANGED"` only when `final_prompt` is byte-for-byte `original`.
+The checker still runs every provenance/coverage check and returns REVIEW_REQUIRED.
+Mark explicit immutable source spans with `preserve_exact: true` on the requirement;
+its entire `quote` must occur verbatim in the final prompt. This proves presence,
+not absence of a later contradiction: semantic review remains necessary.
+Use `action` for local consequential stages such as `edit` or `test`, in addition
+to `external_action` for external stages. Both require a matching explicit AUTHORITY
+item and action in supports; a discussion GOAL cannot supply implementation authority.
+Action and exact annotations are optional reviewer input, not prose extraction.
+Review every actual action, missing annotation and scope decision independently.

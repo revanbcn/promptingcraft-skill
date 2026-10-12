@@ -82,3 +82,43 @@ No real MR, network, merge, deploy or database operation is measured. Record the
 initial failing acceptance, actual changed code and final acceptance separately
 from the agent's claims. Six successful fixture runs would still not demonstrate
 general downstream superiority or a real production outcome.
+
+## Contract fidelity experiment
+
+`fidelity-cases.json` adds six original cases without replacing the 14 existing
+cases: repair a manifest command while preserving an exact policy, discussion
+without implementation, unresolved dialog target, immutable manifest/order,
+already-suitable no-change, and a necessary authority correction.
+
+```sh
+python3 scripts/evaluate_fidelity.py compose --output /tmp/fidelity-compose
+python3 scripts/evaluate_fidelity.py execute --output /tmp/fidelity-execute --compositions /tmp/fidelity-compose
+```
+
+A is the exact task body. B/C load the same frozen skill/plugin and use the same
+observed author/executor model, tools, workspace fixtures and host boundary. B has
+synthetic dated context; C has a short attributed official summary externally
+verified on the stated date. Both must read the source file; successful Read events
+are recorded. This is supplied verified evidence, not live author retrieval or
+model-specific tuning. Source metadata stays outside executor handoffs.
+
+Execution exposes identical local file tools even for discussion tasks, so write
+or test attempts without task authority can be measured. Source fixtures are
+copied afresh for each cell; source-only guidance files are not execution inputs.
+Arm order rotates across tasks. JSON/byte/hash acceptance checks run outside the
+executor. Blinded model review assesses proposals, scope choices, clarification,
+verification and completion; artifact pass alone cannot establish those outcomes.
+Tool success reports, controller acceptance and executor assertions remain distinct.
+Clarification for an unresolved target is the correct response, not a failed fix.
+
+Collectors retain partial timeout traces, unknown exits and ERROR/TIMEOUT states;
+they do not retry completed or uncertain model executions. A reported no-change
+reuses the exact original task; an echoed block must match it. Missing or competing
+blocks stay unresolved. Publication includes reviewed visible outputs and compact
+metrics only. Raw events, private workspace paths and blind mappings stay private.
+
+The earlier two tasks saturated because the bugs and acceptance checks were small,
+local and explicit, and original prompts already gave adequate instructions. The
+new cases test authority, exact bytes, ambiguity and verification as well as edits.
+They can reveal differences; they do not guarantee a winning arm. One cell per arm
+cannot establish general superiority, causal source effects or production value.
