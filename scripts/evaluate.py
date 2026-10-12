@@ -27,14 +27,20 @@ def select_cases(cases, case_ids=None):
     return [case for case in cases if case['id'] in case_ids]
 
 
-def extract_handoff(text):
+def extract_handoff(text, preserve_whitespace=False):
     blocks, opened, body = [], None, []
     for line in text.splitlines(keepends=True):
         fence = re.fullmatch(r' {0,3}(`{3,}|~{3,})([^\r\n]*)[\r\n]*', line)
         if opened is not None:
             if (fence and fence[1][0] == opened[0][0] and len(fence[1]) >= len(opened[0])
                     and not fence[2].strip()):
-                blocks.append((opened[1], ''.join(body).strip()))
+                content = ''.join(body)
+                if preserve_whitespace:
+                    # Remove only the newline required to put the closing fence on its own line.
+                    content = content[:-2] if content.endswith('\r\n') else content[:-1] if content.endswith('\n') else content
+                else:
+                    content = content.strip()
+                blocks.append((opened[1], content))
                 opened, body = None, []
             else:
                 body.append(line)
@@ -70,12 +76,26 @@ def parse_events(raw, original=None):
                 skill_calls.append(block.get('input', {}).get('skill'))
     output = final.get('result', '')
     handoff = extract_handoff(output)
-    unchanged = 'The original prompt is already suitable. No material revision is necessary.' in ' '.join(output.split())
+    marker = 'The original prompt is already suitable. No material revision is necessary.'
+    outside, opened = [], None
+    for line in output.splitlines():
+        fence = re.fullmatch(r' {0,3}(`{3,}|~{3,})(.*)', line)
+        if opened is not None:
+            if fence and fence[1][0] == opened[0] and len(fence[1]) >= len(opened) and not fence[2].strip():
+                opened = None
+        elif fence:
+            opened = fence[1]
+        else:
+            outside.append(line)
+    paragraphs = [' '.join(p.replace('**', '').split()) for p in re.split(r'\n\s*\n', '\n'.join(outside))]
+    declarations = [' '.join(line.replace('**', '').split()) for line in outside]
+    unchanged = marker in paragraphs or marker in declarations
+    exact_echo = extract_handoff(output, preserve_whitespace=True)
     outcome = 'REVISED' if handoff is not None else 'UNRESOLVED'
     if unchanged:
         # A reported outcome, never an automatic semantic preservation verdict.
         outcome = ('UNCHANGED' if original is not None and
-                   (handoff == original or (handoff is None and not re.search(r'`{3,}|~{3,}', output)))
+                   (exact_echo == original or (handoff is None and not re.search(r'`{3,}|~{3,}', output)))
                    else 'UNRESOLVED')
         handoff = original if outcome == 'UNCHANGED' else None
     return {'status': 'RUN' if output and not final.get('is_error') else 'ERROR',

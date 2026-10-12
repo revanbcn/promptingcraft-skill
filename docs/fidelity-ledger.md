@@ -31,7 +31,7 @@ Starting baseline: merged !2, commit `135a527`, 54 passing tests; v0.1.0 canonic
   keys, changed dependency/build fields and unauthorized writes.
 - Collector RED→GREEN for observed successful source reads, denied tools, malformed
   artifacts, timeout traces, frozen plugin snapshots and exact unchanged echoes.
-- 78 tests pass; validator and reproducible skill/plugin packaging pass.
+- 85 tests pass; validator and reproducible skill/plugin packaging pass.
 - Two real Codex CLI invocations loaded standalone ZIP installations: live source
   retrieval plus draft/critique/final, and final-snapshot dated no-change. First
   outer-sandbox app-server startup failed; permitted elevated read-only child
@@ -59,3 +59,29 @@ recorded in the final evidence report and MR receipt. No stage result is a relea
 criterion or a production acceptance claim.
 
 Developed by the [dondego.com](https://dondego.com) team.
+
+## Review fix pass
+
+- I1 RED→GREEN: require an actual standalone no-change declaration; quoted or
+  rejected mentions stay unresolved. Preserve meaningful whitespace in exact echoes.
+- I2 RED→GREEN: count denied and alternate Bash actions against the actual host
+  instruction allowlist, separate attempts/success and host versus task boundaries.
+- I3 RED→GREEN: bind immutable bytes to the active top-level policy value, not a
+  decoy copy elsewhere in the file. Whole-manifest freezing remains rejected.
+- M1 regraded Important: relative output could prevent native skill activation.
+  Resolve snapshot/output paths; regression passes. Cost if missed: invalid cells.
+- M2 regraded Important for verification evidence: a zero-test suite could falsely
+  appear verified. Independent controller execution records exit and positive test
+  count. Cost if missed: task completion evidence overclaimed.
+- Review's unjudged native/source/scoring/CI boundaries require the separate evidence
+  report. Annotation semantic completeness remains REVIEW_REQUIRED by design.
+
+## Variability and workflow refinement
+
+The first new candidate had 3/14 material drift; an API/source-authority correction
+then reached 1/14, but the next frozen run returned to 3/14 with target selection
+and arithmetic overrestriction. All runs and the historical 3/14 audit are retained.
+This is model variance, not a reason to select the best run or change assertions.
+The final workflow critiques the original before drafting, chooses no-change when
+appropriate, and changes only defective spans. The final fixed-snapshot evaluation
+is reported separately; a clean sample cannot imply universal fidelity.

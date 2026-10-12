@@ -251,5 +251,10 @@ class ContractTests(unittest.TestCase):
             relation='NOVEL', kind='AUTHORITY')
         self.assertIn('NEW_REQUIREMENT', self.codes(data))
 
+    def test_supplied_defect_cannot_be_demoted_to_an_unknown(self):
+        data = document()
+        data['clauses'][0]['modality'] = 'UNRESOLVED'
+        self.assertIn('OMITTED_REQUIRED', self.codes(data))
+
 if __name__ == '__main__':
     unittest.main()

@@ -13,6 +13,9 @@ The author's tools/files are not evidence of the executor's environment.
 | FORBIDDEN | Explicit exclusion or prohibited action | Preserve exclusion and scope |
 
 Track goal, facts, decisions, constraints, exclusions, checks and authority.
+User-reported defects establish the requested correction, even before independent
+reproduction. Preserve that goal and its exact predicates. Existing faulty behavior
+is evidence to investigate, not a substitute source for deciding the desired result.
 Track requested mode separately: discussing or comparing a design is not a choice
 to implement it. Suggestions/preferences keep their stated strength; assumptions
 and unresolved decisions do not become requirements. Unknown file paths may be

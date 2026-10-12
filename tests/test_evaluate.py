@@ -85,5 +85,20 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(result['composition_outcome'], 'UNCHANGED')
         self.assertEqual(result['handoff'], original)
 
+    def test_rejected_no_change_phrase_is_not_an_outcome(self):
+        text = 'Do not use the no-change response "The original prompt is already suitable. No material revision is necessary." here: the deployment clauses conflict. Ask the owner to resolve them.'
+        result = parse_events(json.dumps({'type':'result','is_error':False,'result':text}), original='Deployment is forbidden. Deploy immediately.')
+        self.assertEqual(result['composition_outcome'], 'UNRESOLVED')
+        self.assertIsNone(result['handoff'])
+
+    def test_unchanged_echo_preserves_meaningful_whitespace(self):
+        marker = 'The original prompt is already suitable. No material revision is necessary.'
+        for original, echoed, expected in [('Fix Save.', '  Fix Save.', 'UNRESOLVED'),
+                                           ('  Fix Save.', '  Fix Save.', 'UNCHANGED')]:
+            raw = json.dumps({'type':'result','is_error':False,'result':marker+'\n\n```text\n'+echoed+'\n```'})
+            result = parse_events(raw, original=original)
+            self.assertEqual(result['composition_outcome'], expected)
+            if expected == 'UNCHANGED': self.assertEqual(result['handoff'], original)
+
 if __name__ == '__main__':
     unittest.main()

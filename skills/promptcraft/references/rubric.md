@@ -22,6 +22,12 @@ Load when critiquing a draft. Use findings, not a self-awarded numeric score.
 - Economy: does every instruction change a decision, preserve a constraint or
   support verification? Keep a small task small.
 
+Start the critique on the ORIGINAL task before authoring a replacement. For an
+adequate original, no-change is the outcome; generating a new prompt first biases
+the workflow toward keeping invented clauses. For a necessary correction, change
+only the defective span and preserve surrounding requirements. Equally plausible
+source files/logs remain an identity question. Missing-value inference and arithmetic
+from supplied numbers are different operations; do not strengthen the prohibition.
 Compare final against the ORIGINAL contract, not just against the draft.
 If a material defect remains after one revision, make one targeted extra pass;
 if still unresolved, disclose it or ask the deciding question. Do not optimize
