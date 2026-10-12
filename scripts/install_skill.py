@@ -12,9 +12,10 @@ except ModuleNotFoundError:
 def install(source,project,host):
     source=Path(source); project=Path(project)
     validate_skill(source)
-    if host not in ('codex','claude'): raise ValueError('Unsupported host')
+    roots={'codex':'.agents','claude':'.claude','cursor':'.cursor'}
+    if host not in roots: raise ValueError('Unsupported host')
     if not project.is_dir(): raise ValueError('Project directory must already exist')
-    dest=project/('.agents' if host=='codex' else '.claude')/'skills'/'promptcraft'
+    dest=project/roots[host]/'skills'/'promptcraft'
     for path in (project,*dest.parents):
         if path.is_symlink(): raise ValueError('Symlink destination refused')
         if path==project.parent: break
@@ -25,6 +26,6 @@ def install(source,project,host):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--host',choices=['codex','claude'],required=True)
+    p.add_argument('--host',choices=['codex','claude','cursor'],required=True)
     p.add_argument('--project-dir',type=Path,required=True)
     a=p.parse_args(); print(install(Path(__file__).resolve().parents[1]/'skills/promptcraft',a.project_dir,a.host))

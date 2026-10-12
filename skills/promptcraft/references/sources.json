@@ -38,6 +38,16 @@
         "/skill-creation/",
         "/llms.txt"
       ]
+    },
+    "cursor": {
+      "classification": "agent-product",
+      "hosts": [
+        "cursor.com"
+      ],
+      "path_prefixes": [
+        "/docs/",
+        "/llms.txt"
+      ]
     }
   },
   "sources": [
@@ -417,6 +427,79 @@
       "refresh_policy": {
         "max_age_days": 30,
         "during_use": "consult only for authoring or packaging Agent Skills; never as executor prompting guidance",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "cursor-index",
+      "provider": "cursor",
+      "canonical_url": "https://cursor.com/llms.txt",
+      "role": "index",
+      "applicability": "Cursor product behavior for a Cursor executor (modes, Auto routing, context, skills). Official agent-product source, not model-specific prompting guidance.",
+      "refresh_policy": {
+        "max_age_days": 14,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      },
+      "candidate_pattern": "agent|plan|prompting|models|skills|rules|plugins|cli"
+    },
+    {
+      "id": "cursor-prompting",
+      "provider": "cursor",
+      "canonical_url": "https://cursor.com/docs/agent/prompting",
+      "role": "guidance",
+      "applicability": "Cursor product behavior for a Cursor executor (modes, Auto routing, context, skills). Official agent-product source, not model-specific prompting guidance.",
+      "refresh_policy": {
+        "max_age_days": 14,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "cursor-plan-mode",
+      "provider": "cursor",
+      "canonical_url": "https://cursor.com/docs/agent/plan-mode",
+      "role": "guidance",
+      "applicability": "Cursor product behavior for a Cursor executor (modes, Auto routing, context, skills). Official agent-product source, not model-specific prompting guidance.",
+      "refresh_policy": {
+        "max_age_days": 14,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "cursor-models",
+      "provider": "cursor",
+      "canonical_url": "https://cursor.com/docs/models-and-pricing",
+      "role": "guidance",
+      "applicability": "Cursor product behavior for a Cursor executor (modes, Auto routing, context, skills). Official agent-product source, not model-specific prompting guidance.",
+      "refresh_policy": {
+        "max_age_days": 14,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "cursor-skills",
+      "provider": "cursor",
+      "canonical_url": "https://cursor.com/docs/skills",
+      "role": "packaging",
+      "applicability": "Cursor skill discovery and activation. Official agent-product source, not model-specific prompting guidance.",
+      "refresh_policy": {
+        "max_age_days": 14,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "cursor-plugins-reference",
+      "provider": "cursor",
+      "canonical_url": "https://cursor.com/docs/reference/plugins",
+      "role": "packaging",
+      "applicability": "Cursor plugin manifest and marketplace submission. Official agent-product source, not model-specific prompting guidance.",
+      "refresh_policy": {
+        "max_age_days": 14,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
         "maintenance": "read-only check; no automatic behavioral edits"
       }
     }

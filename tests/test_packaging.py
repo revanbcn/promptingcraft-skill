@@ -44,7 +44,7 @@ class PackagingTests(unittest.TestCase):
             sums=(Path(a)/'SHA256SUMS').read_text()
             for x in first: self.assertIn(hashlib.sha256(x.read_bytes()).hexdigest(),sums)
     def test_install_isolated_hosts_and_refuse_overwrite(self):
-        for host,folder in [('codex','.agents'),('claude','.claude')]:
+        for host,folder in [('codex','.agents'),('claude','.claude'),('cursor','.cursor')]:
             with tempfile.TemporaryDirectory() as d:
                 dest=install(ROOT/'skills/promptcraft',Path(d),host)
                 self.assertEqual(dest,Path(d)/folder/'skills/promptcraft')

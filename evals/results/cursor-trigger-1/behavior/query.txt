@@ -1,0 +1,1 @@
+Use the promptcraft skill. Write a prompt for Cursor Agent (Auto model): our search page sometimes shows stale results after a product is edited. We do not know whether the cache, the indexer or the client is at fault, and product has not decided whether stale results for up to a minute are acceptable. Investigation only; no code changes.

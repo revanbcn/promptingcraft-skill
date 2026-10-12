@@ -1,0 +1,37 @@
+[
+  {
+    "id": "t-pos-1",
+    "run": 1,
+    "triggered": false,
+    "stop": "completed",
+    "model": "Codex 5.3 Medium"
+  },
+  {
+    "id": "t-pos-2",
+    "run": 1,
+    "triggered": true,
+    "stop": "skill_read",
+    "model": "Codex 5.3 Medium"
+  },
+  {
+    "id": "t-pos-3",
+    "run": 1,
+    "triggered": true,
+    "stop": "skill_read",
+    "model": "Codex 5.3 Medium"
+  },
+  {
+    "id": "t-pos-4",
+    "run": 1,
+    "triggered": false,
+    "stop": "completed",
+    "model": "Codex 5.3 Medium"
+  },
+  {
+    "id": "t-pos-5",
+    "run": 1,
+    "triggered": true,
+    "stop": "skill_read",
+    "model": "Codex 5.3 Medium"
+  }
+]

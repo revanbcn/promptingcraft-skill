@@ -1,0 +1,30 @@
+[
+  {
+    "id": "x-slash-1",
+    "run": 1,
+    "triggered": false,
+    "stop": "completed",
+    "model": "Composer 2.5 Fast"
+  },
+  {
+    "id": "x-named-1",
+    "run": 1,
+    "triggered": true,
+    "stop": "skill_read",
+    "model": "Composer 2.5 Fast"
+  },
+  {
+    "id": "x-slash-1",
+    "run": 2,
+    "triggered": false,
+    "stop": "completed",
+    "model": "Composer 2.5 Fast"
+  },
+  {
+    "id": "x-named-1",
+    "run": 2,
+    "triggered": true,
+    "stop": "skill_read",
+    "model": "Composer 2.5 Fast"
+  }
+]

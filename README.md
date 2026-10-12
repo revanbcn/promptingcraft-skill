@@ -9,7 +9,8 @@ Turn a development discussion into a prompt a fresh coding agent can execute.
 PromptingCraft.com preserves the task contract, consults applicable official guidance,
 drafts, critiques once, revises when necessary, and checks that requirements and permissions
 survived. The assistant writing the prompt and the agent executing it may differ.
-First targets: **Claude Code and OpenAI Codex**. Package metadata: **0.2.0**
+Targets: **Claude Code and OpenAI Codex**; **Cursor** is supported as a target agent
+(see [Use in Cursor](#use-in-cursor)). Package metadata: **0.2.0**
 (unreleased candidate; no 0.2.0 tag or release exists).
 
 The immutable v0.1.0 tag is the canonical release. `main` contains unreleased
@@ -85,15 +86,37 @@ cd promptingcraft-skill
 python3 scripts/install_skill.py --host codex --project-dir /path/to/your/project
 # Or, for Claude Code:
 python3 scripts/install_skill.py --host claude --project-dir /path/to/your/project
+# Or, for Cursor:
+python3 scripts/install_skill.py --host cursor --project-dir /path/to/your/project
 ```
 
 The optional installer requires Python 3.11+, refuses existing targets and touches
 only the explicitly chosen project's skill directory. You can instead copy the
 extracted `promptcraft/` directory yourself into `.agents/skills/` (Codex) or
-`.claude/skills/` (Claude Code), including all its references and license.
+`.claude/skills/` (Claude Code) or `.cursor/skills/` (Cursor; Cursor also reads
+`.agents/skills/`), including all its references and license.
 Restart the host if discovery has not refreshed. In Codex invoke `$promptcraft`;
 in Claude Code invoke `/promptcraft`, then describe the prompt you need.
 No development task is executed by the skill.
+
+## Use in Cursor
+
+Cursor reads Agent Skills from `.cursor/skills/` or `.agents/skills/` in a project and
+from `~/.cursor/skills/` for the user. The plugin root (`plugin.json` with the Agent
+Plugins 1.0.0 schema and `skills/promptcraft/`) follows Cursor's documented Agent Plugins
+format; it has not been submitted to or reviewed by the Cursor Marketplace.
+
+When the executor is Cursor, PromptingCraft.com loads its
+[Cursor notes](skills/promptcraft/references/cursor.md): under Auto the underlying model
+is treated as unknown, so no Claude, GPT or Composer prompting rules are applied unless
+the selected model is established.
+
+Measured in the Cursor CLI ([cursor activation eval](evals/results/cursor-trigger-1/README.md)):
+with the default Auto setting (reported as Composer 2.5 Fast) the skill was available
+but did not activate automatically (0/30 prompt requests); naming it, as in
+**“Use the promptcraft skill to prepare a Cursor prompt for this task”**, loaded it 2/2.
+In the editor you can also pick it from the `/` menu. Activation depends on the selected
+model. Plugin loading in the Cursor editor has not been tested.
 
 ## Plugin package
 

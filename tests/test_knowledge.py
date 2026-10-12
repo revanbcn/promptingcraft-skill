@@ -64,3 +64,26 @@ class KnowledgeTests(unittest.TestCase):
             row['role'] = role
             with self.subTest(provider=provider, role=role), self.assertRaises(ValueError):
                 validate_registry(registry)
+
+    def test_cursor_docs_are_agent_product_sources_not_prompting_guidance(self):
+        from scripts.freshness import validate_registry
+        cursor = [s for s in self.registry['sources'] if s['provider'] == 'cursor']
+        self.assertEqual(self.registry['policies']['cursor']['classification'], 'agent-product')
+        self.assertIn('https://cursor.com/docs/agent/prompting', {s['canonical_url'] for s in cursor})
+        self.assertTrue(all('not model-specific prompting guidance' in s['applicability'] for s in cursor))
+        # Cursor documentation cannot back a model prompting recommendation.
+        content = copy.deepcopy(self.knowledge)
+        content['recommendations'][0].update(provider='cursor', url='https://cursor.com/docs/agent/prompting')
+        with self.assertRaises(ValueError):
+            validate_knowledge(content, self.registry)
+        registry = copy.deepcopy(self.registry)
+        registry['policies']['cursor']['classification'] = 'model-guidance'
+        with self.assertRaises(ValueError):
+            validate_registry(registry)
+
+    def test_cursor_notes_treat_auto_as_an_unknown_model(self):
+        skill = (ROOT / 'skills/promptcraft/SKILL.md').read_text()
+        self.assertIn('[Cursor notes](references/cursor.md)', skill)
+        notes = (ROOT / 'skills/promptcraft/references/cursor.md').read_text()
+        self.assertIn('Treat the executor model as unknown under Auto', notes)
+        self.assertIn('not model prompting guidance', notes)

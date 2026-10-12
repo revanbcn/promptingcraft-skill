@@ -57,8 +57,9 @@ report or destructive-command plan. Safe investigation is optional unless grante
 
 ## 2. Consult applicable guidance
 
-For a known target agent, load [Codex notes](references/codex.md) or
-[Claude Code notes](references/claude-code.md) for the evidenced target, even when its model is unknown. These notes contain
+For a known target agent, load [Codex notes](references/codex.md),
+[Claude Code notes](references/claude-code.md) or [Cursor notes](references/cursor.md)
+for the evidenced target, even when its model is unknown. These notes contain
 agent-level guidance; unknown model identity does not make them inapplicable.
 Use [source metadata](references/sources.json) to locate a small relevant set
 of official references and indexes. [Curated knowledge](references/knowledge.json)

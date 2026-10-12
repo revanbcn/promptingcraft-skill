@@ -17,7 +17,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 MAX_BYTES = 1_048_576
-MAX_SOURCES = 32
+MAX_SOURCES = 40
 TIMEOUT = 15
 
 
@@ -66,6 +66,8 @@ def validate_registry(registry):
         standard=policies[source['provider']].get('classification')=='standard'
         if (source['role']=='standard')!=standard and not (standard and source['role']=='index'):
             raise ValueError('Standards sources must use the standard role and only standards providers may')
+        if policies[source['provider']].get('classification') not in (None,'standard','agent-product'):
+            raise ValueError('Unknown source classification')
         if not source.get('applicability'): raise ValueError('Missing applicability')
         days=source.get('refresh_policy',{}).get('max_age_days')
         if not isinstance(days,int) or isinstance(days,bool) or not 1<=days<=365: raise ValueError('Invalid refresh interval')
