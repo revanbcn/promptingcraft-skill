@@ -61,12 +61,17 @@ class SubmissionArchiveTests(unittest.TestCase):
     def built(self, directory):
         return build(ROOT, Path(directory))[1]
 
-    def rewrite(self, source, target, extra=None, drop=None, rename=None):
+    def rewrite(self, source, target, extra=None, drop=None, rename=None, patch_manifest=None, patch_adapter=None):
+        patches = {'promptcraft-plugin/plugin.json': patch_manifest,
+                   'promptcraft-plugin/.claude-plugin/plugin.json': patch_adapter}
         with zipfile.ZipFile(source) as old, zipfile.ZipFile(target, 'w') as new:
             for info in old.infolist():
                 if drop and info.filename == drop: continue
                 name = rename(info.filename) if rename else info.filename
-                new.writestr(name, old.read(info.filename))
+                data = old.read(info.filename)
+                if patches.get(info.filename):
+                    data = json.dumps({**json.loads(data), **patches[info.filename]}).encode()
+                new.writestr(name, data)
             for name, data in (extra or {}).items(): new.writestr(name, data)
         return target
 
@@ -88,6 +93,8 @@ class SubmissionArchiveTests(unittest.TestCase):
                 'parent': dict(extra={'promptcraft-plugin/../x': 'x'}),
                 'missing skill': dict(drop='promptcraft-plugin/skills/promptcraft/SKILL.md'),
                 'missing logo': dict(drop='promptcraft-plugin/assets/logo.svg'),
+                'top-level mcpServers': dict(rename=None, extra=None, drop=None, patch_manifest={'mcpServers': './.mcp.json'}),
+                'divergent adapter': dict(patch_adapter={'version': '9.9.9'}),
             }
             for label, change in variants.items():
                 with self.subTest(label):

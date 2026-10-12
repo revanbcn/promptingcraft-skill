@@ -92,6 +92,7 @@ INTERFACE_ASSETS=('composerIcon','composerIconDark','logo','logoDark')
 DIRECTORY_CATEGORIES=('Productivity','Creativity','Developer Tools','Business & Operations','Data & Analytics',
                       'Communication','Education & Research','Security','Finance','Healthcare','Travel',
                       'Entertainment','Other')
+PORTABLE_MANIFEST_FIELDS={'$schema','name','version','description','author','homepage','repository','license','keywords','extensions'}
 MAX_DEFAULT_PROMPTS=3
 MAX_DEFAULT_PROMPT_LENGTH=128
 # Skills-only uploads reject MCP, app, hook and screenshot configuration.
@@ -191,8 +192,7 @@ def skill_interface(skill):
 def validate_project(root):
     root=Path(root); skill=root/'skills/promptcraft'; meta=validate_skill(skill)
     manifest=json.loads((root/'plugin.json').read_text())
-    allowed={'$schema','name','version','description','author','homepage','repository','license','keywords','extensions'}
-    if set(manifest)-allowed: raise ValueError('Unknown portable manifest field')
+    if set(manifest)-PORTABLE_MANIFEST_FIELDS: raise ValueError('Unknown portable manifest field')
     if manifest.get('$schema')!='https://agent-plugins.org/schemas/1.0.0/plugin.schema.json': raise ValueError('Wrong schema')
     if manifest.get('name')!='promptcraft' or manifest.get('version')!=meta['metadata']['version']: raise ValueError('Version/name mismatch')
     for k in ('description','homepage','repository','license'):
@@ -215,7 +215,11 @@ def validate_project(root):
     return manifest
 
 def validate_submission_archive(path):
-    """Check a plugin ZIP against the OpenAI skills-only upload rules we can verify offline."""
+    """Check our plugin ZIP (one top-level plugin directory) against OpenAI skills-only upload rules verifiable offline.
+
+    The 512 MiB extracted and 5,000-entry limits are the portal's archive limits; images and
+    descriptions are checked on the source tree by validate_project before packaging.
+    """
     with zipfile.ZipFile(path) as archive:
         infos=archive.infolist()
         if not infos or len(infos)>5000: raise ValueError('Archive is empty or has too many entries')
@@ -236,13 +240,25 @@ def validate_submission_archive(path):
         if len(roots)!=1 or any('/' not in n for n in names): raise ValueError('Archive needs exactly one top-level plugin directory')
         root=roots.pop()+'/'
         manifest=json.loads(archive.read(root+'plugin.json'))
+        if set(manifest)-PORTABLE_MANIFEST_FIELDS: raise ValueError('Archive manifest has unsupported top-level fields')
+        if root+'.claude-plugin/plugin.json' in names:
+            adapter=json.loads(archive.read(root+'.claude-plugin/plugin.json'))
+            if adapter!={k:v for k,v in manifest.items() if k!='$schema'}: raise ValueError('Archive adapter manifest diverges')
         openai=manifest.get('extensions',{}).get('com.openai',{})
+        if not isinstance(openai.get('interface'),dict): raise ValueError('Archive manifest lacks interface metadata')
         if set(openai)-{'interface'} or 'screenshots' in openai.get('interface',{}): raise ValueError('Archive manifest declares excluded settings')
         for field in INTERFACE_ASSETS:
-            if root+openai['interface'][field][2:] not in names: raise ValueError(f'Archive is missing {field}')
+            value=openai['interface'].get(field)
+            if not isinstance(value,str) or root+value[2:] not in names: raise ValueError(f'Archive is missing {field}')
         skills={n[len(root):].split('/')[1] for n in names if n.startswith(root+'skills/') and n.count('/')>=3}
         if not skills or any(s.startswith('.') or root+f'skills/{s}/SKILL.md' not in names for s in skills):
             raise ValueError('Every packaged skill needs skills/<name>/SKILL.md')
+        for skill in skills:
+            text=archive.read(root+f'skills/{skill}/SKILL.md').decode('utf-8')
+            head=re.match(r'---\n(.*?)\n---\n',text,re.S)
+            fields=dict(re.findall(r'^(name|description):\s*(.+)$',head.group(1),re.M)) if head else {}
+            if fields.get('name')!=skill or not 0<len(fields.get('description',''))<=1024 or len(f"{manifest['name']}:{skill}")>64:
+                raise ValueError(f'Packaged skill {skill} has invalid frontmatter')
     return manifest
 
 

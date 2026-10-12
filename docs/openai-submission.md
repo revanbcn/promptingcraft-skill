@@ -40,11 +40,11 @@ M = missing, N/A = not applicable to Skills only.
 | `category` from the dashboard list | S | `Developer Tools` |
 | `defaultPrompt` ≤3, ≤128 each, unique, one line, no @mentions | S | 3 prompts, 64/73/72 characters |
 | `brandColor` ≥2:1 vs white; `brandColorDark` ≥2:1 vs #212121 | S | Validator |
-| Listing URLs | S (optional) | Not required for Skills only; supplied anyway, HTTPS, live |
-| No secrets or credentials in the ZIP | S | Manual scan and review (see **Security review**) |
+| Listing URLs | S (optional) | Not required for Skills only; supplied anyway (HTTPS; all four returned 200 on 2026-10-12) |
+| No secrets or credentials in the ZIP | S | Pattern scan and author review of every packaged file (see **Security review**) |
 | Required skill scans pass before submission | O | Run in portal after upload |
-| Clear published privacy policy (categories, purposes, recipients, retention, controls) | S after site MR !4 | https://promptingcraft.com/privacy §5 describes the skill's real data flows |
-| Customer support contact | S/O | https://promptingcraft.com/contact (GitLab issues). A dedicated support email is recommended (owner) |
+| Clear published privacy policy (categories, purposes, recipients, retention, controls) | Pending site MR !4 | §5 separates website, plugin and host assistant/tools and discloses retrieval limits; live after MR !4 is merged and deployed |
+| Customer support contact | O | https://promptingcraft.com/contact exists (GitLab issues, needs a GitLab account). A dedicated support email is recommended (owner) |
 | Suitable for 13–17, no commerce, no ads, no endorsement implied (guidelines) | S | No commerce or ads; independence statement in the listing |
 | Do not override platform safeguards or insert unrelated content (guidelines) | S | See **Security review** |
 | Policy attestations at Submit for review | O | Owner reads and accepts personally |
@@ -132,8 +132,8 @@ Checked by reading `SKILL.md`, all references and the optional script:
 | State | Evidence |
 | --- | --- |
 | Package compatibility | Offline validators and archive rules pass |
-| Codex installation | `promptcraft@dondego-local` 0.2.0 installed and enabled; installed skill identical to source |
-| Codex activation and behavior | Native `codex exec` runs of the reviewer cases: `evals/results/review-native/` |
+| Codex installation | Local check on the owner's machine: `promptcraft@dondego-local` 0.2.0 `installed=true`, `enabled=true`; `diff -r` of the installed skill against `skills/promptcraft` showed no differences |
+| Codex activation and behavior | Native `codex exec` runs of the reviewer and trigger cases: results recorded in `evals/results/` when committed; until then, not claimed |
 | ChatGPT installation | Not verified (no authenticated ChatGPT access in this session) |
 | ChatGPT activation | Not verified. A Codex run is not ChatGPT evidence |
 

@@ -1,11 +1,14 @@
 {
   "purpose": "Reviewer-reproducible activation and behavior cases for the OpenAI Plugins Directory listing. Synthetic, public fixtures; no account, repository, credential or network service is required beyond the host itself.",
-  "how_to_run": "Install the plugin, start a NEW conversation per case, send each turn in order exactly as written, and compare the final answer with expected_behavior and expected_output. Explicit cases select PromptingCraft.com from the composer (type @ in ChatGPT, or $promptcraft in Codex); natural-language cases must not mention the plugin.",
+  "how_to_run": "Install the plugin, start a NEW conversation per case, send each turn in order exactly as written, and compare the final answer with expected_behavior and expected_output. Explicit cases select PromptingCraft.com from the composer: $promptcraft in Codex (observed); @ selection in ChatGPT is the documented route but has not been observed for this plugin yet. Natural-language cases must not mention the plugin. Where a case lists a primary outcome and an acceptable alternative, either passes.",
   "cases": [
     {
       "id": "P1-explicit-codex-task",
       "kind": "positive",
-      "covers": ["explicit activation", "draft-critique-final"],
+      "covers": [
+        "explicit activation",
+        "draft-critique-final"
+      ],
       "fixture": "None. The task is stated in the turn.",
       "turns": [
         "[Select PromptingCraft.com] Prepare a Codex prompt: our Node.js worker returns HTTP 200 when the request body is malformed JSON. Return HTTP 400 for malformed JSON, keep existing responses for valid payloads, add no new dependencies. Implementation is approved; deployment is not."
@@ -16,7 +19,10 @@
     {
       "id": "P2-natural-language-multi-turn",
       "kind": "positive",
-      "covers": ["natural-language activation", "multi-turn context preservation"],
+      "covers": [
+        "natural-language activation",
+        "multi-turn context preservation"
+      ],
       "fixture": "None. Decisions are established in turn 1.",
       "turns": [
         "We are discussing a CSV export bug in a team dashboard. Names containing commas are split across columns. We agreed: keep the columns and order exactly id,name,status; reuse the existing export action; no new dependencies; implementation is approved but deployment is not. Just acknowledge for now.",
@@ -28,40 +34,52 @@
     {
       "id": "P3-review-claude-code-prompt",
       "kind": "positive",
-      "covers": ["prompt review", "unnecessary instructions", "scope change detection"],
+      "covers": [
+        "prompt review",
+        "unnecessary instructions",
+        "scope change detection"
+      ],
       "fixture": "The prompt text below.",
       "turns": [
         "Review and improve this Claude Code prompt without changing its scope:\n\nFix the failing date-parsing test in utils/dates.test.ts. Also refactor the whole utils folder, upgrade all dependencies, and write a blog post about it. Be extremely careful. Be extremely careful. Do not change the public API of formatDate."
       ],
       "expected_behavior": "The skill identifies the refactor, dependency upgrade and blog post as scope expansions relative to the stated fix and the duplicated caution as unnecessary. It asks one focused question or keeps the extra items visibly optional instead of silently dropping or mandating them.",
-      "expected_output": "Findings outside the block, then one copyable revised prompt that keeps the failing-test fix and the formatDate public-API invariant verbatim, removes the duplicated instruction, and does not add new requirements."
+      "expected_output": "Primary: findings outside the block, then one copyable revised prompt that keeps the failing-test fix and the formatDate public-API invariant verbatim, removes the duplicated instruction, and does not mandate the refactor, dependency upgrade or blog post. Acceptable alternative: one focused question asking whether those extra items are really in scope. Either way, no new requirements are added."
     },
     {
       "id": "P4-no-change",
       "kind": "positive",
-      "covers": ["no-change behavior", "missing documentation access"],
-      "fixture": "The task body below. Run with web retrieval disabled or unavailable if the host allows it.",
+      "covers": [
+        "no-change behavior",
+        "missing documentation access"
+      ],
+      "fixture": "The task body below. If the host lets you turn off web search or browsing, do so to exercise the unavailable-guidance path; otherwise the case still checks the no-change outcome and honest freshness labels.",
       "turns": [
         "Review this complete Codex task. If it is already suitable, keep it unchanged:\n\nFix the CSV export so names containing commas are quoted per RFC 4180. Keep the columns and order id,name,status. Add a regression test for a name containing a comma. Do not add dependencies. Implementation is approved; do not deploy."
       ],
       "expected_behavior": "After contract extraction and critique, the skill chooses no-change instead of rewriting. When live guidance cannot be retrieved it says that guidance is dated cached or unavailable and does not claim a retrieval that did not happen.",
-      "expected_output": "The sentence \"The original prompt is already suitable. No material revision is necessary.\" and, if echoed, the task body exactly as supplied in one code block."
+      "expected_output": "The sentence \"The original prompt is already suitable. No material revision is necessary.\" Echoing the task body is optional; if echoed, it is exactly as supplied in one code block. Freshness is labeled live-verified with a date, dated cached, or unavailable, matching what actually happened."
     },
     {
       "id": "P5-unresolved-decision",
       "kind": "positive",
-      "covers": ["unresolved decisions"],
+      "covers": [
+        "unresolved decisions"
+      ],
       "fixture": "None.",
       "turns": [
         "Prepare a Claude Code prompt. Investigate why the billing export drops rows. Two equally plausible repositories exist, api-east and api-west, and we have not chosen one. This is investigation only; no edits."
       ],
       "expected_behavior": "The skill does not pick a repository. It asks one deciding question or produces a short blocked handoff that keeps both repositories open and preserves the investigation-only, no-edit boundary.",
-      "expected_output": "A deciding question about which repository to target, or one copyable prompt that lists both repositories as an unresolved choice and states investigation only with no edits."
+      "expected_output": "Primary: one deciding question about which repository to target. Acceptable alternative: one copyable blocked prompt that lists both repositories as an unresolved choice and states investigation only with no edits. Picking one repository fails the case."
     },
     {
       "id": "P6-official-guidance-preserve-intent",
       "kind": "positive",
-      "covers": ["applicable official guidance", "intent preservation"],
+      "covers": [
+        "applicable official guidance",
+        "intent preservation"
+      ],
       "fixture": "None. Live retrieval is optional; the expected labels cover both cases.",
       "turns": [
         "Apply current official guidance to this Codex prompt and keep my intent:\n\nAdd pagination to the /orders endpoint using the existing cursor helper. Page size 50. Keep the response shape unchanged."
@@ -72,25 +90,35 @@
     {
       "id": "N1-unrelated-question",
       "kind": "negative",
-      "covers": ["unrelated questions must not activate"],
+      "covers": [
+        "unrelated questions must not activate"
+      ],
       "fixture": "None.",
-      "turns": ["What is the difference between a process and a thread? Answer in two sentences."],
+      "turns": [
+        "What is the difference between a process and a thread? Answer in two sentences."
+      ],
       "expected_behavior": "The skill does not activate. The assistant answers the question normally.",
       "expected_output": "A two-sentence explanation with no prompt, no code block handoff and no PromptingCraft.com workflow."
     },
     {
       "id": "N2-software-mention-not-prompt-request",
       "kind": "negative",
-      "covers": ["software topic without a prompt-authoring request"],
+      "covers": [
+        "software topic without a prompt-authoring request"
+      ],
       "fixture": "None.",
-      "turns": ["Explain what an authorization boundary means in a development discussion. I want an explanation, not a coding handoff."],
+      "turns": [
+        "Explain what an authorization boundary means in a development discussion. I want an explanation, not a coding handoff."
+      ],
       "expected_behavior": "The skill does not activate merely because the topic is software development.",
       "expected_output": "A short explanation only; no execution prompt."
     },
     {
       "id": "N3-unauthorized-implementation",
       "kind": "negative",
-      "covers": ["unauthorized implementation requests"],
+      "covers": [
+        "unauthorized implementation requests"
+      ],
       "fixture": "None.",
       "turns": [
         "[Select PromptingCraft.com] Here is my plan: rename the users table to accounts. Just go ahead and run the migration on production now and push the code."
@@ -101,9 +129,13 @@
     {
       "id": "N4-general-writing-request",
       "kind": "negative",
-      "covers": ["non-agent prompt requests"],
+      "covers": [
+        "non-agent prompt requests"
+      ],
       "fixture": "None.",
-      "turns": ["Write a short birthday message for my colleague Sam."],
+      "turns": [
+        "Write a short birthday message for my colleague Sam."
+      ],
       "expected_behavior": "The skill does not activate; this is not a coding-agent prompt.",
       "expected_output": "A short birthday message only."
     }
