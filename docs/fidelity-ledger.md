@@ -32,8 +32,9 @@ Starting baseline: merged !2, commit `135a527`, 54 passing tests; v0.1.0 canonic
 - Collector RED→GREEN for observed successful source reads, denied tools, malformed
   artifacts, timeout traces, frozen plugin snapshots and exact unchanged echoes.
 - 85 tests pass; validator and reproducible skill/plugin packaging pass.
-- Two real Codex CLI invocations loaded standalone ZIP installations: live source
-  retrieval plus draft/critique/final, and final-snapshot dated no-change. First
+- Four real Codex CLI invocations loaded distinct standalone ZIP snapshots: live
+  source retrieval plus draft/critique/final, dated no-change, reported retry intent,
+  and the final source-preserving workflow. First
   outer-sandbox app-server startup failed; permitted elevated read-only child
   succeeded. No sandbox bypass or new credentials were used.
 - Computer Use inventory exposed the ChatGPT app, but access was denied by the UI
@@ -83,5 +84,26 @@ then reached 1/14, but the next frozen run returned to 3/14 with target selectio
 and arithmetic overrestriction. All runs and the historical 3/14 audit are retained.
 This is model variance, not a reason to select the best run or change assertions.
 The final workflow critiques the original before drafting, chooses no-change when
-appropriate, and changes only defective spans. The final fixed-snapshot evaluation
-is reported separately; a clean sample cannot imply universal fidelity.
+appropriate, and changes only defective spans. The final fixed-snapshot evaluation is 0/14 under the unchanged blind rubric;
+a clean sample cannot imply universal fidelity.
+
+## Final local/evidence closeout
+
+- Final source-preserving snapshot: 0/14 material findings under unchanged blind
+  rubric; no guarantee of repeated/cross-model fidelity. Final ZIP/tree identity
+  matches all 14 composition and 12 B/C source cells.
+- Final downstream: 6 COMPLETE (3 fixes, 3 proposals), 3 CORRECTLY_BLOCKED target
+  decisions, zero observed task violations, 2 read-only A host command-limit
+  attempts. All 3 executor and controller manifest checks ran one passing test.
+- No-change/correction pressure outputs and current packaged native no-change were
+  independently inspected in fresh context by the same operator's reviewer.
+- Evidence review has no Critical/Important or unresolved documentation finding.
+  Global OpenAI-docs SKILL read is excluded from PromptCraft package observations.
+- Final local acceptance: 85/85 tests, validator, reproducible packaging pass.
+- KFA lifecycle completed with no public contribution; no useful applicable match
+  or qualified shareable session observation. No inbox item acknowledged.
+- Ruling: Git push's existing credential helper rejected the implicit oauth2 user;
+  explicit public GitLab username succeeded without changing credentials/global
+  configuration. Cost: one failed-before-auth attempt; no uncertain write replay.
+- GitLab MR !3 exists. Required final-SHA CI and authorized merge readback are the
+  remaining remote gates; release/tag/assets/deployment remain outside scope.

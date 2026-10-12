@@ -1,3 +1,11 @@
+# Current unreleased validation
+
+See [contract fidelity and native validation](fidelity/README.md) for the preserved
+14-case diagnostics/final sample, genuine packaged Codex use and matched downstream
+source experiment. IMPROVE FURTHER; no superiority or new release claimed.
+
+The historical foundation receipt below is retained unchanged.
+
 # Observed synthetic behavior — 2026-10-12
 
 The [quality-1 comparison](quality-1/README.md) now covers all ten planned cases,

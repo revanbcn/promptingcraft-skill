@@ -1,0 +1,158 @@
+[
+  {
+    "case": "manifest-command",
+    "arm": "with_skill",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "566f52ec2be9889284a596e9e96bce2da3ba37cd22162733cf85fbca225238ae",
+    "composition_outcome": "REVISED",
+    "duration_seconds": 14.13,
+    "reported_cost_usd": 0.0696268,
+    "output_chars": 2626,
+    "handoff_chars": 1414,
+    "handoff_words": 222,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1589,
+      "cache_creation_input_tokens": 12941,
+      "cache_read_input_tokens": 19608
+    }
+  },
+  {
+    "case": "discussion-only",
+    "arm": "with_skill",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "566f52ec2be9889284a596e9e96bce2da3ba37cd22162733cf85fbca225238ae",
+    "composition_outcome": "REVISED",
+    "duration_seconds": 13.58,
+    "reported_cost_usd": 0.06869220000000001,
+    "output_chars": 2300,
+    "handoff_chars": 1279,
+    "handoff_words": 219,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1497,
+      "cache_creation_input_tokens": 12938,
+      "cache_read_input_tokens": 19582
+    }
+  },
+  {
+    "case": "ambiguous-dialog",
+    "arm": "with_skill",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "566f52ec2be9889284a596e9e96bce2da3ba37cd22162733cf85fbca225238ae",
+    "composition_outcome": "REVISED",
+    "duration_seconds": 12.6,
+    "reported_cost_usd": 0.0655319,
+    "output_chars": 2612,
+    "handoff_chars": 1580,
+    "handoff_words": 267,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1438,
+      "cache_creation_input_tokens": 12287,
+      "cache_read_input_tokens": 19919
+    }
+  },
+  {
+    "case": "immutable-list",
+    "arm": "with_skill",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "566f52ec2be9889284a596e9e96bce2da3ba37cd22162733cf85fbca225238ae",
+    "composition_outcome": "REVISED",
+    "duration_seconds": 13.75,
+    "reported_cost_usd": 0.0672692,
+    "output_chars": 2407,
+    "handoff_chars": 1168,
+    "handoff_words": 171,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1623,
+      "cache_creation_input_tokens": 12258,
+      "cache_read_input_tokens": 19952
+    }
+  },
+  {
+    "case": "already-suitable",
+    "arm": "with_skill",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "566f52ec2be9889284a596e9e96bce2da3ba37cd22162733cf85fbca225238ae",
+    "composition_outcome": "REVISED",
+    "duration_seconds": 13.34,
+    "reported_cost_usd": 0.07145040000000001,
+    "output_chars": 1733,
+    "handoff_chars": 336,
+    "handoff_words": 52,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1612,
+      "cache_creation_input_tokens": 13330,
+      "cache_read_input_tokens": 19984
+    }
+  },
+  {
+    "case": "necessary-correction",
+    "arm": "with_skill",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "566f52ec2be9889284a596e9e96bce2da3ba37cd22162733cf85fbca225238ae",
+    "composition_outcome": "REVISED",
+    "duration_seconds": 18.11,
+    "reported_cost_usd": 0.0759444,
+    "output_chars": 1820,
+    "handoff_chars": 876,
+    "handoff_words": 154,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 2090,
+      "cache_creation_input_tokens": 13261,
+      "cache_read_input_tokens": 19884
+    }
+  }
+]

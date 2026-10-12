@@ -1,0 +1,229 @@
+[
+  {
+    "id": "live",
+    "host": "native codex exec",
+    "installation": "standalone ZIP extracted under project .agents/skills",
+    "activation": "explicit $promptcraft invocation with observed packaged resource use; no exported invocation event claimed",
+    "package_sha256": "027930ee4a94c1401f3410329353066490a46c4a71be1c96e37ea185fe567cbe",
+    "skill_tree_sha256": "b8f8015b16f67f89cb5d03e32029457cdcf86823408700808b405b6c1de9a7b5",
+    "completed": true,
+    "author_model": "NOT_OBSERVED",
+    "reported_usage": {
+      "input_tokens": 284132,
+      "cached_input_tokens": 233344,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1347,
+      "reasoning_output_tokens": 42
+    },
+    "cost": "NOT_OBSERVED",
+    "command_observations": [
+      {
+        "exit_code": 0,
+        "packaged_resources_read": [
+          "codex.md",
+          "contract.md",
+          "freshness.md",
+          "knowledge.json",
+          "rubric.md",
+          "sources.json"
+        ],
+        "task_text_read": false
+      },
+      {
+        "exit_code": 0,
+        "packaged_resources_read": [
+          "freshness.md",
+          "rubric.md"
+        ],
+        "task_text_read": false
+      },
+      {
+        "exit_code": 0,
+        "packaged_resources_read": [
+          "knowledge.json"
+        ],
+        "task_text_read": false
+      }
+    ],
+    "mcp_observations": [
+      {
+        "tool": "context7.resolve-library-id",
+        "status": "completed"
+      },
+      {
+        "tool": "context7.query-docs",
+        "status": "completed"
+      }
+    ],
+    "web_observations": [
+      {
+        "action": "open_page",
+        "url": "https://learn.chatgpt.com/docs/prompting",
+        "pattern": null
+      },
+      {
+        "action": "find_in_page",
+        "url": null,
+        "pattern": "## Prompting Codex"
+      }
+    ],
+    "task_text_unchanged": null,
+    "redactions": "local link target omitted in delivery output; no other visible text edited",
+    "launch_contract": {
+      "explicit_activation_request": "$promptcraft",
+      "sandbox": "read-only",
+      "ephemeral": true,
+      "ignore_user_config": true,
+      "new_credentials": false,
+      "controller_observed": true
+    }
+  },
+  {
+    "id": "no-change",
+    "host": "native codex exec",
+    "installation": "standalone ZIP extracted under project .agents/skills",
+    "activation": "explicit $promptcraft invocation with observed packaged resource use; no exported invocation event claimed",
+    "package_sha256": "3ac2d406760920f91be4f6c8d6da4618d660ff94c3be6705465edb58d308bd0e",
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "completed": true,
+    "author_model": "NOT_OBSERVED",
+    "reported_usage": {
+      "input_tokens": 107245,
+      "cached_input_tokens": 70272,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 416,
+      "reasoning_output_tokens": 0
+    },
+    "cost": "NOT_OBSERVED",
+    "command_observations": [
+      {
+        "exit_code": 0,
+        "packaged_resources_read": [
+          "SKILL.md",
+          "contract.md",
+          "freshness.md",
+          "rubric.md"
+        ],
+        "task_text_read": true
+      },
+      {
+        "exit_code": 0,
+        "packaged_resources_read": [
+          "knowledge.json",
+          "sources.json"
+        ],
+        "task_text_read": false
+      }
+    ],
+    "mcp_observations": [],
+    "web_observations": [],
+    "task_text_unchanged": true,
+    "redactions": "local link target omitted in delivery output; no other visible text edited",
+    "launch_contract": {
+      "explicit_activation_request": "$promptcraft",
+      "sandbox": "read-only",
+      "ephemeral": true,
+      "ignore_user_config": true,
+      "new_credentials": false,
+      "controller_observed": true
+    }
+  },
+  {
+    "id": "delivery",
+    "host": "native codex exec",
+    "installation": "standalone ZIP extracted under project .agents/skills",
+    "activation": "explicit $promptcraft invocation with observed packaged resource use; no exported invocation event claimed",
+    "package_sha256": "9bf36ef06532f53d86e4732dc52a3b98cfb95819b3b012925c43bb6e4ddbab02",
+    "skill_tree_sha256": "00d3402a9fff6e3de42ea94b2d2aed5c710b686a8c8a2628a590df3304c5583e",
+    "completed": true,
+    "author_model": "NOT_OBSERVED",
+    "reported_usage": {
+      "input_tokens": 144055,
+      "cached_input_tokens": 104576,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 742,
+      "reasoning_output_tokens": 12
+    },
+    "cost": "NOT_OBSERVED",
+    "command_observations": [
+      {
+        "exit_code": 0,
+        "packaged_resources_read": [
+          "claude-code.md",
+          "contract.md",
+          "freshness.md",
+          "knowledge.json",
+          "rubric.md",
+          "sources.json"
+        ],
+        "task_text_read": true
+      },
+      {
+        "exit_code": 0,
+        "packaged_resources_read": [],
+        "task_text_read": true
+      }
+    ],
+    "mcp_observations": [],
+    "web_observations": [],
+    "task_text_unchanged": true,
+    "redactions": "local link target omitted in delivery output; no other visible text edited",
+    "launch_contract": {
+      "explicit_activation_request": "$promptcraft",
+      "sandbox": "read-only",
+      "ephemeral": true,
+      "ignore_user_config": true,
+      "new_credentials": false,
+      "controller_observed": true
+    }
+  },
+  {
+    "id": "final",
+    "host": "native codex exec",
+    "installation": "standalone ZIP extracted under project .agents/skills",
+    "activation": "explicit $promptcraft invocation with observed packaged resource use; no exported invocation event claimed",
+    "package_sha256": "e448be4d31ae9390ca82ce926235d2d8e39c8d81efb0118175d98e1f1460c9b8",
+    "skill_tree_sha256": "351b078a9c49e7a650a184a4504ccd2765a901217584d191e1787ebb2f812e40",
+    "completed": true,
+    "author_model": "NOT_OBSERVED",
+    "reported_usage": {
+      "input_tokens": 105241,
+      "cached_input_tokens": 77184,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 499,
+      "reasoning_output_tokens": 0
+    },
+    "cost": "NOT_OBSERVED",
+    "command_observations": [
+      {
+        "exit_code": 0,
+        "packaged_resources_read": [
+          "contract.md",
+          "freshness.md",
+          "rubric.md",
+          "sources.json"
+        ],
+        "task_text_read": true
+      },
+      {
+        "exit_code": 0,
+        "packaged_resources_read": [
+          "knowledge.json"
+        ],
+        "task_text_read": false
+      }
+    ],
+    "mcp_observations": [],
+    "web_observations": [],
+    "task_text_unchanged": true,
+    "redactions": "local link target omitted in delivery output; no other visible text edited",
+    "launch_contract": {
+      "explicit_activation_request": "$promptcraft",
+      "sandbox": "read-only",
+      "ephemeral": true,
+      "ignore_user_config": true,
+      "new_credentials": false,
+      "controller_observed": true
+    }
+  }
+]

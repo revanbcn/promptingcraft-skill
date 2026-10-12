@@ -1,0 +1,77 @@
+[
+  {
+    "case": "performance",
+    "arm": "with_skill",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "566f52ec2be9889284a596e9e96bce2da3ba37cd22162733cf85fbca225238ae",
+    "duration_seconds": 14.17,
+    "reported_cost_usd": 0.0773408,
+    "output_chars": 2590,
+    "handoff_chars": 1621,
+    "handoff_words": 280,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1512,
+      "cache_creation_input_tokens": 15111,
+      "cache_read_input_tokens": 17648
+    }
+  },
+  {
+    "case": "stale-docs",
+    "arm": "with_skill",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "566f52ec2be9889284a596e9e96bce2da3ba37cd22162733cf85fbca225238ae",
+    "duration_seconds": 14.39,
+    "reported_cost_usd": 0.0681389,
+    "output_chars": 2365,
+    "handoff_chars": 1461,
+    "handoff_words": 250,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1465,
+      "cache_creation_input_tokens": 12874,
+      "cache_read_input_tokens": 19809
+    }
+  },
+  {
+    "case": "optional-accessibility",
+    "arm": "with_skill",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "566f52ec2be9889284a596e9e96bce2da3ba37cd22162733cf85fbca225238ae",
+    "duration_seconds": 14.11,
+    "reported_cost_usd": 0.0650127,
+    "output_chars": 2315,
+    "handoff_chars": 1355,
+    "handoff_words": 230,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1403,
+      "cache_creation_input_tokens": 12255,
+      "cache_read_input_tokens": 19507
+    }
+  }
+]

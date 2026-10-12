@@ -1,0 +1,269 @@
+[
+  {
+    "case": "manifest-command",
+    "arm": "A",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 6.97,
+    "reported_cost_usd": 0.0195897,
+    "output_chars": 314,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [
+      "manifest.json"
+    ],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 1,
+    "verification_successes": 1,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 573,
+      "cache_creation_input_tokens": 2984,
+      "cache_read_input_tokens": 19117
+    }
+  },
+  {
+    "case": "manifest-command",
+    "arm": "B",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "composition_outcome": "REVISED",
+    "duration_seconds": 6.6,
+    "reported_cost_usd": 0.0161443,
+    "output_chars": 913,
+    "handoff_chars": 227,
+    "handoff_words": 11,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [
+      "manifest.json"
+    ],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 614,
+      "cache_creation_input_tokens": 1994,
+      "cache_read_input_tokens": 20163
+    }
+  },
+  {
+    "case": "manifest-command",
+    "arm": "C",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "composition_outcome": "REVISED",
+    "duration_seconds": 7.37,
+    "reported_cost_usd": 0.016485100000000003,
+    "output_chars": 858,
+    "handoff_chars": 227,
+    "handoff_words": 11,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [
+      "manifest.json"
+    ],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 1,
+    "verification_successes": 1,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 605,
+      "cache_creation_input_tokens": 2100,
+      "cache_read_input_tokens": 20231
+    }
+  },
+  {
+    "case": "discussion-only",
+    "arm": "B",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 15.66,
+    "reported_cost_usd": 0.0256409,
+    "output_chars": 3924,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1609,
+      "cache_creation_input_tokens": 1876,
+      "cache_read_input_tokens": 20349
+    }
+  },
+  {
+    "case": "discussion-only",
+    "arm": "C",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 15.14,
+    "reported_cost_usd": 0.0279401,
+    "output_chars": 3648,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1641,
+      "cache_creation_input_tokens": 2367,
+      "cache_read_input_tokens": 20501
+    }
+  },
+  {
+    "case": "discussion-only",
+    "arm": "A",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 15.97,
+    "reported_cost_usd": 0.024486300000000003,
+    "output_chars": 4101,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 4,
+      "output_tokens": 1708,
+      "cache_creation_input_tokens": 1534,
+      "cache_read_input_tokens": 12623
+    }
+  },
+  {
+    "case": "ambiguous-dialog",
+    "arm": "C",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 10.92,
+    "reported_cost_usd": 0.025610499999999998,
+    "output_chars": 1462,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 8,
+      "output_tokens": 1092,
+      "cache_creation_input_tokens": 2943,
+      "cache_read_input_tokens": 29025
+    }
+  },
+  {
+    "case": "ambiguous-dialog",
+    "arm": "A",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 7.44,
+    "reported_cost_usd": 0.013839899999999999,
+    "output_chars": 1494,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 4,
+      "output_tokens": 688,
+      "cache_creation_input_tokens": 1422,
+      "cache_read_input_tokens": 12639
+    }
+  },
+  {
+    "case": "ambiguous-dialog",
+    "arm": "B",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 6.42,
+    "reported_cost_usd": 0.0163266,
+    "output_chars": 813,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 593,
+      "cache_creation_input_tokens": 2087,
+      "cache_read_input_tokens": 20366
+    }
+  }
+]

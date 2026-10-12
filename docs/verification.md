@@ -1,5 +1,24 @@
 # Verification status
 
+## Unreleased contract fidelity and native validation
+
+- 85 offline tests, validator and reproducible packages pass. Exact-span/local
+  authority/no-change checks remain annotation-assisted, never semantic guarantees.
+- Original 14-case definitions/assertions are unchanged. Prior historical drift
+  was 3/14; new blind reassessment of those same outputs is 5/14. New diagnostics
+  were 3/14, 1/14, 3/14; the materially changed final workflow is 0/14 in one sample.
+- Four genuine packaged Codex invocations observed skill-resource use, contract,
+  critique/final or no-change, and honest live/dates-only freshness. Latest native
+  run uses the final workflow's ZIP. Native model/cost remain unobserved.
+- Native ChatGPT app access was denied by Computer Use policy; no simulation counts.
+- Six new source-pressure cases and nine final A/B/C executions use matched tools,
+  model and fixtures. Artifact checks pass 9/9; two read-only A Bash discovery calls
+  violated the wrapper command limit. All task outcomes/clarifications are reviewed
+  separately; no general or fresh-guidance superiority is established.
+- Review blockers have RED→GREEN regressions; final evidence and remote CI/merge
+  gates remain distinct. Recommendation IMPROVE FURTHER; v0.1.0 release unchanged.
+- Full results: [fidelity evidence](../evals/results/fidelity/README.md).
+
 ## Unreleased quality-1 candidate
 
 - 54 current offline tests pass for contracts, evaluation collection, knowledge

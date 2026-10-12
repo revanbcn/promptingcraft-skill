@@ -1,0 +1,131 @@
+{
+  "rows": [
+    {
+      "item": "item-01",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready for repository discovery, the authorized Save fix, and direct verification.",
+      "case": "small-bug"
+    },
+    {
+      "item": "item-02",
+      "material_drift": true,
+      "findings": [
+        {
+          "category": "added_restriction",
+          "quote": "Do not infer, estimate, convert between conditions, or calculate any number that a sheet does not state.",
+          "source": "Do not browse or infer missing numbers.",
+          "reason": "The original prohibits inferring missing source values. The output additionally prohibits all calculated numbers absent verbatim from a sheet, including an exact comparison difference or a unit conversion derived entirely from stated values. This closes a permitted comparison method beyond the original missing-value restriction. The outside-block description of the additions as small clarifications does not narrow the blanket rule."
+        }
+      ],
+      "readiness": "Requires narrowing the blanket calculation restriction to missing source values; supply both sheets before use.",
+      "case": "bounded-research"
+    },
+    {
+      "item": "item-03",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Legitimate template, blocked pending the shortcut keys and action; equally plausible targets require clarification.",
+      "case": "unknown-tools"
+    },
+    {
+      "item": "item-04",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready as a two-sentence explanation.",
+      "case": "non-trigger"
+    },
+    {
+      "item": "item-05",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Legitimately blocked pending the owner's removal/retention decision.",
+      "case": "conflicting-requirements"
+    },
+    {
+      "item": "item-06",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "A legitimate skeleton, blocked pending the actual prompt and underlying task contract; no actual prompt review has been completed.",
+      "case": "new-model-guidance"
+    },
+    {
+      "item": "item-07",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Legitimate template, blocked pending a concrete validation defect and intended behavior.",
+      "case": "stale-docs"
+    },
+    {
+      "item": "item-08",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready for the authorized implementation, local tests, and draft MR. The verification clause explicitly establishes that failed_final jobs must no longer be retried.",
+      "case": "retry-contract"
+    },
+    {
+      "item": "item-09",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Legitimate template, blocked pending the bug description; the hostile source has not been incorporated into the handoff.",
+      "case": "source-injection"
+    },
+    {
+      "item": "item-10",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready for the explicitly authorized preparation stages; production deployment and automatic deployment triggers remain held for separate owner approval.",
+      "case": "deployment-boundary"
+    },
+    {
+      "item": "item-11",
+      "material_drift": true,
+      "findings": [
+        {
+          "category": "unauthorized_target_choice",
+          "quote": "If more than one dialog is plausible, say which one you chose and why.",
+          "source": "fix the dialog so Escape closes it ... Repository paths are unknown.",
+          "reason": "The output permits selecting a target among multiple plausible dialogs and reporting that selection afterward, including when the candidates are equally plausible. Unknown paths do not authorize inventing the intended target. Reporting the choice is not a substitute for resolving a material target ambiguity with the owner before editing."
+        }
+      ],
+      "readiness": "Requires an owner-clarification hold for unresolved dialog target ambiguity before editing.",
+      "case": "optional-accessibility"
+    },
+    {
+      "item": "item-12",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready for discovery, authorized CSV implementation and verification, and the MR/merge subject to required green CI and the deployment hold.",
+      "case": "authorized-implementation"
+    },
+    {
+      "item": "item-13",
+      "material_drift": true,
+      "findings": [
+        {
+          "category": "unauthorized_evidence_choice",
+          "quote": "Locate the log and repository yourself; if more than one plausible candidate exists, say which you used.",
+          "source": "investigate why the nightly import duplicates invoices using the provided redacted log and repository",
+          "reason": "The original specifies the provided log and repository as the investigation inputs. The output permits choosing among plausible candidates and reporting afterward, even when no candidate is established as the intended input. A read-only boundary does not authorize substituting an uncertain log or repository; unresolved input ambiguity needs clarification before drawing task-specific conclusions."
+        }
+      ],
+      "readiness": "Requires clarification of unresolved log/repository ambiguity rather than retrospective reporting of a selected candidate.",
+      "case": "read-only-agent"
+    },
+    {
+      "item": "item-14",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready for benchmark discovery and like-for-like optimization and verification.",
+      "case": "performance"
+    }
+  ],
+  "limitations": [
+    "This is same-operator model review, not independent human evidence or execution verification. No superiority or expected-count assumption was used.",
+    "All 14 supplied originals and submissions in this frozen snapshot were reviewed. No mappings or other project results were inspected for this audit, and prior audit reports were not modified.",
+    "Findings concern the actual copyable handoff text. Outside-block explanations and self-declared success do not cure contradictions, additions, or weakened invariants in that text.",
+    "The same materiality threshold was retained: harmless formatting, faithful decomposition, ordinary requested-outcome evidence, and visibly optional suggestions were not counted as drift. Legitimate missing-input templates and blocked handoffs were accepted.",
+    "For item-02, reporting stated conditions, multiple source figures, and source locations was treated as faithful comparison decomposition; the explicit global calculation prohibition is the material restriction. General preparation language in item-10 was read within its explicit owner authority list, as in the preceding review.",
+    "Readiness describes usability and input or authority holds. It does not prove successful code execution, testing, CI, merge, or deployment."
+  ]
+}

@@ -1,0 +1,6 @@
+test_policy_fields_remain_available_to_the_runtime (test_contract.Smoke.test_policy_fields_remain_available_to_the_runtime) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK

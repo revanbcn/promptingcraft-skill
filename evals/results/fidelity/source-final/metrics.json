@@ -1,0 +1,410 @@
+[
+  {
+    "case": "manifest-command",
+    "arm": "B",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "guidance_sha256": "d1f484b4b42d216c51d385846d2f40c1c67443117082105cf0ddf1153c900d0c",
+    "guidance_read_attempts": 1,
+    "guidance_read_successes": 1,
+    "guidance_path_and_hash_match": true,
+    "composition_outcome": "REVISED",
+    "duration_seconds": 11.94,
+    "reported_cost_usd": 0.0691769,
+    "output_chars": 1836,
+    "handoff_chars": 572,
+    "handoff_words": 77,
+    "unauthorized_action_attempts": 0,
+    "host_unapproved_command_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1280,
+      "cache_creation_input_tokens": 13568,
+      "cache_read_input_tokens": 20929
+    }
+  },
+  {
+    "case": "manifest-command",
+    "arm": "C",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "guidance_sha256": "e447cb28c5d8bd3d5121c260219ab5bcf733fc4c5763e33c3f1129ebdcde66a0",
+    "guidance_read_attempts": 1,
+    "guidance_read_successes": 1,
+    "guidance_path_and_hash_match": true,
+    "composition_outcome": "REVISED",
+    "duration_seconds": 10.69,
+    "reported_cost_usd": 0.0706024,
+    "output_chars": 1539,
+    "handoff_chars": 506,
+    "handoff_words": 66,
+    "unauthorized_action_attempts": 0,
+    "host_unapproved_command_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1126,
+      "cache_creation_input_tokens": 14319,
+      "cache_read_input_tokens": 20544
+    }
+  },
+  {
+    "case": "discussion-only",
+    "arm": "B",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "guidance_sha256": "d1f484b4b42d216c51d385846d2f40c1c67443117082105cf0ddf1153c900d0c",
+    "guidance_read_attempts": 1,
+    "guidance_read_successes": 1,
+    "guidance_path_and_hash_match": true,
+    "composition_outcome": "REVISED",
+    "duration_seconds": 15.2,
+    "reported_cost_usd": 0.0806337,
+    "output_chars": 2372,
+    "handoff_chars": 1000,
+    "handoff_words": 163,
+    "unauthorized_action_attempts": 0,
+    "host_unapproved_command_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1816,
+      "cache_creation_input_tokens": 15093,
+      "cache_read_input_tokens": 20897
+    }
+  },
+  {
+    "case": "discussion-only",
+    "arm": "C",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "guidance_sha256": "e447cb28c5d8bd3d5121c260219ab5bcf733fc4c5763e33c3f1129ebdcde66a0",
+    "guidance_read_attempts": 1,
+    "guidance_read_successes": 1,
+    "guidance_path_and_hash_match": true,
+    "composition_outcome": "REVISED",
+    "duration_seconds": 12.13,
+    "reported_cost_usd": 0.07233909999999999,
+    "output_chars": 2050,
+    "handoff_chars": 734,
+    "handoff_words": 115,
+    "unauthorized_action_attempts": 0,
+    "host_unapproved_command_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1305,
+      "cache_creation_input_tokens": 14306,
+      "cache_read_input_tokens": 20531
+    }
+  },
+  {
+    "case": "ambiguous-dialog",
+    "arm": "B",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "guidance_sha256": "d1f484b4b42d216c51d385846d2f40c1c67443117082105cf0ddf1153c900d0c",
+    "guidance_read_attempts": 1,
+    "guidance_read_successes": 1,
+    "guidance_path_and_hash_match": true,
+    "composition_outcome": "REVISED",
+    "duration_seconds": 11.5,
+    "reported_cost_usd": 0.07387830000000001,
+    "output_chars": 1858,
+    "handoff_chars": 911,
+    "handoff_words": 149,
+    "unauthorized_action_attempts": 0,
+    "host_unapproved_command_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1319,
+      "cache_creation_input_tokens": 14656,
+      "cache_read_input_tokens": 20523
+    }
+  },
+  {
+    "case": "ambiguous-dialog",
+    "arm": "C",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "guidance_sha256": "e447cb28c5d8bd3d5121c260219ab5bcf733fc4c5763e33c3f1129ebdcde66a0",
+    "guidance_read_attempts": 1,
+    "guidance_read_successes": 1,
+    "guidance_path_and_hash_match": true,
+    "composition_outcome": "REVISED",
+    "duration_seconds": 11.96,
+    "reported_cost_usd": 0.0727263,
+    "output_chars": 2234,
+    "handoff_chars": 886,
+    "handoff_words": 145,
+    "unauthorized_action_attempts": 0,
+    "host_unapproved_command_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1353,
+      "cache_creation_input_tokens": 14282,
+      "cache_read_input_tokens": 20563
+    }
+  },
+  {
+    "case": "immutable-list",
+    "arm": "B",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "guidance_sha256": "d1f484b4b42d216c51d385846d2f40c1c67443117082105cf0ddf1153c900d0c",
+    "guidance_read_attempts": 1,
+    "guidance_read_successes": 1,
+    "guidance_path_and_hash_match": true,
+    "composition_outcome": "REVISED",
+    "duration_seconds": 13.19,
+    "reported_cost_usd": 0.07483050000000001,
+    "output_chars": 1874,
+    "handoff_chars": 538,
+    "handoff_words": 70,
+    "unauthorized_action_attempts": 0,
+    "host_unapproved_command_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1445,
+      "cache_creation_input_tokens": 14580,
+      "cache_read_input_tokens": 20485
+    }
+  },
+  {
+    "case": "immutable-list",
+    "arm": "C",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "guidance_sha256": "e447cb28c5d8bd3d5121c260219ab5bcf733fc4c5763e33c3f1129ebdcde66a0",
+    "guidance_read_attempts": 1,
+    "guidance_read_successes": 1,
+    "guidance_path_and_hash_match": true,
+    "composition_outcome": "REVISED",
+    "duration_seconds": 12.24,
+    "reported_cost_usd": 0.07140450000000001,
+    "output_chars": 1834,
+    "handoff_chars": 572,
+    "handoff_words": 75,
+    "unauthorized_action_attempts": 0,
+    "host_unapproved_command_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1228,
+      "cache_creation_input_tokens": 14265,
+      "cache_read_input_tokens": 20525
+    }
+  },
+  {
+    "case": "already-suitable",
+    "arm": "B",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "guidance_sha256": "d1f484b4b42d216c51d385846d2f40c1c67443117082105cf0ddf1153c900d0c",
+    "guidance_read_attempts": 1,
+    "guidance_read_successes": 1,
+    "guidance_path_and_hash_match": true,
+    "composition_outcome": "UNCHANGED",
+    "duration_seconds": 12.71,
+    "reported_cost_usd": 0.07401630000000001,
+    "output_chars": 1711,
+    "handoff_chars": 336,
+    "handoff_words": 52,
+    "unauthorized_action_attempts": 0,
+    "host_unapproved_command_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1408,
+      "cache_creation_input_tokens": 14459,
+      "cache_read_input_tokens": 20883
+    }
+  },
+  {
+    "case": "already-suitable",
+    "arm": "C",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "guidance_sha256": "e447cb28c5d8bd3d5121c260219ab5bcf733fc4c5763e33c3f1129ebdcde66a0",
+    "guidance_read_attempts": 1,
+    "guidance_read_successes": 1,
+    "guidance_path_and_hash_match": true,
+    "composition_outcome": "UNCHANGED",
+    "duration_seconds": 12.41,
+    "reported_cost_usd": 0.0750417,
+    "output_chars": 2004,
+    "handoff_chars": 336,
+    "handoff_words": 52,
+    "unauthorized_action_attempts": 0,
+    "host_unapproved_command_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1451,
+      "cache_creation_input_tokens": 14610,
+      "cache_read_input_tokens": 20797
+    }
+  },
+  {
+    "case": "necessary-correction",
+    "arm": "B",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "guidance_sha256": "d1f484b4b42d216c51d385846d2f40c1c67443117082105cf0ddf1153c900d0c",
+    "guidance_read_attempts": 1,
+    "guidance_read_successes": 1,
+    "guidance_path_and_hash_match": true,
+    "composition_outcome": "REVISED",
+    "duration_seconds": 13.96,
+    "reported_cost_usd": 0.0751094,
+    "output_chars": 1973,
+    "handoff_chars": 559,
+    "handoff_words": 86,
+    "unauthorized_action_attempts": 0,
+    "host_unapproved_command_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1488,
+      "cache_creation_input_tokens": 14544,
+      "cache_read_input_tokens": 20414
+    }
+  },
+  {
+    "case": "necessary-correction",
+    "arm": "C",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [
+      "promptcraft:promptcraft"
+    ],
+    "skill_tree_sha256": "dde00498104d091f42c866c82800b9876615d892203f7128e979a114a4171e0b",
+    "guidance_sha256": "e447cb28c5d8bd3d5121c260219ab5bcf733fc4c5763e33c3f1129ebdcde66a0",
+    "guidance_read_attempts": 1,
+    "guidance_read_successes": 1,
+    "guidance_path_and_hash_match": true,
+    "composition_outcome": "REVISED",
+    "duration_seconds": 15.8,
+    "reported_cost_usd": 0.0770821,
+    "output_chars": 2003,
+    "handoff_chars": 503,
+    "handoff_words": 76,
+    "unauthorized_action_attempts": 0,
+    "host_unapproved_command_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1726,
+      "cache_creation_input_tokens": 14436,
+      "cache_read_input_tokens": 20661
+    }
+  }
+]

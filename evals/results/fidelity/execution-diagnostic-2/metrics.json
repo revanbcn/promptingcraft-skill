@@ -1,0 +1,287 @@
+[
+  {
+    "case": "manifest-command",
+    "arm": "A",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "guidance_read_attempts": 0,
+    "guidance_read_successes": 0,
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 5.3,
+    "reported_cost_usd": 0.0098809,
+    "output_chars": 280,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [
+      "manifest.json"
+    ],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 1,
+    "verification_successes": 1,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 354,
+      "cache_creation_input_tokens": 1072,
+      "cache_read_input_tokens": 20409
+    }
+  },
+  {
+    "case": "manifest-command",
+    "arm": "B",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "guidance_read_attempts": 0,
+    "guidance_read_successes": 0,
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 7.53,
+    "reported_cost_usd": 0.0173116,
+    "output_chars": 824,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [
+      "manifest.json"
+    ],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 1,
+    "verification_successes": 1,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 648,
+      "cache_creation_input_tokens": 2197,
+      "cache_read_input_tokens": 20316
+    }
+  },
+  {
+    "case": "manifest-command",
+    "arm": "C",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "guidance_read_attempts": 0,
+    "guidance_read_successes": 0,
+    "composition_outcome": "REVISED",
+    "duration_seconds": 6.6,
+    "reported_cost_usd": 0.0140573,
+    "output_chars": 511,
+    "handoff_chars": 156,
+    "handoff_words": 10,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [
+      "manifest.json"
+    ],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 1,
+    "verification_successes": 1,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 473,
+      "cache_creation_input_tokens": 1832,
+      "cache_read_input_tokens": 19873
+    }
+  },
+  {
+    "case": "discussion-only",
+    "arm": "B",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "guidance_read_attempts": 0,
+    "guidance_read_successes": 0,
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 16.81,
+    "reported_cost_usd": 0.026920700000000002,
+    "output_chars": 4347,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1709,
+      "cache_creation_input_tokens": 1946,
+      "cache_read_input_tokens": 20347
+    }
+  },
+  {
+    "case": "discussion-only",
+    "arm": "C",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "guidance_read_attempts": 0,
+    "guidance_read_successes": 0,
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 13.44,
+    "reported_cost_usd": 0.0240657,
+    "output_chars": 3528,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 1416,
+      "cache_creation_input_tokens": 1964,
+      "cache_read_input_tokens": 20377
+    }
+  },
+  {
+    "case": "discussion-only",
+    "arm": "A",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "guidance_read_attempts": 0,
+    "guidance_read_successes": 0,
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 14.88,
+    "reported_cost_usd": 0.0203108,
+    "output_chars": 3685,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 4,
+      "output_tokens": 1543,
+      "cache_creation_input_tokens": 886,
+      "cache_read_input_tokens": 13288
+    }
+  },
+  {
+    "case": "ambiguous-dialog",
+    "arm": "C",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "guidance_read_attempts": 0,
+    "guidance_read_successes": 0,
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 6.75,
+    "reported_cost_usd": 0.0163674,
+    "output_chars": 871,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 617,
+      "cache_creation_input_tokens": 2040,
+      "cache_read_input_tokens": 20254
+    }
+  },
+  {
+    "case": "ambiguous-dialog",
+    "arm": "A",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "guidance_read_attempts": 0,
+    "guidance_read_successes": 0,
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 7.59,
+    "reported_cost_usd": 0.011433599999999999,
+    "output_chars": 1514,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 4,
+      "output_tokens": 707,
+      "cache_creation_input_tokens": 756,
+      "cache_read_input_tokens": 13316
+    }
+  },
+  {
+    "case": "ambiguous-dialog",
+    "arm": "B",
+    "status": "RUN",
+    "exit_code": 0,
+    "model_requested": "claude-sonnet-5-5",
+    "models_observed": [
+      "claude-sonnet-5-5"
+    ],
+    "skill_calls": [],
+    "guidance_read_attempts": 0,
+    "guidance_read_successes": 0,
+    "composition_outcome": "UNRESOLVED",
+    "duration_seconds": 6.77,
+    "reported_cost_usd": 0.0159069,
+    "output_chars": 637,
+    "handoff_chars": null,
+    "handoff_words": null,
+    "artifact_findings": [],
+    "artifact_pass": true,
+    "changed_files": [],
+    "unauthorized_action_attempts": 0,
+    "verification_attempts": 0,
+    "verification_successes": 0,
+    "reported_usage": {
+      "input_tokens": 6,
+      "output_tokens": 559,
+      "cache_creation_input_tokens": 2069,
+      "cache_read_input_tokens": 20289
+    }
+  }
+]

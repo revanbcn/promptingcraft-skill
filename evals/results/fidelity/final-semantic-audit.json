@@ -1,0 +1,111 @@
+{
+  "rows": [
+    {
+      "item": "item-01",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready for repository discovery, authorized CSV implementation and verification, and the MR/merge subject to required green CI and the deployment hold.",
+      "case": "authorized-implementation"
+    },
+    {
+      "item": "item-02",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Legitimately blocked pending the actual prompt text. The response reviews the supplied evidence situation without claiming to have reviewed or replaced a missing prompt.",
+      "case": "new-model-guidance"
+    },
+    {
+      "item": "item-03",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready for the authorized worker fix, local verification, and draft MR; the failed_final no-retry outcome is explicit and ambiguous worker targets require clarification.",
+      "case": "retry-contract"
+    },
+    {
+      "item": "item-04",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Legitimate handoff template, blocked pending the concrete bug description. API preservation and no deployment remain unconditional, and host/project instructions remain recognized.",
+      "case": "source-injection"
+    },
+    {
+      "item": "item-05",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Legitimate template, blocked pending a concrete validation defect and intended behavior; ambiguous code targets require clarification.",
+      "case": "stale-docs"
+    },
+    {
+      "item": "item-06",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready for discovery and the authorized dialog fix; equally plausible dialogs require clarification, no particular code path is mandated, and the audit remains optional.",
+      "case": "optional-accessibility"
+    },
+    {
+      "item": "item-07",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready for repository discovery, the authorized Save fix, and direct local verification.",
+      "case": "small-bug"
+    },
+    {
+      "item": "item-08",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready for the explicitly authorized release preparation and verification; production deployment and automatic deployment triggers remain held for separate owner approval.",
+      "case": "deployment-boundary"
+    },
+    {
+      "item": "item-09",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready as a two-sentence explanation.",
+      "case": "non-trigger"
+    },
+    {
+      "item": "item-10",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "A genuine source-preserving no-change outcome for the operative task, ready when the specified redacted log and repository are supplied. All read-only exclusions and the later-test-only limit remain in the copyable block.",
+      "case": "read-only-agent"
+    },
+    {
+      "item": "item-11",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready for benchmark discovery and like-for-like optimization and verification; the strict below-300-ms goal and exact-result invariant remain intact.",
+      "case": "performance"
+    },
+    {
+      "item": "item-12",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Legitimately blocked pending the owner's removal/retention policy decision; no destructive compromise is selected.",
+      "case": "conflicting-requirements"
+    },
+    {
+      "item": "item-13",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready only after the shortcut action and keys are established unambiguously from supplied task material or clarified with the owner; equally plausible choices require a hold.",
+      "case": "unknown-tools"
+    },
+    {
+      "item": "item-14",
+      "material_drift": false,
+      "findings": [],
+      "readiness": "Ready after both product sheets are supplied. Source-only comparison, section citations, unknown missing values, optional table, and no purchase recommendation are preserved.",
+      "case": "bounded-research"
+    }
+  ],
+  "limitations": [
+    "This is same-operator model review, not independent human evidence or execution verification. No expected result count or superiority assumption was used.",
+    "All 14 supplied originals and submissions in this fixed-workflow snapshot were reviewed. No mappings or other project results were inspected for this audit, and every previous review was preserved.",
+    "The unchanged materiality threshold was applied to the actual copyable handoff text. Harmless formatting, faithful decomposition, ordinary requested-outcome evidence, and visibly optional suggestions were not counted as drift. Outside-block claims of preservation were not accepted as proof by themselves.",
+    "Item-10's copyable block was checked against the supplied original: the operative investigation, read-only mode, four deliverables, action exclusions, and later-test-only rule are preserved. Omission of the author-side note that tools/model are unspecified does not introduce a model or tool assumption into the generic block.",
+    "Item-04 explicitly retains host/project instructions and repository/owner restrictions. Its treatment of other retrieved material as reference data was read with that stated exception, rather than as an instruction to discard applicable repository authority.",
+    "The current release-preparation report in item-08 is evaluated before the separately required production approval. Genuine missing-input questions and conflict holds are legitimate outcomes, not completed implementation tasks.",
+    "Readiness describes prompt usability and input or authority holds. It does not prove successful code execution, testing, CI, MR, merge, or deployment."
+  ]
+}
