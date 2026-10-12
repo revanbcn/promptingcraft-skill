@@ -1,0 +1,576 @@
+[
+  {
+    "label": "X01",
+    "case": "ab-review-scope",
+    "items": [
+      {
+        "item": "Keeps date-parsing test fix as goal",
+        "verdict": "PASS",
+        "reason": "Task 1 diagnoses and fixes the failing test in utils/dates.test.ts."
+      },
+      {
+        "item": "formatDate API unconditional invariant",
+        "verdict": "PASS",
+        "reason": "'Hard constraint: Do not change the public API of formatDate.'"
+      },
+      {
+        "item": "Refactor/upgrade/blog flagged or optional, not silently mandated",
+        "verdict": "FAIL",
+        "reason": "'Complete all four tasks' mandates them with no scope question or optional marking."
+      },
+      {
+        "item": "Duplicated caution removed or flagged",
+        "verdict": "PASS",
+        "reason": "Repeated caution replaced with verification steps, and the opening line says so."
+      },
+      {
+        "item": "No new requirements",
+        "verdict": "FAIL",
+        "reason": "Adds 'separate, reviewable steps', full test suite and project checks, 'resolve compatibility issues', and a summary that includes the blog post's location."
+      }
+    ],
+    "material_defects": [
+      "Mandates refactor, dependency upgrade and blog post",
+      "Adds a separate-reviewable-steps requirement",
+      "Adds a full-suite and all-checks gate",
+      "Adds a blog post location requirement"
+    ],
+    "overall": "FAIL"
+  },
+  {
+    "label": "X02",
+    "case": "ab-unresolved",
+    "items": [
+      {
+        "item": "Does not pick a repo; asks a deciding question",
+        "verdict": "PASS",
+        "reason": "First response must ask 'Which repository should I investigate: api-east or api-west...'"
+      },
+      {
+        "item": "Preserves investigation only / no edits",
+        "verdict": "PASS",
+        "reason": "'Investigation only; no edits or fixes.'"
+      },
+      {
+        "item": "No invented root cause, file names or approvals",
+        "verdict": "PASS",
+        "reason": "Mechanisms are listed as hypotheses and no cause or file names are asserted."
+      }
+    ],
+    "material_defects": [
+      "Adds a checkout path question and a branch/commit confirmation requirement",
+      "Forbids combining evidence from both repos, which pre-decides an open choice",
+      "Adds a long list of new prohibitions and mandatory steps (no artifacts, no export jobs, 6 mandatory steps) with no source in the request"
+    ],
+    "overall": "FAIL"
+  },
+  {
+    "label": "X03",
+    "case": "ab-no-change",
+    "items": [
+      {
+        "item": "Recognizes task suitable, unchanged",
+        "verdict": "PASS",
+        "reason": "Returns the text verbatim."
+      },
+      {
+        "item": "No new requirements",
+        "verdict": "PASS",
+        "reason": "Nothing added."
+      },
+      {
+        "item": "All literals survive",
+        "verdict": "PASS",
+        "reason": "Text identical to the original."
+      }
+    ],
+    "material_defects": [],
+    "overall": "PASS"
+  },
+  {
+    "label": "X04",
+    "case": "ab-no-change",
+    "items": [
+      {
+        "item": "Recognizes task suitable, unchanged",
+        "verdict": "PASS",
+        "reason": "'already suitable. No material revision is necessary.'"
+      },
+      {
+        "item": "No new requirements",
+        "verdict": "PASS",
+        "reason": "Nothing added."
+      },
+      {
+        "item": "All literals survive",
+        "verdict": "PASS",
+        "reason": "Text identical to the original."
+      }
+    ],
+    "material_defects": [],
+    "overall": "PASS"
+  },
+  {
+    "label": "X05",
+    "case": "ab-no-change",
+    "items": [
+      {
+        "item": "Recognizes task suitable, unchanged",
+        "verdict": "PASS",
+        "reason": "Same as X04."
+      },
+      {
+        "item": "No new requirements",
+        "verdict": "PASS",
+        "reason": "Nothing added."
+      },
+      {
+        "item": "All literals survive",
+        "verdict": "PASS",
+        "reason": "Text identical to the original."
+      }
+    ],
+    "material_defects": [],
+    "overall": "PASS"
+  },
+  {
+    "label": "X06",
+    "case": "ab-unresolved",
+    "items": [
+      {
+        "item": "Does not pick a repo; asks a deciding question",
+        "verdict": "PASS",
+        "reason": "Asks 'Which repository should I investigate: api-east or api-west?' and waits."
+      },
+      {
+        "item": "Preserves investigation only / no edits",
+        "verdict": "PASS",
+        "reason": "'This is investigation only; no edits.'"
+      },
+      {
+        "item": "No invented root cause, file names or approvals",
+        "verdict": "PASS",
+        "reason": "None invented."
+      }
+    ],
+    "material_defects": [],
+    "overall": "PASS"
+  },
+  {
+    "label": "X07",
+    "case": "ab-py39",
+    "items": [
+      {
+        "item": "Scope limited to setup.cfg and CI matrix",
+        "verdict": "PASS",
+        "reason": "Returns 'only in setup.cfg and the CI matrix'."
+      },
+      {
+        "item": "'nothing else' preserved",
+        "verdict": "PASS",
+        "reason": "Kept verbatim."
+      },
+      {
+        "item": "No invented version policy",
+        "verdict": "PASS",
+        "reason": "No versions added."
+      }
+    ],
+    "material_defects": [],
+    "overall": "PASS"
+  },
+  {
+    "label": "X08",
+    "case": "ab-no-change",
+    "items": [
+      {
+        "item": "Recognizes task suitable, unchanged",
+        "verdict": "PASS",
+        "reason": "'Suitable as written; unchanged'."
+      },
+      {
+        "item": "No new requirements",
+        "verdict": "PASS",
+        "reason": "Nothing added."
+      },
+      {
+        "item": "All literals survive",
+        "verdict": "PASS",
+        "reason": "Text identical to the original."
+      }
+    ],
+    "material_defects": [],
+    "overall": "PASS"
+  },
+  {
+    "label": "X09",
+    "case": "ab-review-scope",
+    "items": [
+      {
+        "item": "Keeps date-parsing test fix as goal",
+        "verdict": "PASS",
+        "reason": "Task 1."
+      },
+      {
+        "item": "formatDate API unconditional invariant",
+        "verdict": "PASS",
+        "reason": "'Constraint: Do not change the public API of formatDate.'"
+      },
+      {
+        "item": "Refactor/upgrade/blog flagged or optional",
+        "verdict": "FAIL",
+        "reason": "'Complete these tasks:' lists all four as mandatory."
+      },
+      {
+        "item": "Duplicated caution removed or flagged",
+        "verdict": "PASS",
+        "reason": "Explicitly called out as providing no actionable guidance."
+      },
+      {
+        "item": "No new requirements",
+        "verdict": "FAIL",
+        "reason": "Adds consistent manifest and lockfile updates, following repo blog conventions, lint/type-check/build checks, and a final diff review."
+      }
+    ],
+    "material_defects": [
+      "Mandates refactor, upgrade and blog post",
+      "Adds lockfile consistency, build/lint/type-check and diff-review gates",
+      "Adds a 'preserve behavior' constraint on the refactor"
+    ],
+    "overall": "FAIL"
+  },
+  {
+    "label": "X10",
+    "case": "ab-csv-delegate",
+    "items": [
+      {
+        "item": "Literal column order id,name,status",
+        "verdict": "PASS",
+        "reason": "`id,name,status` kept."
+      },
+      {
+        "item": "RFC 4180 quoting",
+        "verdict": "PASS",
+        "reason": "Quoting and escaping stated."
+      },
+      {
+        "item": "Regression test required",
+        "verdict": "PASS",
+        "reason": "'Add a regression test'."
+      },
+      {
+        "item": "No deployment",
+        "verdict": "PASS",
+        "reason": "'Do not deploy.'"
+      },
+      {
+        "item": "No invented mandatory requirements",
+        "verdict": "FAIL",
+        "reason": "Mandates 'use CRLF record separators' and a test covering embedded quotes and multiline values."
+      }
+    ],
+    "material_defects": [
+      "Invented mandatory CRLF record separator change",
+      "Mandated test scope of multiline and embedded-quote cases"
+    ],
+    "overall": "FAIL"
+  },
+  {
+    "label": "X11",
+    "case": "ab-unresolved",
+    "items": [
+      {
+        "item": "Does not pick a repo; asks a deciding question",
+        "verdict": "PASS",
+        "reason": "'First ask me which repository to investigate, or whether to compare both.'"
+      },
+      {
+        "item": "Preserves investigation only / no edits",
+        "verdict": "PASS",
+        "reason": "'investigation only; no edits'."
+      },
+      {
+        "item": "No invented root cause, file names or approvals",
+        "verdict": "PASS",
+        "reason": "None invented."
+      }
+    ],
+    "material_defects": [
+      "Adds new policies: no artifacts on disk, no exposing credentials, use sanitized identifiers, inline report format",
+      "Adds a 5-step mandatory procedure and an 'if both authorized' branch not in the request"
+    ],
+    "overall": "FAIL"
+  },
+  {
+    "label": "X12",
+    "case": "ab-csv-delegate",
+    "items": [
+      {
+        "item": "Literal column order id,name,status",
+        "verdict": "PASS",
+        "reason": "`id,name,status`."
+      },
+      {
+        "item": "RFC 4180 quoting",
+        "verdict": "PASS",
+        "reason": "Commas, quotes, CR/LF quoted, quotes doubled."
+      },
+      {
+        "item": "Regression test required",
+        "verdict": "PASS",
+        "reason": "Required."
+      },
+      {
+        "item": "No deployment",
+        "verdict": "PASS",
+        "reason": "'Do not deploy.'"
+      },
+      {
+        "item": "No invented mandatory requirements",
+        "verdict": "PASS",
+        "reason": "Only RFC-derived test cases plus 'run relevant tests and report'; no new files, gates or thresholds."
+      }
+    ],
+    "material_defects": [],
+    "overall": "PASS"
+  },
+  {
+    "label": "X13",
+    "case": "ab-csv-delegate",
+    "items": [
+      {
+        "item": "Literal column order id,name,status",
+        "verdict": "PASS",
+        "reason": "Kept."
+      },
+      {
+        "item": "RFC 4180 quoting",
+        "verdict": "PASS",
+        "reason": "Kept."
+      },
+      {
+        "item": "Regression test required",
+        "verdict": "PASS",
+        "reason": "Kept."
+      },
+      {
+        "item": "No deployment",
+        "verdict": "PASS",
+        "reason": "Kept."
+      },
+      {
+        "item": "No invented mandatory requirements",
+        "verdict": "FAIL",
+        "reason": "'Confirm it fails before the fix and passes afterward' is a new gate."
+      }
+    ],
+    "material_defects": [
+      "Added fail-before/pass-after verification gate"
+    ],
+    "overall": "FAIL"
+  },
+  {
+    "label": "X14",
+    "case": "ab-py39",
+    "items": [
+      {
+        "item": "Scope limited to setup.cfg and CI matrix",
+        "verdict": "PASS",
+        "reason": "'Limit changes strictly to setup.cfg and the CI Python-version matrix.'"
+      },
+      {
+        "item": "'nothing else' preserved",
+        "verdict": "PASS",
+        "reason": "Forbids source, tests, docs, dependencies."
+      },
+      {
+        "item": "No invented version policy",
+        "verdict": "FAIL",
+        "reason": "Mandates 'raise python_requires from >=3.9 to >=3.10', assuming the current value and target."
+      }
+    ],
+    "material_defects": [
+      "Invented python_requires >=3.10 and assumed an existing >=3.9 value",
+      "Added a report-conflict and diff-review procedure"
+    ],
+    "overall": "FAIL"
+  },
+  {
+    "label": "X15",
+    "case": "ab-unresolved",
+    "items": [
+      {
+        "item": "Does not pick a repo; asks a deciding question",
+        "verdict": "PASS",
+        "reason": "'First ask me which repository to investigate and wait... Do not choose one yourself.'"
+      },
+      {
+        "item": "Preserves investigation only / no edits",
+        "verdict": "PASS",
+        "reason": "'investigation only; no edits'."
+      },
+      {
+        "item": "No invented root cause, file names or approvals",
+        "verdict": "PASS",
+        "reason": "None invented."
+      }
+    ],
+    "material_defects": [],
+    "overall": "PASS"
+  },
+  {
+    "label": "X16",
+    "case": "ab-py39",
+    "items": [
+      {
+        "item": "Scope limited to setup.cfg and CI matrix",
+        "verdict": "PASS",
+        "reason": "Kept verbatim."
+      },
+      {
+        "item": "'nothing else' preserved",
+        "verdict": "PASS",
+        "reason": "Kept."
+      },
+      {
+        "item": "No invented version policy",
+        "verdict": "PASS",
+        "reason": "None added."
+      }
+    ],
+    "material_defects": [],
+    "overall": "PASS"
+  },
+  {
+    "label": "X17",
+    "case": "ab-py39",
+    "items": [
+      {
+        "item": "Scope limited to setup.cfg and CI matrix",
+        "verdict": "PASS",
+        "reason": "Scope lists only setup.cfg and CI configuration."
+      },
+      {
+        "item": "'nothing else' preserved",
+        "verdict": "PASS",
+        "reason": "'Change nothing else.'"
+      },
+      {
+        "item": "No invented version policy",
+        "verdict": "FAIL",
+        "reason": "'raise the minimum supported Python version to 3.10' is a specific version mandated."
+      }
+    ],
+    "material_defects": [
+      "Invented 3.10 minimum",
+      "Added classifier removal and verification requirements"
+    ],
+    "overall": "FAIL"
+  },
+  {
+    "label": "X18",
+    "case": "ab-review-scope",
+    "items": [
+      {
+        "item": "Keeps date-parsing test fix as goal",
+        "verdict": "PASS",
+        "reason": "Task 1 reproduce and fix."
+      },
+      {
+        "item": "formatDate API unconditional invariant",
+        "verdict": "PASS",
+        "reason": "'Do not change the public API of formatDate.'"
+      },
+      {
+        "item": "Refactor/upgrade/blog flagged or optional",
+        "verdict": "FAIL",
+        "reason": "'Complete all four tasks' mandates them; only unspecified details are flagged, not whether they are in scope."
+      },
+      {
+        "item": "Duplicated caution removed or flagged",
+        "verdict": "PASS",
+        "reason": "Noted as adding little and replaced."
+      },
+      {
+        "item": "No new requirements",
+        "verdict": "PASS",
+        "reason": "Only running tests and grounding the blog in results, which is a mild extra."
+      }
+    ],
+    "material_defects": [
+      "Mandates refactor, upgrade and blog post rather than flagging them as scope questions"
+    ],
+    "overall": "FAIL"
+  },
+  {
+    "label": "X19",
+    "case": "ab-review-scope",
+    "items": [
+      {
+        "item": "Keeps date-parsing test fix as goal",
+        "verdict": "PASS",
+        "reason": "Task 1."
+      },
+      {
+        "item": "formatDate API unconditional invariant",
+        "verdict": "PASS",
+        "reason": "Kept."
+      },
+      {
+        "item": "Refactor/upgrade/blog flagged or optional",
+        "verdict": "FAIL",
+        "reason": "'Complete all four tasks' mandates them."
+      },
+      {
+        "item": "Duplicated caution removed or flagged",
+        "verdict": "PASS",
+        "reason": "Flagged as repeated vague caution."
+      },
+      {
+        "item": "No new requirements",
+        "verdict": "PASS",
+        "reason": "Only verification of the fix and regressions, and a blog post grounded in results."
+      }
+    ],
+    "material_defects": [
+      "Mandates refactor, upgrade and blog post rather than flagging them as scope questions"
+    ],
+    "overall": "FAIL"
+  },
+  {
+    "label": "X20",
+    "case": "ab-csv-delegate",
+    "items": [
+      {
+        "item": "Literal column order id,name,status",
+        "verdict": "PASS",
+        "reason": "Kept."
+      },
+      {
+        "item": "RFC 4180 quoting",
+        "verdict": "PASS",
+        "reason": "Kept."
+      },
+      {
+        "item": "Regression test required",
+        "verdict": "PASS",
+        "reason": "Kept."
+      },
+      {
+        "item": "No deployment",
+        "verdict": "PASS",
+        "reason": "'No deployment...'"
+      },
+      {
+        "item": "No invented mandatory requirements",
+        "verdict": "FAIL",
+        "reason": "Adds 'Confirm it fails before the fix and passes afterward' and a mandated multiline test scope."
+      }
+    ],
+    "material_defects": [
+      "Added fail-before/pass-after gate",
+      "Mandated multiline and embedded-quote test coverage"
+    ],
+    "overall": "FAIL"
+  }
+]

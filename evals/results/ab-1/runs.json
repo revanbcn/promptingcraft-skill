@@ -1,0 +1,162 @@
+[
+  {
+    "id": "ab-csv-delegate",
+    "cond": "with",
+    "run": 1,
+    "exit": 0,
+    "skill_loaded": true,
+    "chars": 570
+  },
+  {
+    "id": "ab-csv-delegate",
+    "cond": "with",
+    "run": 2,
+    "exit": 0,
+    "skill_loaded": true,
+    "chars": 670
+  },
+  {
+    "id": "ab-csv-delegate",
+    "cond": "without",
+    "run": 1,
+    "exit": 0,
+    "skill_loaded": false,
+    "chars": 454
+  },
+  {
+    "id": "ab-csv-delegate",
+    "cond": "without",
+    "run": 2,
+    "exit": 0,
+    "skill_loaded": false,
+    "chars": 501
+  },
+  {
+    "id": "ab-no-change",
+    "cond": "with",
+    "run": 1,
+    "exit": 0,
+    "skill_loaded": true,
+    "chars": 323
+  },
+  {
+    "id": "ab-no-change",
+    "cond": "with",
+    "run": 2,
+    "exit": 0,
+    "skill_loaded": true,
+    "chars": 323
+  },
+  {
+    "id": "ab-no-change",
+    "cond": "without",
+    "run": 1,
+    "exit": 0,
+    "skill_loaded": false,
+    "chars": 269
+  },
+  {
+    "id": "ab-no-change",
+    "cond": "without",
+    "run": 2,
+    "exit": 0,
+    "skill_loaded": false,
+    "chars": 234
+  },
+  {
+    "id": "ab-py39",
+    "cond": "with",
+    "run": 1,
+    "exit": 0,
+    "skill_loaded": true,
+    "chars": 341
+  },
+  {
+    "id": "ab-py39",
+    "cond": "with",
+    "run": 2,
+    "exit": 0,
+    "skill_loaded": true,
+    "chars": 178
+  },
+  {
+    "id": "ab-py39",
+    "cond": "without",
+    "run": 1,
+    "exit": 0,
+    "skill_loaded": false,
+    "chars": 647
+  },
+  {
+    "id": "ab-py39",
+    "cond": "without",
+    "run": 2,
+    "exit": 0,
+    "skill_loaded": false,
+    "chars": 695
+  },
+  {
+    "id": "ab-review-scope",
+    "cond": "with",
+    "run": 1,
+    "exit": 0,
+    "skill_loaded": true,
+    "chars": 896
+  },
+  {
+    "id": "ab-review-scope",
+    "cond": "with",
+    "run": 2,
+    "exit": 0,
+    "skill_loaded": true,
+    "chars": 992
+  },
+  {
+    "id": "ab-review-scope",
+    "cond": "without",
+    "run": 1,
+    "exit": 0,
+    "skill_loaded": false,
+    "chars": 1110
+  },
+  {
+    "id": "ab-review-scope",
+    "cond": "without",
+    "run": 2,
+    "exit": 0,
+    "skill_loaded": false,
+    "chars": 1335
+  },
+  {
+    "id": "ab-unresolved",
+    "cond": "with",
+    "run": 1,
+    "exit": 0,
+    "skill_loaded": true,
+    "chars": 905
+  },
+  {
+    "id": "ab-unresolved",
+    "cond": "with",
+    "run": 2,
+    "exit": 0,
+    "skill_loaded": true,
+    "chars": 1180
+  },
+  {
+    "id": "ab-unresolved",
+    "cond": "without",
+    "run": 1,
+    "exit": 0,
+    "skill_loaded": false,
+    "chars": 2177
+  },
+  {
+    "id": "ab-unresolved",
+    "cond": "without",
+    "run": 2,
+    "exit": 0,
+    "skill_loaded": false,
+    "chars": 1957
+  }
+]

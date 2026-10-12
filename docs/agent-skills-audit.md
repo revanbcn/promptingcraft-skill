@@ -57,8 +57,8 @@ cache; the model's own claims are ignored.
 | Validation (held out) | 8/8 | 12/12 | 0/12 |
 | Total | 20/20 | 30/30 | 0/30 |
 
-Three runs failed on the host side (transport errors) and were re-run; see
-`evals/results/trigger-1/`. Because every train query already passes, there is
+Five attempts failed on the host side (three transport errors, two capacity responses)
+and were retried, leaving 60 valid runs; see `evals/results/trigger-1/`. Because every train query already passes, there is
 nothing to optimize, and editing the description would only risk overfitting. The
 description is kept.
 
@@ -88,9 +88,10 @@ expectation contradicted the user's explicit "without changing its scope".
 
 Five single-turn requests ran twice with the plugin enabled and twice with it
 disabled (`-c plugins.promptcraft@dondego-local.enabled=false`; no `SKILL.md` read was
-observed in any disabled run). A fresh grader saw the 20 outputs under shuffled labels
-and graded each against its stated contract and for added mandatory requirements.
-Data: `evals/results/ab-1/`.
+observed in any disabled run). A fresh grader (Claude Sonnet 5.5, one pass) saw the 20
+outputs under seeded shuffled labels and graded each against its stated contract and for
+added mandatory requirements. Data, grader prompt and per-item verdicts:
+`evals/results/ab-1/`; runner: `scripts/evaluate_ab.py`.
 
 | Case | With: pass, defects | Without: pass, defects |
 | --- | --- | --- |
