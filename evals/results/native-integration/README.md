@@ -14,7 +14,9 @@
 
 The candidate was first registered from an isolated worktree. Delivery will move
 only this new local registration to the stable owner checkout after merge and
-confirm it. Six prior marketplace records and 52 prior installed-plugin records
+confirm it. Live delivery readback will be recorded in
+[MR !4](https://gitlab.com/revanalex/promptcraft-skill/-/merge_requests/4).
+Six prior marketplace records and 52 prior installed-plugin records
 remain unchanged in candidate readback; no global configuration file was replaced.
 
 ## What actually ran
@@ -50,8 +52,9 @@ independently HTTP-revalidated; its retrieval date does not prove publication or
 executor freshness. The offline scenario deliberately specifies unavailable
 retrieval; it is **not** an injected network outage. No authoring task writes are
 observed; native CLI session persistence itself writes host session metadata.
-A separate fresh-context reviewer must judge semantic fidelity; mechanics and the
-assistant's preservation claim are not sufficient.
+[Fresh-context review](review.md) independently compared the actual final clauses
+with the original contracts and found 0/5 positive outputs with material drift.
+Mechanics and the assistant's own claim do not supply that semantic verdict.
 
 ## Cost and limits
 
