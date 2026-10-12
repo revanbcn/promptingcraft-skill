@@ -1,0 +1,50 @@
+{
+  "purpose": "Search facets for records that live in skills/promptcraft/references/knowledge.json and sources.json. It holds no guidance text: every id must exist in the ledger and every ledger record must appear here (enforced by mcp/test/catalog.test.js). Sources that are the page of a recommendation inherit that recommendation's facets.",
+  "recommendations": {
+    "oai-clear-context": { "kind": "model_guidance", "topics": ["context-and-structure"] },
+    "oai-instruction-roles": { "kind": "model_guidance", "topics": ["instruction-hierarchy"] },
+    "oai-reasoning": { "kind": "model_guidance", "topics": ["reasoning"] },
+    "oai-evaluation": { "kind": "model_guidance", "topics": ["evaluation"] },
+    "oai-structured": { "kind": "model_guidance", "topics": ["structured-output", "tool-use"] },
+    "oai-tools": { "kind": "model_guidance", "topics": ["tool-use"] },
+    "oai-untrusted-data": { "kind": "model_guidance", "topics": ["untrusted-content", "instruction-hierarchy"] },
+    "oai-cache": { "kind": "model_guidance", "topics": ["caching-and-cost"] },
+    "claude-clear": { "kind": "model_guidance", "topics": ["context-and-structure"] },
+    "claude-long-context": { "kind": "model_guidance", "topics": ["long-context", "context-and-structure"] },
+    "claude-sonnet-scope": { "kind": "model_guidance", "topics": ["scope-control"] },
+    "claude-json-reasoning": { "kind": "model_guidance", "topics": ["reasoning", "structured-output"] },
+    "claude-progressive": { "kind": "platform_documentation", "agents": ["claude-code"], "topics": ["skills-and-plugins"] },
+    "claude-tool-descriptions": { "kind": "model_guidance", "topics": ["tool-use"] },
+    "claude-evaluations": { "kind": "model_guidance", "topics": ["evaluation"] },
+    "claude-code-authoring": { "kind": "platform_documentation", "agents": ["claude-code"], "topics": ["skills-and-plugins"] },
+    "claude-workflow-complexity": { "kind": "model_guidance", "topics": ["agent-workflows", "scope-control"] }
+  },
+  "methodology": {
+    "contract-provenance": { "topics": ["scope-control", "evaluation"] }
+  },
+  "sources": {
+    "claude-code-practices": { "kind": "platform_documentation", "agents": ["claude-code"], "topics": ["context-and-structure", "scope-control", "agent-workflows"] },
+    "claude-code-library": { "kind": "platform_documentation", "agents": ["claude-code"], "topics": ["context-and-structure"] },
+    "claude-code-index": { "kind": "platform_documentation", "agents": ["claude-code"], "topics": ["discovery"] },
+    "claude-platform-index": { "kind": "model_guidance", "model_family": "anthropic", "topics": ["discovery"] },
+    "codex-prompting": { "kind": "platform_documentation", "agents": ["codex"], "topics": ["context-and-structure", "scope-control"] },
+    "openai-skill-authoring": { "kind": "platform_documentation", "agents": ["codex", "chatgpt"], "topics": ["skills-and-plugins"] },
+    "openai-plugin-package": { "kind": "platform_documentation", "agents": ["codex", "chatgpt"], "topics": ["skills-and-plugins"] },
+    "openai-plugin-skills": { "kind": "platform_documentation", "agents": ["codex", "chatgpt"], "topics": ["skills-and-plugins"] },
+    "openai-index": { "kind": "platform_documentation", "agents": ["codex", "chatgpt"], "topics": ["discovery"] },
+    "openai-api-index": { "kind": "model_guidance", "model_family": "openai", "topics": ["discovery"] },
+    "codex-index": { "kind": "platform_documentation", "agents": ["codex"], "topics": ["discovery"] },
+    "openai-plugin-index": { "kind": "platform_documentation", "agents": ["codex", "chatgpt"], "topics": ["discovery", "skills-and-plugins"] },
+    "openai-eval-skills": { "kind": "platform_documentation", "agents": ["codex", "chatgpt"], "topics": ["evaluation", "skills-and-plugins"] },
+    "agentskills-index": { "kind": "agent_skills_standard", "agents": ["codex", "chatgpt", "claude-code", "cursor"], "topics": ["discovery", "skills-and-plugins"] },
+    "agentskills-specification": { "kind": "agent_skills_standard", "agents": ["codex", "chatgpt", "claude-code", "cursor"], "topics": ["skills-and-plugins"] },
+    "agentskills-optimizing-descriptions": { "kind": "agent_skills_standard", "agents": ["codex", "chatgpt", "claude-code", "cursor"], "topics": ["skills-and-plugins"] },
+    "agentskills-evaluating-skills": { "kind": "agent_skills_standard", "agents": ["codex", "chatgpt", "claude-code", "cursor"], "topics": ["evaluation", "skills-and-plugins"] },
+    "cursor-index": { "kind": "platform_documentation", "agents": ["cursor"], "topics": ["discovery"] },
+    "cursor-prompting": { "kind": "platform_documentation", "agents": ["cursor"], "topics": ["context-and-structure", "scope-control"] },
+    "cursor-plan-mode": { "kind": "platform_documentation", "agents": ["cursor"], "topics": ["planning-and-modes"] },
+    "cursor-models": { "kind": "platform_documentation", "agents": ["cursor"], "topics": ["model-selection"] },
+    "cursor-skills": { "kind": "platform_documentation", "agents": ["cursor"], "topics": ["skills-and-plugins"] },
+    "cursor-plugins-reference": { "kind": "platform_documentation", "agents": ["cursor"], "topics": ["skills-and-plugins"] }
+  }
+}

@@ -1,0 +1,19 @@
+// PromptingCraft.com guidance MCP server. Separate from the static website Worker.
+{
+  "name": "promptingcraft-mcp",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": false,
+  "preview_urls": true,
+  "routes": [{ "pattern": "mcp.promptingcraft.com", "custom_domain": true }],
+  // No Workers Logs, Logpush or tail consumers: request content is never logged.
+  "observability": { "enabled": false },
+  "ratelimits": [
+    // Per client address, per Cloudflare location: MCP requests.
+    { "name": "REQUEST_LIMITER", "namespace_id": "4101", "simple": { "limit": 60, "period": 60 } },
+    // Per source id, per location: outbound fetches of official documentation pages.
+    { "name": "FETCH_LIMITER", "namespace_id": "4102", "simple": { "limit": 6, "period": 60 } }
+  ]
+  // vars set at deploy: LEDGER_COMMIT (commit of the ledger files on main).
+  // OPENAI_APPS_CHALLENGE: domain-verification token from the OpenAI portal (wrangler secret).
+}

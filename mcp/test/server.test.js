@@ -1,0 +1,110 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import worker from '../src/index.js';
+import { handleMcp } from '../src/http.js';
+import { COMMIT, callTool, htmlPage, rpc } from './helpers.js';
+
+const INIT = { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'test', version: '1' } };
+
+test('initialize and tools/list expose three read-only tools with schemas and annotations', async () => {
+  const init = await rpc('initialize', INIT);
+  assert.equal(init.status, 200);
+  assert.equal(init.body.result.serverInfo.name, 'promptingcraft-guidance');
+  assert.match(init.body.result.instructions, /not provider recommendations/);
+  assert.equal(init.headers.get('mcp-session-id'), null);
+  const { body } = await rpc('tools/list', {});
+  const tools = Object.fromEntries(body.result.tools.map((t) => [t.name, t]));
+  assert.deepEqual(Object.keys(tools).sort(), ['check_source_freshness', 'get_guidance', 'search_guidance']);
+  for (const tool of Object.values(tools)) {
+    assert.equal(tool.annotations.readOnlyHint, true);
+    assert.equal(tool.annotations.destructiveHint, false);
+    assert.equal(typeof tool.annotations.openWorldHint, 'boolean');
+    assert.equal(tool.inputSchema.additionalProperties, false);
+    assert.equal(tool.outputSchema.type, 'object');
+    for (const [name, prop] of Object.entries(tool.inputSchema.properties)) {
+      if (prop.type === 'string') assert.ok(prop.enum || prop.pattern, `${tool.name}.${name} must be constrained`);
+    }
+  }
+  assert.equal(tools.search_guidance.annotations.openWorldHint, false);
+  assert.equal(tools.get_guidance.annotations.openWorldHint, false);
+  assert.equal(tools.check_source_freshness.annotations.openWorldHint, true);
+});
+
+test('tool calls return structured content matching the text content', async () => {
+  const search = await callTool('search_guidance', { target_agent: 'claude-code', topic: 'context-and-structure' });
+  assert.ok(!search.result.isError);
+  assert.deepEqual(JSON.parse(search.result.content[0].text), search.result.structuredContent);
+  assert.equal(search.result.structuredContent.provenance.ledger_commit, COMMIT);
+  const get = await callTool('get_guidance', { id: 'claude-sonnet-scope' });
+  const record = get.result.structuredContent.record;
+  assert.equal(record.provider, 'anthropic');
+  assert.ok(record.labels.includes('MODEL_SPECIFIC'));
+  assert.match(record.source.verified_snapshot.content_sha256, /^[0-9a-f]{64}$/);
+  assert.match(get.result.structuredContent.provenance.ledger_url, new RegExp(`/-/blob/${COMMIT}/`));
+});
+
+test('invalid, unknown and free-text inputs are rejected predictably', async () => {
+  const unknown = await callTool('get_guidance', { id: 'no-such-record' });
+  assert.equal(unknown.result.isError, true);
+  assert.equal(JSON.parse(unknown.result.content[0].text).error, 'unknown_id');
+  for (const [name, args] of [
+    ['get_guidance', { id: '../etc/passwd' }],
+    ['get_guidance', { id: 'oai-tools', prompt: 'my private task text' }],
+    ['search_guidance', { query: 'free text search' }],
+    ['search_guidance', { target_agent: 'gemini-cli' }],
+    ['search_guidance', { limit: 500 }],
+    ['check_source_freshness', { source_id: 'https://evil.example/x' }],
+    ['check_source_freshness', { url: 'https://developers.openai.com/api/x' }],
+  ]) {
+    const response = await callTool(name, args);
+    assert.ok(response.result?.isError || response.error, `${name} ${JSON.stringify(args)}`);
+  }
+});
+
+test('freshness tool reports status without dates and never exposes request data', async () => {
+  const fetchImpl = async () => htmlPage(`<main>${'New official text for coding agents with many words in it. '.repeat(3)}</main>`);
+  const response = await callTool('check_source_freshness', { source_id: 'cursor-prompting' }, { deps: { fetchImpl } });
+  const result = response.result.structuredContent;
+  assert.equal(result.status, 'updated');
+  assert.equal(result.publication_date, null);
+  assert.equal(result.update_date, null);
+  assert.ok(!JSON.stringify(result).includes('cf-connecting-ip'));
+});
+
+test('HTTP surface: POST only, bounded bodies, parse errors, rate limits, CORS and challenge', async () => {
+  const env = { LEDGER_COMMIT: COMMIT };
+  const get = await handleMcp(new Request('https://x/mcp'), env);
+  assert.equal(get.status, 405);
+  const big = await handleMcp(new Request('https://x/mcp', { method: 'POST', body: 'x'.repeat(70_000) }), env);
+  assert.equal(big.status, 413);
+  const bad = await handleMcp(new Request('https://x/mcp', { method: 'POST', body: '{not json' }), env);
+  assert.equal(bad.status, 400);
+  assert.equal((await bad.json()).error.code, -32700);
+  const limited = await rpc('tools/list', {}, { env: { REQUEST_LIMITER: { limit: async () => ({ success: false }) } } });
+  assert.equal(limited.status, 429);
+  assert.equal(limited.headers.get('retry-after'), '60');
+  const preflight = await handleMcp(new Request('https://x/mcp', { method: 'OPTIONS' }), env);
+  assert.equal(preflight.status, 204);
+  assert.match(preflight.headers.get('access-control-allow-headers'), /Mcp-Protocol-Version/);
+  assert.equal((await worker.fetch(new Request('https://x/.well-known/openai-apps-challenge'), {})).status, 404);
+  const challenge = await worker.fetch(new Request('https://x/.well-known/openai-apps-challenge'), { OPENAI_APPS_CHALLENGE: ' tok_123 ' });
+  assert.equal(await challenge.text(), 'tok_123');
+  assert.match(challenge.headers.get('content-type'), /^text\/plain/);
+  assert.equal((await worker.fetch(new Request('https://x/anything'), {})).status, 404);
+  assert.match(await (await worker.fetch(new Request('https://x/'), {})).text(), /dondego\.com team/);
+});
+
+test('handling a request writes nothing to the console', async () => {
+  const methods = ['log', 'info', 'warn', 'error', 'debug'];
+  const original = Object.fromEntries(methods.map((m) => [m, console[m]]));
+  const calls = [];
+  for (const m of methods) console[m] = (...args) => calls.push([m, args]);
+  try {
+    await callTool('search_guidance', { target_agent: 'codex' });
+    await callTool('get_guidance', { id: 'unknown-id' });
+    await callTool('search_guidance', { query: 'secret task text' });
+  } finally {
+    Object.assign(console, original);
+  }
+  assert.deepEqual(calls, []);
+});

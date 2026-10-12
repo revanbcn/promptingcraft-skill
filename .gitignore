@@ -5,3 +5,5 @@ dist/
 reports/
 .cache/
 .superpowers/
+/mcp/node_modules/
+/mcp/.wrangler/

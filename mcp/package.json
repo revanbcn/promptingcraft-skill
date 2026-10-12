@@ -1,0 +1,22 @@
+{
+  "name": "promptingcraft-mcp",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "PromptingCraft.com guidance MCP server: read-only access to the curated official-guidance ledger. Developed by the dondego.com team.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "parity": "node scripts/parity.mjs",
+    "dev": "npx -y wrangler@4.149.0 dev --var LEDGER_COMMIT:local"
+  },
+  "dependencies": {
+    "@cfworker/json-schema": "4.1.1",
+    "@modelcontextprotocol/sdk": "1.31.0",
+    "entities": "8.1.0",
+    "zod": "4.6.5"
+  }
+}
