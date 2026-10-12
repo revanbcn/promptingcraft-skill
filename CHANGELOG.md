@@ -11,6 +11,8 @@
 - `.cursor-plugin/marketplace.json` for the single root plugin; `docs/cursor-submission.md`.
 - Published A/B evidence: grader verdicts and prompt, run log and runner
   (`scripts/evaluate_ab.py`); trigger eval host failures corrected to 5 of 65 attempts.
+- Worked examples: each lists its contract; new Cursor investigation, prompt review,
+  no-change and official-guidance examples (authored illustrations, not eval results).
 - Package stays 0.2.0 (unreleased); no tag or release created.
 
 ## Unreleased — Agent Skills standard audit
