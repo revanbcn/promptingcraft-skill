@@ -133,7 +133,7 @@ Checked by reading `SKILL.md`, all references and the optional script:
 | --- | --- |
 | Package compatibility | Offline validators and archive rules pass |
 | Codex installation | Local check on the owner's machine: `promptcraft@dondego-local` 0.2.0 `installed=true`, `enabled=true`; `diff -r` of the installed skill against `skills/promptcraft` showed no differences |
-| Codex activation and behavior | Native `codex exec` runs of the reviewer and trigger cases: results recorded in `evals/results/` when committed; until then, not claimed |
+| Codex activation and behavior | Native `codex exec` runs: trigger eval 30/30 positive and 0/30 negative runs (`evals/results/trigger-1/`); reviewer cases with outputs (`evals/results/review-native/`); details in `docs/agent-skills-audit.md` |
 | ChatGPT installation | Not verified (no authenticated ChatGPT access in this session) |
 | ChatGPT activation | Not verified. A Codex run is not ChatGPT evidence |
 

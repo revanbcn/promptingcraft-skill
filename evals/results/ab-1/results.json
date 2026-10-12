@@ -1,0 +1,202 @@
+[
+  {
+    "case": "ab-csv-delegate",
+    "cond": "with",
+    "run": 1,
+    "label": "X13",
+    "overall": "FAIL",
+    "defects": 1,
+    "adjusted_overall": "FAIL",
+    "adjusted_defects": 1
+  },
+  {
+    "case": "ab-csv-delegate",
+    "cond": "with",
+    "run": 2,
+    "label": "X20",
+    "overall": "FAIL",
+    "defects": 2,
+    "adjusted_overall": "FAIL",
+    "adjusted_defects": 2
+  },
+  {
+    "case": "ab-csv-delegate",
+    "cond": "without",
+    "run": 1,
+    "label": "X12",
+    "overall": "PASS",
+    "defects": 0,
+    "adjusted_overall": "PASS",
+    "adjusted_defects": 0
+  },
+  {
+    "case": "ab-csv-delegate",
+    "cond": "without",
+    "run": 2,
+    "label": "X10",
+    "overall": "FAIL",
+    "defects": 2,
+    "adjusted_overall": "FAIL",
+    "adjusted_defects": 2
+  },
+  {
+    "case": "ab-no-change",
+    "cond": "with",
+    "run": 1,
+    "label": "X04",
+    "overall": "PASS",
+    "defects": 0,
+    "adjusted_overall": "PASS",
+    "adjusted_defects": 0
+  },
+  {
+    "case": "ab-no-change",
+    "cond": "with",
+    "run": 2,
+    "label": "X05",
+    "overall": "PASS",
+    "defects": 0,
+    "adjusted_overall": "PASS",
+    "adjusted_defects": 0
+  },
+  {
+    "case": "ab-no-change",
+    "cond": "without",
+    "run": 1,
+    "label": "X08",
+    "overall": "PASS",
+    "defects": 0,
+    "adjusted_overall": "PASS",
+    "adjusted_defects": 0
+  },
+  {
+    "case": "ab-no-change",
+    "cond": "without",
+    "run": 2,
+    "label": "X03",
+    "overall": "PASS",
+    "defects": 0,
+    "adjusted_overall": "PASS",
+    "adjusted_defects": 0
+  },
+  {
+    "case": "ab-py39",
+    "cond": "with",
+    "run": 1,
+    "label": "X07",
+    "overall": "PASS",
+    "defects": 0,
+    "adjusted_overall": "PASS",
+    "adjusted_defects": 0
+  },
+  {
+    "case": "ab-py39",
+    "cond": "with",
+    "run": 2,
+    "label": "X16",
+    "overall": "PASS",
+    "defects": 0,
+    "adjusted_overall": "PASS",
+    "adjusted_defects": 0
+  },
+  {
+    "case": "ab-py39",
+    "cond": "without",
+    "run": 1,
+    "label": "X17",
+    "overall": "FAIL",
+    "defects": 2,
+    "adjusted_overall": "FAIL",
+    "adjusted_defects": 2
+  },
+  {
+    "case": "ab-py39",
+    "cond": "without",
+    "run": 2,
+    "label": "X14",
+    "overall": "FAIL",
+    "defects": 2,
+    "adjusted_overall": "FAIL",
+    "adjusted_defects": 2
+  },
+  {
+    "case": "ab-review-scope",
+    "cond": "with",
+    "run": 1,
+    "label": "X19",
+    "overall": "FAIL",
+    "defects": 1,
+    "adjusted_overall": "PASS",
+    "adjusted_defects": 0
+  },
+  {
+    "case": "ab-review-scope",
+    "cond": "with",
+    "run": 2,
+    "label": "X18",
+    "overall": "FAIL",
+    "defects": 1,
+    "adjusted_overall": "PASS",
+    "adjusted_defects": 0
+  },
+  {
+    "case": "ab-review-scope",
+    "cond": "without",
+    "run": 1,
+    "label": "X01",
+    "overall": "FAIL",
+    "defects": 4,
+    "adjusted_overall": "FAIL",
+    "adjusted_defects": 3
+  },
+  {
+    "case": "ab-review-scope",
+    "cond": "without",
+    "run": 2,
+    "label": "X09",
+    "overall": "FAIL",
+    "defects": 3,
+    "adjusted_overall": "FAIL",
+    "adjusted_defects": 2
+  },
+  {
+    "case": "ab-unresolved",
+    "cond": "with",
+    "run": 1,
+    "label": "X15",
+    "overall": "PASS",
+    "defects": 0,
+    "adjusted_overall": "PASS",
+    "adjusted_defects": 0
+  },
+  {
+    "case": "ab-unresolved",
+    "cond": "with",
+    "run": 2,
+    "label": "X06",
+    "overall": "PASS",
+    "defects": 0,
+    "adjusted_overall": "PASS",
+    "adjusted_defects": 0
+  },
+  {
+    "case": "ab-unresolved",
+    "cond": "without",
+    "run": 1,
+    "label": "X11",
+    "overall": "FAIL",
+    "defects": 2,
+    "adjusted_overall": "FAIL",
+    "adjusted_defects": 2
+  },
+  {
+    "case": "ab-unresolved",
+    "cond": "without",
+    "run": 2,
+    "label": "X02",
+    "overall": "FAIL",
+    "defects": 3,
+    "adjusted_overall": "FAIL",
+    "adjusted_defects": 3
+  }
+]

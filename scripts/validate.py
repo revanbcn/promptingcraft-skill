@@ -61,7 +61,8 @@ def validate_skill(skill):
 def validate_knowledge(knowledge,registry):
     if knowledge.get('schema_version')!=1 or not knowledge.get('recommendations'):
         raise ValueError('Invalid curated knowledge')
-    sources={row['canonical_url']:row['provider'] for row in registry['sources']}
+    standards={name for name,policy in registry['policies'].items() if policy.get('classification')=='standard'}
+    sources={row['canonical_url']:row['provider'] for row in registry['sources'] if row['provider'] not in standards}
     identifiers=set()
     labels={'OFFICIAL','GENERAL','MODEL_SPECIFIC','INFERRED','EXPERIMENTAL'}
     fields=('id','provider','source_title','url','retrieval_date','applicable_model_family',

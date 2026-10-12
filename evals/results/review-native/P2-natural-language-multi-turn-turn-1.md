@@ -1,0 +1,1 @@
+Understood: fix comma-containing names, preserve columns and order exactly `id,name,status`, reuse the existing export action, and add no dependencies. Implementation is approved; deployment is not.

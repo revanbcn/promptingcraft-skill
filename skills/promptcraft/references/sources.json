@@ -27,6 +27,17 @@
         "/learn/",
         "/llms.txt"
       ]
+    },
+    "agentskills": {
+      "classification": "standard",
+      "hosts": [
+        "agentskills.io"
+      ],
+      "path_prefixes": [
+        "/specification",
+        "/skill-creation/",
+        "/llms.txt"
+      ]
     }
   },
   "sources": [
@@ -357,6 +368,55 @@
       "refresh_policy": {
         "max_age_days": 7,
         "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "agentskills-index",
+      "provider": "agentskills",
+      "canonical_url": "https://agentskills.io/llms.txt",
+      "role": "index",
+      "applicability": "Agent Skills format and authoring standard (SKILL.md, packaging, activation testing). Official standards source, not model-specific prompting guidance; never a user requirement for an executor prompt.",
+      "refresh_policy": {
+        "max_age_days": 30,
+        "during_use": "consult only for authoring or packaging Agent Skills; never as executor prompting guidance",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      },
+      "candidate_pattern": "specification|skill-creation"
+    },
+    {
+      "id": "agentskills-specification",
+      "provider": "agentskills",
+      "canonical_url": "https://agentskills.io/specification",
+      "role": "standard",
+      "applicability": "Agent Skills format and authoring standard (SKILL.md, packaging, activation testing). Official standards source, not model-specific prompting guidance; never a user requirement for an executor prompt.",
+      "refresh_policy": {
+        "max_age_days": 30,
+        "during_use": "consult only for authoring or packaging Agent Skills; never as executor prompting guidance",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "agentskills-optimizing-descriptions",
+      "provider": "agentskills",
+      "canonical_url": "https://agentskills.io/skill-creation/optimizing-descriptions",
+      "role": "standard",
+      "applicability": "Agent Skills format and authoring standard (SKILL.md, packaging, activation testing). Official standards source, not model-specific prompting guidance; never a user requirement for an executor prompt.",
+      "refresh_policy": {
+        "max_age_days": 30,
+        "during_use": "consult only for authoring or packaging Agent Skills; never as executor prompting guidance",
+        "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "agentskills-evaluating-skills",
+      "provider": "agentskills",
+      "canonical_url": "https://agentskills.io/skill-creation/evaluating-skills",
+      "role": "standard",
+      "applicability": "Agent Skills format and authoring standard (SKILL.md, packaging, activation testing). Official standards source, not model-specific prompting guidance; never a user requirement for an executor prompt.",
+      "refresh_policy": {
+        "max_age_days": 30,
+        "during_use": "consult only for authoring or packaging Agent Skills; never as executor prompting guidance",
         "maintenance": "read-only check; no automatic behavioral edits"
       }
     }

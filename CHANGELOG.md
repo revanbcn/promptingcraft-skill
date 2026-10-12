@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased — Agent Skills standard audit
+
+- `skills-ref validate` passes for the source skill and both ZIPs; specification,
+  progressive disclosure and resource references comply (`docs/agent-skills-audit.md`).
+- Activation eval per agentskills.io: 20 queries, fixed train/validation split, 3 runs
+  each, counted only from actual `SKILL.md` loads (`scripts/evaluate_triggers.py`,
+  `evals/trigger/queries.json`, `evals/results/trigger-1/`). Description unchanged.
+- Native reviewer-case outputs and a blinded with/without comparison
+  (`evals/results/review-native/`, `evals/results/ab-1/`).
+- agentskills.io added as a separately classified official standards source
+  (`classification: standard`, role `standard`), never prompting guidance.
+- No `SKILL.md` instruction change; daily freshness schedule stays inactive.
+
 ## Unreleased — 0.2.0 candidate: OpenAI Plugins Directory readiness
 
 - Listing metadata for a Skills-only submission: category Developer Tools, short

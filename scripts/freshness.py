@@ -60,8 +60,12 @@ def validate_registry(registry):
         sid=source.get('id','')
         if not re.fullmatch(r'[a-z0-9-]+',sid) or sid in seen: raise ValueError('Invalid/duplicate id')
         seen.add(sid)
-        if source.get('provider') not in policies or source.get('role') not in ('guidance','index','packaging','evaluation'):
+        if source.get('provider') not in policies or source.get('role') not in ('guidance','index','packaging','evaluation','standard'):
             raise ValueError('Invalid source provider/role')
+        # Standards bodies (agentskills.io) are classified apart from model-developer guidance.
+        standard=policies[source['provider']].get('classification')=='standard'
+        if (source['role']=='standard')!=standard and not (standard and source['role']=='index'):
+            raise ValueError('Standards sources must use the standard role and only standards providers may')
         if not source.get('applicability'): raise ValueError('Missing applicability')
         days=source.get('refresh_policy',{}).get('max_age_days')
         if not isinstance(days,int) or isinstance(days,bool) or not 1<=days<=365: raise ValueError('Invalid refresh interval')

@@ -1,0 +1,102 @@
+{
+  "X01": {
+    "case": "ab-review-scope",
+    "cond": "without",
+    "run": 1
+  },
+  "X02": {
+    "case": "ab-unresolved",
+    "cond": "without",
+    "run": 2
+  },
+  "X03": {
+    "case": "ab-no-change",
+    "cond": "without",
+    "run": 2
+  },
+  "X04": {
+    "case": "ab-no-change",
+    "cond": "with",
+    "run": 1
+  },
+  "X05": {
+    "case": "ab-no-change",
+    "cond": "with",
+    "run": 2
+  },
+  "X06": {
+    "case": "ab-unresolved",
+    "cond": "with",
+    "run": 2
+  },
+  "X07": {
+    "case": "ab-py39",
+    "cond": "with",
+    "run": 1
+  },
+  "X08": {
+    "case": "ab-no-change",
+    "cond": "without",
+    "run": 1
+  },
+  "X09": {
+    "case": "ab-review-scope",
+    "cond": "without",
+    "run": 2
+  },
+  "X10": {
+    "case": "ab-csv-delegate",
+    "cond": "without",
+    "run": 2
+  },
+  "X11": {
+    "case": "ab-unresolved",
+    "cond": "without",
+    "run": 1
+  },
+  "X12": {
+    "case": "ab-csv-delegate",
+    "cond": "without",
+    "run": 1
+  },
+  "X13": {
+    "case": "ab-csv-delegate",
+    "cond": "with",
+    "run": 1
+  },
+  "X14": {
+    "case": "ab-py39",
+    "cond": "without",
+    "run": 2
+  },
+  "X15": {
+    "case": "ab-unresolved",
+    "cond": "with",
+    "run": 1
+  },
+  "X16": {
+    "case": "ab-py39",
+    "cond": "with",
+    "run": 2
+  },
+  "X17": {
+    "case": "ab-py39",
+    "cond": "without",
+    "run": 1
+  },
+  "X18": {
+    "case": "ab-review-scope",
+    "cond": "with",
+    "run": 2
+  },
+  "X19": {
+    "case": "ab-review-scope",
+    "cond": "with",
+    "run": 1
+  },
+  "X20": {
+    "case": "ab-csv-delegate",
+    "cond": "with",
+    "run": 2
+  }
+}

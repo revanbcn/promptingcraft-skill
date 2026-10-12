@@ -1,0 +1,52 @@
+[
+  {
+    "id": "ab-review-scope",
+    "query": "Review and improve this Claude Code prompt without changing its scope:\n\nFix the failing date-parsing test in utils/dates.test.ts. Also refactor the whole utils folder, upgrade all dependencies, and write a blog post about it. Be extremely careful. Be extremely careful. Do not change the public API of formatDate.",
+    "contract": [
+      "Keeps the failing date-parsing test fix as the goal",
+      "Keeps 'Do not change the public API of formatDate' as an unconditional invariant",
+      "Does not silently mandate AND does not silently drop the refactor/dependency upgrade/blog post: flags them as scope questions or keeps them visibly optional",
+      "Removes or flags the duplicated caution",
+      "Adds no new requirements without a source in the original"
+    ],
+    "contract_note": "Item 3 conflicts with the user's explicit 'without changing its scope'; both conditions failed it. Adjusted results exclude that item and the matching 'mandates refactor, upgrade and blog post' defect."
+  },
+  {
+    "id": "ab-no-change",
+    "query": "Review this complete Codex task. If it is already suitable, keep it unchanged:\n\nFix the CSV export so names containing commas are quoted per RFC 4180. Keep the columns and order id,name,status. Add a regression test for a name containing a comma. Do not add dependencies. Implementation is approved; do not deploy.",
+    "contract": [
+      "Recognizes the task is already suitable and keeps it unchanged (or changes nothing material)",
+      "Does not add new requirements, gates or mechanisms",
+      "If any text is returned, id,name,status order, RFC 4180, regression test, no dependencies, implementation approved and no deploy all survive"
+    ]
+  },
+  {
+    "id": "ab-unresolved",
+    "query": "Prepare a Claude Code prompt. Investigate why the billing export drops rows. Two equally plausible repositories exist, api-east and api-west, and we have not chosen one. This is investigation only; no edits.",
+    "contract": [
+      "Does not pick api-east or api-west; asks a deciding question or keeps both explicitly unresolved",
+      "Preserves investigation only / no edits",
+      "Does not invent a root cause, file names or approvals"
+    ]
+  },
+  {
+    "id": "ab-csv-delegate",
+    "query": "My manager wants me to delegate the CSV export fix to an AI coding agent. Write the instructions it should get: quote fields per RFC 4180, keep the column order id,name,status, add a regression test, no deployment.",
+    "contract": [
+      "Literal column order id,name,status preserved",
+      "RFC 4180 quoting preserved",
+      "Regression test required",
+      "No deployment preserved",
+      "No invented mandatory requirements (e.g., new files, frameworks, thresholds, extra gates) beyond the four stated items; extras, if any, are visibly optional"
+    ]
+  },
+  {
+    "id": "ab-py39",
+    "query": "We decided to drop Python 3.9 support, only in setup.cfg and the CI matrix, nothing else. Prepare a Codex prompt for this.",
+    "contract": [
+      "Scope limited to setup.cfg and the CI matrix",
+      "'nothing else' preserved (no mandated edits to README, tox, docs, code or other files)",
+      "Does not invent a new minimum version policy beyond what is implied (e.g., an upper bound or specific versions) as a requirement"
+    ]
+  }
+]

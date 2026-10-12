@@ -1,0 +1,25 @@
+{
+  "method": "agentskills.io description optimization: realistic should/should-not-trigger queries, fixed train/validation split (about 60/40, proportional), 3 runs per query, pass threshold 0.5. A run counts as triggered only when the host actually reads the installed SKILL.md.",
+  "queries": [
+    {"id": "t-pos-1", "split": "train", "should_trigger": true, "query": "ok so we settled on: keep the /v1/orders response shape, add cursor pagination with the existing helper, page size 50, no new deps. write this up as a task for codex"},
+    {"id": "t-pos-2", "split": "train", "should_trigger": true, "query": "We figured out the flaky login test is a race between the session cookie and the redirect; the fix should await the cookie write and must not change the public auth API. Can you turn that into instructions I can paste into Claude Code?"},
+    {"id": "t-pos-3", "split": "train", "should_trigger": true, "query": "here's my claude code prompt, it feels bloated, can you tighten it without changing what it asks for?\n\nFix the null check in parseUser in src/users.ts. Be careful. Be very careful. Make sure to be careful. Don't change the exported types."},
+    {"id": "t-pos-4", "split": "train", "should_trigger": true, "query": "I need a handoff for a coding agent: move the nightly cleanup from node-cron to our existing queue worker, staging only, do not touch production config, keep the same schedule."},
+    {"id": "t-pos-5", "split": "train", "should_trigger": true, "query": "draft a codex task from this bug report: Safari users get a blank settings page since release 2.3, we suspect the optional chaining in settings.js, and the fix needs a test that runs on Safari 15"},
+    {"id": "t-pos-6", "split": "train", "should_trigger": true, "query": "Is this good enough to hand to Codex or should I change it?\n\nAdd a --dry-run flag to scripts/cleanup.sh that prints the files it would delete instead of deleting them. Keep all existing flags working."},
+    {"id": "t-pos-7", "split": "validation", "should_trigger": true, "query": "pls make an execution-ready prompt for claude code: rename getUserById to findUserById across the api package and keep the old name as a deprecated alias for one release"},
+    {"id": "t-pos-8", "split": "validation", "should_trigger": true, "query": "My manager wants me to delegate the CSV export fix to an AI coding agent. Write the instructions it should get: quote fields per RFC 4180, keep the column order id,name,status, add a regression test, no deployment."},
+    {"id": "t-pos-9", "split": "validation", "should_trigger": true, "query": "review this agent prompt for scope creep before I send it to codex: 'Fix the typo in README.md and also redesign the landing page and switch the site to Tailwind.'"},
+    {"id": "t-pos-10", "split": "validation", "should_trigger": true, "query": "We decided to drop Python 3.9 support, only in setup.cfg and the CI matrix, nothing else. Prepare a Codex prompt for this."},
+    {"id": "t-neg-1", "split": "train", "should_trigger": false, "query": "What's the practical difference between Codex and Claude Code for a small team?"},
+    {"id": "t-neg-2", "split": "train", "should_trigger": false, "query": "Write a Python function that quotes CSV fields correctly per RFC 4180."},
+    {"id": "t-neg-3", "split": "train", "should_trigger": false, "query": "Explain what prompt injection is and how coding agents should defend against it, in one short paragraph."},
+    {"id": "t-neg-4", "split": "train", "should_trigger": false, "query": "my React useEffect runs twice in dev mode, why? useEffect(() => { fetchData() }, [])"},
+    {"id": "t-neg-5", "split": "train", "should_trigger": false, "query": "Write a system prompt for a customer-support chatbot for a small bakery."},
+    {"id": "t-neg-6", "split": "train", "should_trigger": false, "query": "Summarize in three bullets the trade-offs between cursor and offset pagination."},
+    {"id": "t-neg-7", "split": "validation", "should_trigger": false, "query": "Translate this commit message into Spanish: 'fix: quote names containing commas in CSV export'"},
+    {"id": "t-neg-8", "split": "validation", "should_trigger": false, "query": "How do I install a local plugin in the Codex CLI?"},
+    {"id": "t-neg-9", "split": "validation", "should_trigger": false, "query": "Give me an image-generation prompt for a cyberpunk city at night in the rain."},
+    {"id": "t-neg-10", "split": "validation", "should_trigger": false, "query": "Write unit tests for this function: def add(a, b): return a + b"}
+  ]
+}

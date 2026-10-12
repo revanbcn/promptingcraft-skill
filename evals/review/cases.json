@@ -14,7 +14,7 @@
         "[Select PromptingCraft.com] Prepare a Codex prompt: our Node.js worker returns HTTP 200 when the request body is malformed JSON. Return HTTP 400 for malformed JSON, keep existing responses for valid payloads, add no new dependencies. Implementation is approved; deployment is not."
       ],
       "expected_behavior": "The skill activates, extracts the task contract, writes a draft, critiques it once and finalizes. It does not execute the task or claim to have run code.",
-      "expected_output": "One copyable code block containing the complete Codex prompt with: the 400-for-malformed-JSON goal, unchanged valid-payload behavior, no new dependencies, implementation allowed and deployment not authorized, plus a direct verification. Brief notes outside the block state source freshness (live-verified with date, dated cached, or unavailable)."
+      "expected_output": "Primary: one copyable code block containing the complete Codex prompt with the 400-for-malformed-JSON goal, unchanged valid-payload behavior, no new dependencies, implementation allowed and deployment not authorized. Acceptable alternative: the no-change sentence with the task body echoed exactly, because the request already states goal, constraints, authority and a checkable outcome. Freshness is labeled outside the block. (Revised 2026-10-12 after the first native run chose no-change, which SKILL.md section 3 permits.)"
     },
     {
       "id": "P2-natural-language-multi-turn",
@@ -43,8 +43,8 @@
       "turns": [
         "Review and improve this Claude Code prompt without changing its scope:\n\nFix the failing date-parsing test in utils/dates.test.ts. Also refactor the whole utils folder, upgrade all dependencies, and write a blog post about it. Be extremely careful. Be extremely careful. Do not change the public API of formatDate."
       ],
-      "expected_behavior": "The skill identifies the refactor, dependency upgrade and blog post as scope expansions relative to the stated fix and the duplicated caution as unnecessary. It asks one focused question or keeps the extra items visibly optional instead of silently dropping or mandating them.",
-      "expected_output": "Primary: findings outside the block, then one copyable revised prompt that keeps the failing-test fix and the formatDate public-API invariant verbatim, removes the duplicated instruction, and does not mandate the refactor, dependency upgrade or blog post. Acceptable alternative: one focused question asking whether those extra items are really in scope. Either way, no new requirements are added."
+      "expected_behavior": "The user asks not to change the scope, so the refactor, dependency upgrade and blog post stay in scope and are not dropped. The skill removes the duplicated caution, keeps the formatDate invariant unconditional and adds no new requirements. Flagging the breadth of the extra tasks as a question is acceptable; silently removing them is not. (Revised 2026-10-12: the first version treated the extra tasks as scope creep, contradicting the user's explicit 'without changing its scope'.)",
+      "expected_output": "One copyable revised prompt that keeps all four requested tasks, the formatDate public-API invariant verbatim and no duplicated caution, with no new mandatory gates or mechanisms; brief findings outside the block."
     },
     {
       "id": "P4-no-change",

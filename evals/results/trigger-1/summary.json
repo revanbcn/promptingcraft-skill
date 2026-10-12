@@ -1,0 +1,202 @@
+[
+  {
+    "id": "t-pos-1",
+    "split": "train",
+    "should_trigger": true,
+    "triggers": 3,
+    "valid_runs": 3,
+    "trigger_rate": 1.0,
+    "pass": true,
+    "host_failed_runs": 2
+  },
+  {
+    "id": "t-pos-2",
+    "split": "train",
+    "should_trigger": true,
+    "triggers": 3,
+    "valid_runs": 3,
+    "trigger_rate": 1.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-pos-3",
+    "split": "train",
+    "should_trigger": true,
+    "triggers": 3,
+    "valid_runs": 3,
+    "trigger_rate": 1.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-pos-4",
+    "split": "train",
+    "should_trigger": true,
+    "triggers": 3,
+    "valid_runs": 3,
+    "trigger_rate": 1.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-pos-5",
+    "split": "train",
+    "should_trigger": true,
+    "triggers": 3,
+    "valid_runs": 3,
+    "trigger_rate": 1.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-pos-6",
+    "split": "train",
+    "should_trigger": true,
+    "triggers": 3,
+    "valid_runs": 3,
+    "trigger_rate": 1.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-pos-7",
+    "split": "validation",
+    "should_trigger": true,
+    "triggers": 3,
+    "valid_runs": 3,
+    "trigger_rate": 1.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-pos-8",
+    "split": "validation",
+    "should_trigger": true,
+    "triggers": 3,
+    "valid_runs": 3,
+    "trigger_rate": 1.0,
+    "pass": true,
+    "host_failed_runs": 1
+  },
+  {
+    "id": "t-pos-9",
+    "split": "validation",
+    "should_trigger": true,
+    "triggers": 3,
+    "valid_runs": 3,
+    "trigger_rate": 1.0,
+    "pass": true,
+    "host_failed_runs": 1
+  },
+  {
+    "id": "t-pos-10",
+    "split": "validation",
+    "should_trigger": true,
+    "triggers": 3,
+    "valid_runs": 3,
+    "trigger_rate": 1.0,
+    "pass": true,
+    "host_failed_runs": 1
+  },
+  {
+    "id": "t-neg-1",
+    "split": "train",
+    "should_trigger": false,
+    "triggers": 0,
+    "valid_runs": 3,
+    "trigger_rate": 0.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-neg-2",
+    "split": "train",
+    "should_trigger": false,
+    "triggers": 0,
+    "valid_runs": 3,
+    "trigger_rate": 0.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-neg-3",
+    "split": "train",
+    "should_trigger": false,
+    "triggers": 0,
+    "valid_runs": 3,
+    "trigger_rate": 0.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-neg-4",
+    "split": "train",
+    "should_trigger": false,
+    "triggers": 0,
+    "valid_runs": 3,
+    "trigger_rate": 0.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-neg-5",
+    "split": "train",
+    "should_trigger": false,
+    "triggers": 0,
+    "valid_runs": 3,
+    "trigger_rate": 0.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-neg-6",
+    "split": "train",
+    "should_trigger": false,
+    "triggers": 0,
+    "valid_runs": 3,
+    "trigger_rate": 0.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-neg-7",
+    "split": "validation",
+    "should_trigger": false,
+    "triggers": 0,
+    "valid_runs": 3,
+    "trigger_rate": 0.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-neg-8",
+    "split": "validation",
+    "should_trigger": false,
+    "triggers": 0,
+    "valid_runs": 3,
+    "trigger_rate": 0.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-neg-9",
+    "split": "validation",
+    "should_trigger": false,
+    "triggers": 0,
+    "valid_runs": 3,
+    "trigger_rate": 0.0,
+    "pass": true,
+    "host_failed_runs": 0
+  },
+  {
+    "id": "t-neg-10",
+    "split": "validation",
+    "should_trigger": false,
+    "triggers": 0,
+    "valid_runs": 3,
+    "trigger_rate": 0.0,
+    "pass": true,
+    "host_failed_runs": 0
+  }
+]

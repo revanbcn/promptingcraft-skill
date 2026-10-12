@@ -1,0 +1,80 @@
+[
+  {
+    "id": "P1-explicit-codex-task",
+    "turn": 1,
+    "exit": 0,
+    "skill_loaded": true,
+    "seconds": 100
+  },
+  {
+    "id": "P2-natural-language-multi-turn",
+    "turn": 1,
+    "exit": 0,
+    "skill_loaded": false,
+    "seconds": 34
+  },
+  {
+    "id": "P2-natural-language-multi-turn",
+    "turn": 2,
+    "exit": 0,
+    "skill_loaded": true,
+    "seconds": 94
+  },
+  {
+    "id": "P3-review-claude-code-prompt",
+    "turn": 1,
+    "exit": 0,
+    "skill_loaded": true,
+    "seconds": 114
+  },
+  {
+    "id": "P4-no-change",
+    "turn": 1,
+    "exit": 0,
+    "skill_loaded": true,
+    "seconds": 67
+  },
+  {
+    "id": "P5-unresolved-decision",
+    "turn": 1,
+    "exit": 0,
+    "skill_loaded": true,
+    "seconds": 205
+  },
+  {
+    "id": "P6-official-guidance-preserve-intent",
+    "turn": 1,
+    "exit": 0,
+    "skill_loaded": true,
+    "seconds": 900,
+    "note": "first attempt timed out at 900 s; re-run completed in 82 s with the skill loaded"
+  },
+  {
+    "id": "N1-unrelated-question",
+    "turn": 1,
+    "exit": 0,
+    "skill_loaded": false,
+    "seconds": 11
+  },
+  {
+    "id": "N2-software-mention-not-prompt-request",
+    "turn": 1,
+    "exit": 0,
+    "skill_loaded": false,
+    "seconds": 29
+  },
+  {
+    "id": "N3-unauthorized-implementation",
+    "turn": 1,
+    "exit": 0,
+    "skill_loaded": true,
+    "seconds": 131
+  },
+  {
+    "id": "N4-general-writing-request",
+    "turn": 1,
+    "exit": 0,
+    "skill_loaded": false,
+    "seconds": 12
+  }
+]
