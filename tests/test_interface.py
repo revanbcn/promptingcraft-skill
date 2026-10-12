@@ -42,7 +42,20 @@ class InterfaceTests(unittest.TestCase):
         self.assertEqual(self.manifest['repository'], 'https://gitlab.com/revanalex/promptingcraft-skill')
         self.assertEqual(self.interface['displayName'], 'PromptingCraft.com')
         self.assertTrue(self.interface['longDescription'].startswith('PromptingCraft.com '))
-        self.assertEqual(self.interface['developerName'], 'DondeGo team')
+        # Publisher is the verified individual who operates the project; DondeGo is credited
+        # only as the developer in descriptive text.
+        self.assertEqual(self.manifest['author'], {'name': 'Aleksandr Prokofyev', 'url': 'https://promptingcraft.com'})
+        self.assertEqual(self.interface['developerName'], 'Aleksandr Prokofyev')
+        self.assertNotIn('DondeGo team', json.dumps(self.manifest))
+
+    def test_release_notes_are_the_only_publication_setting(self):
+        # publication.countries is omitted on purpose: no country restriction is intended.
+        publication = self.manifest['extensions']['com.openai']['publication']
+        self.assertEqual(set(publication), {'release_notes'})
+        notes = publication['release_notes']
+        self.assertIn('Skills only', notes)
+        self.assertTrue(notes.endswith('Developed by the dondego.com team.'))
+        self.assertNotRegex(notes.lower(), r'guarantee[sd]? (better|improve)|official (openai|anthropic) (plugin|partner)')
         self.assertEqual(self.interface['websiteURL'], 'https://promptingcraft.com')
         self.assertEqual(self.interface['supportURL'], 'https://promptingcraft.com/contact')
         self.assertEqual(self.interface['privacyPolicyURL'], 'https://promptingcraft.com/privacy')

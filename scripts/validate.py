@@ -209,13 +209,15 @@ def validate_project(root):
     if manifest.get('name')!='promptcraft' or manifest.get('version')!=meta['metadata']['version']: raise ValueError('Version/name mismatch')
     for k in ('description','homepage','repository','license'):
         if not isinstance(manifest.get(k),str) or not manifest[k]: raise ValueError('Invalid manifest string')
-    if manifest['author']!={'name':'DondeGo team','url':'https://dondego.com'}: raise ValueError('Author metadata mismatch')
+    if manifest['author']!={'name':'Aleksandr Prokofyev','url':'https://promptingcraft.com'}: raise ValueError('Author metadata mismatch')
     compatibility=json.loads((root/'.claude-plugin/plugin.json').read_text())
     if compatibility!={k:v for k,v in manifest.items() if k!='$schema'}: raise ValueError('Divergent adapter metadata')
     if not https_url(manifest['homepage']) or not https_url(manifest['repository']): raise ValueError('Manifest URLs must be https')
     if not manifest['description'].endswith(ATTRIBUTION) or not meta['description'].endswith(ATTRIBUTION): raise ValueError('Missing attribution')
     openai=manifest.get('extensions',{}).get('com.openai',{})
-    if set(openai)-{'interface'}: raise ValueError('Skills-only package declares apps, hooks or MCP settings')
+    if set(openai)-{'interface','publication'}: raise ValueError('Skills-only package declares apps, hooks or MCP settings')
+    publication=openai.get('publication',{})
+    if set(publication)-{'release_notes'} or not isinstance(publication.get('release_notes',''),str): raise ValueError('Unsupported publication settings')
     interface=openai.get('interface')
     validate_interface(root,interface)
     if skill_interface(skill)!={'display_name':interface['displayName'],'short_description':interface['shortDescription']}:
@@ -258,7 +260,7 @@ def validate_submission_archive(path):
             if adapter!={k:v for k,v in manifest.items() if k!='$schema'}: raise ValueError('Archive adapter manifest diverges')
         openai=manifest.get('extensions',{}).get('com.openai',{})
         if not isinstance(openai.get('interface'),dict): raise ValueError('Archive manifest lacks interface metadata')
-        if set(openai)-{'interface'} or 'screenshots' in openai.get('interface',{}): raise ValueError('Archive manifest declares excluded settings')
+        if set(openai)-{'interface','publication'} or 'screenshots' in openai.get('interface',{}): raise ValueError('Archive manifest declares excluded settings')
         for field in INTERFACE_ASSETS:
             value=openai['interface'].get(field)
             if not isinstance(value,str) or root+value[2:] not in names: raise ValueError(f'Archive is missing {field}')

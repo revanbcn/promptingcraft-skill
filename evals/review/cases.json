@@ -88,6 +88,21 @@
       "expected_output": "One copyable prompt preserving the existing cursor helper, page size 50 and unchanged response shape, with any new idea marked \"Optional suggestion:\". A note outside the block lists the guidance used and whether it was live-verified (with date), dated cached or unavailable."
     },
     {
+      "id": "P7-cursor-task",
+      "kind": "positive",
+      "covers": [
+        "natural-language activation",
+        "Cursor target agent",
+        "no-change behavior"
+      ],
+      "fixture": "None. The task is stated in the turn.",
+      "turns": [
+        "Prepare a Cursor agent task: in our React app, the settings page loses unsaved form input when the user switches between its tabs. Keep the input across tab switches within the same session using the existing useSettingsForm hook. Do not add dependencies and do not change the settings API. Edits and tests are allowed; do not commit."
+      ],
+      "expected_behavior": "The skill activates without being named, targets Cursor's agent and uses Cursor's own documentation for Cursor-specific advice. It keeps the existing hook, no new dependencies, the unchanged settings API, edits and tests allowed and no commit. It does not execute the task.",
+      "expected_output": "Primary: one copyable Cursor agent prompt that preserves every constraint above and adds no new requirement or permission. Acceptable alternative: the no-change sentence with the task body echoed exactly, because the request already states goal, constraints, authority and a checkable outcome."
+    },
+    {
       "id": "N1-unrelated-question",
       "kind": "negative",
       "covers": [

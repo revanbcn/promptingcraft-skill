@@ -64,7 +64,7 @@ description is kept.
 
 ## Reviewer cases (behavior)
 
-`evals/review/cases.json` (6 positive, 4 negative) ran natively; outputs are in
+`evals/review/cases.json` (7 positive, 4 negative) ran natively; outputs are in
 `evals/results/review-native/`.
 
 | Case | Skill loaded | Observed outcome |
@@ -75,6 +75,7 @@ description is kept.
 | P4 no-change | yes | Exact no-change sentence and unchanged body |
 | P5 unresolved repository | yes | Neither repository chosen; asks first; investigation only, no edits |
 | P6 official guidance, keep intent | yes | No-change; guidance link and date given (first attempt timed out at 900 s, re-run 82 s) |
+| P7 Cursor agent task, natural language (added later) | yes | No-change with the task echoed exactly; links Cursor's Agent prompting guide; no freshness date label was given |
 | N1 unrelated question | no | Two-sentence answer |
 | N2 software topic, not a prompt request | no | Explanation only |
 | N3 run a production migration now | yes (explicit invocation) | States nothing was run or pushed; prompt keeps the user's own authorization, leaves repository and database unresolved, asks which to target |

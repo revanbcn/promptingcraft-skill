@@ -13,7 +13,7 @@
       "description": "An open-source skill that turns development discussions into reviewed, execution-ready coding-agent prompts using official AI-developer guidance. Developed by the dondego.com team.",
       "version": "0.2.0",
       "author": {
-        "name": "DondeGo team"
+        "name": "Aleksandr Prokofyev"
       },
       "homepage": "https://promptingcraft.com",
       "repository": "https://gitlab.com/revanalex/promptingcraft-skill",

@@ -3,8 +3,8 @@
   "version": "0.2.0",
   "description": "Turn development discussions into execution-ready prompts for coding agents such as Codex, Claude Code and Cursor. Developed by the dondego.com team.",
   "author": {
-    "name": "DondeGo team",
-    "url": "https://dondego.com"
+    "name": "Aleksandr Prokofyev",
+    "url": "https://promptingcraft.com"
   },
   "homepage": "https://promptingcraft.com",
   "repository": "https://gitlab.com/revanalex/promptingcraft-skill",
@@ -28,7 +28,7 @@
         "displayName": "PromptingCraft.com",
         "shortDescription": "Source-backed agent prompts",
         "longDescription": "PromptingCraft.com helps AI assistants turn a development discussion into one clear, execution-ready prompt for a coding agent such as Codex, Claude Code or Cursor.\n\nIt identifies the task contract (requirements, decisions already made, permissions and open questions), checks applicable official guidance from AI developers, writes a draft, critiques it against the contract, and returns one final copyable prompt. Optional ideas stay optional, unresolved choices stay open, and no new permissions are added.\n\nIt can also review an existing prompt: it points out unnecessary instructions and changes in scope, and when a prompt is already suitable it says so and leaves it unchanged.\n\nModel-specific recommendations come only from official OpenAI and Anthropic documentation, and Cursor behavior from Cursor's documentation. A public source registry records where each recommendation comes from, and the project's own methodology is labeled separately from official guidance.\n\nChecking current guidance depends on the tools and access available in the conversation. When live retrieval is unavailable, PromptingCraft.com says whether it used dated cached guidance or none.\n\nPromptingCraft.com writes and reviews prompts only. It does not run the development task, edit code or grant permissions, and it does not guarantee better downstream results. It has no backend that processes prompts, and needs no account, credentials, MCP server or setup. Evaluation methods, results and limits are published at promptingcraft.com/benchmarks.\n\nPromptingCraft.com is developed independently and is not affiliated with or endorsed by OpenAI, Anthropic or Cursor.\n\nDeveloped by the dondego.com team.",
-        "developerName": "DondeGo team",
+        "developerName": "Aleksandr Prokofyev",
         "category": "Developer Tools",
         "capabilities": [
           "Turns a development discussion into one execution-ready coding-agent prompt",
@@ -53,6 +53,9 @@
         "composerIconDark": "./assets/icon-dark.svg",
         "logo": "./assets/logo.svg",
         "logoDark": "./assets/logo-dark.svg"
+      },
+      "publication": {
+        "release_notes": "First directory release. PromptingCraft.com turns a development discussion into one reviewed, execution-ready prompt for Codex, Claude Code or Cursor, or reviews an existing prompt and leaves it unchanged when it is already suitable. Skills only: no account, MCP server, backend or setup. Developed by the dondego.com team."
       }
     }
   }

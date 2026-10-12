@@ -50,6 +50,14 @@
     "note": "first attempt timed out at 900 s; re-run completed in 82 s with the skill loaded"
   },
   {
+    "id": "P7-cursor-task",
+    "turn": 1,
+    "exit": 0,
+    "skill_loaded": true,
+    "seconds": 93,
+    "note": "added 2026-10-12; codex-cli 0.162.1, same settings as the other cases"
+  },
+  {
     "id": "N1-unrelated-question",
     "turn": 1,
     "exit": 0,
