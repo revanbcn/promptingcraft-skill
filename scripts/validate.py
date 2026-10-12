@@ -201,6 +201,15 @@ def skill_interface(skill):
     return values
 
 
+def validate_publication(openai):
+    """Optional publication settings: only non-empty release notes; countries stay unrestricted."""
+    if 'publication' not in openai: return
+    publication=openai['publication']
+    if not isinstance(publication,dict) or set(publication)!={'release_notes'}: raise ValueError('Unsupported publication settings')
+    notes=publication['release_notes']
+    if not isinstance(notes,str) or not notes.strip() or len(notes)>4000: raise ValueError('Invalid release notes')
+
+
 def validate_project(root):
     root=Path(root); skill=root/'skills/promptcraft'; meta=validate_skill(skill)
     manifest=json.loads((root/'plugin.json').read_text())
@@ -216,8 +225,7 @@ def validate_project(root):
     if not manifest['description'].endswith(ATTRIBUTION) or not meta['description'].endswith(ATTRIBUTION): raise ValueError('Missing attribution')
     openai=manifest.get('extensions',{}).get('com.openai',{})
     if set(openai)-{'interface','publication'}: raise ValueError('Skills-only package declares apps, hooks or MCP settings')
-    publication=openai.get('publication',{})
-    if set(publication)-{'release_notes'} or not isinstance(publication.get('release_notes',''),str): raise ValueError('Unsupported publication settings')
+    validate_publication(openai)
     interface=openai.get('interface')
     validate_interface(root,interface)
     if skill_interface(skill)!={'display_name':interface['displayName'],'short_description':interface['shortDescription']}:
@@ -261,6 +269,7 @@ def validate_submission_archive(path):
         openai=manifest.get('extensions',{}).get('com.openai',{})
         if not isinstance(openai.get('interface'),dict): raise ValueError('Archive manifest lacks interface metadata')
         if set(openai)-{'interface','publication'} or 'screenshots' in openai.get('interface',{}): raise ValueError('Archive manifest declares excluded settings')
+        validate_publication(openai)
         for field in INTERFACE_ASSETS:
             value=openai['interface'].get(field)
             if not isinstance(value,str) or root+value[2:] not in names: raise ValueError(f'Archive is missing {field}')

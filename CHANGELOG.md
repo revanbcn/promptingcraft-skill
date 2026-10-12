@@ -36,7 +36,8 @@
 - The validator enforces directory rules offline: category list, at most three unique
   one-line starter prompts of 128 characters, no screenshots, and no apps, hooks or MCP
   settings; `package.py` checks the plugin ZIP against the skills-only archive rules.
-- Reviewer-reproducible cases in `evals/review/cases.json` (6 positive, 4 negative) and the
+- Reviewer-reproducible cases in `evals/review/cases.json` (6 positive, 4 negative; P7, a
+  Cursor agent task, was added later for the directory submission) and the
   field-by-field submission guide `docs/openai-submission.md`.
 - No skill instruction change, no onboarding skill, no MCP server, no release or submission.
 

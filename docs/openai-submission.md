@@ -12,7 +12,7 @@ has been accepted on the owner's behalf.
 | Uploaded package | `promptcraft-plugin-0.2.0.zip`, SHA-256 `a9ab97ec42596623876ab4d5bf88306b04ad3314857af6a97d72d28e41e56afc`, built from commit `7ad6444` (byte-reproducible) |
 | Publisher verification | Individual verification **Approved** in organization settings; business verification was rejected and is not used |
 | Portal metadata check | **Blocking:** "We are not accepting more skills-only submissions at this time." Non-blocking: "The plugin’s name or description references another AI assistant, model, or platform." See **Portal findings** |
-| Required skill scan | Started on upload; result recorded under **Portal findings** |
+| Required skill scan | **Checks passed** for skill `promptcraft` (portal Skills table, 2026-10-12) |
 | Submit for review | **Not done.** Blocked by the platform finding above; attestations remain owner-only |
 | ChatGPT installation and activation | **Not verified**; Codex-native runs only (see **Surfaces**) |
 | Website legal operator data | Published on https://promptingcraft.com (/legal, /privacy, /terms, /contact) on 2026-10-12: legal name, NIF, status, address, support email |
@@ -57,7 +57,7 @@ S = satisfied, O = owner action, B = blocked by the platform, N/A = not applicab
 | Privacy policy content (guidelines) | S | Categories, purposes, legal bases, recipients (Cloudflare, Google for email), transfers, retention, rights, AEPD |
 | Support contact (guidelines) | S | https://promptingcraft.com/contact with `support@promptingcraft.com` |
 | No secrets in the package | S | gitleaks: no leaks; no operator name, NIF or address in the skill repository or ZIP |
-| Required skill scans pass | See **Portal findings** | Run by the portal |
+| Required skill scans pass | S | Portal: `promptcraft` — Checks passed |
 | Directory intake for skills-only plugins | **B** | Blocking finding above |
 | Policy attestations and Submit for review | O | Owner only, after intake reopens |
 | MCP review cases, demo video, reviewer credentials | N/A | "Skills-only plugins don't need MCP app review cases or a demo recording" |
@@ -146,8 +146,9 @@ skills-only plugin. If a reviewer channel opens, use this text:
 
 Public benchmarks: https://promptingcraft.com/benchmarks. With PromptingCraft.com 8/10
 PASS and 3 defects; without it 3/10 PASS and 16 defects (after a disclosed scoring
-correction; before it 6/10 and 5, 3/10 and 18). Five synthetic tasks, two runs each, one
-generator model in Codex, one grader pass; no downstream implementation was run, so no
+correction that was decided after grading; before it 6/10 and 5, 3/10 and 18). Five
+synthetic tasks, two runs each, one generator model in Codex, one pass by a separate grader
+model (Claude Sonnet 5.5); no downstream implementation was run, so no
 superiority of the resulting implementations is shown. The figures are supporting
 transparency evidence, not a promise about future results. Activation in Codex: 30/30
 expected triggers, 0/30 unwanted (`evals/results/trigger-1/`).
@@ -159,7 +160,7 @@ expected triggers, 0/30 unwanted (`evals/results/trigger-1/`).
 | Upload file | `promptcraft-plugin-0.2.0.zip` from `python3 scripts/package.py --output dist` at commit `7ad6444` |
 | SHA-256 | `a9ab97ec42596623876ab4d5bf88306b04ad3314857af6a97d72d28e41e56afc` (standalone skill ZIP unchanged: `48b29cb7…d1b`) |
 | Version | `0.2.0`; first directory upload. The superseded checksum `b427ae53…` (publisher "DondeGo team") was never uploaded |
-| Checks | 111 unit tests; `scripts/validate.py`; `skills-ref validate` (agentskills `69ef37e`) on source and archive; official Agent Plugins 1.0.0 schema; two builds byte-identical and identical to a clean-worktree build; gitleaks; packaged script has no network, subprocess or environment access; SVG assets square without scripts |
+| Checks | 112 unit tests; `scripts/validate.py`; `skills-ref validate` (agentskills `69ef37e`) on source and archive; official Agent Plugins 1.0.0 schema; two builds byte-identical and identical to a clean-worktree build; gitleaks; packaged script has no network, subprocess or environment access; SVG assets square without scripts |
 
 ## Security review of the bundled skill
 

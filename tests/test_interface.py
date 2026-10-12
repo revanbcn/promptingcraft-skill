@@ -8,7 +8,7 @@ import unittest
 import zlib
 from pathlib import Path
 
-from scripts.validate import validate_interface, validate_project
+from scripts.validate import validate_interface, validate_project, validate_publication
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSET_FIELDS = ('composerIcon', 'composerIconDark', 'logo', 'logoDark')
@@ -47,6 +47,12 @@ class InterfaceTests(unittest.TestCase):
         self.assertEqual(self.manifest['author'], {'name': 'Aleksandr Prokofyev', 'url': 'https://promptingcraft.com'})
         self.assertEqual(self.interface['developerName'], 'Aleksandr Prokofyev')
         self.assertNotIn('DondeGo team', json.dumps(self.manifest))
+        self.assertEqual(self.interface['websiteURL'], 'https://promptingcraft.com')
+        self.assertEqual(self.interface['supportURL'], 'https://promptingcraft.com/contact')
+        self.assertEqual(self.interface['privacyPolicyURL'], 'https://promptingcraft.com/privacy')
+        self.assertEqual(self.interface['termsOfServiceURL'], 'https://promptingcraft.com/terms')
+        self.assertTrue(self.interface['longDescription'].endswith('Developed by the dondego.com team.'))
+        self.assertNotIn('by DondeGo', json.dumps(self.manifest))
 
     def test_release_notes_are_the_only_publication_setting(self):
         # publication.countries is omitted on purpose: no country restriction is intended.
@@ -56,12 +62,12 @@ class InterfaceTests(unittest.TestCase):
         self.assertIn('Skills only', notes)
         self.assertTrue(notes.endswith('Developed by the dondego.com team.'))
         self.assertNotRegex(notes.lower(), r'guarantee[sd]? (better|improve)|official (openai|anthropic) (plugin|partner)')
-        self.assertEqual(self.interface['websiteURL'], 'https://promptingcraft.com')
-        self.assertEqual(self.interface['supportURL'], 'https://promptingcraft.com/contact')
-        self.assertEqual(self.interface['privacyPolicyURL'], 'https://promptingcraft.com/privacy')
-        self.assertEqual(self.interface['termsOfServiceURL'], 'https://promptingcraft.com/terms')
-        self.assertTrue(self.interface['longDescription'].endswith('Developed by the dondego.com team.'))
-        self.assertNotIn('by DondeGo', json.dumps(self.manifest))
+
+    def test_publication_settings_are_validated(self):
+        base = json.loads((ROOT / 'plugin.json').read_text())['extensions']['com.openai']
+        for bad in ({}, {'release_notes': ''}, {'release_notes': 1}, {'countries': ['ES']}, ['release_notes']):
+            with self.assertRaises(ValueError, msg=bad):
+                validate_publication({**base, 'publication': bad})
 
     def test_current_public_files_show_only_the_promptingcraft_com_brand(self):
         # Walk the working tree (CI images may lack git). Generated output and recorded
