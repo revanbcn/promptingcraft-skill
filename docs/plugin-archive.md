@@ -38,8 +38,7 @@ validation is a separate operator gate.
 
 Maintenance scripts, tests, evaluations and full installation/distribution docs
 are in the [canonical GitLab repository](https://gitlab.com/revanalex/promptingcraft-skill),
-with a [GitHub mirror](https://github.com/revanbcn/promptingcraft-skill). GitLab is the
-contribution and CI authority. No automatic mirroring or monitoring is implied.
+the only public source. GitLab is the contribution and CI authority.
 See the repository's verification receipt for actual runtime and CI status.
 
 Developed by the [dondego.com](https://dondego.com) team.

@@ -26,13 +26,11 @@ It preserves the original text; no-change still requires contract and source che
 It helps produce a usable handoff; it cannot supply missing access, authority,
 repository evidence or guarantees of downstream correctness.
 
-**Canonical:** [GitLab](https://gitlab.com/revanalex/promptingcraft-skill).
-**Mirror:** [GitHub](https://github.com/revanbcn/promptingcraft-skill) (configured public;
-unauthenticated readback returned 404 at release preparation, so public access is
-not verified).
+**Canonical and only public source:** [GitLab](https://gitlab.com/revanalex/promptingcraft-skill).
+A GitHub mirror exists but is not publicly reachable while an account visibility
+issue is unresolved, so it is not offered as a public source.
 Contribute through GitLab issues and merge requests. GitLab CI is authoritative;
-GitHub Actions are not enabled. Mirroring is an explicit verified dual push of
-`main` and release tags; ongoing automatic mirroring is not configured.
+GitHub Actions are not enabled.
 
 ## A small example
 
@@ -77,8 +75,7 @@ With unavailable retrieval, source guidance remains dated/unavailable.
 ## Install the standalone skill
 
 Download the v0.1.0 skill archive and `SHA256SUMS` from
-[GitLab v0.1.0](https://gitlab.com/revanalex/promptingcraft-skill/-/releases/v0.1.0)
-or the [GitHub release](https://github.com/revanbcn/promptingcraft-skill/releases/tag/v0.1.0).
+[GitLab v0.1.0](https://gitlab.com/revanalex/promptingcraft-skill/-/releases/v0.1.0).
 Verify checksums before extracting. There is no 0.2.0 release yet; a clone
 provides the current candidate:
 
