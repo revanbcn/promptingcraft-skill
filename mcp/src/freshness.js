@@ -4,7 +4,8 @@
 import { MAX_BYTES, NormalizeError, normalize, sha256Hex } from './normalize.js';
 import { sourceRecord } from './catalog.js';
 
-export const FETCH_TIMEOUT_MS = 10_000;
+// One deadline for the whole check, redirects included.
+export const FETCH_TIMEOUT_MS = 12_000;
 const MAX_REDIRECTS = 4;
 const REDIRECT_STATUSES = new Set([301, 302, 303, 307, 308]);
 const HEADERS = {
@@ -54,10 +55,11 @@ async function readCapped(response) {
 }
 
 async function fetchWithinPolicy(url, policy, fetchImpl) {
+  const signal = AbortSignal.timeout(FETCH_TIMEOUT_MS);
   let current = url;
   for (let hop = 0; hop <= MAX_REDIRECTS; hop += 1) {
     if (!allowedUrl(current, policy)) return { reason: hop ? 'redirect_outside_policy' : 'url_outside_policy' };
-    const response = await fetchImpl(current, { headers: HEADERS, redirect: 'manual', signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
+    const response = await fetchImpl(current, { headers: HEADERS, redirect: 'manual', signal });
     if (REDIRECT_STATUSES.has(response.status)) {
       const location = response.headers.get('location');
       await response.body?.cancel();

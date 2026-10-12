@@ -4,13 +4,15 @@
   "main": "src/index.js",
   "compatibility_date": "2026-09-01",
   "workers_dev": false,
-  "preview_urls": true,
+  "preview_urls": false,
   "routes": [{ "pattern": "mcp.promptingcraft.com", "custom_domain": true }],
   // No Workers Logs, Logpush or tail consumers: request content is never logged.
   "observability": { "enabled": false },
   "ratelimits": [
-    // Per client address, per Cloudflare location: MCP requests.
-    { "name": "REQUEST_LIMITER", "namespace_id": "4101", "simple": { "limit": 60, "period": 60 } },
+    // Per client address, per Cloudflare location: MCP requests. Generous because hosts such
+    // as ChatGPT and Codex reach the server from shared egress addresses; each tool call
+    // also costs an initialize round trip in stateless clients.
+    { "name": "REQUEST_LIMITER", "namespace_id": "4101", "simple": { "limit": 600, "period": 60 } },
     // Per source id, per location: outbound fetches of official documentation pages.
     { "name": "FETCH_LIMITER", "namespace_id": "4102", "simple": { "limit": 6, "period": 60 } }
   ]

@@ -36,9 +36,11 @@ test('redirects are followed only inside the provider policy', async () => {
   const inside = await checkFreshness(ID, { now, fetchImpl: async (url) => (url === URL0
     ? new Response(null, { status: 301, headers: { location: '/docs/prompting-v2' } }) : htmlPage(page)) });
   assert.equal(inside.status, 'updated');
-  const outside = await checkFreshness(ID, { now, fetchImpl: async () => new Response(null, { status: 302, headers: { location: 'https://evil.example/docs/x' } }) });
-  assert.equal(outside.status, 'unavailable');
-  assert.equal(outside.live.reason, 'redirect_outside_policy');
+  for (const location of ['https://evil.example/docs/x', '//evil.example/docs/x', 'http://learn.chatgpt.com/docs/x', '/elsewhere/x']) {
+    const outside = await checkFreshness(ID, { now, fetchImpl: async () => new Response(null, { status: 302, headers: { location } }) });
+    assert.equal(outside.status, 'unavailable', location);
+    assert.equal(outside.live.reason, 'redirect_outside_policy', location);
+  }
   let hops = 0;
   const loop = await checkFreshness(ID, { now, fetchImpl: async () => { hops += 1; return new Response(null, { status: 307, headers: { location: URL0 } }); } });
   assert.equal(loop.live.reason, 'too_many_redirects');

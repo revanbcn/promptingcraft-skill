@@ -77,6 +77,14 @@ test('HTTP surface: POST only, bounded bodies, parse errors, rate limits, CORS a
   assert.equal(get.status, 405);
   const big = await handleMcp(new Request('https://x/mcp', { method: 'POST', body: 'x'.repeat(70_000) }), env);
   assert.equal(big.status, 413);
+  const chunked = new ReadableStream({ start(c) { for (let i = 0; i < 20; i += 1) c.enqueue(new Uint8Array(4096)); c.close(); } });
+  const streamed = await handleMcp(new Request('https://x/mcp', { method: 'POST', body: chunked, duplex: 'half' }), env);
+  assert.equal(streamed.status, 413, 'a streamed body without Content-Length is still capped');
+  const spoofed = await handleMcp(new Request('https://x/mcp', { method: 'POST', headers: { 'content-length': 'abc' }, body: '{}' }), env);
+  assert.equal(spoofed.status, 413);
+  const batched = await handleMcp(new Request('https://x/mcp', { method: 'POST', body: JSON.stringify([{ jsonrpc: '2.0', id: 1, method: 'tools/list' }]) }), env);
+  assert.equal(batched.status, 400);
+  assert.equal((await batched.json()).error.code, -32600);
   const bad = await handleMcp(new Request('https://x/mcp', { method: 'POST', body: '{not json' }), env);
   assert.equal(bad.status, 400);
   assert.equal((await bad.json()).error.code, -32700);

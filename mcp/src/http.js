@@ -6,6 +6,7 @@ import { createServer, SERVER_VERSION } from './server.js';
 
 export const MAX_BODY_BYTES = 65_536;
 const FRESHNESS_TTL = 900;
+const UNAVAILABLE_TTL = 60;
 const CACHE_ORIGIN = 'https://mcp.promptingcraft.com/__freshness/';
 const SECURITY_HEADERS = {
   'Cache-Control': 'no-store',
@@ -32,13 +33,35 @@ const rpcError = (status, code, message) =>
     status, headers: { 'Content-Type': 'application/json' },
   }));
 
+// Streams the body and stops at MAX_BODY_BYTES, whatever Content-Length claims.
 async function readBody(request) {
-  const declared = Number(request.headers.get('content-length') ?? '0');
-  if (declared > MAX_BODY_BYTES) return { tooLarge: true };
-  const bytes = new Uint8Array(await request.arrayBuffer());
-  if (bytes.byteLength > MAX_BODY_BYTES) return { tooLarge: true };
+  const declared = request.headers.get('content-length');
+  if (declared !== null && (!/^\d+$/.test(declared) || Number(declared) > MAX_BODY_BYTES)) return { tooLarge: true };
+  const chunks = [];
+  let size = 0;
+  if (request.body) {
+    const reader = request.body.getReader();
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > MAX_BODY_BYTES) {
+        await reader.cancel();
+        return { tooLarge: true };
+      }
+      chunks.push(value);
+    }
+  }
+  const bytes = new Uint8Array(size);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
   try {
-    return { json: JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)) };
+    const json = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes));
+    // One JSON-RPC message per HTTP request: batches would multiply work per rate-limited request.
+    return Array.isArray(json) ? { batch: true } : { json };
   } catch {
     return { invalid: true };
   }
@@ -54,8 +77,10 @@ function freshnessCache() {
       return hit ? hit.json() : null;
     },
     async put(id, value) {
+      // A transient failure is retried sooner than a successful comparison.
+      const ttl = value.status === 'unavailable' ? UNAVAILABLE_TTL : FRESHNESS_TTL;
       await store.put(key(id), new Response(JSON.stringify(value), {
-        headers: { 'Content-Type': 'application/json', 'Cache-Control': `public, max-age=${FRESHNESS_TTL}` },
+        headers: { 'Content-Type': 'application/json', 'Cache-Control': `public, max-age=${ttl}` },
       }));
     },
   };
@@ -72,6 +97,7 @@ export async function handleMcp(request, env, deps = {}) {
   const body = await readBody(request);
   if (body.tooLarge) return rpcError(413, -32600, 'Request body too large.');
   if (body.invalid) return rpcError(400, -32700, 'Parse error: body must be UTF-8 JSON.');
+  if (body.batch) return rpcError(400, -32600, 'Invalid request: JSON-RPC batches are not supported; send one message per request.');
 
   const fetchLimiter = env.FETCH_LIMITER;
   const server = createServer({

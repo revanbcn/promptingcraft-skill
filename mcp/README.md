@@ -35,13 +35,15 @@ source and compares hashes with a Python run; on 2026-10-13 it matched 37/37.
   conversation text, code, paths, URLs or credentials, and errors never echo values.
 - Nothing is logged: no `console` calls (tested), Workers observability disabled, no
   Logpush or tail consumers. The only stored data are freshness results for public
-  pages, cached for 15 minutes in the Cloudflare cache.
-- Rate limits (Workers Rate Limiting binding, per Cloudflare location): 60 requests per
-  minute per client IP address, used transiently as the limiter key; 6 outbound fetches
-  per minute per source. Request bodies are capped at 64 KiB.
+  pages, cached in the Cloudflare cache (15 minutes; 60 s for failed checks).
+- Rate limits (Workers Rate Limiting binding, per Cloudflare location, best effort and
+  eventually consistent): about 600 requests per minute per client IP address (the
+  limiter key; hosts share egress addresses), about 6 outbound fetches per minute per source. Request bodies are
+  streamed and capped at 64 KiB; JSON-RPC batches are rejected.
 - Outbound fetches: registry URLs only, HTTPS, provider host/path allowlist checked on
-  every redirect hop (at most 4), 10 s timeout, 1 MiB response cap, no cookies or
-  credentials.
+  every redirect hop (at most 4), one 12 s deadline per check, 1 MiB response cap (the
+  Python limit, kept for hash parity), no cookies or credentials. Failed checks are
+  cached for 60 s, successful comparisons for 15 minutes.
 - Cloudflare processes requests as the hosting provider (see the website privacy policy).
 
 ## Develop, test, deploy
