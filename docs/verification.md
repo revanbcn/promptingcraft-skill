@@ -1,5 +1,21 @@
 # Verification status
 
+## Unreleased 0.2.0 candidate: PromptingCraft.com brand and plugin readiness
+
+- Local offline checks only: 100 tests, project/catalog validators, reproducible
+  `promptcraft-skill-0.2.0.zip` / `promptcraft-plugin-0.2.0.zip` builds and the
+  generated `./dist/promptcraft-plugin` source pass. The plugin ZIP carries
+  `assets/` icons/logos and no bytecode caches. Identifiers stay `promptcraft`.
+- The validator checks listing text limits (display name and short description
+  at most 30 characters, long description at most 4000), https website/support/
+  privacy/terms URLs, `./`-relative square SVG/PNG assets of at least 48 units,
+  brand-color contrast (#17181C on white 17.7:1; #F4F1EA on #212121 14.3:1) and
+  skill/manifest display consistency.
+- Not performed: remote CI, Codex reinstall/refresh, ChatGPT Desktop or Chat
+  activation, plugin-directory submission, tag or release. The listing URLs are
+  configured, not verified live here.
+- Sections below record earlier states and the former display name.
+
 ## Unreleased native plugin integration
 
 - 90 offline tests (85 existing + five marketplace behavior tests), project/catalog

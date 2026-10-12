@@ -16,7 +16,9 @@ def build(root,output):
     version=manifest['version']; skill=root/'skills/promptcraft'
     skill_files=[p for p in sorted(skill.rglob('*')) if p.is_file()
                  and '__pycache__' not in p.parts and p.suffix != '.pyc']
-    plugin_files=skill_files+[root/p for p in ('plugin.json','.claude-plugin/plugin.json','LICENSE','README.md')]
+    # Listing assets referenced by plugin.json interface metadata; validated above.
+    asset_files=[p for p in sorted((root/'assets').rglob('*')) if p.is_file()]
+    plugin_files=skill_files+asset_files+[root/p for p in ('plugin.json','.claude-plugin/plugin.json','LICENSE','README.md')]
     files=[]
     for kind,items in [('skill',skill_files),('plugin',plugin_files)]:
         dest=output/f'promptcraft-{kind}-{version}.zip'

@@ -1,14 +1,14 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "promptcraft",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Turn development discussions into execution-ready Claude Code or Codex prompts. Developed by the dondego.com team.",
   "author": {
     "name": "DondeGo team",
     "url": "https://dondego.com"
   },
-  "homepage": "https://gitlab.com/revanalex/promptcraft-skill",
-  "repository": "https://gitlab.com/revanalex/promptcraft-skill",
+  "homepage": "https://promptingcraft.com",
+  "repository": "https://gitlab.com/revanalex/promptingcraft-skill",
   "license": "MIT",
   "keywords": [
     "prompt-authoring",
@@ -19,15 +19,24 @@
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "PromptCraft by DondeGo",
-        "shortDescription": "Coding handoffs. Developed by the dondego.com team.",
-        "longDescription": "Prepare a Claude Code or Codex prompt from the established discussion, preserving requirements and authorization. Developed by the dondego.com team.",
+        "displayName": "PromptingCraft.com",
+        "shortDescription": "Execution-ready agent prompts",
+        "longDescription": "PromptingCraft.com helps developers and technical leads turn an established development discussion into one execution-ready prompt for a coding agent such as Claude Code or Codex. It extracts the task contract (goal, constraints, authorization and verification), consults applicable official provider guidance when retrieval is available, drafts, critiques once, revises only when necessary, and checks that requirements and permission boundaries survived. When the original task is already suitable, it says so and keeps the original text. It composes and reviews prompts only: it does not run the development task, edit code, deploy, or grant access or authority. It cannot supply missing repository evidence and does not guarantee downstream results. Without usable retrieval, provider guidance is reported as dated or unavailable. No MCP server, account connection, credentials or external service is required. Not affiliated with or endorsed by OpenAI or Anthropic. Developed by the dondego.com team.",
         "developerName": "DondeGo team",
         "category": "Productivity",
-        "websiteURL": "https://dondego.com",
+        "websiteURL": "https://promptingcraft.com",
+        "supportURL": "https://promptingcraft.com/contact",
+        "privacyPolicyURL": "https://promptingcraft.com/privacy",
+        "termsOfServiceURL": "https://promptingcraft.com/terms",
         "defaultPrompt": [
           "Prepare a Codex prompt for this task."
-        ]
+        ],
+        "brandColor": "#17181C",
+        "brandColorDark": "#F4F1EA",
+        "composerIcon": "./assets/icon.svg",
+        "composerIconDark": "./assets/icon-dark.svg",
+        "logo": "./assets/logo.svg",
+        "logoDark": "./assets/logo-dark.svg"
       }
     }
   }

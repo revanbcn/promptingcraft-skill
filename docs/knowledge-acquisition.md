@@ -3,7 +3,7 @@
 The portable [knowledge ledger](../skills/promptcraft/references/knowledge.json)
 selects **17 recommendations from 14 official OpenAI/Anthropic pages**. Each record
 has source title/URL, retrieval date, provider/model scope, practical recommendation,
-evidence or limitation, Promptcraft applicability and conflicts with prior guidance.
+evidence or limitation, PromptingCraft.com applicability and conflicts with prior guidance.
 Records are original short summaries; no provider manual is copied into the skill.
 
 OpenAI coverage: prompt clarity/context, API instruction hierarchy, reasoning
@@ -38,5 +38,5 @@ The most consequential changes are:
   offline contract checker deliberately leaves semantic review pending.
 - Progressive disclosure preserves context. Cache advice does not justify padding
   an ordinary handoff or claiming total-task savings from cached input alone.
-- Evaluation examples/thresholds are not the user's completion criteria. Promptcraft
+- Evaluation examples/thresholds are not the user's completion criteria. PromptingCraft.com
   cannot quietly promote them into requirements.

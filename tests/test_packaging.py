@@ -32,6 +32,15 @@ class PackagingTests(unittest.TestCase):
                         for link in re.findall(r'\]\(([^)]+)\)',page.read_text()):
                             if not link.startswith('https://'):
                                 self.assertTrue((page.parent/link).is_file(),(page,link))
+            self.assertEqual([p.name for p in first],['promptcraft-skill-0.2.0.zip','promptcraft-plugin-0.2.0.zip'])
+            with zipfile.ZipFile(first[1]) as z:
+                names=set(z.namelist())
+                for asset in ('icon.svg','icon-dark.svg','logo.svg','logo-dark.svg'):
+                    self.assertIn('promptcraft-plugin/assets/'+asset,names)
+                    self.assertEqual(z.read('promptcraft-plugin/assets/'+asset),(ROOT/'assets'/asset).read_bytes())
+                self.assertIn('promptcraft-plugin/skills/promptcraft/SKILL.md',names)
+            with zipfile.ZipFile(first[0]) as z:
+                self.assertFalse(any('/assets/' in n for n in z.namelist()))
             sums=(Path(a)/'SHA256SUMS').read_text()
             for x in first: self.assertIn(hashlib.sha256(x.read_bytes()).hexdigest(),sums)
     def test_install_isolated_hosts_and_refuse_overwrite(self):

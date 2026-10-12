@@ -4,11 +4,11 @@ description: Turn a development discussion into an execution-ready coding-agent 
 license: MIT
 metadata:
   author: DondeGo
-  website: https://dondego.com
-  version: "0.1.0"
+  website: https://promptingcraft.com
+  version: "0.2.0"
 ---
 
-# PromptCraft by DondeGo
+# PromptingCraft.com
 
 Apply this workflow only to a request to compose, improve or review a prompt.
 If loaded for another request, answer that request directly without this workflow.
@@ -101,7 +101,7 @@ version. No maintenance script is needed to compose a prompt in ordinary chat.
 ## 3. Decide whether revision is necessary, then draft
 
 Before drafting a replacement, critique the ORIGINAL task body. The request to
-apply PromptCraft or compose a handoff is not evidence that its task needs changes.
+apply PromptingCraft.com or compose a handoff is not evidence that its task needs changes.
 If that body already expresses the goal, relevant constraints, authority and a
 feasible check, choose no-change. Preserve its text; do not generate a replacement
 and then look for reasons to keep it. State the no-change sentence from section 5

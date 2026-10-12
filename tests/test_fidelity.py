@@ -80,11 +80,14 @@ class FidelityTests(unittest.TestCase):
             base = Path(d); source = base / 'source'; frozen = base / 'frozen'
             (source / 'skills/promptcraft').mkdir(parents=True)
             (source / '.claude-plugin').mkdir()
-            for name in ['plugin.json', '.claude-plugin/plugin.json', 'LICENSE', 'README.md', 'skills/promptcraft/SKILL.md']:
+            (source / 'assets').mkdir()
+            for name in ['plugin.json', '.claude-plugin/plugin.json', 'LICENSE', 'README.md', 'skills/promptcraft/SKILL.md',
+                         'assets/icon.svg']:
                 (source / name).write_text('original')
             api.freeze_plugin(source, frozen)
             (source / 'skills/promptcraft/SKILL.md').write_text('changed during model execution')
             self.assertEqual((frozen / 'skills/promptcraft/SKILL.md').read_text(), 'original')
+            self.assertEqual((frozen / 'assets/icon.svg').read_text(), 'original')
 
     def test_malformed_manifest_shapes_are_failures_not_collector_crashes(self):
         api = self.api()
@@ -131,7 +134,7 @@ class FidelityTests(unittest.TestCase):
         import os
         previous = Path.cwd()
         with tempfile.TemporaryDirectory() as d:
-            source = Path(d)/'source';(source/'skills').mkdir(parents=True);(source/'.claude-plugin').mkdir()
+            source = Path(d)/'source';(source/'skills').mkdir(parents=True);(source/'.claude-plugin').mkdir();(source/'assets').mkdir()
             for name in ['plugin.json','LICENSE','README.md']:(source/name).write_text('fixture')
             try:
                 os.chdir(d); frozen=api.freeze_plugin(source,Path('relative/frozen'))

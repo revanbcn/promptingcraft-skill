@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="PromptingCraft.com">
+  <rect width="64" height="64" rx="14" fill="#F4F1EA"/>
+  <path d="M11 37c3.2-6.4 7.6-6.4 10.8-1.2 3.2 5.2 7.4 5.2 10.4-1.6 1-1.9 2.2-2.9 3.8-2.9H52" fill="none" stroke="#17181C" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M37.5 41.5H52" fill="none" stroke="#17181C" stroke-width="4.4" stroke-linecap="round"/>
+  <rect x="46" y="17" width="7" height="7" fill="#E4472B"/>
+</svg>

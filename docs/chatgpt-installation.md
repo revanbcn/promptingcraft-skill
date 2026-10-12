@@ -1,12 +1,14 @@
-# PromptCraft local installation and ChatGPT compatibility
+# PromptingCraft.com local installation and ChatGPT compatibility
 
 Documentation checked on 2026-10-12. This is unreleased `main` integration work;
-**v0.1.0 remains the canonical release**. Package metadata retains that version;
-it does not identify a new release or certify new release assets.
+**v0.1.0 remains the canonical release**. Package metadata says 0.2.0, an
+unreleased candidate; it does not identify a new release or certify new release
+assets. The product is publicly named PromptingCraft.com; the skill and plugin
+identifier remains `promptcraft`, so existing installations keep working.
 
 ## Supported route
 
-PromptCraft is a skills-only portable Agent Plugins 1.0.0 package. No MCP server,
+PromptingCraft.com is a skills-only portable Agent Plugins 1.0.0 package. No MCP server,
 app connection, credentials, hooks or external service are required to compose a
 prompt. Current guidance needs a usable retrieval tool in the authoring chat;
 otherwise the skill reports dated or unavailable guidance.
@@ -104,11 +106,11 @@ With the real local source registered:
 
 1. Open ChatGPT Desktop. In Work or Codex, open **Plugins** and select the
    **DondeGo Local** marketplace source (`dondego-local`).
-2. Open **PromptCraft by DondeGo**, check its bundled `promptcraft` skill and
+2. Open **PromptingCraft.com**, check its bundled `promptcraft` skill and
    absence of apps/MCP connections, then install with the plus/install control.
    If already installed, confirm it is enabled. Restart/start a new chat if needed.
 3. Open a new ordinary **Chat** conversation in the same account/workspace. Type
-   `@`, select **PromptCraft** or its bundled **promptcraft** skill, and ask it to
+   `@`, select **PromptingCraft.com** or its bundled **promptcraft** skill, and ask it to
    prepare a Codex prompt. An actual selectable mention and response are the
    activation evidence; a Codex/Work response does not establish Chat activation.
 4. In another new Chat, establish the task decisions normally, then say
@@ -118,7 +120,7 @@ With the real local source registered:
 If the local source or skill is absent in that account/surface, record which
 step is unavailable. Do not paste SKILL.md repeatedly or claim native success.
 An eligible workspace uploader can use **Admin console → intended workspace →
-Plugins → Add → Upload plugin** with `dist/promptcraft-plugin-0.1.0.zip` generated
+Plugins → Add → Upload plugin** with `dist/promptcraft-plugin-0.2.0.zip` generated
 by `python3 scripts/package.py --output dist`, then install it and repeat Chat
 checks. This is a separate account/permission route, **not performed here**;
 upload/publication is not authorized by the CLI install. No new MCP is needed.

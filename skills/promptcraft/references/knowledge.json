@@ -6,7 +6,7 @@
     "OFFICIAL": "Primary provider recommendation, scoped and conditional.",
     "MODEL_SPECIFIC": "Applies only to the named model family/version/interface.",
     "GENERAL": "Provider describes a broader technique; still not a universal mandate.",
-    "INFERRED": "Promptcraft adaptation, not an official provider claim.",
+    "INFERRED": "PromptingCraft.com adaptation, not an official provider claim.",
     "EXPERIMENTAL": "Effectiveness unestablished outside the stated evaluation."
   },
   "recommendations": [
@@ -193,7 +193,7 @@
         "GENERAL"
       ],
       "recommendation": "For large document inputs, place long documents first and the query later; identify document sources and ground answers in relevant passages.",
-      "evidence_or_limitation": "Reported gains are provider test results for long/multidocument tasks, not Promptcraft measurements.",
+      "evidence_or_limitation": "Reported gains are provider test results for long/multidocument tasks, not PromptingCraft.com measurements.",
       "promptcraft_applicability": "Preserve source identity in long handoffs; use only relevant context.",
       "conflicts_with_existing_guidance": "Do not require XML, quotations or a long-context layout for a small fix.",
       "apply_when": "Large supplied documents; host context limits permit it.",

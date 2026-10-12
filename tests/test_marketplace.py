@@ -13,7 +13,7 @@ class MarketplaceTests(unittest.TestCase):
     def fixture(self, directory):
         root = Path(directory).resolve() / "repo"
         root.mkdir()
-        for relative in ("skills", ".claude-plugin", "docs"):
+        for relative in ("skills", ".claude-plugin", "docs", "assets"):
             shutil.copytree(ROOT / relative, root / relative)
         for relative in ("plugin.json", "LICENSE", "README.md"):
             shutil.copy2(ROOT / relative, root / relative)
@@ -40,6 +40,8 @@ class MarketplaceTests(unittest.TestCase):
                 if source.is_file() and "__pycache__" not in source.parts and source.suffix != ".pyc":
                     self.assertEqual(source.read_bytes(), (dest / "skills/promptcraft" / source.relative_to(root / "skills/promptcraft")).read_bytes())
             self.assertTrue((dest / "plugin.json").is_file())
+            for asset in ("icon.svg", "icon-dark.svg", "logo.svg", "logo-dark.svg"):
+                self.assertEqual((root / "assets" / asset).read_bytes(), (dest / "assets" / asset).read_bytes())
             self.assertFalse(any(p.is_symlink() for p in dest.rglob("*")))
             self.assertFalse((root / "dist/SHA256SUMS").exists())
 

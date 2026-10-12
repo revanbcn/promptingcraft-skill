@@ -159,7 +159,7 @@ def controller_verification(case_id, work):
 def freeze_plugin(source, destination):
     destination = destination.resolve()
     destination.mkdir(parents=True)
-    for relative in ['skills', '.claude-plugin', 'plugin.json', 'LICENSE', 'README.md']:
+    for relative in ['skills', 'assets', '.claude-plugin', 'plugin.json', 'LICENSE', 'README.md']:
         src, dst = source/relative, destination/relative
         if src.is_dir():
             shutil.copytree(src, dst, ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))

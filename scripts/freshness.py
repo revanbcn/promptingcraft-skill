@@ -142,7 +142,7 @@ class PolicyRedirect(urllib.request.HTTPRedirectHandler):
 
 def fetch_public(url,policy,validators):
     validate_url(url,policy,resolve=True)
-    headers={'User-Agent':'PromptCraft-docs-check/0.1 (public read-only)',
+    headers={'User-Agent':'PromptingCraft.com-docs-check/0.2 (public read-only)',
              'Accept':'text/markdown,text/plain,text/html', 'Accept-Encoding':'identity'}
     if validators.get('etag'): headers['If-None-Match']=validators['etag']
     if validators.get('last_modified'): headers['If-Modified-Since']=validators['last_modified']
@@ -211,7 +211,7 @@ def baseline_from(report,previous):
 
 
 def readable(report):
-    lines=[f"# PromptCraft freshness — {report['overall']}",f"Checked at: {report['checked_at']}",'']
+    lines=[f"# PromptingCraft.com freshness — {report['overall']}",f"Checked at: {report['checked_at']}",'']
     for row in report['sources']:
         lines.append(f"- {row['id']}: **{row['state']}** — {row['canonical_url']}")
         if row.get('new_candidates'): lines.append('  New candidates: '+', '.join(row['new_candidates']))

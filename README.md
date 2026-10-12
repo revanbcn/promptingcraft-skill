@@ -1,27 +1,33 @@
-# PromptCraft by DondeGo
+# PromptingCraft.com
+
+Website: [promptingcraft.com](https://promptingcraft.com)
+
+The product is now publicly named PromptingCraft.com. For compatibility with
+existing installations, the skill and plugin identifier remains `promptcraft`.
 
 Turn a development discussion into a prompt a fresh coding agent can execute.
-PromptCraft preserves the task contract, consults applicable official guidance,
+PromptingCraft.com preserves the task contract, consults applicable official guidance,
 drafts, critiques once, revises when necessary, and checks that requirements and permissions
 survived. The assistant writing the prompt and the agent executing it may differ.
-First targets: **Claude Code and OpenAI Codex**. Version: **0.1.0**.
+First targets: **Claude Code and OpenAI Codex**. Package metadata: **0.2.0**
+(unreleased candidate; no 0.2.0 tag or release exists).
 
 The immutable v0.1.0 tag is the canonical release. `main` contains unreleased
-knowledge, contract-fidelity and local plugin integration work. The latest
+knowledge, contract-fidelity, local plugin integration and listing-metadata work. The latest
 [contract-fidelity sample](evals/results/fidelity/README.md) found 0/14 material
 drift after earlier diagnostic variance; it is not a guarantee. Native Codex
 invocations are verified. ChatGPT-native activation and downstream superiority
 remain unverified. Development CI archives do not replace v0.1.0 release assets.
 
-When the original task is already suitable, PromptCraft can return:
+When the original task is already suitable, PromptingCraft.com can return:
 "The original prompt is already suitable. No material revision is necessary."
 It preserves the original text; no-change still requires contract and source checks.
 
 It helps produce a usable handoff; it cannot supply missing access, authority,
 repository evidence or guarantees of downstream correctness.
 
-**Canonical:** [GitLab](https://gitlab.com/revanalex/promptcraft-skill).
-**Mirror:** [GitHub](https://github.com/revanbcn/promptcraft-skill) (configured public;
+**Canonical:** [GitLab](https://gitlab.com/revanalex/promptingcraft-skill).
+**Mirror:** [GitHub](https://github.com/revanbcn/promptingcraft-skill) (configured public;
 unauthenticated readback returned 404 at release preparation, so public access is
 not verified).
 Contribute through GitLab issues and merge requests. GitLab CI is authoritative;
@@ -53,11 +59,11 @@ This is an original illustration, not proof of improved execution. See the
 
 ## Use in ChatGPT
 
-PromptCraft is a skills-only plugin with no MCP server or credentials. Build its
+PromptingCraft.com is a skills-only plugin with no MCP server or credentials. Build its
 local source once, register the real repository root, and install through supported
 Codex or ChatGPT Desktop plugin controls. See the exact
 [local installation and ChatGPT procedure](docs/chatgpt-installation.md).
-After installation, start a new chat; explicitly select PromptCraft with `@` or
+After installation, start a new chat; explicitly select PromptingCraft.com with `@` or
 ask **“Prepare a Codex prompt for this task.”** It uses the established discussion
 and returns the final execution prompt in one copyable code block.
 
@@ -70,14 +76,15 @@ With unavailable retrieval, source guidance remains dated/unavailable.
 
 ## Install the standalone skill
 
-Download the skill archive and `SHA256SUMS` from
-[GitLab v0.1.0](https://gitlab.com/revanalex/promptcraft-skill/-/releases/v0.1.0)
-or the [GitHub release](https://github.com/revanbcn/promptcraft-skill/releases/tag/v0.1.0).
-Verify checksums before extracting. A clone works too:
+Download the v0.1.0 skill archive and `SHA256SUMS` from
+[GitLab v0.1.0](https://gitlab.com/revanalex/promptingcraft-skill/-/releases/v0.1.0)
+or the [GitHub release](https://github.com/revanbcn/promptingcraft-skill/releases/tag/v0.1.0).
+Verify checksums before extracting. There is no 0.2.0 release yet; a clone
+provides the current candidate:
 
 ```sh
-git clone https://gitlab.com/revanalex/promptcraft-skill.git
-cd promptcraft-skill
+git clone https://gitlab.com/revanalex/promptingcraft-skill.git
+cd promptingcraft-skill
 python3 scripts/install_skill.py --host codex --project-dir /path/to/your/project
 # Or, for Claude Code:
 python3 scripts/install_skill.py --host claude --project-dir /path/to/your/project
@@ -94,8 +101,12 @@ No development task is executed by the skill.
 ## Plugin package
 
 The plugin ZIP includes root `plugin.json` using Agent Plugins 1.0.0, one
-`skills/promptcraft/` tree and a Claude Code compatibility manifest. It declares
-no MCP servers, hooks or credentials. In Claude Code, session-only loading is:
+`skills/promptcraft/` tree, listing icons/logos under `assets/` and a Claude
+Code compatibility manifest. It declares no MCP servers, hooks or credentials.
+Its ChatGPT listing metadata (display name, descriptions, website, support,
+privacy and terms URLs, brand colors and icons) is checked by the validator;
+it has not been submitted to or reviewed by any plugin directory. In Claude
+Code, session-only loading is:
 
 ```sh
 claude --plugin-dir /path/to/extracted/promptcraft-plugin
@@ -144,7 +155,8 @@ skill use when host network capabilities permit; offline notes are never current
 
 MIT licensed original content. No official OpenAI/Anthropic affiliation or
 endorsement. No hosted app, telemetry, sign-up, model router, API billing,
-marketplace submission, deployment or automatic instruction rewriting in v0.1.
+marketplace submission, deployment or automatic instruction rewriting in v0.1
+or the 0.2.0 candidate.
 See [LICENSE](LICENSE), [CONTRIBUTING](CONTRIBUTING.md), [SECURITY](SECURITY.md)
 and [CHANGELOG](CHANGELOG.md).
 

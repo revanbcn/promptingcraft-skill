@@ -1,6 +1,6 @@
 # Contributing
 
-Use [GitLab issues and merge requests](https://gitlab.com/revanalex/promptcraft-skill)
+Use [GitLab issues and merge requests](https://gitlab.com/revanalex/promptingcraft-skill)
 for contributions. GitHub is a public mirror; propose changes against canonical
 GitLab, not a divergent mirror branch. Keep one skill tree and public prose in English.
 

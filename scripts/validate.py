@@ -2,8 +2,11 @@
 """Validate this project's constrained metadata and self-contained resources offline."""
 import json
 import re
+import struct
+import xml.etree.ElementTree as ElementTree
 from datetime import date
 from pathlib import Path
+from urllib.parse import urlparse
 try:
     from scripts.freshness import validate_registry
 except ModuleNotFoundError:
@@ -80,6 +83,94 @@ def validate_knowledge(knowledge,registry):
             raise ValueError('Provider recommendations cannot be universal requirements')
 
 
+ATTRIBUTION='Developed by the dondego.com team.'
+INTERFACE_TEXT_LIMITS={'displayName':30,'shortDescription':30,'longDescription':4000}
+INTERFACE_URLS=('websiteURL','supportURL','privacyPolicyURL','termsOfServiceURL')
+INTERFACE_ASSETS=('composerIcon','composerIconDark','logo','logoDark')
+MIN_ASSET_SIZE=48
+
+
+def https_url(value):
+    parsed=urlparse(value) if isinstance(value,str) else None
+    return bool(parsed and parsed.scheme=='https' and parsed.netloc and not parsed.username and not parsed.password)
+
+
+def luminance(color):
+    if not isinstance(color,str) or not re.fullmatch(r'#[0-9A-Fa-f]{6}',color): raise ValueError('Invalid brand color')
+    channels=[int(color[i:i+2],16)/255 for i in (1,3,5)]
+    linear=[c/12.92 if c<=0.04045 else ((c+0.055)/1.055)**2.4 for c in channels]
+    return 0.2126*linear[0]+0.7152*linear[1]+0.0722*linear[2]
+
+
+def contrast(first,second):
+    high,low=sorted((luminance(first),luminance(second)),reverse=True)
+    return (high+0.05)/(low+0.05)
+
+
+def square_asset_size(path):
+    """Return the side of a square SVG viewBox or PNG image; reject anything else."""
+    if path.suffix=='.png':
+        data=path.read_bytes()
+        if len(data)<24 or data[:8]!=b'\x89PNG\r\n\x1a\n' or data[12:16]!=b'IHDR': raise ValueError('Invalid PNG asset')
+        width,height=struct.unpack('>II',data[16:24])
+    elif path.suffix=='.svg':
+        try: element=ElementTree.fromstring(path.read_bytes())
+        except ElementTree.ParseError as error: raise ValueError('Invalid SVG asset') from error
+        if element.tag!='{http://www.w3.org/2000/svg}svg': raise ValueError('Invalid SVG asset')
+        if any(node.tag.rsplit('}',1)[-1] in ('script','foreignObject') for node in element.iter()):
+            raise ValueError('Active SVG content')
+        box=(element.get('viewBox') or '').replace(',',' ').split()
+        if len(box)!=4: raise ValueError('SVG asset needs a viewBox')
+        width,height=(float(value) for value in box[2:])
+        for attribute in ('width','height'):
+            value=element.get(attribute)
+            if value is not None and value!=element.get('width' if attribute=='height' else 'height'):
+                raise ValueError('SVG asset is not square')
+    else:
+        raise ValueError('Assets must be SVG or PNG')
+    if width!=height or width<MIN_ASSET_SIZE: raise ValueError('Asset must be square and at least 48 units')
+    return width
+
+
+def validate_interface(root,interface):
+    """Validate ChatGPT/Codex plugin listing metadata and its package-relative assets."""
+    root=Path(root).resolve()
+    if not isinstance(interface,dict): raise ValueError('Missing OpenAI interface metadata')
+    for field,limit in INTERFACE_TEXT_LIMITS.items():
+        value=interface.get(field)
+        if not isinstance(value,str) or not value.strip() or len(value)>limit:
+            raise ValueError(f'Invalid interface {field}')
+    if not interface['longDescription'].endswith(ATTRIBUTION): raise ValueError('Missing attribution')
+    for field in ('developerName','category'):
+        if not isinstance(interface.get(field),str) or not interface[field].strip(): raise ValueError(f'Invalid interface {field}')
+    for field in INTERFACE_URLS:
+        if not https_url(interface.get(field)): raise ValueError(f'Interface {field} must be an https URL')
+    if contrast(interface.get('brandColor'),'#FFFFFF')<2: raise ValueError('brandColor lacks contrast on light UI')
+    if contrast(interface.get('brandColorDark'),'#212121')<2: raise ValueError('brandColorDark lacks contrast on dark UI')
+    prompts=interface.get('defaultPrompt')
+    if not isinstance(prompts,list) or not prompts or any(not isinstance(p,str) or not p.strip() for p in prompts):
+        raise ValueError('Invalid interface defaultPrompt')
+    for field in INTERFACE_ASSETS:
+        value=interface.get(field)
+        if not isinstance(value,str) or not value.startswith('./'): raise ValueError(f'Interface {field} must start with ./')
+        path=root/value
+        current=root
+        for part in Path(value).parts:
+            current=current/part
+            if current.is_symlink(): raise ValueError('Symlinked interface asset')
+        if not path.resolve().is_relative_to(root) or not path.is_file(): raise ValueError(f'Interface {field} is absent from the package')
+        square_asset_size(path)
+
+
+def skill_interface(skill):
+    """Read the two flat string fields of agents/openai.yaml without a YAML dependency."""
+    values={}
+    for line in (skill/'agents/openai.yaml').read_text().splitlines():
+        match=re.fullmatch(r'  (display_name|short_description): "([^"]*)"',line)
+        if match: values[match.group(1)]=match.group(2)
+    return values
+
+
 def validate_project(root):
     root=Path(root); skill=root/'skills/promptcraft'; meta=validate_skill(skill)
     manifest=json.loads((root/'plugin.json').read_text())
@@ -92,8 +183,12 @@ def validate_project(root):
     if manifest['author']!={'name':'DondeGo team','url':'https://dondego.com'}: raise ValueError('Author metadata mismatch')
     compatibility=json.loads((root/'.claude-plugin/plugin.json').read_text())
     if compatibility!={k:v for k,v in manifest.items() if k!='$schema'}: raise ValueError('Divergent adapter metadata')
-    attribution='Developed by the dondego.com team.'
-    if not manifest['description'].endswith(attribution) or not meta['description'].endswith(attribution): raise ValueError('Missing attribution')
+    if not https_url(manifest['homepage']) or not https_url(manifest['repository']): raise ValueError('Manifest URLs must be https')
+    if not manifest['description'].endswith(ATTRIBUTION) or not meta['description'].endswith(ATTRIBUTION): raise ValueError('Missing attribution')
+    interface=manifest.get('extensions',{}).get('com.openai',{}).get('interface')
+    validate_interface(root,interface)
+    if skill_interface(skill)!={'display_name':interface['displayName'],'short_description':interface['shortDescription']}:
+        raise ValueError('Skill interface metadata diverges from plugin manifest')
     if (skill/'LICENSE').read_bytes()!=(root/'LICENSE').read_bytes(): raise ValueError('License mismatch')
     if (root/'.github/workflows').exists(): raise ValueError('GitHub Actions are out of scope')
     for path in skill.rglob('*'):
@@ -114,7 +209,7 @@ def validate_marketplace(root, require_source=True):
         raise ValueError('Invalid marketplace display metadata')
     plugins = data['plugins']
     if not isinstance(plugins, list) or len(plugins) != 1:
-        raise ValueError('Expected one canonical PromptCraft plugin')
+        raise ValueError('Expected one canonical PromptingCraft.com plugin')
     plugin = plugins[0]
     if set(plugin) != {'name', 'source', 'policy', 'category'} or plugin['name'] != 'promptcraft':
         raise ValueError('Invalid marketplace plugin entry')

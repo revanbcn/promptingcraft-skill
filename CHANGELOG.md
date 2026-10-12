@@ -1,5 +1,20 @@
 # Changelog
 
+## Unreleased — 0.2.0 candidate: PromptingCraft.com brand and plugin readiness
+
+- Public brand is PromptingCraft.com (https://promptingcraft.com). The skill and
+  plugin identifier stays `promptcraft` for compatibility with existing
+  installations, so invocations, archive names and the generated
+  `dist/promptcraft-plugin` are unchanged.
+- ChatGPT listing metadata: display name, 30-character short description, honest
+  long description, website, support, privacy and terms URLs, brand colors, and
+  light/dark icons and logos packaged under `assets/`. The validator checks text
+  limits, https URLs, package-relative square SVG/PNG assets, brand-color contrast
+  and skill/manifest display consistency.
+- Canonical repository URL becomes https://gitlab.com/revanalex/promptingcraft-skill.
+- Minor version: new metadata and packaged assets, no identifier or behavior
+  change. No directory submission, MCP server, tag or release.
+
 ## Unreleased — contract fidelity and native validation
 
 - Preserve expressly immutable text verbatim; do not infer whole-file freezes.
