@@ -12,9 +12,11 @@
 | Activated in ordinary Chat | NOT RUN. CLI/Work execution cannot substitute for this state. |
 | ChatGPT end to end | NOT RUN. [Exact owner steps](../../../docs/chatgpt-installation.md) prepared. |
 
-The candidate was first registered from an isolated worktree. Delivery will move
-only this new local registration to the stable owner checkout after merge and
-confirm it. Live delivery readback will be recorded in
+The candidate was first registered from an isolated worktree. Required CI later
+failed before execution with `ci_quota_exceeded`; merge is held. Safe local
+installation can use the reviewed `local/epic4-installed` branch in the clean
+owner checkout, preserving remote main and the release. Live stable-root
+registration and cache readback will be recorded in
 [MR !4](https://gitlab.com/revanalex/promptcraft-skill/-/merge_requests/4).
 Six prior marketplace records and 52 prior installed-plugin records
 remain unchanged in candidate readback; no global configuration file was replaced.

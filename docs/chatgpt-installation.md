@@ -38,7 +38,10 @@ ignored by Git, and complete; there are no symlinks. The only maintained skill i
 destinations. Updating the canonical source and running it again refreshes the
 snapshot and removes obsolete generated files.
 
-For the owner's existing checkout, these are literal paths, not examples:
+For the owner's existing checkout, these are literal paths, not examples. While
+MR !4 is held by GitLab compute quota, the clean checkout uses the reviewed local
+installation branch `local/epic4-installed`; remote `main` and the release stay
+unchanged. This is local installation, not a merge or release:
 
 ```sh
 cd /Users/Revan/Projects/promptcraft-skill
