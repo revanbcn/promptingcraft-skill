@@ -9,9 +9,9 @@ plugin identifier is `promptingcraft` (formerly `promptcraft`; see
 
 ## Supported route
 
-PromptingCraft.com is a skills-only portable Agent Plugins 1.0.0 package. No MCP server,
-app connection, credentials, hooks or external service are required to compose a
-prompt. Current guidance needs a usable retrieval tool in the authoring chat;
+PromptingCraft.com is a portable Agent Plugins 1.0.0 package: the skill plus an optional
+remote MCP server declared in `mcp.json`. No MCP server, app connection, credentials, hooks
+or external service are required to compose a prompt. Current guidance needs a usable retrieval tool in the authoring chat;
 otherwise the skill reports dated or unavailable guidance.
 
 OpenAI documents plugins in Chat and Work on web, desktop and mobile, and in

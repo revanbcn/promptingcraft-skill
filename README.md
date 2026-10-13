@@ -82,7 +82,8 @@ This is an original illustration, not proof of improved execution. See the
 
 ## Use in ChatGPT
 
-PromptingCraft.com is a skills-only plugin with no MCP server or credentials. Build its
+The PromptingCraft.com plugin bundles the skill and declares one optional remote MCP server
+(the guidance server, no account or credentials). Build its
 local source once, register the real repository root, and install through supported
 Codex or ChatGPT Desktop plugin controls. See the exact
 [local installation and ChatGPT procedure](docs/chatgpt-installation.md).
@@ -147,7 +148,8 @@ model. Plugin loading in the Cursor editor has not been tested.
 
 The plugin ZIP includes root `plugin.json` using Agent Plugins 1.0.0, one
 `skills/promptingcraft/` tree, listing icons/logos under `assets/` and a Claude
-Code compatibility manifest. It declares no MCP servers, hooks or credentials.
+Code compatibility manifest, plus a root `mcp.json` that declares the optional guidance
+MCP server. It declares no hooks or credentials.
 Its ChatGPT listing metadata (display name, descriptions, website, support,
 privacy and terms URLs, brand colors and icons) is checked by the validator;
 it has not been submitted to or reviewed by any plugin directory. In Claude

@@ -1,5 +1,9 @@
 # OpenAI Plugins Directory submission — PromptingCraft.com (Skills only)
 
+> **Historical record.** This page records the 0.2.0 Skills-only draft, kept as evidence and
+> not overwritten. The 0.3.0 Skill + MCP submission (identifier `promptingcraft`) is a new
+> plugin; see [openai-submission-mcp.md](openai-submission-mcp.md).
+
 State as of 2026-10-12, checked against the official pages listed under **Sources**. The
 draft exists in the portal; it has **not** been submitted for review, and no attestation
 has been accepted on the owner's behalf.
