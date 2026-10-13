@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="PromptingCraft.com">
-  <rect width="64" height="64" rx="14" fill="#17181C"/>
-  <path d="M11 37c3.2-6.4 7.6-6.4 10.8-1.2 3.2 5.2 7.4 5.2 10.4-1.6 1-1.9 2.2-2.9 3.8-2.9H52" fill="none" stroke="#F4F1EA" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M37.5 41.5H52" fill="none" stroke="#F4F1EA" stroke-width="4.4" stroke-linecap="round"/>
-  <rect x="46" y="17" width="7" height="7" fill="#E4472B"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="PromptingCraft.com"><title>PromptingCraft.com</title><path d="M256 22 L440 128 V384 L256 490 L72 384 V128 Z" fill="#15191F" stroke="#D9A645" stroke-width="30" stroke-linejoin="round"/><path d="M236 124 H286 C336 124 372 162 372 218 C372 274 336 312 286 312 H236 V250 H282 C298 250 306 236 306 218 C306 200 298 186 282 186 H236 Z" fill="#E6B04C"/><path d="M156 124 H236 V400 H156 Z" fill="#E6B04C"/><path d="M264 186 L292 202 V234 L264 250 L236 234 V202 Z" fill="#43E2F7"/></svg>
