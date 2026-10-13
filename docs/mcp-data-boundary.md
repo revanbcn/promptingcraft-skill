@@ -18,7 +18,9 @@ A temporary build (local branch, never merged; deployed as version `58ef36b5` fo
 minutes, then rolled back to `8221b270`) printed one line per request to a live
 `wrangler tail` session: header **names**, JSON-RPC param keys, argument keys and the key
 names and value **types** of `params._meta`. No values were printed or stored; Workers
-Logs were off, so the lines existed only in the live stream. Clients: the owner's ChatGPT
+Logs were off, so the lines existed only in the live stream. The endpoint was public
+during that window, so any third-party request in it was summarized the same way (names
+and types only). Clients: the owner's ChatGPT
 account (web, Work mode, custom MCP server) and Codex CLI 0.162.1 with the local 0.3.0
 plugin, which declares the server in `mcp.json`.
 
@@ -60,9 +62,10 @@ first"), empty directory, read-only sandbox:
 - Answers use only the validated arguments; `_meta` and headers are ignored. Tests send
   the observed field names with fake values and check that the answer is identical and
   never contains them (`mcp/test/server.test.js`).
-- Nothing is logged: no `console` calls (tested), Workers observability off, script Logpush
-  `false`, no tail consumers (Cloudflare API, 2026-10-13). Account-level Logpush jobs could
-  not be read with the available token.
+- Nothing is logged by our code: no `console` calls (tested), Workers observability off,
+  script Logpush `false`, no tail consumers (Cloudflare API, 2026-10-13); the zone is on
+  Cloudflare's Free plan. Account-level Logpush jobs could not be read with the available
+  token. Cloudflare's own analytics and security tooling still processes request metadata.
 - The connecting IP is the key of the per-location Workers Rate Limiting counters.
 - The only stored data are freshness results for public pages (Cloudflare cache, 15 minutes;
   60 s for failures), keyed by source id.
