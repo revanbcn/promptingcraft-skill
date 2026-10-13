@@ -10,6 +10,11 @@
 - Cursor CLI: named activation 2/2 with `promptingcraft`; automatic activation still 0.
 - ChatGPT: MCP tools available and invoked through a custom connector; bundled skill
   activation in ChatGPT not observed. Not submitted to any directory.
+- Release candidate (main b4d6d20, C2 identity): plugin ZIP SHA-256 `e94313bd…0272`, two builds
+  identical; Agent Plugins 1.0.0 schemas (live copies) valid; `skills-ref` valid; gitleaks clean
+  (history and package); MCP Inspector 16/16 on production; Codex smoke: plugin with MCP returned
+  no-change after `search_guidance`, `get_guidance`, `check_source_freshness`; standalone skill
+  (no plugin) gave draft, critique and final and said the guidance tools were unavailable.
 
 ## Unreleased 0.2.0 candidate: PromptingCraft.com brand and plugin readiness
 
