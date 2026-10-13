@@ -10,13 +10,14 @@ SVG; the Higgsfield concept image was only a reference and is not shipped.
 | `emblem.svg` | Primary vector master (dark tile, works on light and dark pages); plugin `logo` / `logoDark` |
 | `emblem-light.svg` | Light tile variant for pale layouts |
 | `emblem-micro.svg` | Simplified mark for 16–48 px (heavier ribbon, larger core, flat colours); plugin `composerIcon` / `composerIconDark`, favicons |
+| `emblem-16.svg` | 16 px favicon drawn on a 1 px grid (1 px rim, 2 px P, cyan core filling the counter); also the site's `favicon.svg` |
 | `emblem-micro-light.svg` | Light micro variant |
 | `emblem-mono.svg`, `emblem-micro-mono.svg` | Single colour (`currentColor`) fallbacks |
 | `wordmark-light.svg`, `wordmark-dark.svg` | "PromptingCraft.com" with a quieter ".com" |
 | `lockup-light.svg`, `lockup-dark.svg` | Horizontal emblem + wordmark |
-| `png/` | Transparent exports: emblem 512/128/48, light emblem 512/128/48, micro 48/32/16, lockups at 80 px |
+| `png/` | Transparent exports: emblem 512/128/48, light emblem 512/128/48, micro 48/32/16, 16 px favicon, lockups at 80 px |
 
-Rules: use `emblem-micro` at 48 px and below; never shrink the master into a favicon. Keep
+Rules: use `emblem-micro` from 48 down to 24 px and `emblem-16` below that; never shrink the master into a favicon. Keep
 clear space of at least a quarter of the emblem height. Do not recolour the gold, add effects
 or put the mark inside another badge. "Developed by the dondego.com team." belongs in footers
 and descriptions, not in the logo.

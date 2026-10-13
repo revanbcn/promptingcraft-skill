@@ -16,7 +16,7 @@ CORE = 'M264 193 L282 203.5 V224.5 L264 235 L246 224.5 V203.5 Z'
 TRACE = 'M280 214 H302'
 
 # Micro geometry for 16-48 px: heavier ribbon, larger core, no fold, trace or shading.
-M_STEM = 'M156 124 H236 V400 H156 Z'
+M_STEM = 'M156 124 H242 V400 H156 Z'  # overlaps the bowl so no seam shows
 M_BOWL = ('M236 124 H286 C336 124 372 162 372 218 C372 274 336 312 286 312 H236 V250 H282 '
           'C298 250 306 236 306 218 C306 200 298 186 282 186 H236 Z')
 M_CORE = 'M264 186 L292 202 V234 L264 250 L236 234 V202 Z'
@@ -76,10 +76,25 @@ def mono(name, geometry):
     (OUT / f'{name}.svg').write_text(svg(body).replace('<svg ', '<svg fill="currentColor" ', 1))
 
 
+# 16 px favicon: drawn on a 32-unit (1 px) grid. Gold hexagon with a dark inset, a 2 px stem
+# and bowl, and the cyan core filling the counter.
+F_OUTER = 'M256 8 L472 132 V380 L256 504 L40 380 V132 Z'
+F_INNER = 'M256 52 L436 156 V356 L256 460 L76 356 V156 Z'
+F_P = 'M160 128 H320 Q352 128 352 160 V256 Q352 288 320 288 H224 V384 H160 Z'
+F_CORE = 'M224 192 H288 V224 H224 Z'
+
+
+def favicon16(name, rim, tile, gold, core):
+    body = (f'<path d="{F_OUTER}" fill="{rim}"/><path d="{F_INNER}" fill="{tile}"/>'
+            f'<path d="{F_P}" fill="{gold}"/><path d="{F_CORE}" fill="{core}"/>')
+    (OUT / f'{name}.svg').write_text(svg(body))
+
+
 full('emblem', PALETTES['dark'])
 full('emblem-light', PALETTES['light'])
 micro('emblem-micro', '#15191F', '#D9A645', '#E6B04C', '#43E2F7')
 micro('emblem-micro-light', '#FBF8F1', '#B07A26', '#B9832A', '#0B9CBC')
 mono('emblem-mono', (STEM, BOWL, CORE))
 mono('emblem-micro-mono', (M_STEM, M_BOWL, M_CORE))
+favicon16('emblem-16', '#D9A645', '#15191F', '#EDB850', '#43E2F7')
 print('\n'.join(sorted(p.name for p in OUT.glob('*.svg'))))
