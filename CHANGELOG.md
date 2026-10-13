@@ -4,7 +4,7 @@
 
 - Renamed the skill and plugin identifier from `promptcraft` to `promptingcraft`
   (`skills/promptingcraft/`, `$promptingcraft`, `/promptingcraft`); MCP record kind
-  `promptingcraft_methodology` and ledger fields `promptingcraft_*`. Migration:
+  `promptingcraft_methodology` and ledger fields `promptingcraft_*` (ledger schema_version 2). Migration:
   `docs/migration-0.3.0.md`. Historical evidence keeps the old identifier.
 - PromptingCraft.com guidance MCP server (`mcp/`, Cloudflare Worker at
   `https://mcp.promptingcraft.com/mcp`): `search_guidance`, `get_guidance`,

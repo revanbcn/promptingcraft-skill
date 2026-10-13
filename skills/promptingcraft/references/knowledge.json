@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "curated_on": "2026-10-12",
   "freshness": "Dated retrieval snapshot; revalidate applicable sources during use. Retrieval is not publication date.",
   "label_definitions": {

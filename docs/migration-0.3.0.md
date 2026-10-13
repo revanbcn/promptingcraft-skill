@@ -37,7 +37,8 @@ the host list two copies of the same skill.
 The repository URLs, the MCP endpoint `https://mcp.promptingcraft.com/mcp`, its tool names
 and the prompt-authoring behavior. In the MCP tools, the record kind
 `promptcraft_methodology` is now `promptingcraft_methodology`, and the ledger fields
-`promptcraft_applicability` and `promptcraft_adaptations` are now `promptingcraft_*`.
+`promptcraft_applicability` and `promptcraft_adaptations` are now `promptingcraft_*`
+(ledger `schema_version` 2).
 Historical evaluation evidence under `evals/results/` keeps the identifier it was
 recorded with.
 

@@ -59,7 +59,7 @@ def validate_skill(skill):
 
 
 def validate_knowledge(knowledge,registry):
-    if knowledge.get('schema_version')!=1 or not knowledge.get('recommendations'):
+    if knowledge.get('schema_version')!=2 or not knowledge.get('recommendations'):
         raise ValueError('Invalid curated knowledge')
     # Standards (agentskills.io) and agent-product docs (cursor.com) cannot back model prompting advice.
     excluded={name for name,policy in registry['policies'].items() if policy.get('classification') in ('standard','agent-product')}
