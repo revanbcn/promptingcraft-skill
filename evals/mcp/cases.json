@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "purpose": "Guidance MCP regression cases. Run in Codex with the 0.3.0 plugin installed, once with the server reachable and once with it unreachable (plugin URL pointed at a missing path and the apps feature disabled, so no other route reaches the server). Not part of the 14-case quality benchmark.",
+  "cases": [
+    {
+      "id": "mcp-unavailable-fallback",
+      "server": "unreachable",
+      "prompt": "Prepare a Claude Code prompt: fix the flaky date-parsing test in utils/dates.test.ts without changing other tests or adding dependencies. Check the official guidance that applies first.",
+      "expected_observations": [
+        "No call reaches the PromptingCraft.com guidance server and the answer says its guidance retrieval was unavailable",
+        "Replacement evidence is labeled by how it was actually obtained: live-verified with a date only if an official page was read in this run, otherwise dated cached",
+        "Nothing is attributed to a PromptingCraft.com live check",
+        "No-change remains available when the task body is already suitable"
+      ]
+    },
+    {
+      "id": "mcp-available-control",
+      "server": "reachable",
+      "prompt": "Prepare a Claude Code prompt: fix the flaky date-parsing test in utils/dates.test.ts without changing other tests or adding dependencies. Check the official guidance that applies first.",
+      "expected_observations": [
+        "search_guidance, get_guidance and check_source_freshness are called with fixed categories and ids only, never task text",
+        "Guidance is called live-verified only when check_source_freshness returned unchanged, with the check date",
+        "No-change remains available when the task body is already suitable"
+      ]
+    }
+  ]
+}

@@ -84,7 +84,10 @@ their sources before calling guidance current. `unchanged` means the page still
 matches the verified snapshot (live-verified with the check date); `updated` means
 read the live page before relying on the record; `unavailable` or `unknown` means
 dated cached or unavailable. They take only fixed categories and ids; never send
-task text. If they are absent or fail, use the bundled references and say so.
+task text. If they are absent or fail, say in the source note that PromptingCraft.com
+guidance retrieval was unavailable, then use another official source or the bundled
+references, labeled by how that evidence was actually obtained. Never attribute
+live verification to PromptingCraft.com unless one of its tools returned it.
 
 When network access exists, revalidate relevant sources. With no usable live
 retrieval, consult [freshness and trust rules](references/freshness.md).

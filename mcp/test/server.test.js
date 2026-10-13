@@ -28,6 +28,9 @@ test('initialize and tools/list expose three read-only tools with schemas and an
   assert.equal(tools.search_guidance.annotations.openWorldHint, false);
   assert.equal(tools.get_guidance.annotations.openWorldHint, false);
   assert.equal(tools.check_source_freshness.annotations.openWorldHint, true);
+  // The description states the shared cache and the per-source fetch limit the tool applies.
+  assert.match(tools.check_source_freshness.description, /cached for up to 15 minutes/);
+  assert.match(tools.check_source_freshness.description, /rate_limited/);
 });
 
 test('tool calls return structured content matching the text content', async () => {

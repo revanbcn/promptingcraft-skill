@@ -106,6 +106,8 @@ export function createServer({ ledgerCommit, fetchImpl, cache, allowFetch, now }
     title: 'Check source freshness',
     description: 'Fetch one allowlisted official documentation page from the curated registry and compare its normalized text with the verified snapshot. '
       + 'Status is unchanged, updated, unavailable (could not be checked now) or unknown (no snapshot). '
+      + 'Results are shared by all callers and cached for up to 15 minutes (1 minute when unavailable); live.cached and checked_at show when the page was actually fetched. '
+      + 'When the per-source fetch limit is reached, status is unavailable with reason rate_limited. '
       + 'Publication and update dates are never inferred and are always null. Only registry source ids are accepted; no other URL can be requested.',
     inputSchema: z.object({
       source_id: z.enum(SOURCE_IDS).describe('Registry source id, as returned in search_guidance or get_guidance results.'),

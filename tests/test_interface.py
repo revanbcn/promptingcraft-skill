@@ -87,6 +87,19 @@ class InterfaceTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate_review({**openai, 'review': bad})
 
+    def test_mcp_fallback_is_disclosed_and_never_credited_to_the_server(self):
+        # Regression: with the server unreachable, Codex answered from other official pages
+        # without saying that PromptingCraft.com guidance retrieval was unavailable.
+        skill = ' '.join((ROOT / 'skills/promptcraft/SKILL.md').read_text().split())
+        self.assertIn('If they are absent or fail, say in the source note that PromptingCraft.com '
+                      'guidance retrieval was unavailable', skill)
+        self.assertIn('labeled by how that evidence was actually obtained', skill)
+        self.assertIn('Never attribute live verification to PromptingCraft.com unless one of its tools returned it', skill)
+        cases = {c['id']: c for c in json.loads((ROOT / 'evals/mcp/cases.json').read_text())['cases']}
+        self.assertEqual(cases['mcp-unavailable-fallback']['server'], 'unreachable')
+        self.assertTrue(any('retrieval was unavailable' in o for o in cases['mcp-unavailable-fallback']['expected_observations']))
+        self.assertEqual(cases['mcp-available-control']['server'], 'reachable')
+
     def test_mcp_configuration_is_the_production_guidance_server(self):
         from scripts.validate import validate_mcp_config
         config = json.loads((ROOT / 'mcp.json').read_text())
