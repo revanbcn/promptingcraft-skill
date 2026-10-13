@@ -1,58 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="PromptingCraft.com">
-  <defs>
-    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#151922"/>
-      <stop offset="1" stop-color="#07080C"/>
-    </linearGradient>
-    <radialGradient id="aura" cx="0.5" cy="0.46" r="0.5">
-      <stop offset="0" stop-color="#6B4BFF" stop-opacity="0.45"/>
-      <stop offset="0.6" stop-color="#2A1B66" stop-opacity="0.18"/>
-      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="obsidian" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#2A303C"/>
-      <stop offset="0.45" stop-color="#151921"/>
-      <stop offset="1" stop-color="#090B10"/>
-    </linearGradient>
-    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#FFE7A8"/>
-      <stop offset="0.45" stop-color="#E0A63F"/>
-      <stop offset="1" stop-color="#8A5719"/>
-    </linearGradient>
-    <linearGradient id="cyan" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#C9FDFF"/>
-      <stop offset="0.5" stop-color="#3EE6FF"/>
-      <stop offset="1" stop-color="#0A9EC9"/>
-    </linearGradient>
-    <radialGradient id="ember" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#FFF6DD"/>
-      <stop offset="0.35" stop-color="#FFC15A"/>
-      <stop offset="1" stop-color="#FF5A1F"/>
-    </radialGradient>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="9" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="softglow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="5" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-  </defs>
-  <rect width="512" height="512" rx="112" fill="url(#tile)"/>
-  <rect x="6" y="6" width="500" height="500" rx="106" fill="none" stroke="#3A4150" stroke-width="4"/>
-  <rect width="512" height="512" rx="112" fill="url(#aura)"/>
-  <!-- forged crest -->
-  <path d="M256 44 L304 74 L404 90 V242 C404 336 342 404 256 462 C170 404 108 336 108 242 V90 L208 74 Z" fill="url(#obsidian)"/>
-  <path d="M256 44 L304 74 L404 90 V242 C404 336 342 404 256 462 Z" fill="#000000" fill-opacity="0.28"/>
-  <path d="M256 44 L304 74 L404 90 V242 C404 336 342 404 256 462 C170 404 108 336 108 242 V90 L208 74 Z" fill="none" stroke="url(#gold)" stroke-width="16" stroke-linejoin="round"/>
-  <path d="M256 76 L298 100 L378 113 V242 C378 322 326 380 256 428 C186 380 134 322 134 242 V113 L214 100 Z" fill="none" stroke="#E0A63F" stroke-opacity="0.35" stroke-width="3" stroke-linejoin="round"/>
-  <!-- energy seam to the point -->
-  <path d="M231 384 V420" stroke="#3EE6FF" stroke-opacity="0.75" stroke-width="6" stroke-linecap="round" filter="url(#softglow)"/>
-  <!-- P: the cursor stem and the forged bowl -->
-  <path d="M212 162 H264 C312 162 338 190 338 228 C338 266 312 294 264 294 H212" fill="none" stroke="url(#gold)" stroke-width="36" stroke-linejoin="round"/>
-  <rect x="158" y="142" width="58" height="242" rx="10" fill="url(#cyan)" filter="url(#glow)"/>
-  <!-- spark forged in the bowl -->
-  <path d="M272 198 L281 221 L304 228 L281 235 L272 258 L263 235 L240 228 L263 221 Z" fill="url(#ember)" filter="url(#softglow)"/>
-  <!-- gem at the crest -->
-  <path d="M256 58 L268 72 L256 86 L244 72 Z" fill="url(#cyan)" filter="url(#softglow)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="PromptingCraft.com">
+  <rect width="64" height="64" rx="14" fill="#17181C"/>
+  <path d="M11 37c3.2-6.4 7.6-6.4 10.8-1.2 3.2 5.2 7.4 5.2 10.4-1.6 1-1.9 2.2-2.9 3.8-2.9H52" fill="none" stroke="#F4F1EA" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M37.5 41.5H52" fill="none" stroke="#F4F1EA" stroke-width="4.4" stroke-linecap="round"/>
+  <rect x="46" y="17" width="7" height="7" fill="#E4472B"/>
 </svg>

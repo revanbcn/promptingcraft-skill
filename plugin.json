@@ -49,8 +49,8 @@
           "Review this Claude Code task without changing its scope.",
           "Apply relevant official guidance and preserve my requirements."
         ],
-        "brandColor": "#0E1117",
-        "brandColorDark": "#E8B04A",
+        "brandColor": "#17181C",
+        "brandColorDark": "#F4F1EA",
         "composerIcon": "./assets/icon.svg",
         "composerIconDark": "./assets/icon-dark.svg",
         "logo": "./assets/logo.svg",
