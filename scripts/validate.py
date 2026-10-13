@@ -99,8 +99,17 @@ MAX_DEFAULT_PROMPTS=3
 MAX_DEFAULT_PROMPT_LENGTH=128
 MAX_CAPABILITIES=20
 MAX_CAPABILITY_LENGTH=120
-# Skills-only uploads reject MCP, app, hook and screenshot configuration.
-SKILLS_ONLY_EXCLUDED_FILES=('mcp.json','.mcp.json','.app.json','hooks.json')
+# Directory uploads reject app and hook configuration; the one MCP server is declared only in
+# the root mcp.json (portable format), never in a Codex .mcp.json or a nested file.
+EXCLUDED_CONFIG_FILES=('mcp.json','.mcp.json','.app.json','hooks.json')
+MCP_SCHEMA='https://agent-plugins.org/schemas/1.0.0/mcp.schema.json'
+MCP_SERVER_NAME='promptingcraft-guidance'
+MCP_URL='https://mcp.promptingcraft.com/mcp'
+MCP_TOOLS={'search_guidance','get_guidance','check_source_freshness'}
+OPENAI_SETTINGS={'interface','review','publication'}
+REVIEW_FIELDS={'test_cases','demo_recording_url','commerce','commerce_description'}
+POSITIVE_CASE_FIELDS={'description','prompt','tools_triggered','expected_behavior'}
+NEGATIVE_CASE_FIELDS={'description','prompt'}
 MIN_ASSET_SIZE=48
 
 
@@ -202,12 +211,42 @@ def skill_interface(skill):
 
 
 def validate_publication(openai):
-    """Optional publication settings: only non-empty release notes; countries stay unrestricted."""
-    if 'publication' not in openai: return
+    """Release notes are required with an MCP server; countries stay unrestricted."""
+    if 'publication' not in openai: raise ValueError('Missing publication release notes')
     publication=openai['publication']
     if not isinstance(publication,dict) or set(publication)!={'release_notes'}: raise ValueError('Unsupported publication settings')
     notes=publication['release_notes']
     if not isinstance(notes,str) or not notes.strip() or len(notes)>4000: raise ValueError('Invalid release notes')
+
+
+def validate_mcp_config(config):
+    """Exactly the production guidance server: streamable HTTP, no headers, no auth settings."""
+    if not isinstance(config,dict) or set(config)!={'$schema','mcpServers'} or config['$schema']!=MCP_SCHEMA:
+        raise ValueError('mcp.json must use the Agent Plugins MCP schema')
+    servers=config['mcpServers']
+    if not isinstance(servers,dict) or list(servers)!=[MCP_SERVER_NAME]: raise ValueError('mcp.json must declare exactly one server')
+    if servers[MCP_SERVER_NAME]!={'type':'streamable-http','url':MCP_URL}:
+        raise ValueError('MCP server must be the production streamable HTTP endpoint without headers')
+
+
+def validate_review(openai):
+    """MCP review information: exactly five positive and three negative cases and a demo URL."""
+    review=openai.get('review')
+    if not isinstance(review,dict) or set(review)-REVIEW_FIELDS: raise ValueError('Invalid review settings')
+    cases=review.get('test_cases')
+    if not isinstance(cases,dict) or set(cases)!={'positive','negative'}: raise ValueError('Review needs positive and negative test cases')
+    positive,negative=cases['positive'],cases['negative']
+    if not isinstance(positive,list) or not isinstance(negative,list) or len(positive)!=5 or len(negative)!=3:
+        raise ValueError('Review needs exactly five positive and three negative test cases')
+    for case,fields in [(c,POSITIVE_CASE_FIELDS) for c in positive]+[(c,NEGATIVE_CASE_FIELDS) for c in negative]:
+        if not isinstance(case,dict) or set(case)!=fields or not all(isinstance(case[f],str) and case[f].strip() for f in fields):
+            raise ValueError('Incomplete review test case')
+        if '@' in case['prompt']: raise ValueError('Review prompts must not mention plugins')
+    for case in positive:
+        tools={t.strip() for t in case['tools_triggered'].split(',')}
+        if not tools or tools-MCP_TOOLS: raise ValueError('Review case names an unknown tool')
+    if not https_url(review.get('demo_recording_url')): raise ValueError('Review needs an HTTPS demo recording URL')
+    if review.get('commerce') is not False: raise ValueError('PromptingCraft.com declares no commerce')
 
 
 def validate_project(root):
@@ -224,8 +263,12 @@ def validate_project(root):
     if not https_url(manifest['homepage']) or not https_url(manifest['repository']): raise ValueError('Manifest URLs must be https')
     if not manifest['description'].endswith(ATTRIBUTION) or not meta['description'].endswith(ATTRIBUTION): raise ValueError('Missing attribution')
     openai=manifest.get('extensions',{}).get('com.openai',{})
-    if set(openai)-{'interface','publication'}: raise ValueError('Skills-only package declares apps, hooks or MCP settings')
+    if set(openai)-OPENAI_SETTINGS: raise ValueError('Package declares apps, hooks or unsupported OpenAI settings')
     validate_publication(openai)
+    validate_review(openai)
+    validate_mcp_config(json.loads((root/'mcp.json').read_text()))
+    for name in EXCLUDED_CONFIG_FILES[1:]:
+        if (root/name).exists(): raise ValueError(f'Unsupported configuration file {name}')
     interface=openai.get('interface')
     validate_interface(root,interface)
     if skill_interface(skill)!={'display_name':interface['displayName'],'short_description':interface['shortDescription']}:
@@ -237,7 +280,7 @@ def validate_project(root):
     return manifest
 
 def validate_submission_archive(path):
-    """Check our plugin ZIP (one top-level plugin directory) against OpenAI skills-only upload rules verifiable offline.
+    """Check our plugin ZIP (one top-level plugin directory) against OpenAI upload rules verifiable offline.
 
     The 512 MiB extracted and 5,000-entry limits are the portal's archive limits; images and
     descriptions are checked on the source tree by validate_project before packaging.
@@ -256,8 +299,8 @@ def validate_submission_archive(path):
             if (not name or name!=name.strip() or '\\' in name or name.startswith('/') or ''.join(parts[:1]).endswith(':')
                     or any(part in ('','.','..') for part in parts) or len(parts)>20):
                 raise ValueError(f'Unsafe archive path {name!r}')
-            if parts[-1] in SKILLS_ONLY_EXCLUDED_FILES or 'hooks' in parts[1:2]:
-                raise ValueError(f'Skills-only archive contains excluded configuration {name}')
+            if (parts[-1] in EXCLUDED_CONFIG_FILES and parts[1:]!=['mcp.json']) or 'hooks' in parts[1:2]:
+                raise ValueError(f'Archive contains excluded configuration {name}')
         roots={n.split('/',1)[0] for n in names}
         if len(roots)!=1 or any('/' not in n for n in names): raise ValueError('Archive needs exactly one top-level plugin directory')
         root=roots.pop()+'/'
@@ -268,8 +311,11 @@ def validate_submission_archive(path):
             if adapter!={k:v for k,v in manifest.items() if k!='$schema'}: raise ValueError('Archive adapter manifest diverges')
         openai=manifest.get('extensions',{}).get('com.openai',{})
         if not isinstance(openai.get('interface'),dict): raise ValueError('Archive manifest lacks interface metadata')
-        if set(openai)-{'interface','publication'} or 'screenshots' in openai.get('interface',{}): raise ValueError('Archive manifest declares excluded settings')
+        if set(openai)-OPENAI_SETTINGS or 'screenshots' in openai.get('interface',{}): raise ValueError('Archive manifest declares excluded settings')
         validate_publication(openai)
+        validate_review(openai)
+        if root+'mcp.json' not in names: raise ValueError('Archive is missing mcp.json')
+        validate_mcp_config(json.loads(archive.read(root+'mcp.json')))
         for field in INTERFACE_ASSETS:
             value=openai['interface'].get(field)
             if not isinstance(value,str) or root+value[2:] not in names: raise ValueError(f'Archive is missing {field}')

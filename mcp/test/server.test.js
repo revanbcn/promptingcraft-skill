@@ -116,3 +116,41 @@ test('handling a request writes nothing to the console', async () => {
   }
   assert.deepEqual(calls, []);
 });
+
+// Field names observed from ChatGPT and Codex in October 2026 (values here are fake).
+const HOST_META = {
+  'openai/subject': 'subj-FAKE-123', 'openai/session': 'sess-FAKE-456', 'openai/organization': 'org-FAKE',
+  'openai/request_id': 'req-FAKE', 'openai/locale': 'es-ES',
+  'openai/userLocation': { city: 'FakeCity', region: 'FakeRegion', country: 'ZZ', timezone: 'Etc/Fake', latitude: '12.3456', longitude: '-65.4321' },
+  callId: 'call-FAKE', itemId: 'item-FAKE', sessionId: 'sid-FAKE', windowId: 'win-FAKE', threadId: 'thr-FAKE', plugin_id: 'plg-FAKE',
+  progressToken: 7, traceparent: '00-FAKE-01',
+  'x-codex-turn-metadata': { model: 'fake-model', session_id: 'cx-FAKE', turn_id: 'turn-FAKE', sandbox: 'read-only', turn_started_at_unix_ms: 1 },
+};
+const metaValues = (value) => (value && typeof value === 'object' ? Object.values(value).flatMap(metaValues) : [String(value)]);
+
+test('host metadata is ignored: same answer, never echoed, nothing logged', async () => {
+  const methods = ['log', 'info', 'warn', 'error', 'debug'];
+  const original = Object.fromEntries(methods.map((m) => [m, console[m]]));
+  const logged = [];
+  for (const m of methods) console[m] = (...args) => logged.push(args);
+  try {
+    for (const [name, args] of [['search_guidance', { target_agent: 'codex' }], ['get_guidance', { id: 'oai-tools' }], ['get_guidance', { id: 'no-such-record' }]]) {
+      const plain = await rpc('tools/call', { name, arguments: args });
+      const withMeta = await rpc('tools/call', { name, arguments: args, _meta: HOST_META });
+      assert.deepEqual(withMeta.body, plain.body, `${name} result must not depend on host metadata`);
+      const text = JSON.stringify(withMeta.body);
+      for (const value of metaValues(HOST_META).filter((v) => v.length > 2)) assert.ok(!text.includes(value), `${name} echoed metadata value ${value}`);
+    }
+  } finally {
+    Object.assign(console, original);
+  }
+  assert.deepEqual(logged, []);
+});
+
+test('identifying headers do not change or appear in the answer', async () => {
+  const headers = { 'x-openai-subject': 'subj-FAKE-H', 'x-openai-session': 'sess-FAKE-H', 'x-forwarded-for': '198.51.100.7', 'cf-connecting-ip': '198.51.100.8', 'cf-ipcountry': 'ZZ' };
+  const plain = await rpc('tools/call', { name: 'get_guidance', arguments: { id: 'claude-clear' } });
+  const withHeaders = await rpc('tools/call', { name: 'get_guidance', arguments: { id: 'claude-clear' } }, { headers });
+  assert.deepEqual(withHeaders.body, plain.body);
+  for (const value of Object.values(headers)) assert.ok(!JSON.stringify(withHeaders.body).includes(value));
+});

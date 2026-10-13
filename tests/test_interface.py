@@ -37,7 +37,7 @@ class InterfaceTests(unittest.TestCase):
         validate_interface(ROOT, self.interface)
         # Stable technical id kept for installed v0.1.0 and local marketplace installs.
         self.assertEqual(self.manifest['name'], 'promptcraft')
-        self.assertEqual(self.manifest['version'], '0.2.0')
+        self.assertEqual(self.manifest['version'], '0.3.0')
         self.assertEqual(self.manifest['homepage'], 'https://promptingcraft.com')
         self.assertEqual(self.manifest['repository'], 'https://gitlab.com/revanalex/promptingcraft-skill')
         self.assertEqual(self.interface['displayName'], 'PromptingCraft.com')
@@ -59,9 +59,45 @@ class InterfaceTests(unittest.TestCase):
         publication = self.manifest['extensions']['com.openai']['publication']
         self.assertEqual(set(publication), {'release_notes'})
         notes = publication['release_notes']
-        self.assertIn('Skills only', notes)
+        self.assertIn('https://mcp.promptingcraft.com/mcp', notes)
+        self.assertIn('falls back to its bundled dated references', notes)
         self.assertTrue(notes.endswith('Developed by the dondego.com team.'))
         self.assertNotRegex(notes.lower(), r'guarantee[sd]? (better|improve)|official (openai|anthropic) (plugin|partner)')
+
+    def test_review_information_for_mcp_submission(self):
+        from scripts.validate import validate_review, MCP_TOOLS
+        openai = self.manifest['extensions']['com.openai']
+        validate_review(openai)
+        review = openai['review']
+        self.assertEqual(len(review['test_cases']['positive']), 5)
+        self.assertEqual(len(review['test_cases']['negative']), 3)
+        used = {t.strip() for c in review['test_cases']['positive'] for t in c['tools_triggered'].split(',')}
+        self.assertEqual(used, MCP_TOOLS, 'every tool is exercised by a positive case')
+        server = (ROOT / 'mcp/src/server.js').read_text()
+        self.assertEqual(set(re.findall(r"registerTool\('([a-z_]+)'", server)), MCP_TOOLS)
+        self.assertNotRegex(json.dumps(review), r'(?i)password|api[_ -]?key|token|/Users/')
+        bad_cases = [
+            {**review, 'test_cases': {**review['test_cases'], 'positive': review['test_cases']['positive'][:4]}},
+            {**review, 'test_cases': {**review['test_cases'], 'negative': review['test_cases']['negative'] * 2}},
+            {**review, 'demo_recording_url': 'http://example.com/demo'},
+            {**review, 'reviewer_instructions': 'x'},
+            {**review, 'test_cases': {**review['test_cases'], 'positive': [{**review['test_cases']['positive'][0], 'tools_triggered': 'run_shell'}] + review['test_cases']['positive'][1:]}},
+        ]
+        for bad in bad_cases:
+            with self.assertRaises(ValueError):
+                validate_review({**openai, 'review': bad})
+
+    def test_mcp_configuration_is_the_production_guidance_server(self):
+        from scripts.validate import validate_mcp_config
+        config = json.loads((ROOT / 'mcp.json').read_text())
+        validate_mcp_config(config)
+        server = config['mcpServers']['promptingcraft-guidance']
+        for bad in ({**server, 'url': 'https://example.com/mcp'}, {**server, 'type': 'sse'},
+                    {**server, 'headers': {'Authorization': 'Bearer x'}}):
+            with self.assertRaises(ValueError):
+                validate_mcp_config({**config, 'mcpServers': {'promptingcraft-guidance': bad}})
+        with self.assertRaises(ValueError):
+            validate_mcp_config({**config, 'mcpServers': {'promptingcraft-guidance': server, 'other': server}})
 
     def test_publication_settings_are_validated(self):
         base = json.loads((ROOT / 'plugin.json').read_text())['extensions']['com.openai']
@@ -179,7 +215,7 @@ class InterfaceTests(unittest.TestCase):
             root.mkdir()
             for relative in ('skills', '.claude-plugin', 'assets'):
                 shutil.copytree(ROOT / relative, root / relative)
-            for relative in ('plugin.json', 'LICENSE', 'README.md'):
+            for relative in ('plugin.json', 'mcp.json', 'LICENSE', 'README.md'):
                 shutil.copy2(ROOT / relative, root / relative)
             validate_project(root)
             yaml = root / 'skills/promptcraft/agents/openai.yaml'
@@ -193,7 +229,7 @@ class InterfaceTests(unittest.TestCase):
             root.mkdir()
             for relative in ('skills', '.claude-plugin'):
                 shutil.copytree(ROOT / relative, root / relative)
-            for relative in ('plugin.json', 'LICENSE', 'README.md'):
+            for relative in ('plugin.json', 'mcp.json', 'LICENSE', 'README.md'):
                 shutil.copy2(ROOT / relative, root / relative)
             with self.assertRaises(ValueError):
                 validate_project(root)
@@ -204,7 +240,8 @@ class InterfaceTests(unittest.TestCase):
         self.assertEqual(len(self.interface['defaultPrompt']), 3)
         text = self.interface['longDescription']
         self.assertIn('not affiliated with or endorsed by OpenAI, Anthropic or Cursor', text)
-        self.assertIn('no backend that processes prompts', text)
+        self.assertIn('no PromptingCraft.com service receives your prompts', text)
+        self.assertIn('take only fixed categories and identifiers as input and do not ask for task text', text)
         self.assertTrue(1 <= len(self.interface['capabilities']) <= 20)
         self.assertEqual(self.manifest['keywords'][0], 'agent-skills')
         self.assertIn('does not guarantee better downstream results', text)

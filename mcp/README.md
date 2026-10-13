@@ -31,8 +31,11 @@ source and compares hashes with a Python run; on 2026-10-13 it matched 37/37.
 
 ## Privacy and abuse controls
 
-- Inputs are enums and ids validated server-side (unknown keys rejected); no tool accepts
-  conversation text, code, paths, URLs or credentials, and errors never echo values.
+- Tool arguments are enums and ids validated server-side (unknown keys rejected); no tool
+  asks for conversation text, code, paths, URLs or credentials, and errors never echo values.
+- Host platforms add metadata outside the arguments (JSON-RPC `_meta` and headers; see
+  `docs/mcp-data-boundary.md`). The server ignores it: answers never depend on it or echo it
+  (tested), and it is not logged or stored.
 - Nothing is logged: no `console` calls (tested), Workers observability disabled, no
   Logpush or tail consumers. The only stored data are freshness results for public
   pages, cached in the Cloudflare cache (15 minutes; 60 s for failed checks).

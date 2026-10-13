@@ -32,13 +32,14 @@ class PackagingTests(unittest.TestCase):
                         for link in re.findall(r'\]\(([^)]+)\)',page.read_text()):
                             if not link.startswith('https://'):
                                 self.assertTrue((page.parent/link).is_file(),(page,link))
-            self.assertEqual([p.name for p in first],['promptcraft-skill-0.2.0.zip','promptcraft-plugin-0.2.0.zip'])
+            self.assertEqual([p.name for p in first],['promptcraft-skill-0.3.0.zip','promptcraft-plugin-0.3.0.zip'])
             with zipfile.ZipFile(first[1]) as z:
                 names=set(z.namelist())
                 for asset in ('icon.svg','icon-dark.svg','logo.svg','logo-dark.svg'):
                     self.assertIn('promptcraft-plugin/assets/'+asset,names)
                     self.assertEqual(z.read('promptcraft-plugin/assets/'+asset),(ROOT/'assets'/asset).read_bytes())
                 self.assertIn('promptcraft-plugin/skills/promptcraft/SKILL.md',names)
+                self.assertEqual(z.read('promptcraft-plugin/mcp.json'),(ROOT/'mcp.json').read_bytes())
             with zipfile.ZipFile(first[0]) as z:
                 self.assertFalse(any('/assets/' in n for n in z.namelist()))
             sums=(Path(a)/'SHA256SUMS').read_text()
@@ -87,12 +88,14 @@ class SubmissionArchiveTests(unittest.TestCase):
             source = self.built(d)
             variants = {
                 'mcp': dict(extra={'promptcraft-plugin/.mcp.json': '{}'}),
+                'nested mcp': dict(extra={'promptcraft-plugin/skills/promptcraft/mcp.json': '{}'}),
                 'app': dict(extra={'promptcraft-plugin/.app.json': '{}'}),
                 'hooks': dict(extra={'promptcraft-plugin/hooks/hooks.json': '{}'}),
                 'sibling': dict(extra={'README.md': 'x'}),
                 'parent': dict(extra={'promptcraft-plugin/../x': 'x'}),
                 'missing skill': dict(drop='promptcraft-plugin/skills/promptcraft/SKILL.md'),
                 'missing logo': dict(drop='promptcraft-plugin/assets/logo.svg'),
+                'missing mcp.json': dict(drop='promptcraft-plugin/mcp.json'),
                 'top-level mcpServers': dict(rename=None, extra=None, drop=None, patch_manifest={'mcpServers': './.mcp.json'}),
                 'divergent adapter': dict(patch_adapter={'version': '9.9.9'}),
             }

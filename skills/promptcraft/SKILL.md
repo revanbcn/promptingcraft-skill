@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: DondeGo
   website: https://promptingcraft.com
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # PromptingCraft.com
@@ -76,6 +76,15 @@ retrieval. Inspect tools, never invent names or assume a server is installed.
 Search with public product/topic terms, never private task text, code or paths.
 Retrieve usable page content, not just a search snippet. Reuse that evidence
 through this invocation; do not crawl an entire documentation site.
+
+When the PromptingCraft.com guidance tools are actually listed (`search_guidance`,
+`get_guidance`, `check_source_freshness`), use them for these same records: search
+with the target agent, model family and topic; get the records you rely on; check
+their sources before calling guidance current. `unchanged` means the page still
+matches the verified snapshot (live-verified with the check date); `updated` means
+read the live page before relying on the record; `unavailable` or `unknown` means
+dated cached or unavailable. They take only fixed categories and ids; never send
+task text. If they are absent or fail, use the bundled references and say so.
 
 When network access exists, revalidate relevant sources. With no usable live
 retrieval, consult [freshness and trust rules](references/freshness.md).

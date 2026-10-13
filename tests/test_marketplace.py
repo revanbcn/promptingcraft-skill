@@ -15,7 +15,7 @@ class MarketplaceTests(unittest.TestCase):
         root.mkdir()
         for relative in ("skills", ".claude-plugin", "docs", "assets"):
             shutil.copytree(ROOT / relative, root / relative)
-        for relative in ("plugin.json", "LICENSE", "README.md"):
+        for relative in ("plugin.json", "mcp.json", "LICENSE", "README.md"):
             shutil.copy2(ROOT / relative, root / relative)
         catalog = root / ".agents/plugins/marketplace.json"
         catalog.parent.mkdir(parents=True)
@@ -128,5 +128,7 @@ class CursorMarketplaceTests(unittest.TestCase):
         self.assertTrue(entry['description'].endswith('Developed by the dondego.com team.'))
         for forbidden in ('mcpServers', 'hooks', 'rules', 'agents', 'commands', 'variables'):
             self.assertNotIn(forbidden, entry)
-        for path in ('mcp.json', '.mcp.json', 'hooks', 'rules', 'agents', 'commands'):
+        # The single MCP server lives in the portable root mcp.json; no other components.
+        for path in ('.mcp.json', 'hooks', 'rules', 'agents', 'commands'):
             self.assertFalse((root / path).exists(), path)
+        self.assertEqual(list(json.loads((root / 'mcp.json').read_text())['mcpServers']), ['promptingcraft-guidance'])
