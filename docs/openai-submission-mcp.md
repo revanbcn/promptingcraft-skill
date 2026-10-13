@@ -12,6 +12,7 @@ authentication). The earlier Skills-only draft is kept unchanged as a separate p
 | MCP server | `https://mcp.promptingcraft.com/mcp`, universal URL, no authentication; Worker version 2da27b63 plus the challenge secret |
 | Domain verification | **Verified** with the portal's token, served by the Worker at `/.well-known/openai-apps-challenge` |
 | Scan Tools | Connected; `search_guidance`, `get_guidance`, `check_source_freshness` and server instructions imported; **"No findings in the latest MCP scan."** |
+| Skill check | `promptingcraft`: **Checks passed**; Findings → Blocking: "No blocking findings to show." |
 | Metadata findings | Non-blocking: "The plugin's name or description references another AI assistant, model, or platform." (the listing names Codex, Claude Code and Cursor as target agents) |
 | Review information | Imported from the ZIP: all supported countries, 5 positive and 3 negative test cases, walkthrough URL, release notes; no reviewer credentials needed (no authentication) |
 | Walkthrough | [docs/review/](review/README.md) |
