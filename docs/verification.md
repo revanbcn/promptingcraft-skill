@@ -1,5 +1,16 @@
 # Verification status
 
+## Unreleased 0.3.0 candidate: guidance MCP server and the `promptingcraft` identifier
+
+- Offline: Python tests, project/catalog validators, MCP tests (`npm test` in `mcp/`),
+  `skills-ref validate` for the source skill and both ZIPs, reproducible
+  `promptingcraft-skill-0.3.0.zip` / `promptingcraft-plugin-0.3.0.zip`.
+- Codex, both modes (standalone skill without any server; plugin with the production MCP
+  server; MCP failure): [mode regression](../evals/results/mcp-modes-1/README.md).
+- Cursor CLI: named activation 2/2 with `promptingcraft`; automatic activation still 0.
+- ChatGPT: MCP tools available and invoked through a custom connector; bundled skill
+  activation in ChatGPT not observed. Not submitted to any directory.
+
 ## Unreleased 0.2.0 candidate: PromptingCraft.com brand and plugin readiness
 
 - Local offline checks only: 100 tests, project/catalog validators, reproducible
