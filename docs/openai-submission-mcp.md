@@ -7,11 +7,15 @@ authentication). The earlier Skills-only draft is kept unchanged as a separate p
 
 | Item | State |
 | --- | --- |
-| Portal draft | Not created yet |
-| Package | Built from merged `main`; SHA-256 recorded here after the build |
-| Domain verification | Pending the portal's challenge token (served from the Worker secret `OPENAI_APPS_CHALLENGE` at `/.well-known/openai-apps-challenge`) |
-| Scan Tools | Pending |
-| Submit for review | Not done; owner attestations are owner-only |
+| Portal draft | Created 2026-10-13 in organization **DondeGo**, project **Default project** (residency **Global**), developer identity **Individual — ALEKSANDR PROKOFYEV**: https://platform.openai.com/plugins/manage/plugin_asdk_app_6acde71d1ddc81918d6095dba60b6023 , version `0.3.0 · Draft`. The Skills-only draft (0.2.0) is unchanged |
+| Package | `promptingcraft-plugin-0.3.0.zip` from `main` 0023980, SHA-256 `c52682d787fe30f654543347135798fc17ce05513d2451a26eaa53e1fcfc373e` (two builds identical) |
+| MCP server | `https://mcp.promptingcraft.com/mcp`, universal URL, no authentication; Worker version 2da27b63 plus the challenge secret |
+| Domain verification | **Verified** with the portal's token, served by the Worker at `/.well-known/openai-apps-challenge` |
+| Scan Tools | Connected; `search_guidance`, `get_guidance`, `check_source_freshness` and server instructions imported; **"No findings in the latest MCP scan."** |
+| Metadata findings | Non-blocking: "The plugin's name or description references another AI assistant, model, or platform." (the listing names Codex, Claude Code and Cursor as target agents) |
+| Review information | Imported from the ZIP: all supported countries, 5 positive and 3 negative test cases, walkthrough URL, release notes; no reviewer credentials needed (no authentication) |
+| Walkthrough | [docs/review/](review/README.md) |
+| Submit for review | Not done; the owner accepts the policy attestations |
 
 Requirements followed: [Submit plugins](https://developers.openai.com/plugins/deploy/submission)
 and [Remote MCP server review requirements](https://developers.openai.com/plugins/deploy/app-review)
