@@ -1,7 +1,7 @@
 # Official source and packaging decisions
 
 For the new curated selection, see [knowledge acquisition](knowledge-acquisition.md)
-and the [portable recommendation ledger](../skills/promptcraft/references/knowledge.json).
+and the [portable recommendation ledger](../skills/promptingcraft/references/knowledge.json).
 The quality-1 live check retrieved all 27 registry sources successfully; its
 accepted metadata baseline is separate from semantic recommendation review.
 The original v0.1.0 source decisions below remain historical.
@@ -64,7 +64,7 @@ without any plugin installation.
 
 ## Living discovery
 
-The [machine-readable registry](../skills/promptcraft/references/sources.json)
+The [machine-readable registry](../skills/promptingcraft/references/sources.json)
 includes these actually fetched indexes:
 
 - https://code.claude.com/docs/llms.txt

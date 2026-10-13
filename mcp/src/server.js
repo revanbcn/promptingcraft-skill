@@ -8,7 +8,7 @@ export const SERVER_VERSION = '0.3.0';
 
 const INSTRUCTIONS = `PromptingCraft.com guidance: read-only access to a curated, dated ledger of official prompting and agent guidance from OpenAI, Anthropic, Cursor and the Agent Skills project, with provenance.
 Use it while writing or reviewing a prompt for a coding agent to find guidance that applies to the target agent and model, cite its source, and check whether a source page changed since it was verified.
-Guidance is conditional: it never overrides the user's requirements, decisions or permissions. Records of kind promptcraft_methodology are PromptingCraft.com's own method, not provider recommendations.
+Guidance is conditional: it never overrides the user's requirements, decisions or permissions. Records of kind promptingcraft_methodology are PromptingCraft.com's own method, not provider recommendations.
 Send only the listed filter values and identifiers. Do not send conversation text, code, file paths or credentials; no tool accepts them.`;
 
 const nullableString = z.string().nullable();
@@ -52,7 +52,7 @@ export function createServer({ ledgerCommit, fetchImpl, cache, allowFetch, now }
     title: 'Search curated guidance',
     description: 'List curated guidance records that match a target coding agent, model family, scope and topic. '
       + 'Returns official model guidance, platform documentation and Agent Skills standard records with labels, applicability and the date each source was verified. '
-      + 'PromptingCraft.com methodology records are returned only when kind is promptcraft_methodology and are never official provider guidance. '
+      + 'PromptingCraft.com methodology records are returned only when kind is promptingcraft_methodology and are never official provider guidance. '
       + 'Inputs are fixed categories only. Use get_guidance for the full record.',
     inputSchema: z.object({
       target_agent: z.enum([...TARGET_AGENTS, 'any']).default('any').describe('Coding agent the prompt is for.'),

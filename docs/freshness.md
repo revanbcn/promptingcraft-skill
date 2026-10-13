@@ -4,7 +4,7 @@ Three different objects: versioned skill instructions; external knowledge used
 for a particular task; read-only checks for changes to that knowledge. No
 scheduled operation rewrites instructions, opens MRs, merges or publishes.
 
-The standalone skill contains [sources.json](../skills/promptcraft/references/sources.json).
+The standalone skill contains [sources.json](../skills/promptingcraft/references/sources.json).
 Each source has provider, canonical URL, role, applicability and refresh policy.
 Official root/product indexes discover newly relevant candidate links instead
 of only watching yesterday's guides. Candidates need manual content/applicability
@@ -13,7 +13,7 @@ review before adding them or changing skill behavior.
 Python 3.11+ stdlib utility:
 
 ```sh
-python3 scripts/freshness.py --output /tmp/promptcraft-freshness --write-baseline
+python3 scripts/freshness.py --output /tmp/promptingcraft-freshness --write-baseline
 ```
 
 Output: readable `freshness.md`, machine-readable `freshness.json`, and optionally

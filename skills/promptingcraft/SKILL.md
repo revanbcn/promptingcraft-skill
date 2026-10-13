@@ -1,5 +1,5 @@
 ---
-name: promptcraft
+name: promptingcraft
 description: Turn a development discussion into an execution-ready coding-agent prompt, or write, improve, or review a Claude Code or Codex handoff. Use for prompt-authoring requests, not merely software-development mentions. Developed by the dondego.com team.
 license: MIT
 metadata:

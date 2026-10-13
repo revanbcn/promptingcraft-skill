@@ -3,7 +3,7 @@
 
 Each query runs N times with `cursor-agent -p --mode ask` (read-only) in a fresh empty
 directory, with the skill installed for the duration as a user skill at
-`~/.cursor/skills/promptcraft` (outside the workspace, so workspace search cannot find
+`~/.cursor/skills/promptingcraft` (outside the workspace, so workspace search cannot find
 it; the script refuses to run if that path exists and removes its copy afterwards).
 A run counts as triggered only when the agent actually reads that SKILL.md (a read tool
 call in the stream), not when the model says it used the skill. The model Cursor reports
@@ -31,7 +31,7 @@ def once(q, n):
 def reads_skill(event):
     call = event.get('tool_call') or {}
     for kind, body in call.items():
-        if 'read' in kind.lower() and '.cursor/skills/promptcraft/SKILL.md' in json.dumps(body.get('args', {})): return True
+        if 'read' in kind.lower() and '.cursor/skills/promptingcraft/SKILL.md' in json.dumps(body.get('args', {})): return True
     return False
 def attempt_once(q, n):
     work = Path(tempfile.mkdtemp(prefix='pc-cur-'))
@@ -53,9 +53,9 @@ def attempt_once(q, n):
     (out / f"{q['id']}-run{n}.jsonl").write_text(''.join(log))
     r = {'id': q['id'], 'run': n, 'triggered': triggered, 'stop': reason, 'model': used, 'seconds': round(time.time() - t)}
     print(json.dumps(r), flush=True); return r
-USER_SKILL = Path.home() / '.cursor/skills/promptcraft'
+USER_SKILL = Path.home() / '.cursor/skills/promptingcraft'
 if USER_SKILL.exists() or USER_SKILL.is_symlink(): sys.exit(f'{USER_SKILL} exists; refusing to overwrite')
-shutil.copytree(ROOT / 'skills/promptcraft', USER_SKILL)
+shutil.copytree(ROOT / 'skills/promptingcraft', USER_SKILL)
 try:
     jobs = [(q, n) for n in range(1, runs + 1) for q in queries]
     with ThreadPoolExecutor(int(sys.argv[4]) if len(sys.argv) > 4 else 2) as pool:

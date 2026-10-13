@@ -7,7 +7,7 @@ been submitted, no publisher application has been made and no terms have been ac
 
 | Item | State |
 | --- | --- |
-| Plugin format | Prepared: the repository root is an Agent Plugins 1.0.0 plugin (`plugin.json` with `$schema`, `skills/promptcraft/SKILL.md`), the format Cursor documents for Agent Plugins |
+| Plugin format | Prepared: the repository root is an Agent Plugins 1.0.0 plugin (`plugin.json` with `$schema`, `skills/promptingcraft/SKILL.md`), the format Cursor documents for Agent Plugins |
 | Catalog | Prepared: `.cursor-plugin/marketplace.json` lists the single root plugin (`source: "./"`) with category, tags and an absolute logo URL |
 | Public repository | Verified: https://gitlab.com/revanalex/promptingcraft-skill is public and MIT licensed |
 | GitLab accepted for public listing | **Unverified**: the docs say "public Git repository"; relative logos resolve to raw.githubusercontent.com and source refresh mentions the Cursor GitHub App. GitHub visibility is unresolved, so the GitLab URL is the one to submit |
@@ -20,9 +20,9 @@ been submitted, no publisher application has been made and no terms have been ac
 | Item | State | Evidence |
 | --- | --- | --- |
 | Valid manifest | Prepared | `plugin.json` validates against the Agent Plugins 1.0.0 JSON Schema; `scripts/validate.py` |
-| Unique lowercase kebab-case name | Prepared | `promptcraft` (stable id kept for existing installations; display name PromptingCraft.com) |
+| Unique lowercase kebab-case name | Prepared | `promptingcraft` (renamed from `promptcraft` in 0.3.0; display name PromptingCraft.com) |
 | Clear description | Prepared | Manifest `description` and catalog entry `description` |
-| Valid component files and frontmatter | Prepared | One skill; `name: promptcraft` matches its folder; `description` present; `skills-ref validate` passes |
+| Valid component files and frontmatter | Prepared | One skill; `name: promptingcraft` matches its folder; `description` present; `skills-ref validate` passes |
 | Logo | Prepared | Absolute `https://gitlab.com/revanalex/promptingcraft-skill/-/raw/main/assets/logo.svg` (a relative path would resolve to GitHub) |
 | README documenting usage | Prepared | `README.md`, section "Use in Cursor" |
 | No undeclared variables or credentials | Verified | No `mcp.json`, `variables`, hooks, rules, agents or commands (`tests/test_marketplace.py`) |
@@ -35,7 +35,7 @@ been submitted, no publisher application has been made and no terms have been ac
 | Field | Value |
 | --- | --- |
 | Display name | PromptingCraft.com |
-| Plugin id | `promptcraft` |
+| Plugin id | `promptingcraft` |
 | Repository | https://gitlab.com/revanalex/promptingcraft-skill |
 | Description | An open-source skill that turns development discussions into reviewed, execution-ready coding-agent prompts using official AI-developer guidance. Developed by the dondego.com team. |
 | Category (catalog) | Developer Tools |
@@ -47,9 +47,9 @@ been submitted, no publisher application has been made and no terms have been ac
 
 Usage examples for reviewers:
 
-1. "Use the promptcraft skill to turn this discussion into a Cursor Agent prompt; investigation only."
-2. "Use the promptcraft skill to review this handoff without changing its scope." (paste a prompt)
-3. "Use the promptcraft skill: is this Codex task already suitable? Keep it unchanged if so."
+1. "Use the promptingcraft skill to turn this discussion into a Cursor Agent prompt; investigation only."
+2. "Use the promptingcraft skill to review this handoff without changing its scope." (paste a prompt)
+3. "Use the promptingcraft skill: is this Codex task already suitable? Keep it unchanged if so."
 
 ## Cursor-specific behavior
 
@@ -68,7 +68,8 @@ Composer 2.5 Fast):
 
 - Automatic activation: 0/30 positive runs and 0/30 negative runs; the skill was listed as
   available. Automatic activation is therefore not established in Cursor.
-- Explicit naming ("Use the promptcraft skill …"): 2/2 loaded.
+- Explicit naming ("Use the promptcraft skill …", the 0.2.0 identifier): 2/2 loaded. Not yet
+  repeated with `promptingcraft`.
 - Diagnostic with `gpt-5.3-codex`: 3/5 positive queries loaded once each.
 - Behavior spot check (ungraded): scope and open decisions preserved; extra mandatory steps
   added, which the project counts as fidelity defects.
@@ -82,7 +83,7 @@ Composer 2.5 Fast):
 2. Confirm whether a GitLab repository is accepted for public listing; if only GitHub is
    accepted, resolve the GitHub mirror visibility first.
 3. Optionally install the plugin in the Cursor editor (Customize → plugins, or
-   `~/.cursor/plugins/local/promptcraft` and "Developer: Reload Window") and confirm the
+   `~/.cursor/plugins/local/promptingcraft` and "Developer: Reload Window") and confirm the
    skill appears and loads when named.
 4. Submit the repository URL only after the website and skill merge requests are merged.
 

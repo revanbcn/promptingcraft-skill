@@ -12,7 +12,7 @@ not private production prompts or a sample of actual user traffic.
 Optional paired run using an existing authenticated Claude Code subscription:
 
 ```sh
-python3 scripts/evaluate.py --output /tmp/promptcraft-evals --model claude-sonnet-5-5
+python3 scripts/evaluate.py --output /tmp/promptingcraft-evals --model claude-sonnet-5-5
 ```
 
 The default now runs ALL cases; `--cases` selects an explicit subset and rejects

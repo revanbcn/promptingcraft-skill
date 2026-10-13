@@ -8,7 +8,7 @@ import { readFileSync } from 'node:fs';
 import { normalize, sha256Hex, NormalizeError } from '../src/normalize.js';
 
 const root = new URL('../../', import.meta.url);
-const registry = JSON.parse(readFileSync(new URL('skills/promptcraft/references/sources.json', root), 'utf8'));
+const registry = JSON.parse(readFileSync(new URL('skills/promptingcraft/references/sources.json', root), 'utf8'));
 const reference = process.argv[2]
   ? Object.fromEntries(JSON.parse(readFileSync(process.argv[2], 'utf8')).sources.map((s) => [s.id, s.hash]))
   : Object.fromEntries(Object.entries(JSON.parse(readFileSync(new URL('sources-baseline.json', root), 'utf8')).sources).map(([id, s]) => [id, s.hash]));

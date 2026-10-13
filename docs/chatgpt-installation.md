@@ -3,8 +3,9 @@
 Documentation checked on 2026-10-12. This is unreleased `main` integration work;
 **v0.1.0 remains the canonical release**. Package metadata says 0.2.0, an
 unreleased candidate; it does not identify a new release or certify new release
-assets. The product is publicly named PromptingCraft.com; the skill and plugin
-identifier remains `promptcraft`, so existing installations keep working.
+assets. The product is publicly named PromptingCraft.com; since 0.3.0 the skill and
+plugin identifier is `promptingcraft` (formerly `promptcraft`; see
+[migration notes](migration-0.3.0.md)).
 
 ## Supported route
 
@@ -32,10 +33,10 @@ this owner's account permissions or published a workspace/public plugin.
 ## Build once and register the real root
 
 The repository catalog is `.agents/plugins/marketplace.json`, named
-`dondego-local`. Its `source.path` is `./dist/promptcraft-plugin`, relative to the
+`dondego-local`. Its `source.path` is `./dist/promptingcraft-plugin`, relative to the
 **repository root**, not to `.agents/plugins`. The source directory is generated,
 ignored by Git, and complete; there are no symlinks. The only maintained skill is
-`skills/promptcraft`. The materializer reuses the same reproducible plugin ZIP as
+`skills/promptingcraft`. The materializer reuses the same reproducible plugin ZIP as
 `scripts/package.py`, validates resources, and refuses unmanaged or locally edited
 destinations. Updating the canonical source and running it again refreshes the
 snapshot and removes obsolete generated files.
@@ -46,7 +47,7 @@ installation branch `local/epic4-installed`; remote `main` and the release stay
 unchanged. This is local installation, not a merge or release:
 
 ```sh
-cd /Users/Revan/Projects/promptcraft-skill
+cd /Users/Revan/Projects/promptingcraft-skill
 python3 scripts/prepare_marketplace.py
 python3 scripts/validate.py --marketplace
 codex plugin marketplace list --json
@@ -55,9 +56,9 @@ codex plugin marketplace list --json
 If `dondego-local` is absent, register **this real root**:
 
 ```sh
-codex plugin marketplace add /Users/Revan/Projects/promptcraft-skill
+codex plugin marketplace add /Users/Revan/Projects/promptingcraft-skill
 codex plugin list --marketplace dondego-local --available --json
-codex plugin add promptcraft@dondego-local
+codex plugin add promptingcraft@dondego-local
 codex plugin list --marketplace dondego-local --json
 ```
 
@@ -74,8 +75,8 @@ this local source. Refresh the named installed snapshot using:
 
 ```sh
 python3 scripts/prepare_marketplace.py
-codex plugin remove promptcraft@dondego-local
-codex plugin add promptcraft@dondego-local
+codex plugin remove promptingcraft@dondego-local
+codex plugin add promptingcraft@dondego-local
 codex plugin list --marketplace dondego-local --json
 ```
 
@@ -88,7 +89,7 @@ controls and verify availability again.
 To reverse the named CLI integration:
 
 ```sh
-codex plugin remove promptcraft@dondego-local
+codex plugin remove promptingcraft@dondego-local
 codex plugin marketplace remove dondego-local
 ```
 
@@ -106,11 +107,11 @@ With the real local source registered:
 
 1. Open ChatGPT Desktop. In Work or Codex, open **Plugins** and select the
    **DondeGo Local** marketplace source (`dondego-local`).
-2. Open **PromptingCraft.com**, check its bundled `promptcraft` skill and
+2. Open **PromptingCraft.com**, check its bundled `promptingcraft` skill and
    absence of apps/MCP connections, then install with the plus/install control.
    If already installed, confirm it is enabled. Restart/start a new chat if needed.
 3. Open a new ordinary **Chat** conversation in the same account/workspace. Type
-   `@`, select **PromptingCraft.com** or its bundled **promptcraft** skill, and ask it to
+   `@`, select **PromptingCraft.com** or its bundled **promptingcraft** skill, and ask it to
    prepare a Codex prompt. An actual selectable mention and response are the
    activation evidence; a Codex/Work response does not establish Chat activation.
 4. In another new Chat, establish the task decisions normally, then say
@@ -120,7 +121,7 @@ With the real local source registered:
 If the local source or skill is absent in that account/surface, record which
 step is unavailable. Do not paste SKILL.md repeatedly or claim native success.
 An eligible workspace uploader can use **Admin console → intended workspace →
-Plugins → Add → Upload plugin** with `dist/promptcraft-plugin-0.2.0.zip` generated
+Plugins → Add → Upload plugin** with `dist/promptingcraft-plugin-<version>.zip` generated
 by `python3 scripts/package.py --output dist`, then install it and repeat Chat
 checks. This is a separate account/permission route, **not performed here**;
 upload/publication is not authorized by the CLI install. No new MCP is needed.

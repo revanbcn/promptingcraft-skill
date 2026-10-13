@@ -22,8 +22,8 @@ class MarketplaceTests(unittest.TestCase):
         catalog.write_text(json.dumps({
             "name": "dondego-local",
             "interface": {"displayName": "DondeGo Local"},
-            "plugins": [{"name": "promptcraft",
-                         "source": {"source": "local", "path": "./dist/promptcraft-plugin"},
+            "plugins": [{"name": "promptingcraft",
+                         "source": {"source": "local", "path": "./dist/promptingcraft-plugin"},
                          "policy": {"installation": "AVAILABLE", "authentication": "ON_USE"},
                          "category": "Developer Tools"}]
         }))
@@ -33,12 +33,12 @@ class MarketplaceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root, _ = self.fixture(directory)
             dest = prepare(root)
-            self.assertEqual(dest, root / "dist/promptcraft-plugin")
+            self.assertEqual(dest, root / "dist/promptingcraft-plugin")
             self.assertEqual(validate_marketplace(root), dest)
             self.assertFalse((root / ".agents/plugins/dist").exists())
-            for source in (root / "skills/promptcraft").rglob("*"):
+            for source in (root / "skills/promptingcraft").rglob("*"):
                 if source.is_file() and "__pycache__" not in source.parts and source.suffix != ".pyc":
-                    self.assertEqual(source.read_bytes(), (dest / "skills/promptcraft" / source.relative_to(root / "skills/promptcraft")).read_bytes())
+                    self.assertEqual(source.read_bytes(), (dest / "skills/promptingcraft" / source.relative_to(root / "skills/promptingcraft")).read_bytes())
             self.assertTrue((dest / "plugin.json").is_file())
             for asset in ("icon.svg", "icon-dark.svg", "logo.svg", "logo-dark.svg"):
                 self.assertEqual((root / "assets" / asset).read_bytes(), (dest / "assets" / asset).read_bytes())
@@ -52,18 +52,18 @@ class MarketplaceTests(unittest.TestCase):
             first = {p.relative_to(dest): p.read_bytes() for p in dest.rglob("*") if p.is_file()}
             prepare(root)
             self.assertEqual(first, {p.relative_to(dest): p.read_bytes() for p in dest.rglob("*") if p.is_file()})
-            extra = root / "skills/promptcraft/references/transient.md"
+            extra = root / "skills/promptingcraft/references/transient.md"
             extra.write_text("Sanitized reference\n")
             prepare(root)
-            self.assertEqual((dest / "skills/promptcraft/references/transient.md").read_text(), "Sanitized reference\n")
+            self.assertEqual((dest / "skills/promptingcraft/references/transient.md").read_text(), "Sanitized reference\n")
             extra.unlink()
             prepare(root)
-            self.assertFalse((dest / "skills/promptcraft/references/transient.md").exists())
+            self.assertFalse((dest / "skills/promptingcraft/references/transient.md").exists())
 
     def test_refuses_unmanaged_or_edited_target_without_changing_it(self):
         with tempfile.TemporaryDirectory() as directory:
             root, _ = self.fixture(directory)
-            dest = root / "dist/promptcraft-plugin"
+            dest = root / "dist/promptingcraft-plugin"
             dest.mkdir(parents=True)
             (dest / "owner.txt").write_text("owner data")
             with self.assertRaises(ValueError):
@@ -71,7 +71,7 @@ class MarketplaceTests(unittest.TestCase):
             self.assertEqual((dest / "owner.txt").read_text(), "owner data")
             shutil.rmtree(dest)
             prepare(root)
-            skill = dest / "skills/promptcraft/SKILL.md"
+            skill = dest / "skills/promptingcraft/SKILL.md"
             skill.write_text("local edit")
             with self.assertRaises(ValueError):
                 prepare(root)
@@ -81,7 +81,7 @@ class MarketplaceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root, catalog = self.fixture(directory)
             baseline = json.loads(catalog.read_text())
-            for path in ("../outside", "./../outside", "/tmp/outside", "./skills/promptcraft", "./dist/../../outside"):
+            for path in ("../outside", "./../outside", "/tmp/outside", "./skills/promptingcraft", "./dist/../../outside"):
                 data = json.loads(json.dumps(baseline))
                 data["plugins"][0]["source"]["path"] = path
                 catalog.write_text(json.dumps(data))
@@ -103,7 +103,7 @@ class MarketplaceTests(unittest.TestCase):
                 prepare(root)
             (root / "dist").unlink()
             (root / "dist").mkdir()
-            (root / "dist/promptcraft-plugin").symlink_to(outside, target_is_directory=True)
+            (root / "dist/promptingcraft-plugin").symlink_to(outside, target_is_directory=True)
             with self.assertRaises(ValueError):
                 prepare(root)
             self.assertEqual(list(Path(outside).iterdir()), [])

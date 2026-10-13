@@ -36,4 +36,4 @@ class TriggerQueryTests(unittest.TestCase):
             self.assertEqual(len(rows), size)
             self.assertEqual(sum(q['should_trigger'] for q in rows), size // 2, split)
         for q in queries:
-            self.assertNotRegex(q['query'], r'(?i)promptcraft|promptingcraft|\$|@')
+            self.assertNotRegex(q['query'], r'(?i)promptingcraft|promptingcraft|\$|@')

@@ -230,7 +230,7 @@ def readable(report):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--registry',type=Path,default=Path('skills/promptcraft/references/sources.json'))
+    parser.add_argument('--registry',type=Path,default=Path('skills/promptingcraft/references/sources.json'))
     parser.add_argument('--baseline',type=Path,default=Path('sources-baseline.json'))
     parser.add_argument('--output',type=Path,required=True,help='Untracked/private output directory')
     parser.add_argument('--write-baseline',action='store_true',help='Write proposed baseline only to the output directory; review before committing')

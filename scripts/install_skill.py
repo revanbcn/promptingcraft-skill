@@ -15,7 +15,7 @@ def install(source,project,host):
     roots={'codex':'.agents','claude':'.claude','cursor':'.cursor'}
     if host not in roots: raise ValueError('Unsupported host')
     if not project.is_dir(): raise ValueError('Project directory must already exist')
-    dest=project/roots[host]/'skills'/'promptcraft'
+    dest=project/roots[host]/'skills'/'promptingcraft'
     for path in (project,*dest.parents):
         if path.is_symlink(): raise ValueError('Symlink destination refused')
         if path==project.parent: break
@@ -28,4 +28,4 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--host',choices=['codex','claude','cursor'],required=True)
     p.add_argument('--project-dir',type=Path,required=True)
-    a=p.parse_args(); print(install(Path(__file__).resolve().parents[1]/'skills/promptcraft',a.project_dir,a.host))
+    a=p.parse_args(); print(install(Path(__file__).resolve().parents[1]/'skills/promptingcraft',a.project_dir,a.host))

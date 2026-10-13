@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class KnowledgeTests(unittest.TestCase):
     def setUp(self):
-        folder = ROOT / 'skills/promptcraft/references'
+        folder = ROOT / 'skills/promptingcraft/references'
         self.knowledge = json.loads((folder / 'knowledge.json').read_text())
         self.registry = json.loads((folder / 'sources.json').read_text())
 
@@ -19,7 +19,7 @@ class KnowledgeTests(unittest.TestCase):
 
     def test_missing_provenance_does_not_become_valid_official_advice(self):
         for field in ['url', 'source_title', 'retrieval_date', 'applicable_model_family',
-                      'evidence_or_limitation', 'promptcraft_applicability', 'conflicts_with_existing_guidance']:
+                      'evidence_or_limitation', 'promptingcraft_applicability', 'conflicts_with_existing_guidance']:
             with self.subTest(field=field):
                 content = copy.deepcopy(self.knowledge)
                 content['recommendations'][0].pop(field)
@@ -82,8 +82,8 @@ class KnowledgeTests(unittest.TestCase):
             validate_registry(registry)
 
     def test_cursor_notes_treat_auto_as_an_unknown_model(self):
-        skill = (ROOT / 'skills/promptcraft/SKILL.md').read_text()
+        skill = (ROOT / 'skills/promptingcraft/SKILL.md').read_text()
         self.assertIn('[Cursor notes](references/cursor.md)', skill)
-        notes = (ROOT / 'skills/promptcraft/references/cursor.md').read_text()
+        notes = (ROOT / 'skills/promptingcraft/references/cursor.md').read_text()
         self.assertIn('Treat the executor model as unknown under Auto', notes)
         self.assertIn('not model prompting guidance', notes)

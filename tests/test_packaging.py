@@ -24,22 +24,22 @@ class PackagingTests(unittest.TestCase):
                     self.assertTrue(any(n.endswith('/references/sources.json') for n in names))
                     self.assertFalse(any('.git/' in n or '__pycache__' in n for n in names))
                     z.extractall(Path(a)/x.stem)
-                    root=Path(a)/x.stem/('promptcraft' if 'skill-' in x.name else 'promptcraft-plugin')
-                    skill=root if 'skill-' in x.name else root/'skills/promptcraft'
+                    root=Path(a)/x.stem/('promptingcraft' if 'skill-' in x.name else 'promptingcraft-plugin')
+                    skill=root if 'skill-' in x.name else root/'skills/promptingcraft'
                     self.assertTrue((skill/'references/rubric.md').is_file())
                     self.assertEqual((skill/'LICENSE').read_bytes(),(ROOT/'LICENSE').read_bytes())
                     for page in root.rglob('*.md'):
                         for link in re.findall(r'\]\(([^)]+)\)',page.read_text()):
                             if not link.startswith('https://'):
                                 self.assertTrue((page.parent/link).is_file(),(page,link))
-            self.assertEqual([p.name for p in first],['promptcraft-skill-0.3.0.zip','promptcraft-plugin-0.3.0.zip'])
+            self.assertEqual([p.name for p in first],['promptingcraft-skill-0.3.0.zip','promptingcraft-plugin-0.3.0.zip'])
             with zipfile.ZipFile(first[1]) as z:
                 names=set(z.namelist())
                 for asset in ('icon.svg','icon-dark.svg','logo.svg','logo-dark.svg'):
-                    self.assertIn('promptcraft-plugin/assets/'+asset,names)
-                    self.assertEqual(z.read('promptcraft-plugin/assets/'+asset),(ROOT/'assets'/asset).read_bytes())
-                self.assertIn('promptcraft-plugin/skills/promptcraft/SKILL.md',names)
-                self.assertEqual(z.read('promptcraft-plugin/mcp.json'),(ROOT/'mcp.json').read_bytes())
+                    self.assertIn('promptingcraft-plugin/assets/'+asset,names)
+                    self.assertEqual(z.read('promptingcraft-plugin/assets/'+asset),(ROOT/'assets'/asset).read_bytes())
+                self.assertIn('promptingcraft-plugin/skills/promptingcraft/SKILL.md',names)
+                self.assertEqual(z.read('promptingcraft-plugin/mcp.json'),(ROOT/'mcp.json').read_bytes())
             with zipfile.ZipFile(first[0]) as z:
                 self.assertFalse(any('/assets/' in n for n in z.namelist()))
             sums=(Path(a)/'SHA256SUMS').read_text()
@@ -47,15 +47,15 @@ class PackagingTests(unittest.TestCase):
     def test_install_isolated_hosts_and_refuse_overwrite(self):
         for host,folder in [('codex','.agents'),('claude','.claude'),('cursor','.cursor')]:
             with tempfile.TemporaryDirectory() as d:
-                dest=install(ROOT/'skills/promptcraft',Path(d),host)
-                self.assertEqual(dest,Path(d)/folder/'skills/promptcraft')
+                dest=install(ROOT/'skills/promptingcraft',Path(d),host)
+                self.assertEqual(dest,Path(d)/folder/'skills/promptingcraft')
                 self.assertTrue((dest/'references/sources.json').exists())
                 self.assertFalse(any('__pycache__' in p.parts or p.suffix == '.pyc' for p in dest.rglob('*')))
-                with self.assertRaises(FileExistsError): install(ROOT/'skills/promptcraft',Path(d),host)
+                with self.assertRaises(FileExistsError): install(ROOT/'skills/promptingcraft',Path(d),host)
     def test_install_refuses_symlink_destination(self):
         with tempfile.TemporaryDirectory() as d,tempfile.TemporaryDirectory() as out:
             (Path(d)/'.agents').symlink_to(out,target_is_directory=True)
-            with self.assertRaises(ValueError): install(ROOT/'skills/promptcraft',Path(d),'codex')
+            with self.assertRaises(ValueError): install(ROOT/'skills/promptingcraft',Path(d),'codex')
 
 
 class SubmissionArchiveTests(unittest.TestCase):
@@ -63,8 +63,8 @@ class SubmissionArchiveTests(unittest.TestCase):
         return build(ROOT, Path(directory))[1]
 
     def rewrite(self, source, target, extra=None, drop=None, rename=None, patch_manifest=None, patch_adapter=None):
-        patches = {'promptcraft-plugin/plugin.json': patch_manifest,
-                   'promptcraft-plugin/.claude-plugin/plugin.json': patch_adapter}
+        patches = {'promptingcraft-plugin/plugin.json': patch_manifest,
+                   'promptingcraft-plugin/.claude-plugin/plugin.json': patch_adapter}
         with zipfile.ZipFile(source) as old, zipfile.ZipFile(target, 'w') as new:
             for info in old.infolist():
                 if drop and info.filename == drop: continue
@@ -87,15 +87,15 @@ class SubmissionArchiveTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             source = self.built(d)
             variants = {
-                'mcp': dict(extra={'promptcraft-plugin/.mcp.json': '{}'}),
-                'nested mcp': dict(extra={'promptcraft-plugin/skills/promptcraft/mcp.json': '{}'}),
-                'app': dict(extra={'promptcraft-plugin/.app.json': '{}'}),
-                'hooks': dict(extra={'promptcraft-plugin/hooks/hooks.json': '{}'}),
+                'mcp': dict(extra={'promptingcraft-plugin/.mcp.json': '{}'}),
+                'nested mcp': dict(extra={'promptingcraft-plugin/skills/promptingcraft/mcp.json': '{}'}),
+                'app': dict(extra={'promptingcraft-plugin/.app.json': '{}'}),
+                'hooks': dict(extra={'promptingcraft-plugin/hooks/hooks.json': '{}'}),
                 'sibling': dict(extra={'README.md': 'x'}),
-                'parent': dict(extra={'promptcraft-plugin/../x': 'x'}),
-                'missing skill': dict(drop='promptcraft-plugin/skills/promptcraft/SKILL.md'),
-                'missing logo': dict(drop='promptcraft-plugin/assets/logo.svg'),
-                'missing mcp.json': dict(drop='promptcraft-plugin/mcp.json'),
+                'parent': dict(extra={'promptingcraft-plugin/../x': 'x'}),
+                'missing skill': dict(drop='promptingcraft-plugin/skills/promptingcraft/SKILL.md'),
+                'missing logo': dict(drop='promptingcraft-plugin/assets/logo.svg'),
+                'missing mcp.json': dict(drop='promptingcraft-plugin/mcp.json'),
                 'top-level mcpServers': dict(rename=None, extra=None, drop=None, patch_manifest={'mcpServers': './.mcp.json'}),
                 'divergent adapter': dict(patch_adapter={'version': '9.9.9'}),
             }

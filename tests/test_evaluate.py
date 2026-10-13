@@ -38,12 +38,12 @@ class EvaluationTests(unittest.TestCase):
     def test_model_invocation_and_completion_are_observed(self):
         events = [
             {'type': 'assistant', 'message': {'model': 'observed-model', 'content': [
-                {'type': 'tool_use', 'name': 'Skill', 'input': {'skill': 'promptcraft:promptcraft'}}]}},
+                {'type': 'tool_use', 'name': 'Skill', 'input': {'skill': 'promptingcraft:promptingcraft'}}]}},
             {'type': 'result', 'result': '```text\nFix Save.\n```', 'is_error': False,
              'usage': {'input_tokens': 12, 'output_tokens': 5}},
         ]
         parsed = parse_events('\n'.join(json.dumps(row) for row in events))
-        self.assertEqual(parsed['skill_calls'], ['promptcraft:promptcraft'])
+        self.assertEqual(parsed['skill_calls'], ['promptingcraft:promptingcraft'])
         self.assertEqual(parsed['models_observed'], ['observed-model'])
         self.assertEqual(parsed['handoff_chars'], 9)
         self.assertEqual(parsed['status'], 'RUN')

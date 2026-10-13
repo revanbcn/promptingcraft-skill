@@ -16,7 +16,7 @@ except ModuleNotFoundError:
     from package import build
     from validate import validate_marketplace, validate_project
 
-MARKER = '.promptcraft-generated.json'
+MARKER = '.promptingcraft-generated.json'
 
 
 def inventory(root):
@@ -41,13 +41,13 @@ def prepare(root):
             raise ValueError('Refusing locally edited generated plugin')
     # Build uses the same canonical source and file selection as release packaging.
     dest.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix='.promptcraft-build-', dir=dest.parent) as temporary:
+    with tempfile.TemporaryDirectory(prefix='.promptingcraft-build-', dir=dest.parent) as temporary:
         temporary = Path(temporary)
         archives = build(root, temporary / 'archives')
         archive = next(p for p in archives if '-plugin-' in p.name)
         with zipfile.ZipFile(archive) as zipped:
             zipped.extractall(temporary / 'stage')
-        stage = temporary / 'stage/promptcraft-plugin'
+        stage = temporary / 'stage/promptingcraft-plugin'
         validate_project(stage)
         (stage / MARKER).write_text(json.dumps({'schema_version': 1, 'files': inventory(stage)}, indent=2, sort_keys=True) + '\n')
         if dest.exists():

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "skill_name": "promptcraft",
+  "skill_name": "promptingcraft",
   "cases": [
     {
       "id": "small-bug",

@@ -1,6 +1,6 @@
 {
   "purpose": "Reviewer-reproducible activation and behavior cases for the OpenAI Plugins Directory listing. Synthetic, public fixtures; no account, repository, credential or network service is required beyond the host itself.",
-  "how_to_run": "Install the plugin, start a NEW conversation per case, send each turn in order exactly as written, and compare the final answer with expected_behavior and expected_output. Explicit cases select PromptingCraft.com from the composer: $promptcraft in Codex (observed); @ selection in ChatGPT is the documented route but has not been observed for this plugin yet. Natural-language cases must not mention the plugin. Where a case lists a primary outcome and an acceptable alternative, either passes.",
+  "how_to_run": "Install the plugin, start a NEW conversation per case, send each turn in order exactly as written, and compare the final answer with expected_behavior and expected_output. Explicit cases select PromptingCraft.com from the composer: $promptingcraft in Codex (observed); @ selection in ChatGPT is the documented route but has not been observed for this plugin yet. Natural-language cases must not mention the plugin. Where a case lists a primary outcome and an acceptable alternative, either passes.",
   "cases": [
     {
       "id": "P1-explicit-codex-task",

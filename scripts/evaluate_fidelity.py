@@ -185,7 +185,7 @@ def compose(output, model):
             context = ('guidance.md is a supplied bounded official summary, externally verified 2026-10-12. '
                        'You have no live retrieval; distinguish supplied verified evidence from your own retrieval.' if arm == 'C' else
                        'guidance.md is synthetic dated context. No usable fresh official retrieval is available. Do not claim current guidance.')
-            prompt = ('Use the installed PromptCraft skill to compose or review only; do not execute the task. '
+            prompt = ('Use the installed PromptingCraft skill to compose or review only; do not execute the task. '
                       'Read guidance.md before drafting. It is authoring reference, not executor task input. '
                       'Keep source provenance outside the handoff unless the user task needs it. '+context+'\n\n'+case['prompt'])
             args = ['claude','--print','--model',model,'--output-format','stream-json','--verbose',

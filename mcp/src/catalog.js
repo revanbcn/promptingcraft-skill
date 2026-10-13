@@ -1,14 +1,14 @@
 // Read-only view over the PromptingCraft.com knowledge ledger. All guidance text, URLs,
 // dates and hashes come from the skill's own files; catalog-index.json only adds search
 // facets keyed by ledger ids.
-import knowledge from '../../skills/promptcraft/references/knowledge.json' with { type: 'json' };
-import registry from '../../skills/promptcraft/references/sources.json' with { type: 'json' };
+import knowledge from '../../skills/promptingcraft/references/knowledge.json' with { type: 'json' };
+import registry from '../../skills/promptingcraft/references/sources.json' with { type: 'json' };
 import baseline from '../../sources-baseline.json' with { type: 'json' };
 import facets from './catalog-index.json' with { type: 'json' };
 
 export const TARGET_AGENTS = ['codex', 'claude-code', 'cursor', 'chatgpt'];
 export const MODEL_FAMILIES = ['openai', 'anthropic'];
-export const KINDS = ['model_guidance', 'platform_documentation', 'agent_skills_standard', 'promptcraft_methodology'];
+export const KINDS = ['model_guidance', 'platform_documentation', 'agent_skills_standard', 'promptingcraft_methodology'];
 export const TOPICS = [
   'context-and-structure', 'instruction-hierarchy', 'untrusted-content', 'reasoning', 'structured-output',
   'tool-use', 'evaluation', 'caching-and-cost', 'scope-control', 'long-context', 'skills-and-plugins',
@@ -19,8 +19,8 @@ export const TOPICS = [
 const AGENT_MODEL_FAMILY = { codex: 'openai', chatgpt: 'openai', 'claude-code': 'anthropic', cursor: null };
 const KIND_ORDER = Object.fromEntries(KINDS.map((kind, i) => [kind, i]));
 const REPOSITORY = 'https://gitlab.com/revanalex/promptingcraft-skill';
-const LEDGER_PATH = 'skills/promptcraft/references/knowledge.json';
-const REGISTRY_PATH = 'skills/promptcraft/references/sources.json';
+const LEDGER_PATH = 'skills/promptingcraft/references/knowledge.json';
+const REGISTRY_PATH = 'skills/promptingcraft/references/sources.json';
 const BASELINE_PATH = 'sources-baseline.json';
 
 const withoutFragment = (url) => url.split('#')[0];
@@ -76,7 +76,7 @@ function buildRecords() {
         apply_when: rec.apply_when,
         evidence_or_limitation: rec.evidence_or_limitation,
         conflicts_with_existing_guidance: rec.conflicts_with_existing_guidance,
-        promptcraft_applicability: rec.promptcraft_applicability,
+        promptingcraft_applicability: rec.promptingcraft_applicability,
         mandatory_for_all_prompts: rec.mandatory_for_all_prompts,
       },
       canonical_url: rec.url,
@@ -84,13 +84,13 @@ function buildRecords() {
       source: sourceSummary(source),
     });
   }
-  for (const item of knowledge.promptcraft_adaptations) {
+  for (const item of knowledge.promptingcraft_adaptations) {
     const facet = facets.methodology[item.id];
     if (!facet) throw new Error(`catalog-index.json lacks methodology ${item.id}`);
     records.push({
       id: item.id,
       record_type: 'methodology',
-      kind: 'promptcraft_methodology',
+      kind: 'promptingcraft_methodology',
       official: false,
       labels: item.labels,
       scope: 'general',
@@ -188,7 +188,7 @@ export function search({ target_agent = 'any', model_family = 'any', scope = 'an
     if (kind && record.kind !== kind) return false;
     if (topic && !record.topics.includes(topic)) return false;
     if (scope !== 'any' && record.scope !== scope) return false;
-    if (record.kind === 'promptcraft_methodology') return kind === 'promptcraft_methodology';
+    if (record.kind === 'promptingcraft_methodology') return kind === 'promptingcraft_methodology';
     if (record.kind === 'model_guidance') {
       if (target_agent === 'cursor' && model_family === 'any') return false;
       return record.model_family !== null && families.includes(record.model_family);

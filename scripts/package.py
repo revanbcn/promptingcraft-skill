@@ -13,7 +13,7 @@ except ModuleNotFoundError:
 def build(root,output):
     root=Path(root); output=Path(output); manifest=validate_project(root)
     output.mkdir(parents=True,exist_ok=True)
-    version=manifest['version']; skill=root/'skills/promptcraft'
+    version=manifest['version']; skill=root/'skills/promptingcraft'
     skill_files=[p for p in sorted(skill.rglob('*')) if p.is_file()
                  and '__pycache__' not in p.parts and p.suffix != '.pyc']
     # Listing assets referenced by plugin.json interface metadata; validated above.
@@ -21,12 +21,12 @@ def build(root,output):
     plugin_files=skill_files+asset_files+[root/p for p in ('plugin.json','.claude-plugin/plugin.json','mcp.json','LICENSE','README.md')]
     files=[]
     for kind,items in [('skill',skill_files),('plugin',plugin_files)]:
-        dest=output/f'promptcraft-{kind}-{version}.zip'
+        dest=output/f'promptingcraft-{kind}-{version}.zip'
         with zipfile.ZipFile(dest,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as archive:
             for p in sorted(items):
                 if p.is_symlink(): raise ValueError('Archive cannot contain symlinks')
                 relative=p.relative_to(skill if kind=='skill' else root)
-                name=('promptcraft' if kind=='skill' else 'promptcraft-plugin')+'/'+relative.as_posix()
+                name=('promptingcraft' if kind=='skill' else 'promptingcraft-plugin')+'/'+relative.as_posix()
                 info=zipfile.ZipInfo(name,date_time=(2026,1,1,0,0,0))
                 info.create_system=3; info.external_attr=0o100644<<16; info.compress_type=zipfile.ZIP_DEFLATED
                 payload=(root/'docs/plugin-archive.md').read_bytes() if kind=='plugin' and p==root/'README.md' else p.read_bytes()

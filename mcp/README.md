@@ -15,13 +15,13 @@ guidance instead of relying on memory.
 
 Nothing here is a second knowledge base. The Worker bundles at build time:
 
-- `skills/promptcraft/references/knowledge.json`: recommendations and PromptingCraft.com methodology;
-- `skills/promptcraft/references/sources.json`: the source registry and host/path allowlists;
+- `skills/promptingcraft/references/knowledge.json`: recommendations and PromptingCraft.com methodology;
+- `skills/promptingcraft/references/sources.json`: the source registry and host/path allowlists;
 - `sources-baseline.json`: the verified snapshot (hashes of normalized page text).
 
 `src/catalog-index.json` adds only search facets keyed by ledger ids; a test fails if it
 misses or invents a ledger id. Record kinds stay separate: `model_guidance`,
-`platform_documentation`, `agent_skills_standard` and `promptcraft_methodology`
+`platform_documentation`, `agent_skills_standard` and `promptingcraft_methodology`
 (`official: false`, never labelled OFFICIAL). `LEDGER_COMMIT` (set at deploy) pins the
 provenance links to the public commit of the ledger.
 
@@ -62,7 +62,7 @@ Deploy only from merged `main` (the ledger commit must be public):
 
 ```sh
 git switch main && git pull --ff-only && cd mcp && npm ci && npm test
-LEDGER=$(git log -1 --format=%H -- ../skills/promptcraft/references/knowledge.json ../skills/promptcraft/references/sources.json ../sources-baseline.json)
+LEDGER=$(git log -1 --format=%H -- ../skills/promptingcraft/references/knowledge.json ../skills/promptingcraft/references/sources.json ../sources-baseline.json)
 npx -y wrangler@4.149.0 deploy --var LEDGER_COMMIT:$LEDGER
 node scripts/inspector-check.mjs https://mcp.promptingcraft.com/mcp /tmp/inspector-prod
 ```

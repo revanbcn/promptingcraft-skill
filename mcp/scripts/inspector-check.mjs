@@ -39,7 +39,7 @@ const cases = [
     (r) => structured(r)?.results.every((x) => x.kind !== 'model_guidance') && structured(r).notes.length > 0],
   ['search-unknown-model-family', () => call('search_guidance', { model_family: 'other', kind: 'model_guidance' }),
     (r) => structured(r)?.total_matches === 0 && structured(r).notes.some((n) => /No official model guidance is curated/.test(n))],
-  ['search-methodology', () => call('search_guidance', { kind: 'promptcraft_methodology' }),
+  ['search-methodology', () => call('search_guidance', { kind: 'promptingcraft_methodology' }),
     (r) => structured(r)?.results.length > 0 && structured(r).results.every((x) => x.official === false)],
   ['get-recommendation', () => call('get_guidance', { id: 'oai-untrusted-data' }),
     (r) => structured(r)?.record.provider === 'openai' && /^[0-9a-f]{64}$/.test(structured(r).record.source.verified_snapshot.content_sha256)

@@ -7,30 +7,32 @@ Codex: preserve the contract → consult applicable guidance → draft → criti
 finalize → check requirements and authority boundaries. This package composes
 prompts; it does not execute the underlying development task.
 
-One portable skill at `skills/promptcraft/SKILL.md` and its bundled references,
+One portable skill at `skills/promptingcraft/SKILL.md` and its bundled references,
 listing icons/logos under `assets/`, MIT license, root Agent Plugins 1.0.0 manifest
-and Claude Code adapter are included. The skill and plugin identifier remains
-`promptcraft` for compatibility.
-There are no MCP servers, credentials or hooks. A public Git release is not a
+and Claude Code adapter are included. Since 0.3.0 the skill and plugin identifier is
+`promptingcraft` (formerly `promptcraft`; see [migration notes](https://gitlab.com/revanalex/promptingcraft-skill/-/blob/main/docs/migration-0.3.0.md)).
+The root `mcp.json` declares one remote MCP server, the PromptingCraft.com guidance
+server at `https://mcp.promptingcraft.com/mcp`; the skill also works without it. There
+are no credentials or hooks. A public Git release is not a
 published ChatGPT directory plugin.
 
 For session-only Claude Code loading, run:
 
 ```sh
-claude --plugin-dir /path/to/promptcraft-plugin
-# Then invoke /promptcraft:promptcraft
+claude --plugin-dir /path/to/promptingcraft-plugin
+# Then invoke /promptingcraft:promptingcraft
 ```
 
-For a standalone Codex installation, copy the complete `skills/promptcraft`
+For a standalone Codex installation, copy the complete `skills/promptingcraft`
 directory into the chosen project's `.agents/skills/`; restart if needed and
-invoke `$promptcraft`. For Claude Code standalone use `.claude/skills/` and
-`/promptcraft`. Refuse accidental replacement of an existing skill.
+invoke `$promptingcraft`. For Claude Code standalone use `.claude/skills/` and
+`/promptingcraft`. Refuse accidental replacement of an existing skill.
 
 For native local Codex/ChatGPT Desktop installation, use the repository's
 [one-time marketplace setup](https://gitlab.com/revanalex/promptingcraft-skill/-/blob/main/docs/chatgpt-installation.md).
 It includes a real catalog and reproducibly generated plugin source; no repeated
 pasting of SKILL.md is required. After installation, start a new chat and select
-PromptingCraft.com with `@` in ChatGPT or `$promptcraft` in Codex, or ask to prepare a
+PromptingCraft.com with `@` in ChatGPT or `$promptingcraft` in Codex, or ask to prepare a
 Codex prompt. Local source/account availability varies. Codex installation does
 not establish ChatGPT installation or ordinary Chat activation. Without usable
 retrieval, guidance remains dated/unavailable, never current. Actual ChatGPT UI

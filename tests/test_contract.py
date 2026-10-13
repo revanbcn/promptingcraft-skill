@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from skills.promptcraft.scripts.contract_check import check
+from skills.promptingcraft.scripts.contract_check import check
 
 
 def document():
@@ -153,7 +153,7 @@ class ContractTests(unittest.TestCase):
             check(data)
 
     def test_cli_drift_is_nonzero_and_machine_readable(self):
-        script = Path(__file__).resolve().parents[1] / 'skills/promptcraft/scripts/contract_check.py'
+        script = Path(__file__).resolve().parents[1] / 'skills/promptingcraft/scripts/contract_check.py'
         data = document()
         append_clause(data, 'Deploy.', external_action='deploy')
         with tempfile.TemporaryDirectory() as directory:

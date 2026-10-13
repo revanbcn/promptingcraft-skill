@@ -67,7 +67,7 @@ def validate_knowledge(knowledge,registry):
     identifiers=set()
     labels={'OFFICIAL','GENERAL','MODEL_SPECIFIC','INFERRED','EXPERIMENTAL'}
     fields=('id','provider','source_title','url','retrieval_date','applicable_model_family',
-            'recommendation','evidence_or_limitation','promptcraft_applicability',
+            'recommendation','evidence_or_limitation','promptingcraft_applicability',
             'conflicts_with_existing_guidance','apply_when')
     for row in knowledge['recommendations']:
         if any(not isinstance(row.get(field),str) or not row[field].strip() for field in fields):
@@ -250,11 +250,11 @@ def validate_review(openai):
 
 
 def validate_project(root):
-    root=Path(root); skill=root/'skills/promptcraft'; meta=validate_skill(skill)
+    root=Path(root); skill=root/'skills/promptingcraft'; meta=validate_skill(skill)
     manifest=json.loads((root/'plugin.json').read_text())
     if set(manifest)-PORTABLE_MANIFEST_FIELDS: raise ValueError('Unknown portable manifest field')
     if manifest.get('$schema')!='https://agent-plugins.org/schemas/1.0.0/plugin.schema.json': raise ValueError('Wrong schema')
-    if manifest.get('name')!='promptcraft' or manifest.get('version')!=meta['metadata']['version']: raise ValueError('Version/name mismatch')
+    if manifest.get('name')!='promptingcraft' or manifest.get('version')!=meta['metadata']['version']: raise ValueError('Version/name mismatch')
     for k in ('description','homepage','repository','license'):
         if not isinstance(manifest.get(k),str) or not manifest[k]: raise ValueError('Invalid manifest string')
     if manifest['author']!={'name':'Aleksandr Prokofyev','url':'https://promptingcraft.com'}: raise ValueError('Author metadata mismatch')
@@ -347,7 +347,7 @@ def validate_marketplace(root, require_source=True):
     if not isinstance(plugins, list) or len(plugins) != 1:
         raise ValueError('Expected one canonical PromptingCraft.com plugin')
     plugin = plugins[0]
-    if set(plugin) != {'name', 'source', 'policy', 'category'} or plugin['name'] != 'promptcraft':
+    if set(plugin) != {'name', 'source', 'policy', 'category'} or plugin['name'] != 'promptingcraft':
         raise ValueError('Invalid marketplace plugin entry')
     if plugin['policy'] != {'installation': 'AVAILABLE', 'authentication': 'ON_USE'}:
         raise ValueError('Invalid marketplace policy')
@@ -355,7 +355,7 @@ def validate_marketplace(root, require_source=True):
         raise ValueError('Invalid marketplace category')
     source = plugin['source']
     # A constrained generated destination prevents the materializer replacing source files.
-    if source != {'source': 'local', 'path': './dist/promptcraft-plugin'}:
+    if source != {'source': 'local', 'path': './dist/promptingcraft-plugin'}:
         raise ValueError('Expected generated plugin path relative to marketplace root')
     dest = root / source['path']
     for ancestor in (dest.parent, dest):

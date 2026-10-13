@@ -36,7 +36,7 @@ class InterfaceTests(unittest.TestCase):
     def test_published_interface_metadata(self):
         validate_interface(ROOT, self.interface)
         # Stable technical id kept for installed v0.1.0 and local marketplace installs.
-        self.assertEqual(self.manifest['name'], 'promptcraft')
+        self.assertEqual(self.manifest['name'], 'promptingcraft')
         self.assertEqual(self.manifest['version'], '0.3.0')
         self.assertEqual(self.manifest['homepage'], 'https://promptingcraft.com')
         self.assertEqual(self.manifest['repository'], 'https://gitlab.com/revanalex/promptingcraft-skill')
@@ -60,7 +60,7 @@ class InterfaceTests(unittest.TestCase):
         self.assertEqual(set(publication), {'release_notes'})
         notes = publication['release_notes']
         self.assertIn('https://mcp.promptingcraft.com/mcp', notes)
-        self.assertIn('falls back to its bundled dated references', notes)
+        self.assertIn('otherwise it says so and falls back to other official sources or its bundled dated references', notes)
         self.assertTrue(notes.endswith('Developed by the dondego.com team.'))
         self.assertNotRegex(notes.lower(), r'guarantee[sd]? (better|improve)|official (openai|anthropic) (plugin|partner)')
 
@@ -90,7 +90,7 @@ class InterfaceTests(unittest.TestCase):
     def test_mcp_fallback_is_disclosed_and_never_credited_to_the_server(self):
         # Regression: with the server unreachable, Codex answered from other official pages
         # without saying that PromptingCraft.com guidance retrieval was unavailable.
-        skill = ' '.join((ROOT / 'skills/promptcraft/SKILL.md').read_text().split())
+        skill = ' '.join((ROOT / 'skills/promptingcraft/SKILL.md').read_text().split())
         self.assertIn('If they are absent or fail, say in the source note that PromptingCraft.com '
                       'guidance retrieval was unavailable', skill)
         self.assertIn('labeled by how that evidence was actually obtained', skill)
@@ -99,6 +99,17 @@ class InterfaceTests(unittest.TestCase):
         self.assertEqual(cases['mcp-unavailable-fallback']['server'], 'unreachable')
         self.assertTrue(any('retrieval was unavailable' in o for o in cases['mcp-unavailable-fallback']['expected_observations']))
         self.assertEqual(cases['mcp-available-control']['server'], 'reachable')
+
+    def test_retired_identifier_is_not_shipped(self):
+        # 0.3.0 renamed promptcraft to promptingcraft; only migration notes and history keep it.
+        shipped = [ROOT / 'plugin.json', ROOT / '.claude-plugin/plugin.json', ROOT / '.cursor-plugin/marketplace.json',
+                   ROOT / '.agents/plugins/marketplace.json', ROOT / 'mcp.json', ROOT / 'mcp/src/server.js',
+                   ROOT / 'mcp/src/catalog.js', ROOT / 'mcp/src/catalog-index.json',
+                   *sorted((ROOT / 'skills/promptingcraft').rglob('*.*'))]
+        for path in shipped:
+            if path.suffix in {'.md', '.json', '.js', '.py', '.yaml', '.txt'}:
+                self.assertNotRegex(path.read_text(), r'(?i)prompt_?craft(?!ing)', path)
+        self.assertEqual(self.manifest['name'], 'promptingcraft')
 
     def test_mcp_configuration_is_the_production_guidance_server(self):
         from scripts.validate import validate_mcp_config
@@ -146,8 +157,8 @@ class InterfaceTests(unittest.TestCase):
         for asset in (ROOT / 'assets').glob('*.svg'):
             self.assertIn('aria-label="PromptingCraft.com"', asset.read_text())
         self.assertIn('display_name: "PromptingCraft.com"',
-                      (ROOT / 'skills/promptcraft/agents/openai.yaml').read_text())
-        self.assertIn('\n# PromptingCraft.com\n', (ROOT / 'skills/promptcraft/SKILL.md').read_text())
+                      (ROOT / 'skills/promptingcraft/agents/openai.yaml').read_text())
+        self.assertIn('\n# PromptingCraft.com\n', (ROOT / 'skills/promptingcraft/SKILL.md').read_text())
 
     def test_text_limits(self):
         for field, limit in (('displayName', 30), ('shortDescription', 30), ('longDescription', 4000)):
@@ -231,7 +242,7 @@ class InterfaceTests(unittest.TestCase):
             for relative in ('plugin.json', 'mcp.json', 'LICENSE', 'README.md'):
                 shutil.copy2(ROOT / relative, root / relative)
             validate_project(root)
-            yaml = root / 'skills/promptcraft/agents/openai.yaml'
+            yaml = root / 'skills/promptingcraft/agents/openai.yaml'
             yaml.write_text(yaml.read_text().replace('PromptingCraft.com', 'Other Name'))
             with self.assertRaises(ValueError):
                 validate_project(root)
@@ -265,7 +276,7 @@ class InterfaceTests(unittest.TestCase):
             'too many prompts': {'defaultPrompt': ['a', 'b', 'c', 'd']},
             'duplicate prompts': {'defaultPrompt': ['Prepare a prompt.', 'prepare  a prompt.']},
             'long prompt': {'defaultPrompt': ['x' * 129]},
-            'mention': {'defaultPrompt': ['Ask @promptcraft for a prompt.']},
+            'mention': {'defaultPrompt': ['Ask @promptingcraft for a prompt.']},
             'multi-line prompt': {'defaultPrompt': ['one\ntwo']},
             'unknown category': {'category': 'Coding'},
             'screenshots': {'screenshots': ['./assets/shot.png']},

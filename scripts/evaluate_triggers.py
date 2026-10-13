@@ -7,7 +7,7 @@ installed SKILL.md from the plugin cache (not when the model says it used the sk
 Usage: python3 scripts/evaluate_triggers.py evals/trigger/queries.json <out-dir> [runs=3] [workers=2]
 Runs that fail on the host side (capacity, transport) are retried and, if still
 failing, excluded from the rate and listed in `stops`. Needs an installed, enabled
-`promptcraft@dondego-local` and a logged-in Codex CLI; uses the existing account.
+`promptingcraft@dondego-local` and a logged-in Codex CLI; uses the existing account.
 """
 import json, re, subprocess, sys, tempfile, time
 from concurrent.futures import ThreadPoolExecutor
@@ -15,7 +15,7 @@ from pathlib import Path
 queries = json.loads(Path(sys.argv[1]).read_text())['queries']
 out = Path(sys.argv[2]); out.mkdir(parents=True, exist_ok=True)
 runs = int(sys.argv[3]) if len(sys.argv) > 3 else 3
-SKILL = re.compile(r'plugins/cache/dondego-local/promptcraft/[^/"\\]+/skills/promptcraft/SKILL\.md')
+SKILL = re.compile(r'plugins/cache/dondego-local/promptingcraft/[^/"\\]+/skills/promptingcraft/SKILL\.md')
 def once(q, n):
     for attempt in range(6):
         r = attempt_once(q, n)

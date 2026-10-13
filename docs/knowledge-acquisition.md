@@ -1,6 +1,6 @@
 # Curated official knowledge — 2026-10-12
 
-The portable [knowledge ledger](../skills/promptcraft/references/knowledge.json)
+The portable [knowledge ledger](../skills/promptingcraft/references/knowledge.json)
 selects **17 recommendations from 14 official OpenAI/Anthropic pages**. Each record
 has source title/URL, retrieval date, provider/model scope, practical recommendation,
 evidence or limitation, PromptingCraft.com applicability and conflicts with prior guidance.

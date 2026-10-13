@@ -1,5 +1,5 @@
 {
-  "purpose": "Search facets for records that live in skills/promptcraft/references/knowledge.json and sources.json. It holds no guidance text: every id must exist in the ledger and every ledger record must appear here (enforced by mcp/test/catalog.test.js). Sources that are the page of a recommendation inherit that recommendation's facets.",
+  "purpose": "Search facets for records that live in skills/promptingcraft/references/knowledge.json and sources.json. It holds no guidance text: every id must exist in the ledger and every ledger record must appear here (enforced by mcp/test/catalog.test.js). Sources that are the page of a recommendation inherit that recommendation's facets.",
   "recommendations": {
     "oai-clear-context": { "kind": "model_guidance", "topics": ["context-and-structure"] },
     "oai-instruction-roles": { "kind": "model_guidance", "topics": ["instruction-hierarchy"] },

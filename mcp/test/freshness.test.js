@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { allowedUrl, checkFreshness } from '../src/freshness.js';
 import { htmlPage, memoryCache } from './helpers.js';
 
-const registry = JSON.parse(readFileSync(new URL('../../skills/promptcraft/references/sources.json', import.meta.url), 'utf8'));
+const registry = JSON.parse(readFileSync(new URL('../../skills/promptingcraft/references/sources.json', import.meta.url), 'utf8'));
 const openai = registry.policies.openai;
 const ID = 'codex-prompting';
 const URL0 = registry.sources.find((s) => s.id === ID).canonical_url;

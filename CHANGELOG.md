@@ -1,5 +1,20 @@
 # Changelog
 
+## Unreleased — 0.3.0: guidance MCP server and the `promptingcraft` identifier
+
+- Renamed the skill and plugin identifier from `promptcraft` to `promptingcraft`
+  (`skills/promptingcraft/`, `$promptingcraft`, `/promptingcraft`); MCP record kind
+  `promptingcraft_methodology` and ledger fields `promptingcraft_*`. Migration:
+  `docs/migration-0.3.0.md`. Historical evidence keeps the old identifier.
+- PromptingCraft.com guidance MCP server (`mcp/`, Cloudflare Worker at
+  `https://mcp.promptingcraft.com/mcp`): `search_guidance`, `get_guidance`,
+  `check_source_freshness`; read-only, fixed-category inputs, no logging.
+- Combined plugin: root `mcp.json`, review test cases (5 positive, 3 negative) and release
+  notes; the standalone skill keeps working without the server.
+- Fallback: when the guidance tools are absent or fail, the skill says so and labels
+  replacement evidence by how it was obtained (`evals/mcp/cases.json`).
+- No tag or release created.
+
 ## Unreleased — EPIC 8: public launch and marketplace readiness
 
 - Cursor as a target agent: `references/cursor.md` (Auto treated as an unknown model),

@@ -109,7 +109,7 @@ def parse_events(raw, original=None):
 
 def skill_digest(root):
     digest = hashlib.sha256()
-    for path in sorted((root/'skills/promptcraft').rglob('*')):
+    for path in sorted((root/'skills/promptingcraft').rglob('*')):
         if path.is_file() and '__pycache__' not in path.parts and path.suffix != '.pyc':
             digest.update(path.relative_to(root).as_posix().encode())
             digest.update(b'\0' + path.read_bytes() + b'\0')
@@ -124,7 +124,7 @@ def run(output,model='claude-sonnet-5-5',timeout=240,case_ids=None,arms=None,ski
     arms=arms or ['without_skill','with_skill']
     if any(arm not in {'without_skill', 'with_skill'} for arm in arms):
         raise ValueError('Unknown evaluation arm')
-    if not (skill_root/'skills/promptcraft/SKILL.md').is_file():
+    if not (skill_root/'skills/promptingcraft/SKILL.md').is_file():
         raise ValueError('Missing skill root')
     output = Path(output)
     if output.exists() and any(output.iterdir()):
@@ -134,7 +134,7 @@ def run(output,model='claude-sonnet-5-5',timeout=240,case_ids=None,arms=None,ski
     summary=[]
     for case in cases:
         for arm in arms:
-            with tempfile.TemporaryDirectory(prefix='promptcraft-eval-') as d:
+            with tempfile.TemporaryDirectory(prefix='promptingcraft-eval-') as d:
                 work=Path(d); shutil.copy(cases_file.parent/case['fixture'],work/'guidance.md')
                 args=['claude','--print','--model',model,'--output-format','stream-json','--verbose',
                       '--no-session-persistence','--setting-sources','','--strict-mcp-config',
@@ -143,7 +143,7 @@ def run(output,model='claude-sonnet-5-5',timeout=240,case_ids=None,arms=None,ski
                       '--max-budget-usd','2']
                 if arm=='with_skill': args+=['--plugin-dir',str(skill_root)]
                 else: args+=['--disable-slash-commands']
-                task=('If the request below is prompt authoring, use the installed Promptcraft skill and compose only; '
+                task=('If the request below is prompt authoring, use the installed PromptingCraft skill and compose only; '
                       'do not implement or execute its underlying task. For other requests, answer normally. '
                       'Use guidance.md as synthetic dated reference context. Network retrieval is unavailable. '
                       'Do not claim live official sources.\n\n'+case['prompt'])
