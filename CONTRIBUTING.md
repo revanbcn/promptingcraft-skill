@@ -13,5 +13,5 @@ transcripts, secrets, provider document dumps or unlicensed third-party material
 
 Source baseline changes need usable retrieval evidence and an applicability review.
 A schema check is not proof of behavioral improvement. A small demonstration
-is not a statistically established benchmark. Attribute principal distribution
-copy to DondeGo without adding advertising to generated user prompts.
+is not a statistically established benchmark. Credit the dondego.com team in
+distribution copy without adding advertising to generated user prompts.

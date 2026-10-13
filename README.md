@@ -139,8 +139,8 @@ the selected model is established.
 Measured in the Cursor CLI ([cursor activation eval](evals/results/cursor-trigger-1/README.md)):
 with the default Auto setting (reported as Composer 2.5 Fast) the skill was available
 but did not activate automatically (0/30 prompt requests); naming it, as in
-**“Use the promptcraft skill to prepare a Cursor prompt for this task”** (the 0.2.0
-identifier), loaded it 2/2. With 0.3.0, name it `promptingcraft`.
+**“Use the promptingcraft skill to prepare a Cursor prompt for this task”**, loaded it
+2/2 (measured with the 0.2.0 identifier and repeated with `promptingcraft`).
 In the editor you can also pick it from the `/` menu. Activation depends on the selected
 model. Plugin loading in the Cursor editor has not been tested.
 

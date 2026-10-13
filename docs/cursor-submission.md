@@ -68,8 +68,8 @@ Composer 2.5 Fast):
 
 - Automatic activation: 0/30 positive runs and 0/30 negative runs; the skill was listed as
   available. Automatic activation is therefore not established in Cursor.
-- Explicit naming ("Use the promptcraft skill …", the 0.2.0 identifier): 2/2 loaded. Repeated with
-  `promptingcraft` on 2026-10-13: named 2/2, `/promptingcraft` as `-p` text 0/2, natural
+- Explicit naming of the skill: 2/2 loaded with the 0.2.0 identifier. Repeated with
+  `promptingcraft` ("Use the promptingcraft skill …") on 2026-10-13: named 2/2, `/promptingcraft` as `-p` text 0/2, natural
   language 0/2 ([mode regression](../evals/results/mcp-modes-1/README.md)).
 - Diagnostic with `gpt-5.3-codex`: 3/5 positive queries loaded once each.
 - Behavior spot check (ungraded): scope and open decisions preserved; extra mandatory steps
