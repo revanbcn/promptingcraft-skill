@@ -55,7 +55,12 @@ first"), empty directory, read-only sandbox:
 - Server unreachable (plugin URL pointed at a non-existent path, `apps` disabled): no call
   reached the server; the skill used the official Claude Code documentation through other
   tools, labeled it live-verified and again answered no-change. It did not say that the
-  PromptingCraft.com server was unavailable, which `SKILL.md` asks for.
+  PromptingCraft.com server was unavailable, which `SKILL.md` asked for.
+- After the fallback fix (`SKILL.md` now requires the source note to say that
+  PromptingCraft.com guidance retrieval was unavailable and forbids crediting it with a live
+  check), the same unreachable-server run said "PromptingCraft.com's guidance tools were
+  unavailable; official docs were retrieved directly" and dated the replacement evidence
+  (regression cases in `evals/mcp/cases.json`).
 
 ## Handling
 
@@ -65,7 +70,7 @@ first"), empty directory, read-only sandbox:
 - Nothing is logged by our code: no `console` calls (tested), Workers observability off,
   script Logpush `false`, no tail consumers (Cloudflare API, 2026-10-13); the zone is on
   Cloudflare's Free plan. Account-level Logpush jobs could not be read with the available
-  token. Cloudflare's own analytics and security tooling still processes request metadata.
+  token; the owner confirmed on 2026-10-13 that Logpush is not enabled for the account. Cloudflare's own analytics and security tooling still processes request metadata.
 - The connecting IP is the key of the per-location Workers Rate Limiting counters.
 - The only stored data are freshness results for public pages (Cloudflare cache, 15 minutes;
   60 s for failures), keyed by source id.
