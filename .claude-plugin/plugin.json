@@ -104,7 +104,7 @@
             }
           ]
         },
-        "demo_recording_url": "https://gitlab.com/revanalex/promptingcraft-skill/-/blob/main/docs/review/demo-0.3.0.gif",
+        "demo_recording_url": "https://gitlab.com/revanalex/promptingcraft-skill/-/raw/main/docs/review/demo-0.3.0.mp4",
         "commerce": false,
         "commerce_description": "PromptingCraft.com is free. It sells nothing and processes no payments."
       },
