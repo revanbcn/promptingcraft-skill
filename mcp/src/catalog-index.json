@@ -17,7 +17,9 @@
     "claude-tool-descriptions": { "kind": "model_guidance", "topics": ["tool-use"] },
     "claude-evaluations": { "kind": "model_guidance", "topics": ["evaluation"] },
     "claude-code-authoring": { "kind": "platform_documentation", "agents": ["claude-code"], "topics": ["skills-and-plugins"] },
-    "claude-workflow-complexity": { "kind": "model_guidance", "topics": ["agent-workflows", "scope-control"] }
+    "claude-workflow-complexity": { "kind": "model_guidance", "topics": ["agent-workflows", "scope-control"] },
+    "deepseek-thinking-tools": { "kind": "model_guidance", "topics": ["reasoning", "tool-use"] },
+    "kimi-thinking-tools": { "kind": "model_guidance", "topics": ["reasoning", "tool-use"] }
   },
   "methodology": {
     "contract-provenance": { "topics": ["scope-control", "evaluation"] }

@@ -749,6 +749,40 @@
       "last_modified": null,
       "last_content_checked_at": "2026-10-12T18:54:14Z",
       "verification": "usable-content-fetched"
+    },
+    "deepseek-thinking": {
+      "id": "deepseek-thinking",
+      "provider": "deepseek",
+      "canonical_url": "https://api-docs.deepseek.com/guides/thinking_mode/",
+      "checked_at": "2026-10-28T17:22:56Z",
+      "source_published_at": null,
+      "source_updated_at": null,
+      "withdrawal_confirmed": false,
+      "http_status": 200,
+      "resolved_url": "https://api-docs.deepseek.com/guides/thinking_mode/",
+      "retry_after": null,
+      "hash": "9ed301a367d96df1ace94e29f60521a3803239a14239428c8c5f4965c1217d38",
+      "etag": "\"512a99b868ae24648b6663d6f046625e\"",
+      "last_modified": "Mon, 19 Oct 2026 06:05:54 GMT",
+      "last_content_checked_at": "2026-10-28T17:22:56Z",
+      "verification": "usable-content-fetched"
+    },
+    "kimi-thinking": {
+      "id": "kimi-thinking",
+      "provider": "kimi",
+      "canonical_url": "https://platform.kimi.ai/docs/guide/use-thinking-models",
+      "checked_at": "2026-10-28T17:22:56Z",
+      "source_published_at": null,
+      "source_updated_at": null,
+      "withdrawal_confirmed": false,
+      "http_status": 200,
+      "resolved_url": "https://platform.kimi.ai/docs/guide/use-thinking-models",
+      "retry_after": null,
+      "hash": "dae26280191646763ff28e5fa3978919818b4387b7654cc6dae67a1b23d928ec",
+      "etag": null,
+      "last_modified": null,
+      "last_content_checked_at": "2026-10-28T17:22:56Z",
+      "verification": "usable-content-fetched"
     }
   }
 }

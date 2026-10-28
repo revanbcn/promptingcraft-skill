@@ -84,3 +84,14 @@ test('scope, topic, kind and limit filters are exact', () => {
   const conflict = search({ target_agent: 'codex', model_family: 'anthropic' });
   assert.ok(conflict.notes.some((n) => /normally runs openai models/.test(n)));
 });
+
+test('DeepSeek and Kimi guidance is selected only for the requested model family', () => {
+  for (const family of ['deepseek', 'kimi']) {
+    const selected = search({ target_agent: 'cursor', model_family: family, kind: 'model_guidance', topic: 'tool-use' });
+    assert.ok(selected.results.length > 0, family);
+    assert.ok(selected.results.every((record) => record.model_family === family));
+    assert.ok(selected.results.every((record) => record.scope === 'model_specific'));
+    assert.ok(selected.results.every((record) => record.source === undefined));
+  }
+  assert.ok(search({ target_agent: 'cursor', kind: 'model_guidance' }).results.length === 0);
+});

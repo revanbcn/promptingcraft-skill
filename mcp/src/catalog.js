@@ -7,7 +7,7 @@ import baseline from '../../sources-baseline.json' with { type: 'json' };
 import facets from './catalog-index.json' with { type: 'json' };
 
 export const TARGET_AGENTS = ['codex', 'claude-code', 'cursor', 'chatgpt'];
-export const MODEL_FAMILIES = ['openai', 'anthropic'];
+export const MODEL_FAMILIES = ['openai', 'anthropic', 'deepseek', 'kimi'];
 export const KINDS = ['model_guidance', 'platform_documentation', 'agent_skills_standard', 'promptingcraft_methodology'];
 export const TOPICS = [
   'context-and-structure', 'instruction-hierarchy', 'untrusted-content', 'reasoning', 'structured-output',

@@ -157,3 +157,15 @@ test('identifying headers do not change or appear in the answer', async () => {
   assert.deepEqual(withHeaders.body, plain.body);
   for (const value of Object.values(headers)) assert.ok(!JSON.stringify(withHeaders.body).includes(value));
 });
+
+test('model-specific additions are discoverable through the MCP tool schema', async () => {
+  for (const family of ['deepseek', 'kimi']) {
+    const response = await callTool('search_guidance', { target_agent: 'cursor', model_family: family, topic: 'tool-use' });
+    assert.ok(!response.result.isError);
+    const record = response.result.structuredContent.results.find((item) => item.model_family === family);
+    assert.ok(record, family);
+    const detail = await callTool('get_guidance', { id: record.id });
+    assert.equal(detail.result.structuredContent.record.provider, family);
+    assert.match(detail.result.structuredContent.record.source.verified_snapshot.content_sha256, /^[a-f0-9]{64}$/);
+  }
+});

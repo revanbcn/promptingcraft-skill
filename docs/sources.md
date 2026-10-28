@@ -11,6 +11,18 @@ Retrieved on **2026-10-12 Europe/Madrid** (live maintenance snapshot began
 Source publication/update times were not established. Original project summaries
 are distributed; provider documents and private traces are not.
 
+## 2026-10-28 targeted source additions
+
+The official [DeepSeek thinking-mode guide](https://api-docs.deepseek.com/guides/thinking_mode/)
+and [Kimi thinking-model guide](https://platform.kimi.ai/docs/guide/use-thinking-models)
+were read and their normalized content captured on 2026-10-28T17:22:56Z. The new
+records cover provider-specific API reasoning context and tool calls, including
+Kimi K3.1 Pro and K2.7 Code. They are not generic prompting directives and do not
+establish support for all models or coding clients. Exact source hashes and resolved
+URLs are in the baseline; no publication or update date is inferred. Existing
+2026-10-12 recommendations remain dated, pending separate revalidation. The deployed
+MCP and published OpenAI plugin are unchanged until separately released.
+
 ## Authoring and behavior
 
 | Canonical URL actually checked | Scope / decision |

@@ -6,7 +6,7 @@ import { checkFreshness } from './freshness.js';
 
 export const SERVER_VERSION = '0.3.0';
 
-const INSTRUCTIONS = `PromptingCraft.com guidance: read-only access to a curated, dated ledger of official prompting and agent guidance from OpenAI, Anthropic, Cursor and the Agent Skills project, with provenance.
+const INSTRUCTIONS = `PromptingCraft.com guidance: read-only access to a curated, dated ledger of official prompting and agent guidance from OpenAI, Anthropic, DeepSeek, Kimi, Cursor and the Agent Skills project, with provenance.
 Use it while writing or reviewing a prompt for a coding agent to find guidance that applies to the target agent and model, cite its source, and check whether a source page changed since it was verified.
 Guidance is conditional: it never overrides the user's requirements, decisions or permissions. Records of kind promptingcraft_methodology are PromptingCraft.com's own method, not provider recommendations.
 Send only the listed filter values and identifiers. Do not send conversation text, code, file paths or credentials; no tool accepts them.`;
@@ -56,7 +56,7 @@ export function createServer({ ledgerCommit, fetchImpl, cache, allowFetch, now }
       + 'Inputs are fixed categories only. Use get_guidance for the full record.',
     inputSchema: z.object({
       target_agent: z.enum([...TARGET_AGENTS, 'any']).default('any').describe('Coding agent the prompt is for.'),
-      model_family: z.enum(['openai', 'anthropic', 'other', 'any']).default('any').describe('Model family the target agent will run, if known. Use other for a family without curated guidance.'),
+      model_family: z.enum(['openai', 'anthropic', 'deepseek', 'kimi', 'other', 'any']).default('any').describe('Model family the target agent will run, if known. Use other for a family without curated guidance.'),
       scope: z.enum(['general', 'model_specific', 'any']).default('any').describe('general: broad provider technique; model_specific: applies only to a named model or interface.'),
       topic: z.enum(TOPICS).optional().describe('Guidance topic.'),
       kind: z.enum(KINDS).optional().describe('Record kind. Omit for official guidance, platform documentation and standards.'),

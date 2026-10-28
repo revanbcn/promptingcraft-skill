@@ -48,6 +48,22 @@
         "/docs/",
         "/llms.txt"
       ]
+    },
+    "deepseek": {
+      "hosts": [
+        "api-docs.deepseek.com"
+      ],
+      "path_prefixes": [
+        "/guides/"
+      ]
+    },
+    "kimi": {
+      "hosts": [
+        "platform.kimi.ai"
+      ],
+      "path_prefixes": [
+        "/docs/guide/"
+      ]
     }
   },
   "sources": [
@@ -501,6 +517,30 @@
         "max_age_days": 14,
         "during_use": "revalidate task-relevant sources with existing host retrieval",
         "maintenance": "read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "deepseek-thinking",
+      "provider": "deepseek",
+      "canonical_url": "https://api-docs.deepseek.com/guides/thinking_mode/",
+      "role": "guidance",
+      "applicability": "DeepSeek API thinking mode and tool-call context; model and API interface dependent",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
+      }
+    },
+    {
+      "id": "kimi-thinking",
+      "provider": "kimi",
+      "canonical_url": "https://platform.kimi.ai/docs/guide/use-thinking-models",
+      "role": "guidance",
+      "applicability": "Kimi API thinking models and tool-call context; model-specific behavior",
+      "refresh_policy": {
+        "max_age_days": 7,
+        "during_use": "revalidate task-relevant sources with existing host retrieval",
+        "maintenance": "daily read-only check; no automatic behavioral edits"
       }
     }
   ]

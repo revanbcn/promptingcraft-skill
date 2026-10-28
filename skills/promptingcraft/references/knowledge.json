@@ -330,6 +330,44 @@
       "conflicts_with_existing_guidance": "Do not add paid services or delegation merely to improve a prompt.",
       "apply_when": "Designing a workflow; not a directive to change user architecture.",
       "mandatory_for_all_prompts": false
+    },
+    {
+      "id": "deepseek-thinking-tools",
+      "provider": "deepseek",
+      "source_title": "Thinking Mode",
+      "url": "https://api-docs.deepseek.com/guides/thinking_mode/",
+      "retrieval_date": "2026-10-28",
+      "applicable_model_family": "DeepSeek API thinking mode",
+      "labels": [
+        "OFFICIAL",
+        "MODEL_SPECIFIC"
+      ],
+      "recommendation": "For requests carrying tools, preserve the documented reasoning_content in subsequent API requests; ordinary requests without tools have different context behavior.",
+      "evidence_or_limitation": "The API guide documents a 400 error if required reasoning content is not passed for requests carrying tools; do not generalize to other APIs or clients.",
+      "promptingcraft_applicability": "Apply only when an explicitly requested task implements the applicable API or tool-call loop; do not insert API transport details into an unrelated coding-agent prompt.",
+      "conflicts_with_existing_guidance": "Do not generalize provider-specific context handling or require exposing reasoning in final output.",
+      "apply_when": "Known model and relevant API integration task; verify current source and exact interface.",
+      "mandatory_for_all_prompts": false,
+      "retrieved_content_sha256": "9ed301a367d96df1ace94e29f60521a3803239a14239428c8c5f4965c1217d38"
+    },
+    {
+      "id": "kimi-thinking-tools",
+      "provider": "kimi",
+      "source_title": "Thinking Models",
+      "url": "https://platform.kimi.ai/docs/guide/use-thinking-models",
+      "retrieval_date": "2026-10-28",
+      "applicable_model_family": "Kimi K3.1 Pro, K2.7 Code and K2.6 API",
+      "labels": [
+        "OFFICIAL",
+        "MODEL_SPECIFIC"
+      ],
+      "recommendation": "Preserve the assistant message and reasoning content as required by the specific model and tool-call workflow; K3.1 Pro and K2.7 Code have always-on preserved thinking, while K2.6 has different controls.",
+      "evidence_or_limitation": "This is API integration guidance, not an instruction to expose reasoning in a user-facing prompt. Model parameters and retention differ; verify the exact model documentation.",
+      "promptingcraft_applicability": "Apply only when an explicitly requested task implements the applicable API or tool-call loop; do not insert API transport details into an unrelated coding-agent prompt.",
+      "conflicts_with_existing_guidance": "Do not generalize provider-specific context handling or require exposing reasoning in final output.",
+      "apply_when": "Known model and relevant API integration task; verify current source and exact interface.",
+      "mandatory_for_all_prompts": false,
+      "retrieved_content_sha256": "dae26280191646763ff28e5fa3978919818b4387b7654cc6dae67a1b23d928ec"
     }
   ],
   "promptingcraft_adaptations": [
