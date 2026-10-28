@@ -28,11 +28,11 @@ It preserves the original text; no-change still requires contract and source che
 It helps produce a usable handoff; it cannot supply missing access, authority,
 repository evidence or guarantees of downstream correctness.
 
-**Canonical and only public source:** [GitLab](https://gitlab.com/revanalex/promptingcraft-skill).
-A GitHub mirror exists but is not publicly reachable while an account visibility
-issue is unresolved, so it is not offered as a public source.
-Contribute through GitLab issues and merge requests. GitLab CI is authoritative;
-GitHub Actions are not enabled.
+**Canonical source:** [GitLab](https://gitlab.com/revanalex/promptingcraft-skill).
+A public [GitHub mirror](https://github.com/revanbcn/promptingcraft-skill) is also
+available for browsing and installation. GitLab CI is authoritative; GitHub
+Actions are not enabled. Contributions may be proposed on either platform;
+changes are integrated through the canonical GitLab project.
 
 ## Two ways to use it
 
