@@ -1,8 +1,10 @@
 # Contributing
 
 Use [GitLab issues and merge requests](https://gitlab.com/revanalex/promptingcraft-skill)
-for contributions. GitLab is the canonical and only public source; propose changes
-there, not against any mirror branch. Keep one skill tree and public prose in English.
+or the public [GitHub mirror](https://github.com/revanbcn/promptingcraft-skill)
+to propose changes. GitLab is canonical and its CI and merge process are authoritative;
+the mirror is synchronized without rewriting history. Keep one skill tree and public
+prose in English.
 
 Run `python3 -m unittest discover -s tests -v`, `python3 scripts/validate.py` and
 `python3 scripts/package.py`. GitLab required offline checks must pass before merge.
