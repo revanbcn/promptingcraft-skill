@@ -11,9 +11,10 @@ PromptingCraft.com preserves the task contract, consults applicable official gui
 drafts, critiques once, revises when necessary, and checks that requirements and permissions
 survived. The assistant writing the prompt and the agent executing it may differ.
 Targets: **Claude Code and OpenAI Codex**; **Cursor** is supported as a target agent
-(see [Use in Cursor](#use-in-cursor)). Package metadata: **0.4.0**
-for this separate upgrade candidate. The published ChatGPT plugin remains version 0.3.0;
-this candidate has not been published or approved as its replacement.
+(see [Use in Cursor](#use-in-cursor)). The standalone Skill on the current source tree has version **0.4.0**. Its
+plugin package is a separate 0.4.0 upgrade candidate; the published ChatGPT plugin
+remains **0.3.0**, and the candidate has not been published or approved as its replacement.
+The existing remote guidance MCP server reports version **0.3.0**; it is a separate service.
 
 The immutable v0.1.0 tag remains the historical source release; it is not replaced
 by the separate ChatGPT plugin. This branch contains unreleased guidance, compatibility
@@ -102,7 +103,21 @@ With unavailable retrieval, source guidance remains dated/unavailable.
 
 ## Install the standalone skill
 
-Download the v0.1.0 skill archive and `SHA256SUMS` from
+From the project where you want Claude Code to use the Skill, install the current
+public GitHub source with the [skills CLI](https://www.skills.sh/docs/cli):
+
+```sh
+DISABLE_TELEMETRY=1 npx -y skills@1.7.4 add revanbcn/promptingcraft-skill --skill promptingcraft --agent claude-code --copy --yes
+```
+
+This installs the standalone Skill from the repository's current default branch into
+`.claude/skills/promptingcraft/` in the project. That branch carries Skill version
+0.4.0; it can change as the repository is updated. The command opts out of CLI
+telemetry and uses the CLI's non-interactive copy mode. Installation does not establish
+Skill activation or install the optional remote MCP server. To use the Skill, start a
+new Claude Code session and invoke `/promptingcraft` with your prompt-authoring request.
+
+For the historical release, download the v0.1.0 skill archive and `SHA256SUMS` from
 [GitLab v0.1.0](https://gitlab.com/revanalex/promptingcraft-skill/-/releases/v0.1.0).
 Verify checksums before extracting. There is no 0.2.0 release yet; a clone
 provides the current candidate:
