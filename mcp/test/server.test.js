@@ -169,3 +169,11 @@ test('model-specific additions are discoverable through the MCP tool schema', as
     assert.match(detail.result.structuredContent.record.source.verified_snapshot.content_sha256, /^[a-f0-9]{64}$/);
   }
 });
+
+test('oversized tool argument collections are rejected before schema validation', async () => {
+  const oversized = await callTool('get_guidance', { id: Array(200).fill('x') });
+  assert.equal(oversized.result?.isError, true);
+  assert.match(oversized.result.content[0].text, /arguments contain more than the maximum of 32 elements/i);
+  const valid = await callTool('get_guidance', { id: 'oai-tools' });
+  assert.ok(!valid.result?.isError);
+});

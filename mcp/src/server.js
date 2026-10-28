@@ -42,9 +42,10 @@ const text = (value) => [{ type: 'text', text: JSON.stringify(value) }];
 const failure = (code, message) => ({ isError: true, content: [{ type: 'text', text: JSON.stringify({ error: code, message }) }] });
 
 export function createServer({ ledgerCommit, fetchImpl, cache, allowFetch, now } = {}) {
+  // Inputs are flat scalar filters (at most six keys); bound unexpected nested collections.
   const server = new McpServer(
     { name: 'promptingcraft-guidance', title: 'PromptingCraft.com guidance', version: SERVER_VERSION },
-    { instructions: INSTRUCTIONS, jsonSchemaValidator: new CfWorkerJsonSchemaValidator() },
+    { instructions: INSTRUCTIONS, jsonSchemaValidator: new CfWorkerJsonSchemaValidator(), maxToolInputElements: 32 },
   );
   const origin = provenance(ledgerCommit);
 
