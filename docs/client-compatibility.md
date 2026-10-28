@@ -12,6 +12,16 @@ in another host does not imply model-specific recommendations for that host or
 that automatic activation works. Consult the skill's applicability and dated
 references. No client below is claimed to have run a prompt unless explicitly stated.
 
+## Claude Code: remote MCP check
+
+Claude Code 2.1.312 connected to the existing production guidance endpoint in a
+2026-10-28 headless session with an isolated MCP configuration and
+`--strict-mcp-config`. The client discovered and invoked `search_guidance`, and
+the returned record included its official source and dated provenance. This is a
+remote MCP tool invocation, not Skill activation or an update to the deployed
+ledger. The session used the existing Claude authentication; no persistent MCP
+configuration was changed. See the [test receipt](client-validation-2026-10-28.md).
+
 ## Gemini CLI
 
 Gemini CLI documents [workspace skills and activation consent](https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/using-agent-skills.md).
