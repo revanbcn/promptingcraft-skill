@@ -14,8 +14,11 @@ class PackagingTests(unittest.TestCase):
     def test_repository_readme_identifies_candidate_and_published_plugin_separately(self):
         manifest=json.loads((ROOT/'plugin.json').read_text())
         readme=(ROOT/'README.md').read_text()
-        self.assertIn(f"Package metadata: **{manifest['version']}**", readme)
-        self.assertIn('published ChatGPT plugin remains version 0.3.0', readme)
+        normalized=' '.join(readme.split())
+        self.assertIn(f"standalone Skill on the current source tree has version **{manifest['version']}**", normalized)
+        self.assertIn('published ChatGPT plugin remains **0.3.0**', normalized)
+        self.assertIn('remote guidance MCP server reports version **0.3.0**', normalized)
+        self.assertIn('separate 0.4.0 upgrade candidate', normalized)
         self.assertNotIn('not been submitted to or reviewed by any plugin directory', readme)
     def test_project_metadata_resources_and_registry(self):
         validate_project(ROOT)
