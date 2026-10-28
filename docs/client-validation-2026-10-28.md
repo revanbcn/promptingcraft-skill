@@ -2,8 +2,20 @@
 
 This receipt records a local integration check of the **0.4.0 candidate** Skill,
 not a new published OpenAI plugin or an updated production MCP deployment.
-Client state and workspace were isolated for the test. The Gemini workspace was
+Gemini client state and workspace were isolated for its test. The Gemini workspace was
 trusted only for the test commands using `GEMINI_CLI_TRUST_WORKSPACE=true`.
+
+## Claude Code 2.1.312: production MCP
+
+A headless Claude Code session used a temporary MCP configuration with
+`--strict-mcp-config` and the public Streamable HTTP endpoint
+`https://mcp.promptingcraft.com/mcp`. Existing Claude authentication was used;
+no persistent client MCP configuration was changed. The CLI reported the server
+`connected`, discovered and invoked `search_guidance` using fixed public filters,
+and returned `oai-reasoning`, its official source and ledger `29860983`. The tool
+result and process completed without error. This verifies connection, discovery and
+one tool invocation through Claude Code. It does not verify candidate MCP deployment,
+Skill activation in this session, or other clients.
 
 ## Gemini CLI 0.66.0
 
