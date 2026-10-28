@@ -11,6 +11,12 @@ from scripts.validate import validate_project
 
 ROOT=Path(__file__).resolve().parents[1]
 class PackagingTests(unittest.TestCase):
+    def test_repository_readme_identifies_candidate_and_published_plugin_separately(self):
+        manifest=json.loads((ROOT/'plugin.json').read_text())
+        readme=(ROOT/'README.md').read_text()
+        self.assertIn(f"Package metadata: **{manifest['version']}**", readme)
+        self.assertIn('published ChatGPT plugin remains version 0.3.0', readme)
+        self.assertNotIn('not been submitted to or reviewed by any plugin directory', readme)
     def test_project_metadata_resources_and_registry(self):
         validate_project(ROOT)
     def test_archives_reproducible_self_contained_and_checksums(self):

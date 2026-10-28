@@ -11,11 +11,13 @@ PromptingCraft.com preserves the task contract, consults applicable official gui
 drafts, critiques once, revises when necessary, and checks that requirements and permissions
 survived. The assistant writing the prompt and the agent executing it may differ.
 Targets: **Claude Code and OpenAI Codex**; **Cursor** is supported as a target agent
-(see [Use in Cursor](#use-in-cursor)). Package metadata: **0.3.0**
-(unreleased candidate; no 0.2.0 or 0.3.0 tag or release exists).
+(see [Use in Cursor](#use-in-cursor)). Package metadata: **0.4.0**
+for this separate upgrade candidate. The published ChatGPT plugin remains version 0.3.0;
+this candidate has not been published or approved as its replacement.
 
-The immutable v0.1.0 tag is the canonical release. `main` contains unreleased
-knowledge, contract-fidelity, local plugin integration and listing-metadata work. The latest
+The immutable v0.1.0 tag remains the historical source release; it is not replaced
+by the separate ChatGPT plugin. This branch contains unreleased guidance, compatibility
+and package changes. The latest
 [contract-fidelity sample](evals/results/fidelity/README.md) found 0/14 material
 drift after earlier diagnostic variance; it is not a guarantee. Native Codex
 invocations are verified. ChatGPT-native activation and downstream superiority
@@ -151,9 +153,9 @@ The plugin ZIP includes root `plugin.json` using Agent Plugins 1.0.0, one
 Code compatibility manifest, plus a root `mcp.json` that declares the optional guidance
 MCP server. It declares no hooks or credentials.
 Its ChatGPT listing metadata (display name, descriptions, website, support,
-privacy and terms URLs, brand colors and icons) is checked by the validator;
-it has not been submitted to or reviewed by any plugin directory. In Claude
-Code, session-only loading is:
+privacy and terms URLs, brand colors and icons) is checked by the validator.
+The existing 0.3.0 plugin is published; this 0.4.0 candidate has not been
+submitted for review. In Claude Code, session-only loading is:
 
 ```sh
 claude --plugin-dir /path/to/extracted/promptingcraft-plugin
