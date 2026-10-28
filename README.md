@@ -37,6 +37,10 @@ available for browsing and installation. GitLab CI is authoritative; GitHub
 Actions are not enabled. Contributions may be proposed on either platform;
 changes are integrated through the canonical GitLab project.
 
+## Launch news
+
+PromptingCraft.com is [published in the ChatGPT Plugin Directory](https://chatgpt.com/plugins/plugin_asdk_app_6acde71d1ddc81918d6095dba60b6023), and its optional guidance MCP is listed in the [official MCP Registry](https://registry.modelcontextprotocol.io/?q=com.promptingcraft%2Fguidance). Both published services are version 0.3.0; the standalone Skill in the current source tree is 0.4.0. See the [website documentation](https://promptingcraft.com/docs) for installation, capabilities and verification details.
+
 ## Two ways to use it
 
 Use PromptingCraft as a standalone Agent Skill, or connect its MCP server for structured
