@@ -1,5 +1,15 @@
 # Verification status
 
+## Status checked 2026-10-28
+
+- The publisher account readback recorded the existing [ChatGPT plugin](https://chatgpt.com/plugins/plugin_asdk_app_6acde71d1ddc81918d6095dba60b6023) as published at version 0.3.0. Anonymous visibility and ordinary-Chat Skill activation were not established by that readback.
+- The [GitHub mirror](https://github.com/revanbcn/promptingcraft-skill) returned anonymous HTTP 200; its `main` and the [canonical GitLab `main`](https://gitlab.com/revanalex/promptingcraft-skill) both resolved to `6435b9d528865e6e709f6d6ed6898865260736a4` on this date. This is a dated observation, not an automatic synchronization guarantee.
+- Version 0.4.0 is a separate local upgrade candidate, not a replacement for the published package. Package, client activation, MCP deployment and publication remain separate evidence boundaries.
+
+## Historical verification snapshots
+
+The sections below preserve observations from earlier work. Their labels, access limitations and “not submitted” or “unreleased” statements describe those historical checkpoints and do not supersede the dated status above.
+
 ## Unreleased 0.3.0 candidate: guidance MCP server and the `promptingcraft` identifier
 
 - Offline: Python tests, project/catalog validators, MCP tests (`npm test` in `mcp/`),
