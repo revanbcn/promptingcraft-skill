@@ -23,9 +23,11 @@ gemini skills install /path/to/promptingcraft-skill/skills/promptingcraft --scop
 
 The workspace must be trusted. In an interactive session use `/skills reload`, then
 `/skills list`; ask to use PromptingCraft for a Codex or Claude Code handoff and
-approve activation when prompted. Gemini CLI 0.66.0 installed the skill into a
-separate test workspace on 2026-10-28; its untrusted workspace did not discover it.
-Discovery in a trusted session and model activation were not tested.
+approve activation when prompted. On 2026-10-28 Gemini CLI 0.66.0 installed and
+listed the 0.4.0 candidate Skill as enabled in an isolated trusted test workspace.
+The installed tree matched the candidate. A model activation attempt in the isolated
+profile stopped because no authentication method was configured; activation was not
+observed. See the [test receipt](client-validation-2026-10-28.md).
 
 For optional MCP guidance, merge into `.gemini/settings.json` (see
 [Gemini MCP configuration](https://github.com/google-gemini/gemini-cli/blob/main/docs/tools/mcp-server.md)):
@@ -33,6 +35,20 @@ For optional MCP guidance, merge into `.gemini/settings.json` (see
 ```json
 {"mcpServers":{"promptingcraft-guidance":{"httpUrl":"https://mcp.promptingcraft.com/mcp"}}}
 ```
+
+The exact `httpUrl` recipe connected to the existing production MCP in the same
+Gemini CLI test: `gemini mcp list` reported `Connected`. Tool discovery and tool
+invocation in Gemini were not tested; the production server's ledger may differ
+from the 0.4.0 candidate's bundled references.
+
+## Cursor CLI
+
+Cursor Agent CLI reads project-level `.cursor/mcp.json` as documented in the
+[Cursor CLI MCP guide](https://cursor.com/docs/cli/mcp). In an isolated project,
+Agent CLI `2026.10.22-27dcf5f` detected the configured `promptingcraft-guidance`
+server, but `agent mcp list-tools promptingcraft-guidance` stopped because the
+server had not been approved. No shared approval list was changed. Connection,
+tool discovery and invocation were not established by that check.
 
 ## OpenCode
 
