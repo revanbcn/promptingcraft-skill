@@ -11,6 +11,8 @@ guidance instead of relying on memory.
 | `get_guidance` | Returns one record by stable id: provider, canonical URL, applicability, limitations, labels, verification date, snapshot hash, ledger commit. | read-only, closed world |
 | `check_source_freshness` | Fetches one allowlisted registry source and compares its normalized text with the verified snapshot: `unchanged`, `updated`, `unavailable` or `unknown`. Publication and update dates are always `null`. | read-only, open world (fetches public documentation) |
 
+Client-specific configuration recipes and their testing limits: [client compatibility](../docs/client-compatibility.md).
+
 ## Source of truth
 
 Nothing here is a second knowledge base. The Worker bundles at build time:
