@@ -41,7 +41,7 @@
         "Cursor",
         "Developer Tools"
       ],
-      "logo": "https://gitlab.com/revanalex/promptingcraft-skill/-/raw/main/assets/logo.svg"
+      "logo": "assets/logo.svg"
     }
   ]
 }

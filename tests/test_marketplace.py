@@ -123,8 +123,8 @@ class CursorMarketplaceTests(unittest.TestCase):
         for field in ('name', 'version', 'homepage', 'repository', 'license', 'keywords'):
             self.assertEqual(entry[field], manifest[field], field)
         self.assertEqual(entry['author']['name'], manifest['author']['name'])
-        self.assertTrue(entry['logo'].startswith('https://gitlab.com/revanalex/promptingcraft-skill/-/raw/'))
-        self.assertTrue((root / entry['logo'].split('/-/raw/main/')[1]).is_file())
+        self.assertEqual(entry['logo'], 'assets/logo.svg')
+        self.assertTrue((root / entry['logo']).is_file())
         self.assertTrue(entry['description'].endswith('Developed by the dondego.com team.'))
         for forbidden in ('mcpServers', 'hooks', 'rules', 'agents', 'commands', 'variables'):
             self.assertNotIn(forbidden, entry)
