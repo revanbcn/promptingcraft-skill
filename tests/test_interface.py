@@ -37,7 +37,7 @@ class InterfaceTests(unittest.TestCase):
         validate_interface(ROOT, self.interface)
         # Stable technical id kept for installed v0.1.0 and local marketplace installs.
         self.assertEqual(self.manifest['name'], 'promptingcraft')
-        self.assertEqual(self.manifest['version'], '0.3.0')
+        self.assertEqual(self.manifest['version'], '0.4.0')
         self.assertEqual(self.manifest['homepage'], 'https://promptingcraft.com')
         self.assertEqual(self.manifest['repository'], 'https://gitlab.com/revanalex/promptingcraft-skill')
         self.assertEqual(self.interface['displayName'], 'PromptingCraft.com')
@@ -60,6 +60,8 @@ class InterfaceTests(unittest.TestCase):
         self.assertEqual(set(publication), {'release_notes'})
         notes = publication['release_notes']
         self.assertIn('https://mcp.promptingcraft.com/mcp', notes)
+        self.assertIn('DeepSeek and Kimi', notes)
+        self.assertIn('deployed server', notes)
         self.assertIn('otherwise it says so and falls back to other official sources or its bundled dated references', notes)
         self.assertTrue(notes.endswith('Developed by the dondego.com team.'))
         self.assertNotRegex(notes.lower(), r'guarantee[sd]? (better|improve)|official (openai|anthropic) (plugin|partner)')

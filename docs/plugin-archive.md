@@ -1,4 +1,4 @@
-# PromptingCraft.com — plugin package 0.2.0
+# PromptingCraft.com — plugin package 0.4.0
 
 Website: https://promptingcraft.com
 
@@ -13,8 +13,7 @@ and Claude Code adapter are included. Since 0.3.0 the skill and plugin identifie
 `promptingcraft` (formerly `promptcraft`; see [migration notes](https://gitlab.com/revanalex/promptingcraft-skill/-/blob/main/docs/migration-0.3.0.md)).
 The root `mcp.json` declares one remote MCP server, the PromptingCraft.com guidance
 server at `https://mcp.promptingcraft.com/mcp`; the skill also works without it. There
-are no credentials or hooks. A public Git release is not a
-published ChatGPT directory plugin.
+are no credentials or hooks. This archive is a separate upgrade candidate; the existing published ChatGPT plugin remains version 0.3.0 until an explicitly approved update is accepted.
 
 For session-only Claude Code loading, run:
 
@@ -40,7 +39,7 @@ validation is a separate operator gate.
 
 Maintenance scripts, tests, evaluations and full installation/distribution docs
 are in the [canonical GitLab repository](https://gitlab.com/revanalex/promptingcraft-skill),
-the only public source. GitLab is the contribution and CI authority.
+and [public GitHub mirror](https://github.com/revanbcn/promptingcraft-skill). GitLab remains the contribution and CI authority.
 See the repository's verification receipt for actual runtime and CI status.
 
 Developed by the [dondego.com](https://dondego.com) team.

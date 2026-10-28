@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: DondeGo
   website: https://promptingcraft.com
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # PromptingCraft.com

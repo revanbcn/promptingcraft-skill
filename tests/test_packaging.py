@@ -32,7 +32,7 @@ class PackagingTests(unittest.TestCase):
                         for link in re.findall(r'\]\(([^)]+)\)',page.read_text()):
                             if not link.startswith('https://'):
                                 self.assertTrue((page.parent/link).is_file(),(page,link))
-            self.assertEqual([p.name for p in first],['promptingcraft-skill-0.3.0.zip','promptingcraft-plugin-0.3.0.zip'])
+            self.assertEqual([p.name for p in first],['promptingcraft-skill-0.4.0.zip','promptingcraft-plugin-0.4.0.zip'])
             with zipfile.ZipFile(first[1]) as z:
                 names=set(z.namelist())
                 for asset in ('icon.svg','icon-dark.svg','logo.svg','logo-dark.svg'):
